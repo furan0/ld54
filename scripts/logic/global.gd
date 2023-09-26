@@ -19,6 +19,15 @@ func _ready():
 	
 	# Configure SilentWolf API
 	initSilentWolf()
+	
+	## DEBUG
+	test()
+
+func test():
+	$LoadingUI.display = true
+	get_tree().create_tween().tween_method($LoadingUI.setValue, 0.0, 100.0, 5.0)
+	await get_tree().create_timer(5.0).timeout
+	$LoadingUI.display = false
 
 
 ## SilentWolf API initialization. Used for leaderboard.

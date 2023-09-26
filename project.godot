@@ -12,11 +12,17 @@ config_version=5
 
 config/name="ld54"
 config/features=PackedStringArray("4.1", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="res://assets/icon.svg"
 
 [autoload]
 
+Global="*res://scenes/logic/global.tscn"
 SilentWolf="*res://addons/silent_wolf/SilentWolf.gd"
+
+[display]
+
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
 
 [editor]
 
