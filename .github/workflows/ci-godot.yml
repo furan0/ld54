@@ -79,8 +79,6 @@ jobs:
           name: HTML5
           path: .
 
-      - run: tree public
-
       - name: Install rsync & curl 📚
         run: |
           apt-get update && apt-get install -y curl && apt-get install -y rsync
