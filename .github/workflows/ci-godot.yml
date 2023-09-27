@@ -36,7 +36,7 @@ jobs:
         run: |
           mkdir -v -p build/web
           godot -v --headless --export-release "Web" ./build/web/index.html
-      - name: Upload Artifact
+      - name: 📤 Upload artifact
         uses: actions/upload-artifact@v3
         with:
           name: web
@@ -44,7 +44,7 @@ jobs:
       # Workaround for SharedArrayBuffer support on GitHub Pages
       # See: https://github.com/godotengine/godot-docs/issues/7084
       - run: |
-          cd public/play
+          cd build/web
           curl -fsSL https://github.com/gzuidhof/coi-serviceworker/raw/master/coi-serviceworker.js > coi-serviceworker.js
           sed -i 's#\(		<script src="index.js"></script>\)#		<script src="coi-serviceworker.js"></script>\n\1#g' index.html
       # Installing rsync is needed in order to deploy to GitHub Pages. Without it, the build will fail.
