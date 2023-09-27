@@ -35,12 +35,12 @@ jobs:
               upload: build/web
   
             - preset: Linux/X11
-              path: ./build/linux/${{PROJECT_NAME}}.x86_64
+              path: ./build/linux/${PROJECT_NAME}.x86_64
               name: Linux
               upload: build/linux
   
             - preset: Windows Desktop
-              path: ./build/windows/${{PROJECT_NAME}}.exe
+              path: ./build/windows/${PROJECT_NAME}.exe
               name: Windows
               upload: build/windows
   
