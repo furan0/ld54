@@ -25,7 +25,7 @@ jobs:
       image: barichello/godot-ci:4.1.1
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           lfs: true
       - name: Setup
@@ -49,5 +49,5 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@releases/v4
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: main # The branch the action should deploy to.
+          BRANCH: build # The branch the action should deploy to.
           FOLDER: build/web # The folder the action should deploy.
