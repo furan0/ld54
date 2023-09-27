@@ -41,16 +41,17 @@ jobs:
         with:
           name: web
           path: build/web
+      # Installing rsync is needed in order to deploy to GitHub Pages. Without it, the build will fail.
+      # Curl is required for the fix below
+      - name: Install rsync & curl 📚
+        run: |
+          apt-get update && apt-get install -y curl && apt-get install -y rsync
       # Workaround for SharedArrayBuffer support on GitHub Pages
       # See: https://github.com/godotengine/godot-docs/issues/7084
       - run: |
           cd build/web
           curl -fsSL https://github.com/gzuidhof/coi-serviceworker/raw/master/coi-serviceworker.js > coi-serviceworker.js
           sed -i 's#\(		<script src="index.js"></script>\)#		<script src="coi-serviceworker.js"></script>\n\1#g' index.html
-      # Installing rsync is needed in order to deploy to GitHub Pages. Without it, the build will fail.
-      - name: Install rsync 📚
-        run: |
-          apt-get update && apt-get install -y rsync
       - name: Deploy to GitHub Pages 🚀
         if: (github.event_name != 'pull_request')
         uses: JamesIves/github-pages-deploy-action@releases/v4
