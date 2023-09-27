@@ -4,6 +4,7 @@ name: CI
 
 env:
   GODOT_VERSION: 4.1.1
+  PROJECT_NAME: ld54
   
 # Controls when the workflow will run
 on:
@@ -18,44 +19,79 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+  build:
+      runs-on: ubuntu-latest
+      name: ${{ matrix.name }}
+      container:
+        image: barichello/godot-ci:4.1.1
+      strategy:
+        fail-fast: false
+        matrix:
+          include:
+  
+            - preset: HTML5
+              path: ./build/web/index.html
+              name: HTML5
+              upload: build/web
+  
+            - preset: Linux/X11
+              path: ./build/linux/${{PROJECT_NAME}}.x86_64
+              name: Linux
+              upload: build/linux
+  
+            - preset: Windows Desktop
+              path: ./build/windows/${{PROJECT_NAME}}.exe
+              name: Windows
+              upload: build/windows
+  
+      steps:
+  
+        - uses: actions/checkout@v3
+
+        - name: Setup
+          run: |
+            mkdir -v -p ~/.local/share/godot/export_templates
+            mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
+  
+        - run: mkdir -p "$(dirname '${{ matrix.path }}')"
+  
+        - run: godot -v --headless --export-release "Web" '${{ matrix.path }}'
+  
+        - name: '📤 Upload artifact'
+          uses: 'actions/upload-artifact@v3'
+          with:
+            name: ${{ matrix.name }}
+            path: ${{ matrix.upload }}
+            if-no-files-found: error
+          
   export-web:
     name: Web Export
     runs-on: ubuntu-latest
-    container:
-      image: barichello/godot-ci:4.1.1
+    needs:
+      - build
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+    
+      - uses: actions/checkout@v3
+
+      - name: '📥 Download artifacts: HTML5'
+        uses: actions/download-artifact@v3
         with:
-          lfs: true
-      - name: Setup
-        run: |
-          mkdir -v -p ~/.local/share/godot/export_templates
-          mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
-      - name: Web Build
-        run: |
-          mkdir -v -p build/web
-          godot -v --headless --export-release "Web" ./build/web/index.html
-      - name: 📤 Upload artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: web
-          path: build/web
-      # Installing rsync is needed in order to deploy to GitHub Pages. Without it, the build will fail.
-      # Curl is required for the fix below
+          name: HTML5
+          path: .
+
+      - run: tree public
+
       - name: Install rsync & curl 📚
         run: |
           apt-get update && apt-get install -y curl && apt-get install -y rsync
       # Workaround for SharedArrayBuffer support on GitHub Pages
       # See: https://github.com/godotengine/godot-docs/issues/7084
       - run: |
-          cd build/web
           curl -fsSL https://github.com/gzuidhof/coi-serviceworker/raw/master/coi-serviceworker.js > coi-serviceworker.js
           sed -i 's#\(		<script src="index.js"></script>\)#		<script src="coi-serviceworker.js"></script>\n\1#g' index.html
       - name: Deploy to GitHub Pages 🚀
         if: (github.event_name != 'pull_request')
         uses: JamesIves/github-pages-deploy-action@releases/v4
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: build # The branch the action should deploy to.
           FOLDER: build/web # The folder the action should deploy.
