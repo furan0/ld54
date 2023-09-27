@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="GameConfig" load_steps=2 format=3 uid="uid://ct57i68nxq4ld"]
+
+[ext_resource type="Script" path="res://scripts/logic/GameConfig.gd" id="1_u6hsn"]
+
+[resource]
+script = ExtResource("1_u6hsn")
+configFileName = "config.cfg"
+sfxVolume = 100.0
+musicVolume = 100.0
+playerName = ""
+keybindings = {}

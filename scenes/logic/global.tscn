@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dvtw5rwbwhptf"]
 
-[ext_resource type="Script" path="res://scripts/logic/global.gd" id="1_cqwk7"]
+[ext_resource type="Script" path="res://scripts/logic/Global.gd" id="1_inkm5"]
 [ext_resource type="PackedScene" uid="uid://bsutykcmunj6m" path="res://scenes/UI/loading_ui.tscn" id="2_8p2q1"]
 
 [node name="Global" type="Node"]
@@ -11,7 +11,7 @@ The following are handled by this script:
  - Global initialization, such as silentWolf configuration
  - Scene handling and scene changes
   - more TBD..."
-script = ExtResource("1_cqwk7")
+script = ExtResource("1_inkm5")
 
 [node name="LoadingUI" parent="." instance=ExtResource("2_8p2q1")]
 visible = false

@@ -130,4 +130,4 @@ func _completeSceneLoading(path : String) -> void:
 	# remove Loading UI & signal end of scene switching
 	$LoadingUI.hideUI()
 	sceneSwitchCompleted.emit()
-	print("Scene switing compelted")
+	print("Scene switching completed")
