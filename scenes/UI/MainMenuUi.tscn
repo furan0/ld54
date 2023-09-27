@@ -1,0 +1,84 @@
+[gd_scene load_steps=3 format=3 uid="uid://djfdxmwa6507n"]
+
+[ext_resource type="Script" path="res://scripts/UI/StandardUiPanel.gd" id="1_5i0kg"]
+[ext_resource type="Texture2D" uid="uid://bg2bdwlmu5ycs" path="res://assets/godot.svg" id="2_7fvlc"]
+
+[node name="MainMenuUi" type="Control" node_paths=PackedStringArray("initialFocus")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5i0kg")
+initialFocus = NodePath("MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/Play")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 120
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 120
+theme_override_constants/margin_bottom = 80
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="title" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 45
+text = "Ludum Dare 54 !"
+
+[node name="Spacer" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.18
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_constants/separation = 5
+
+[node name="Play" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Play !"
+
+[node name="Option" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Option"
+
+[node name="Credit" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Credit"
+
+[node name="version" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Version 0.0.1"
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="logo" type="TextureRect" parent="MarginContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("2_7fvlc")
+stretch_mode = 5
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/Play" to="." method="goToScene" binds= ["res://scenes/levels/test1.tscn"]]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/Option" to="." method="requestPanelSwitch" binds= ["option"]]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/Credit" to="." method="requestPanelSwitch" binds= ["credit"]]

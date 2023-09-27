@@ -14,3 +14,4 @@ The following are handled by this script:
 script = ExtResource("1_cqwk7")
 
 [node name="LoadingUI" parent="." instance=ExtResource("2_8p2q1")]
+visible = false

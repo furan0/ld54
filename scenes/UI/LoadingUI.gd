@@ -16,10 +16,15 @@ extends CanvasLayer
 var display : bool = false :
 	set (value):
 		if (value):
-			_on_show()
+			displayUI()
 		else:
-			_on_hide()
+			hideUI()
 
+var loadPercent : float = 0 : 
+	set (value):
+		setValue(value)
+	get:
+		return loadingBar.value
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -28,7 +33,7 @@ func _ready():
 	
 
 ## Show the loading panel with the associated animation
-func _on_show() -> void:
+func displayUI() -> void:
 	$Panel.modulate = Color.TRANSPARENT
 	show()
 	var tween := get_tree().create_tween()
@@ -36,7 +41,7 @@ func _on_show() -> void:
 
 
 ## Hide the loading panel after the associated animation
-func _on_hide() -> void:
+func hideUI() -> void:
 	# Hide with a tween
 	var tween := get_tree().create_tween()
 	tween.tween_property($Panel, "modulate", Color.TRANSPARENT, hideDelay)
