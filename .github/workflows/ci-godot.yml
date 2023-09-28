@@ -4,7 +4,6 @@ name: CI
 
 env:
   GODOT_VERSION: 4.1.1
-  PROJECT_NAME: ld54
   ITCH_USERNAME: furaune
   ITCH_GAME_ID: ld54-test
   
@@ -37,12 +36,12 @@ jobs:
               upload: build/web
   
             - preset: Linux/X11
-              path: ./build/linux/${{env.PROJECT_NAME}}.x86_64
+              path: ./build/linux/ld54.x86_64
               name: Linux
               upload: build/linux
   
             - preset: Windows Desktop
-              path: ./build/windows/${{env.PROJECT_NAME}}.exe
+              path: ./build/windows/ld54.exe
               name: Windows
               upload: build/windows
   
