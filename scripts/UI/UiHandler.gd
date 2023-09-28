@@ -92,7 +92,8 @@ func switchPanel(panelName : String, hidePreviousPanel : bool = true, isChildInH
 		currentPanel.returnRequested.connect(_on_back_called)
 		
 	# emit panel switch signal
-	uiSwitched.emit()
+	if not Engine.is_editor_hint():
+		uiSwitched.emit()
 
 
 # handle back input/signal
@@ -111,7 +112,8 @@ func _on_back_called():
 		currentPanel.show()
 		currentPanel.resetFocus()
 	# trigger signal
-	uiGoback.emit()
+	if not Engine.is_editor_hint():
+		uiGoback.emit()
 
 ##Calles by editor to update configuration warning on the script
 func _get_configuration_warnings():

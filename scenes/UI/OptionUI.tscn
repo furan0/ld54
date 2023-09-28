@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://c1lmfdelwaxbs"]
+[gd_scene load_steps=3 format=3 uid="uid://c1lmfdelwaxbs"]
 
 [ext_resource type="Script" path="res://scripts/UI/StandardUiPanel.gd" id="1_esuhu"]
+[ext_resource type="Script" path="res://scripts/audio/AudioBusManager.gd" id="2_sqwkv"]
 
 [node name="OptionUI" type="Control" node_paths=PackedStringArray("initialFocus")]
 layout_mode = 3
@@ -38,6 +39,9 @@ offset_right = 784.0
 offset_bottom = 43.0
 text = "Option 1
 "
+
+[node name="AudioBusManager" type="Node" parent="."]
+script = ExtResource("2_sqwkv")
 
 [connection signal="pressed" from="Button" to="." method="requestPanelSwitch" binds= ["option2", false]]
 [connection signal="pressed" from="back" to="." method="goBack"]
