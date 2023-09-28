@@ -5,14 +5,16 @@ name: CI
 env:
   GODOT_VERSION: 4.1.1
   PROJECT_NAME: ld54
+  ITCH_USERNAME: furaune
+  ITCH_GAME_ID: ld54-test
   
 # Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the main branch
+  # Triggers the workflow on push or pull request events but only for the main branch, or when a new tag is created
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    tags:
+      - '*'
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -29,7 +31,7 @@ jobs:
         matrix:
           include:
   
-            - preset: HTML5
+            - preset: Web
               path: ./build/web/index.html
               name: HTML5
               upload: build/web
@@ -55,7 +57,7 @@ jobs:
   
         - run: mkdir -p "$(dirname '${{ matrix.path }}')"
   
-        - run: godot -v --headless --export-release "Web" '${{ matrix.path }}'
+        - run: godot -v --headless --export-release '${{ matrix.preset }}' '${{ matrix.path }}'
   
         - name: '📤 Upload artifact'
           uses: 'actions/upload-artifact@v3'
@@ -67,6 +69,7 @@ jobs:
   export-web:
     name: Web Export
     runs-on: ubuntu-latest
+    if: (github.event_name != 'pull_request') && !contains(github.ref, 'refs/tags/')
     needs:
       - build
     steps:
@@ -87,9 +90,78 @@ jobs:
           curl -fsSL https://github.com/gzuidhof/coi-serviceworker/raw/master/coi-serviceworker.min.js > build/coi-serviceworker.min.js
           sed -i 's#\(		<script src="index.js"></script>\)#		<script src="coi-serviceworker.min.js"></script>\n\1#g' build/index.html
           
-      - name: Deploy to GitHub Pages 🚀
-        if: (github.event_name != 'pull_request')
+      - name: Deploy to CI GitHub Pages 🚀
         uses: JamesIves/github-pages-deploy-action@releases/v4
         with:
           BRANCH: build # The branch the action should deploy to.
           FOLDER: build # The folder the action should deploy.
+          CLEAN: false
+
+  deploy-itch:
+    runs-on: ubuntu-latest
+    if: (github.event_name == 'push') && contains(github.ref, 'refs/tags/')
+    needs:
+      - build
+    strategy:
+      fail-fast: true
+      matrix:
+          include:
+  
+            - preset: Web
+              name: HTML5
+              channel: HTML5
+  
+            - preset: Linux/X11
+              name: Linux
+              channel: linux
+  
+            - preset: Windows Desktop
+              name: Windows
+              channel: windows
+              
+    name: Deploy 🚀 - Itch.io ${{ matrix.name }}
+    steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: ${{ matrix.name }}
+          path: build/${{ matrix.name }}
+      - uses: KikimoraGames/itch-publish@v0.0.3
+        with:
+          butlerApiKey: ${{secrets.BUTLER_API_KEY}}
+          gameData: ./build/${{ matrix.name }}
+          itchUsername: ${{env.ITCH_USERNAME}}
+          itchGameId: ${{ env.ITCH_GAME_ID }}
+          buildChannel: ${{ matrix.channel }}
+          buildNumber: ${{  github.ref_name }}
+          
+  deploy-web:
+    name: Deploy 🚀 - Github pages
+    runs-on: ubuntu-latest
+    if: (github.event_name == 'push') && contains(github.ref, 'refs/tags/')
+    needs:
+      - build
+    steps:
+    
+      - uses: actions/checkout@v3
+    
+      - run: mkdir -v -p build
+    
+      - name: '📥 Download artifacts: HTML5'
+        uses: actions/download-artifact@v3
+        with:
+          name: HTML5
+          path: build
+    
+      # Workaround for SharedArrayBuffer support on GitHub Pages
+      # See: https://github.com/godotengine/godot-docs/issues/7084
+      - run: |
+          curl -fsSL https://github.com/gzuidhof/coi-serviceworker/raw/master/coi-serviceworker.min.js > build/coi-serviceworker.min.js
+          sed -i 's#\(		<script src="index.js"></script>\)#		<script src="coi-serviceworker.min.js"></script>\n\1#g' build/index.html
+          
+      - name: Deploy to CI GitHub Pages 🚀 - folder ${{  github.ref_name }}
+        uses: JamesIves/github-pages-deploy-action@releases/v4
+        with:
+          BRANCH: build # The branch the action should deploy to.
+          FOLDER: build # The folder the action should deploy.
+          CLEAN: false
+          TARGET-FOLDER: ${{  github.ref_name }}
