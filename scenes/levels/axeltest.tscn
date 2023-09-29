@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://fdxhkjrxsrq5"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_ogs4u"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_rf24o"]
+
+[node name="axeltest" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.38485, 0, 0)
+mesh = SubResource("SphereMesh_ogs4u")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1.35491, -0.916279, 0, 3.09949, 0.400541, -0.0191367, 1.11394, 1.14392)
+mesh = SubResource("SphereMesh_ogs4u")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.993136, 0, 0, 0, 0.993136, 0, 0, 0, 0.993136, 0.525786, 0, 0)
+mesh = SubResource("SphereMesh_ogs4u")
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="."]
+transform = Transform3D(-0.326608, 0, -0.94516, 0, 1, 0, 0.94516, 0, -0.326608, 0, 1.84691, 2.6542)
+amount = 15
+mesh = SubResource("SphereMesh_rf24o")
+spread = 15.63
+initial_velocity_min = 0.8
+initial_velocity_max = 8.68
+scale_amount_min = 0.0
+scale_amount_max = 0.3
+color = Color(1, 1, 0.0627451, 1)
