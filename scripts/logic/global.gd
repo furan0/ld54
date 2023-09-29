@@ -28,6 +28,9 @@ func _ready():
 	
 	# Configure SilentWolf API
 	_initSilentWolf()
+	
+	# Configure random number generator
+	randomize()
 
 
 ## SilentWolf API initialization. Used for leaderboard.
