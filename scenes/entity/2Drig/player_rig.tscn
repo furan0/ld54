@@ -1544,7 +1544,7 @@ texture = ExtResource("11_jar7f")
 lifetime = 0.7
 interpolate = false
 
-[node name="FullTackle" type="Sprite2D" parent="keyframe"]
+[node name="Tackle" type="Sprite2D" parent="keyframe"]
 visible = false
 position = Vector2(-5, -73)
 texture = ExtResource("5_icv7o")
