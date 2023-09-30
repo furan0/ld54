@@ -1,9 +1,9 @@
 [gd_scene load_steps=16 format=3 uid="uid://d1h1msw0tmfw4"]
 
 [ext_resource type="Script" path="res://scripts/Player/Player.gd" id="1_6um2b"]
-[ext_resource type="Texture2D" uid="uid://ryo1v1qg8htp" path="res://assets/proto/Circle_simple.svg" id="2_acfok"]
 [ext_resource type="Script" path="res://scripts/logic/LookAt.gd" id="2_r5dgl"]
 [ext_resource type="Script" path="res://scripts/logic/InputHandler.gd" id="3_320l3"]
+[ext_resource type="Texture2D" uid="uid://b5eakg1f02501" path="res://assets/art/char/player/neutral/full_neutral.png" id="3_wqv15"]
 [ext_resource type="Script" path="res://scripts/Player/MovementHandler.gd" id="4_a12nu"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="5_7qtpj"]
 [ext_resource type="Script" path="res://scripts/Player/StunHandler.gd" id="5_d88al"]
@@ -44,8 +44,8 @@ debug_color = Color(0.760784, 0, 0, 0.254902)
 
 [node name="Sprite" type="Sprite2D" parent="."]
 modulate = Color(0, 1, 0.00784314, 1)
-scale = Vector2(0.208, 0.208)
-texture = ExtResource("2_acfok")
+scale = Vector2(0.553, 0.553)
+texture = ExtResource("3_wqv15")
 
 [node name="Colision" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_2fvwc")
