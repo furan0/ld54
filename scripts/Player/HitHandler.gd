@@ -39,7 +39,7 @@ func hit(stunDuration : float, impactVector : Vector2 = Vector2.ZERO, bypassProt
 	_print("Character hit and stuned for " + str(stunDuration))
 	startStun.emit(stunDuration)
 	rigidbody.apply_impulse(impactVector)
-	rigidbody.rotate(impactVector.angle() + PI) # make the player face the blow
+	rigidbody.rotation = impactVector.angle() + PI # make the player face the blow
 
 
 func _ready():
