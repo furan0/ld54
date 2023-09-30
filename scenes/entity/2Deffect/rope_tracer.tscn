@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bw3mv3pn2ulwn"]
+
+[ext_resource type="Script" path="res://scripts/entity/2Deffect/rope_racer.gd" id="1_juwur"]
+[ext_resource type="Texture2D" uid="uid://b27n424s7wiyj" path="res://assets/art/placeholder/Rope.png" id="2_fqss0"]
+
+[node name="rope_tracer" type="Node2D"]
+script = ExtResource("1_juwur")
+
+[node name="rope_renderer" type="Line2D" parent="."]
+texture_repeat = 2
+points = PackedVector2Array(107, 37, 263, 162, 273, 331, 522, 242, 745, 192)
+width = 21.915
+texture = ExtResource("2_fqss0")
+texture_mode = 1
