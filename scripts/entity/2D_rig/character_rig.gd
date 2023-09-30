@@ -14,14 +14,20 @@ enum CHARA_ANIMATION {
 	PUSHED}
 	
 # The animation to play if the animation is not yet implemented
-@export var fallback_animation =  CHARA_ANIMATION.IDLE
+@export var fallback_animation :=  CHARA_ANIMATION.IDLE
+@export var looker : Node2D
 
-var available_animation = {
-	CHARA_ANIMATION.IDLE : "idle-loop"}
+
+
+var available_animation = {CHARA_ANIMATION.IDLE : "idle-loop",
+	CHARA_ANIMATION.MOVEMENT : "walk-loop"}
+@onready var available_action = {CHARA_ANIMATION.IDLE : $AnimationPlayer.play,
+	CHARA_ANIMATION.MOVEMENT : $AnimationPlayer.play}
+
 
 func play_animation(desired_animation : CHARA_ANIMATION):
 	if (desired_animation in available_animation):
-		$AnimationPlayer.play("idle_loop")
+		available_action[desired_animation].call(available_animation[desired_animation])
 	else:
 		$AnimationPlayer.play(fallback_animation)
 
@@ -32,5 +38,7 @@ func _ready():
 #
 #
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(delta):
+	if not(looker == null):
+		pass
+	
