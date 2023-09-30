@@ -7,11 +7,13 @@ class_name InputHandler
 
 # === Inputs Signals
 ## Emitted when a charge input is changed
-signal chargeStatusUpdated(status : bool)
+signal chargeStarted()
+signal chargeEnded()
 ## Emitted when a tackle is requested
 signal tackleRequested()
 ## Emitted when a guard input is changed
-signal guardStatusUpdated(status : bool)
+signal guardStarted()
+signal guardEnded()
 ## Emitted when a move is requested
 signal moveRequested(dir : Vector2)
 
@@ -34,7 +36,7 @@ func _physics_process(delta):
 		# a charge is ongoing, only check for release t osend charge stop
 		if Input.is_action_just_released("charge"):
 			_print("Charge ended")
-			chargeStatusUpdated.emit(false)
+			chargeEnded.emit()
 			chargeOnGoing = false
 			ellapsedTackleTime = 0.0
 	elif Input.is_action_pressed("charge"):
@@ -43,24 +45,21 @@ func _physics_process(delta):
 		if (ellapsedTackleTime >= chargeDelay):
 			# it is not a tackle anymore, but the start of a charge !
 			chargeOnGoing = true
-			chargeStatusUpdated.emit(true)
+			chargeStarted.emit()
 			_print("Charge started")
 	elif Input.is_action_just_released("charge"):
 		# Charge button released before entering charge -> tackle
 		tackleRequested.emit()
 		ellapsedTackleTime = 0.0
 		_print("Tackle requested")
-			
-	if Input.is_action_just_pressed("charge"):
-		chargeStatusUpdated.emit(true)
 	
 	
 	## check guard
 	if Input.is_action_just_pressed("guard"):
-		guardStatusUpdated.emit(true)
+		guardStarted.emit()
 		_print("Guard started")
 	if Input.is_action_just_released("guard"):
-		guardStatusUpdated.emit(false)
+		guardEnded.emit()
 		_print("Guard ended")
 	
 	
@@ -74,11 +73,19 @@ func _physics_process(delta):
 func spoofInput(inputName : String, value):
 	match inputName:
 		"charge":
-			chargeStatusUpdated.emit(value)
+			if value:
+				chargeStarted.emit()
+			else:
+				chargeEnded.emit()
 		"guard":
-			guardStatusUpdated.emit(value)
+			if value:
+				guardStarted.emit()
+			else:
+				guardStarted.emit()
 		"move":
 			moveRequested.emit(value)
+		"tackle":
+			tackleRequested.emit()
 
 func _print(text : String):
 	if isVerbose:

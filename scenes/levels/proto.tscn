@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cl5me5crmsilp"]
+[gd_scene load_steps=5 format=3 uid="uid://cl5me5crmsilp"]
 
 [ext_resource type="Texture2D" uid="uid://bg2bdwlmu5ycs" path="res://assets/godot.svg" id="1_1u3rl"]
 [ext_resource type="Texture2D" uid="uid://c1gj1dkhww386" path="res://assets/art/placeholder/Terrain.png" id="2_ljbks"]
 [ext_resource type="PackedScene" uid="uid://d1h1msw0tmfw4" path="res://scenes/player.tscn" id="3_vg4tc"]
+[ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="4_c1d4b"]
 
 [node name="proto" type="Node2D"]
 
@@ -19,3 +20,10 @@ scale = Vector2(2.93591, 2.91484)
 texture = ExtResource("2_ljbks")
 
 [node name="Player" parent="." instance=ExtResource("3_vg4tc")]
+
+[node name="StateChartDebugger" parent="." instance=ExtResource("4_c1d4b")]
+offset_left = 772.0
+offset_top = 19.0
+offset_right = 1143.0
+offset_bottom = 646.0
+initial_node_to_watch = NodePath("../Player")

@@ -34,7 +34,7 @@ script = ExtResource("3_320l3")
 
 [node name="MovementHandler" type="Node" parent="."]
 script = ExtResource("4_a12nu")
-impulseVelocity = 500.0
+defautImpulseForce = 500.0
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("5_7qtpj")
@@ -202,4 +202,16 @@ event = &"stun"
 editor_description = "There is no escaping death...."
 script = ExtResource("7_fa1bx")
 
+[connection signal="chargeEnded" from="InputHandler" to="StateMachine" method="send_event" binds= ["doCharge"]]
+[connection signal="chargeStarted" from="InputHandler" to="StateMachine" method="send_event" binds= ["startCharge"]]
+[connection signal="guardEnded" from="InputHandler" to="StateMachine" method="send_event" binds= ["stopGuard"]]
+[connection signal="guardStarted" from="InputHandler" to="StateMachine" method="send_event" binds= ["startGuard"]]
 [connection signal="moveRequested" from="InputHandler" to="MovementHandler" method="requestMovement"]
+[connection signal="tackleRequested" from="InputHandler" to="StateMachine" method="send_event" binds= ["tackle"]]
+[connection signal="moveStarted" from="MovementHandler" to="StateMachine" method="send_event" binds= ["move"]]
+[connection signal="moveStoped" from="MovementHandler" to="StateMachine" method="send_event" binds= ["stop"]]
+[connection signal="state_exited" from="StateMachine/CompoundState/free" to="MovementHandler" method="canMove" binds= [false]]
+[connection signal="state_entered" from="StateMachine/CompoundState/free/Idle" to="MovementHandler" method="canMove" binds= [true]]
+[connection signal="state_entered" from="StateMachine/CompoundState/free/guard" to="MovementHandler" method="canMove" binds= [false]]
+[connection signal="state_entered" from="StateMachine/CompoundState/free/tackle" to="MovementHandler" method="canMove" binds= [false]]
+[connection signal="state_entered" from="StateMachine/CompoundState/free/charge" to="MovementHandler" method="canMove" binds= [false]]
