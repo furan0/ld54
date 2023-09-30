@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cl5me5crmsilp"]
 
-[ext_resource type="Texture2D" uid="uid://bg2bdwlmu5ycs" path="res://assets/godot.svg" id="1_1u3rl"]
+[ext_resource type="Texture2D" uid="uid://b2gkmndwllhr5" path="res://assets/art/background/background.png" id="1_6tfnp"]
 [ext_resource type="Texture2D" uid="uid://c1gj1dkhww386" path="res://assets/art/placeholder/Terrain.png" id="2_ljbks"]
 [ext_resource type="PackedScene" uid="uid://d1h1msw0tmfw4" path="res://scenes/player.tscn" id="3_vg4tc"]
 [ext_resource type="PackedScene" uid="uid://cack3kykwsqny" path="res://scenes/Enemy.tscn" id="4_cbq2a"]
@@ -8,10 +8,9 @@
 [node name="proto" type="Node2D"]
 
 [node name="background" type="Sprite2D" parent="."]
-self_modulate = Color(1, 1, 0.501961, 1)
 position = Vector2(574.5, 324)
-scale = Vector2(8.97656, 5.17188)
-texture = ExtResource("1_1u3rl")
+scale = Vector2(2.322, 1.338)
+texture = ExtResource("1_6tfnp")
 
 [node name="Arena" type="Sprite2D" parent="."]
 modulate = Color(1, 0, 0, 1)
