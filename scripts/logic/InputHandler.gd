@@ -12,6 +12,9 @@ var timeEllapsedSinceChargePress := 0.0
 # are we charging right now
 var isCharging : bool = false
 
+# moving caculation
+var isMoving : bool = false
+
 ## === Multiplayer handling
 enum ECurrentInputProvider {PLAYER1, PLAYER2}
 ## Listen to this player input 
@@ -29,6 +32,7 @@ signal guardStart()
 signal guardEnd()
 ## Emitted when a move is requested
 signal moveRequested(dir : Vector2)
+signal iscurrentlyMoving()
 ## Emitted when a move started
 signal moveStarted()
 signal moveEnded()
@@ -66,6 +70,13 @@ func _process(_delta):
 	 Input.get_axis(getAction("up"), getAction("down")))
 	if (moveVector != Vector2.ZERO):
 		moveRequested.emit(moveVector.normalized())
+		iscurrentlyMoving.emit()
+		if not isMoving:
+			moveStarted.emit()
+			isMoving = true
+	elif isMoving:
+		moveEnded.emit()
+		isMoving = false
 
 
 ## Function used to spoof a input signal

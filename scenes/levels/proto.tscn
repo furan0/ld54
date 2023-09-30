@@ -7,11 +7,13 @@
 [node name="proto" type="Node2D"]
 
 [node name="background" type="Sprite2D" parent="."]
+z_index = -30
 position = Vector2(574.5, 324)
 scale = Vector2(1.046, 0.603)
 texture = ExtResource("1_6tfnp")
 
 [node name="Player" parent="." instance=ExtResource("3_vg4tc")]
+position = Vector2(369, 328)
 
 [node name="Enemy" parent="." instance=ExtResource("4_cbq2a")]
 position = Vector2(776, 320)

@@ -16,14 +16,12 @@
 [ext_resource type="PackedScene" uid="uid://bq8s6d65y33h6" path="res://scenes/entity/2Drig/player_rig.tscn" id="14_5urwl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l2xwr"]
-size = Vector2(45, 85)
+size = Vector2(35.5, 57)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2fvwc"]
 radius = 44.0454
 
 [node name="Player" type="RigidBody2D" groups=["player"]]
-position = Vector2(369, 324)
-scale = Vector2(0.725, 0.725)
 mass = 0.6
 gravity_scale = 0.0
 max_contacts_reported = 3
@@ -41,23 +39,19 @@ script = ExtResource("2_r5dgl")
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LookAt/Hitbox"]
-position = Vector2(67.5, 0.5)
+position = Vector2(49.25, 0)
 shape = SubResource("RectangleShape2D_l2xwr")
 debug_color = Color(0.760784, 0, 0, 0.254902)
 
 [node name="Arrow" type="Sprite2D" parent="LookAt"]
 modulate = Color(0, 0, 0, 0.560784)
-position = Vector2(68, 0)
+position = Vector2(54, -2.91038e-11)
 rotation = 1.57079
 scale = Vector2(0.065, 0.065)
 texture = ExtResource("3_go2qw")
 
-
-[node name="Sprite" type="Sprite2D" parent="."]
-scale = Vector2(0.553, 0.553)
-texture = ExtResource("3_wqv15")
-
 [node name="Colision" type="CollisionShape2D" parent="."]
+scale = Vector2(0.645, 0.645)
 shape = SubResource("CircleShape2D_2fvwc")
 
 [node name="InputHandler" type="Node" parent="."]
@@ -265,19 +259,19 @@ editor_description = "There is no escaping death...."
 script = ExtResource("7_fa1bx")
 
 [node name="2D_character_rig" parent="." instance=ExtResource("14_5urwl")]
-position = Vector2(-1, 41)
-scale = Vector2(0.553, 0.553)
+position = Vector2(0, 23.46)
+scale = Vector2(0.373, 0.373)
 
 [connection signal="chargeEnd" from="InputHandler" to="StateMachine" method="send_event" binds= ["doCharge"]]
 [connection signal="chargeStart" from="InputHandler" to="StateMachine" method="send_event" binds= ["startCharge"]]
 [connection signal="guardEnd" from="InputHandler" to="StateMachine" method="send_event" binds= ["stopGuard"]]
 [connection signal="guardStart" from="InputHandler" to="StateMachine" method="send_event" binds= ["startGuard"]]
+[connection signal="iscurrentlyMoving" from="InputHandler" to="StateMachine" method="send_event" binds= ["move"]]
 [connection signal="moveEnded" from="InputHandler" to="ChargeHandler" method="setCurrentStickDirection" binds= [Vector2(0, 0)]]
 [connection signal="moveEnded" from="InputHandler" to="StateMachine" method="send_event" binds= ["stop"]]
 [connection signal="moveRequested" from="InputHandler" to="LookAt" method="setRotationVect"]
 [connection signal="moveRequested" from="InputHandler" to="MovementHandler" method="requestMovement"]
 [connection signal="moveRequested" from="InputHandler" to="ChargeHandler" method="setCurrentStickDirection"]
-[connection signal="moveStarted" from="InputHandler" to="StateMachine" method="send_event" binds= ["move"]]
 [connection signal="tackleRequested" from="InputHandler" to="StateMachine" method="send_event" binds= ["tackle"]]
 [connection signal="isStuned" from="StunHandler" to="StateMachine" method="send_event" binds= ["stun"]]
 [connection signal="stunCompleted" from="StunHandler" to="StateMachine" method="send_event" binds= ["free"]]
