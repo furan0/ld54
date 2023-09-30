@@ -1,9 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://d1h1msw0tmfw4"]
+[gd_scene load_steps=10 format=3 uid="uid://d1h1msw0tmfw4"]
 
 [ext_resource type="Script" path="res://scripts/Player/Player.gd" id="1_6um2b"]
 [ext_resource type="Texture2D" uid="uid://ryo1v1qg8htp" path="res://assets/proto/Circle_simple.svg" id="2_acfok"]
 [ext_resource type="Script" path="res://scripts/logic/InputHandler.gd" id="3_320l3"]
 [ext_resource type="Script" path="res://scripts/Player/MovementHandler.gd" id="4_a12nu"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="5_7qtpj"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="6_4qr3m"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="7_fa1bx"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="8_5ha87"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2fvwc"]
 radius = 44.0454
@@ -31,5 +35,171 @@ script = ExtResource("3_320l3")
 [node name="MovementHandler" type="Node" parent="."]
 script = ExtResource("4_a12nu")
 impulseVelocity = 500.0
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("5_7qtpj")
+
+[node name="CompoundState" type="Node" parent="StateMachine"]
+script = ExtResource("6_4qr3m")
+initial_state = NodePath("free")
+
+[node name="free" type="Node" parent="StateMachine/CompoundState"]
+script = ExtResource("6_4qr3m")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine/CompoundState/free"]
+editor_description = "Idle state : nothing special is going on.
+
+Can : 
+- move
+- tackle
+- start charge
+- guard
+- be stuned/pushed"
+script = ExtResource("7_fa1bx")
+
+[node name="toGuard" type="Node" parent="StateMachine/CompoundState/free/Idle"]
+script = ExtResource("8_5ha87")
+to = NodePath("../../guard")
+event = &"startGuard"
+
+[node name="toTackle" type="Node" parent="StateMachine/CompoundState/free/Idle"]
+script = ExtResource("8_5ha87")
+to = NodePath("../../tackle")
+event = &"tackle"
+
+[node name="toMove" type="Node" parent="StateMachine/CompoundState/free/Idle"]
+script = ExtResource("8_5ha87")
+to = NodePath("../../move")
+event = &"move"
+
+[node name="toCharge" type="Node" parent="StateMachine/CompoundState/free/Idle"]
+script = ExtResource("8_5ha87")
+to = NodePath("../../charge")
+event = &"startCharge"
+
+[node name="toStun" type="Node" parent="StateMachine/CompoundState/free/Idle"]
+script = ExtResource("8_5ha87")
+to = NodePath("../../../stun")
+event = &"stun"
+
+[node name="guard" type="Node" parent="StateMachine/CompoundState/free"]
+editor_description = "is guarding. "
+script = ExtResource("7_fa1bx")
+
+[node name="toIdle" type="Node" parent="StateMachine/CompoundState/free/guard"]
+script = ExtResource("8_5ha87")
+to = NodePath("../../Idle")
+event = &"stopGuard"
+
+[node name="toCharge" type="Node" parent="StateMachine/CompoundState/free/guard"]
+script = ExtResource("8_5ha87")
+to = NodePath("../../charge")
+event = &"startCharge"
+
+[node name="toTackle" type="Node" parent="StateMachine/CompoundState/free/guard"]
+script = ExtResource("8_5ha87")
+to = NodePath("../../tackle")
+event = &"tackle"
+
+[node name="tackle" type="Node" parent="StateMachine/CompoundState/free"]
+script = ExtResource("7_fa1bx")
+
+[node name="toIdle" type="Node" parent="StateMachine/CompoundState/free/tackle"]
+script = ExtResource("8_5ha87")
+to = NodePath("../../Idle")
+delay_seconds = 0.4
+
+[node name="toStun" type="Node" parent="StateMachine/CompoundState/free/tackle"]
+script = ExtResource("8_5ha87")
+to = NodePath("../../../stun")
+event = &"stun"
+
+[node name="move" type="Node" parent="StateMachine/CompoundState/free"]
+script = ExtResource("7_fa1bx")
+
+[node name="toIdle" type="Node" parent="StateMachine/CompoundState/free/move"]
+script = ExtResource("8_5ha87")
+to = NodePath("../..")
+event = &"stop"
+
+[node name="toStun" type="Node" parent="StateMachine/CompoundState/free/move"]
+script = ExtResource("8_5ha87")
+to = NodePath("../../../stun")
+event = &"stun"
+
+[node name="toGuard" type="Node" parent="StateMachine/CompoundState/free/move"]
+script = ExtResource("8_5ha87")
+to = NodePath("../../guard")
+event = &"startGuard"
+
+[node name="toTackle" type="Node" parent="StateMachine/CompoundState/free/move"]
+script = ExtResource("8_5ha87")
+to = NodePath("../../tackle")
+event = &"tackle"
+
+[node name="toCharge" type="Node" parent="StateMachine/CompoundState/free/move"]
+script = ExtResource("8_5ha87")
+to = NodePath("../../charge")
+event = &"startCharge"
+
+[node name="charge" type="Node" parent="StateMachine/CompoundState/free"]
+script = ExtResource("6_4qr3m")
+initial_state = NodePath("preCharge")
+
+[node name="preCharge" type="Node" parent="StateMachine/CompoundState/free/charge"]
+script = ExtResource("7_fa1bx")
+
+[node name="toCharge" type="Node" parent="StateMachine/CompoundState/free/charge/preCharge"]
+script = ExtResource("8_5ha87")
+to = NodePath("../../charge")
+event = &"doCharge"
+
+[node name="toStun" type="Node" parent="StateMachine/CompoundState/free/charge/preCharge"]
+script = ExtResource("8_5ha87")
+to = NodePath("../../../../stun")
+event = &"stun"
+
+[node name="charge" type="Node" parent="StateMachine/CompoundState/free/charge"]
+script = ExtResource("7_fa1bx")
+
+[node name="toStun" type="Node" parent="StateMachine/CompoundState/free/charge/charge"]
+editor_description = "May be update to time instead of \"stun\" event"
+script = ExtResource("8_5ha87")
+to = NodePath("../../../../stun")
+event = &"stun"
+
+[node name="toWrestle" type="Node" parent="StateMachine/CompoundState/free/charge/charge"]
+script = ExtResource("8_5ha87")
+to = NodePath("../../../../wrestle")
+event = &"startWrestle"
+
+[node name="stun" type="Node" parent="StateMachine/CompoundState"]
+script = ExtResource("7_fa1bx")
+
+[node name="toFree" type="Node" parent="StateMachine/CompoundState/stun"]
+script = ExtResource("8_5ha87")
+to = NodePath("../../free")
+
+[node name="toDead" type="Node" parent="StateMachine/CompoundState/stun"]
+script = ExtResource("8_5ha87")
+to = NodePath("../../dead")
+
+[node name="wrestle" type="Node" parent="StateMachine/CompoundState"]
+script = ExtResource("7_fa1bx")
+
+[node name="toFree" type="Node" parent="StateMachine/CompoundState/wrestle"]
+script = ExtResource("8_5ha87")
+to = NodePath("../../free")
+event = &"stopWrestle"
+
+[node name="toStun" type="Node" parent="StateMachine/CompoundState/wrestle"]
+script = ExtResource("8_5ha87")
+to = NodePath("../../stun")
+event = &"stun"
+
+[node name="dead" type="Node" parent="StateMachine/CompoundState"]
+editor_description = "There is no escaping death...."
+script = ExtResource("7_fa1bx")
 
 [connection signal="moveRequested" from="InputHandler" to="MovementHandler" method="requestMovement"]
