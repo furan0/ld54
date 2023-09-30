@@ -12,7 +12,8 @@ class_name MovementHandler
 @export var movementAuthorized : bool = true
 
 ## Movement impulse velocity
-@export var impulseVelocity : float = 20.0
+@export var defaultForce : float = 4000.0
+@onready var movementForce : float = defaultForce
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -31,8 +32,8 @@ func requestMovement(dir : Vector2):
 		return
 	
 	# Apply the move impulse
-	var impulseVector := dir.normalized() * impulseVelocity
-	rigidbody.apply_impulse(impulseVector)
+	var forceVector := dir.normalized() * movementForce
+	rigidbody.apply_force(forceVector)
 
 
 ## Set if the character can move or not

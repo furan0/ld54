@@ -11,6 +11,9 @@ class_name TackleHandler
 ## Ennemy stun duration after receiving this tackle
 @export var stunDuration : float = 1.0
 
+## Tackle impulse force
+@export var hitForce : float = 50
+
 ## Is verbose flag
 @export var isVerbose : bool = false
 
@@ -45,7 +48,7 @@ func tackle():
 		var hitHandler = node.get_node("%HitHandler") as HitHandler
 		if (hitHandler != null):
 			var hitDir = (node.position - get_parent().position).normalized()
-			hitHandler.hit(stunDuration, hitDir)
+			hitHandler.hit(stunDuration, hitDir * hitForce)
 
 
 ##Calles by editor to update configuration warning on the script

@@ -34,7 +34,7 @@ func stun(stunName : String):
 		return
 	
 	var stunDuration = stunDurations[stunName]
-	if (stunDuration == null) || (is_instance_of(stunDuration, TYPE_FLOAT)):
+	if (stunDuration == null) || (!is_instance_of(stunDuration, TYPE_FLOAT)):
 		push_warning("Stun named " + stunName + " not found in database or of invalid type")
 		return
 	
