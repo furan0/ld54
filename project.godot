@@ -17,7 +17,7 @@ config/icon="res://assets/godot.svg"
 
 [autoload]
 
-Global="*res://scenes/logic/global.tscn"
+Global="*res://scripts/logic/Global.gd"
 SilentWolf="*res://addons/silent_wolf/SilentWolf.gd"
 
 [display]
