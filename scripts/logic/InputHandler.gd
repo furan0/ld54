@@ -15,7 +15,7 @@ signal moveRequested(dir : Vector2)
 
 
 ## Check all inputs to send appropriate signals
-func _process(_delta):
+func _physics_process(_delta):
 	## check charge
 	if Input.is_action_just_pressed("charge"):
 		chargeStatusUpdated.emit(true)
