@@ -180,6 +180,7 @@ script = ExtResource("7_fa1bx")
 [node name="toFree" type="Node" parent="StateMachine/CompoundState/stun"]
 script = ExtResource("8_5ha87")
 to = NodePath("../../free")
+event = &"stopStun"
 
 [node name="toDead" type="Node" parent="StateMachine/CompoundState/stun"]
 script = ExtResource("8_5ha87")
@@ -212,6 +213,11 @@ script = ExtResource("7_fa1bx")
 [connection signal="moveStoped" from="MovementHandler" to="StateMachine" method="send_event" binds= ["stop"]]
 [connection signal="state_exited" from="StateMachine/CompoundState/free" to="MovementHandler" method="canMove" binds= [false]]
 [connection signal="state_entered" from="StateMachine/CompoundState/free/Idle" to="MovementHandler" method="canMove" binds= [true]]
+[connection signal="state_entered" from="StateMachine/CompoundState/free/guard" to="Sprite" method="set_modulate" binds= [Color(0, 1, 1, 1)]]
 [connection signal="state_entered" from="StateMachine/CompoundState/free/guard" to="MovementHandler" method="canMove" binds= [false]]
+[connection signal="state_exited" from="StateMachine/CompoundState/free/guard" to="Sprite" method="set_modulate" binds= [Color(0, 1, 0, 1)]]
+[connection signal="state_entered" from="StateMachine/CompoundState/free/tackle" to="Sprite" method="set_modulate" binds= [Color(1, 0, 0, 1)]]
 [connection signal="state_entered" from="StateMachine/CompoundState/free/tackle" to="MovementHandler" method="canMove" binds= [false]]
+[connection signal="state_exited" from="StateMachine/CompoundState/free/tackle" to="Sprite" method="set_modulate" binds= [Color(0, 1, 0, 1)]]
+[connection signal="state_entered" from="StateMachine/CompoundState/free/move" to="MovementHandler" method="setImpulseForce" binds= [0.0]]
 [connection signal="state_entered" from="StateMachine/CompoundState/free/charge" to="MovementHandler" method="canMove" binds= [false]]
