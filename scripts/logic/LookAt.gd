@@ -19,11 +19,9 @@ func setRotation(value: float):
 	if !is_equal_approx(maxAngularVelocity, 0.0):
 		# TODO : fix that crap
 		var rotationToDo := value
-		print(value)
 #		if (abs(rotationToDo) > PI):
 #			rotationToDo=-rotationToDo
-		
-		
+	
 		if abs(rotationToDo) >= maxAngularVelocity:
 			rotation += (maxAngularVelocity * sign(rotationToDo))
 		else:
