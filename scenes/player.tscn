@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://d1h1msw0tmfw4"]
+[gd_scene load_steps=17 format=3 uid="uid://d1h1msw0tmfw4"]
 
 [ext_resource type="Script" path="res://scripts/Player/Player.gd" id="1_6um2b"]
 [ext_resource type="Script" path="res://scripts/logic/LookAt.gd" id="2_r5dgl"]
 [ext_resource type="Script" path="res://scripts/logic/InputHandler.gd" id="3_320l3"]
+[ext_resource type="Texture2D" uid="uid://urvvrabmfdrk" path="res://assets/proto/arrow.png" id="3_go2qw"]
 [ext_resource type="Texture2D" uid="uid://b5eakg1f02501" path="res://assets/art/char/player/neutral/full_neutral.png" id="3_wqv15"]
 [ext_resource type="Script" path="res://scripts/Player/MovementHandler.gd" id="4_a12nu"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="5_7qtpj"]
@@ -41,6 +42,13 @@ monitorable = false
 position = Vector2(67.5, 0.5)
 shape = SubResource("RectangleShape2D_l2xwr")
 debug_color = Color(0.760784, 0, 0, 0.254902)
+
+[node name="Arrow" type="Sprite2D" parent="LookAt"]
+modulate = Color(1, 1, 1, 0.560784)
+position = Vector2(68, 0)
+rotation = 1.57079
+scale = Vector2(0.065, 0.065)
+texture = ExtResource("3_go2qw")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 modulate = Color(0, 1, 0.00784314, 1)
@@ -275,7 +283,7 @@ script = ExtResource("7_fa1bx")
 [connection signal="state_entered" from="StateMachine/CompoundState/free/guard" to="Sprite" method="set_modulate" binds= [Color(0, 1, 1, 1)]]
 [connection signal="state_entered" from="StateMachine/CompoundState/free/guard" to="MovementHandler" method="canMove" binds= [false]]
 [connection signal="state_entered" from="StateMachine/CompoundState/free/guard" to="HitHandler" method="setProtected" binds= [true]]
-[connection signal="state_exited" from="StateMachine/CompoundState/free/guard" to="Sprite" method="set_modulate" binds= [Color(0, 1, 0, 1)]]
+[connection signal="state_exited" from="StateMachine/CompoundState/free/guard" to="Sprite" method="set_modulate" binds= [Color(1, 1, 1, 1)]]
 [connection signal="state_exited" from="StateMachine/CompoundState/free/guard" to="HitHandler" method="setProtected" binds= [false]]
 [connection signal="state_entered" from="StateMachine/CompoundState/free/tackle" to="TackleHandler" method="tackle"]
 [connection signal="state_entered" from="StateMachine/CompoundState/free/tackle" to="LookAt" method="canLookAtThings" binds= [false]]
@@ -288,8 +296,8 @@ script = ExtResource("7_fa1bx")
 [connection signal="state_entered" from="StateMachine/CompoundState/free/charge/preCharge" to="ChargeHandler" method="startCharging"]
 [connection signal="state_entered" from="StateMachine/CompoundState/free/charge/preCharge" to="Sprite" method="set_modulate" binds= [Color(1, 0, 1, 1)]]
 [connection signal="state_exited" from="StateMachine/CompoundState/free/charge/preCharge" to="ChargeHandler" method="stopCharging"]
-[connection signal="state_exited" from="StateMachine/CompoundState/free/charge/preCharge" to="Sprite" method="set_modulate" binds= [Color(0, 1, 0, 1)]]
+[connection signal="state_exited" from="StateMachine/CompoundState/free/charge/preCharge" to="Sprite" method="set_modulate" binds= [Color(1, 1, 1, 1)]]
 [connection signal="state_entered" from="StateMachine/CompoundState/free/charge/charge" to="ChargeHandler" method="startRunning"]
 [connection signal="state_entered" from="StateMachine/CompoundState/free/charge/charge" to="LookAt" method="canLookAtThings" binds= [false]]
 [connection signal="state_entered" from="StateMachine/CompoundState/stun" to="Sprite" method="set_modulate" binds= [Color(0.380392, 0.380392, 0.380392, 1)]]
-[connection signal="state_exited" from="StateMachine/CompoundState/stun" to="Sprite" method="set_modulate" binds= [Color(0, 1, 0, 1)]]
+[connection signal="state_exited" from="StateMachine/CompoundState/stun" to="Sprite" method="set_modulate" binds= [Color(1, 1, 1, 1)]]
