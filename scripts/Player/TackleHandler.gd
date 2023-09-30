@@ -42,9 +42,10 @@ func tackle():
 	## Tackle all targets availables
 	for node in hitablesBody:
 		# If the entity has a stun handler, stun it !
-		var hitHandler = node.get_node("%HitHandler") as StunHandler
+		var hitHandler = node.get_node("%HitHandler") as HitHandler
 		if (hitHandler != null):
-			hitHandler.stunFor(stunDuration)
+			var hitDir = (node.position - get_parent().position).normalized()
+			hitHandler.hit(stunDuration, hitDir)
 
 
 ##Calles by editor to update configuration warning on the script

@@ -9,7 +9,7 @@ class_name MovementHandler
 @export var rigidbody : RigidBody2D
 
 ## define if this entity can move right now or not
-@export var canMove : bool = true
+@export var movementAuthorized : bool = true
 
 ## Movement impulse velocity
 @export var impulseVelocity : float = 20.0
@@ -27,9 +27,14 @@ func _ready():
 ## request a rigidbody movement. Ignored if we can't move right now
 func requestMovement(dir : Vector2):
 	## return if you can't move right now
-	if !canMove:
+	if !movementAuthorized:
 		return
 	
 	# Apply the move impulse
 	var impulseVector := dir.normalized() * impulseVelocity
 	rigidbody.apply_impulse(impulseVector)
+
+
+## Set if the character can move or not
+func canMove(status : bool):
+	movementAuthorized = status

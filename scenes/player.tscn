@@ -50,7 +50,6 @@ stunDurations = {
 "pushed": 2.0,
 "tackled": 1.0
 }
-isVerbose = null
 
 [node name="HitHandler" type="Node" parent="."]
 unique_name_in_owner = true
@@ -209,11 +208,12 @@ script = ExtResource("7_fa1bx")
 [node name="toFree" type="Node" parent="StateMachine/CompoundState/stun"]
 script = ExtResource("8_5ha87")
 to = NodePath("../../free")
-delay_seconds = 5.0
+event = &"free"
 
 [node name="toDead" type="Node" parent="StateMachine/CompoundState/stun"]
 script = ExtResource("8_5ha87")
 to = NodePath("../../dead")
+event = &"kill"
 
 [node name="wrestle" type="Node" parent="StateMachine/CompoundState"]
 script = ExtResource("7_fa1bx")
@@ -240,14 +240,12 @@ position = Vector2(67.5, 0.5)
 shape = SubResource("RectangleShape2D_l2xwr")
 debug_color = Color(0.760784, 0, 0, 0.254902)
 
-[connection signal="chargeEnded" from="InputHandler" to="StateMachine" method="send_event" binds= ["doCharge"]]
-[connection signal="chargeStarted" from="InputHandler" to="StateMachine" method="send_event" binds= ["startCharge"]]
-[connection signal="guardEnded" from="InputHandler" to="StateMachine" method="send_event" binds= ["stopGuard"]]
-[connection signal="guardStarted" from="InputHandler" to="StateMachine" method="send_event" binds= ["startGuard"]]
+[connection signal="chargeEnd" from="InputHandler" to="StateMachine" method="send_event" binds= ["stopCharge"]]
+[connection signal="chargeStart" from="InputHandler" to="StateMachine" method="send_event" binds= ["startCharge"]]
+[connection signal="guardEnd" from="InputHandler" to="StateMachine" method="send_event" binds= ["stopGuard"]]
+[connection signal="guardStart" from="InputHandler" to="StateMachine" method="send_event" binds= ["startGuard"]]
 [connection signal="moveRequested" from="InputHandler" to="MovementHandler" method="requestMovement"]
 [connection signal="tackleRequested" from="InputHandler" to="StateMachine" method="send_event" binds= ["tackle"]]
-[connection signal="moveStarted" from="MovementHandler" to="StateMachine" method="send_event" binds= ["move"]]
-[connection signal="moveStoped" from="MovementHandler" to="StateMachine" method="send_event" binds= ["stop"]]
 [connection signal="isStuned" from="StunHandler" to="StateMachine" method="send_event" binds= ["stun"]]
 [connection signal="stunCompleted" from="StunHandler" to="StateMachine" method="send_event" binds= ["free"]]
 [connection signal="startStun" from="HitHandler" to="StunHandler" method="stunFor"]
