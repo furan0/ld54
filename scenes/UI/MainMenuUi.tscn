@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://djfdxmwa6507n"]
 
 [ext_resource type="Script" path="res://scripts/UI/StandardUiPanel.gd" id="1_5i0kg"]
-[ext_resource type="Texture2D" uid="uid://bg2bdwlmu5ycs" path="res://assets/godot.svg" id="2_7fvlc"]
+[ext_resource type="Texture2D" uid="uid://drt0ix2fp7h5x" path="res://comm/concept1.png" id="2_cyoto"]
 
 [node name="MainMenuUi" type="Control" node_paths=PackedStringArray("initialFocus")]
 layout_mode = 3
@@ -12,6 +12,23 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_5i0kg")
 initialFocus = NodePath("MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/Play")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -606.0
+offset_top = -338.0
+offset_right = 598.0
+offset_bottom = 344.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_cyoto")
+expand_mode = 2
+stretch_mode = 4
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -33,11 +50,13 @@ theme_override_constants/separation = 25
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="title" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 45
-text = "Ludum Dare 54 !"
+text = "Sumo City !"
 
 [node name="Spacer" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -54,10 +73,12 @@ layout_mode = 2
 text = "Play !"
 
 [node name="Option" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 text = "Option"
 
 [node name="Credit" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 text = "Credit"
 
@@ -76,9 +97,8 @@ theme_override_constants/margin_bottom = 50
 [node name="logo" type="TextureRect" parent="MarginContainer/HBoxContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-texture = ExtResource("2_7fvlc")
 stretch_mode = 5
 
-[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/Play" to="." method="goToScene" binds= ["res://scenes/levels/test1.tscn"]]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/Play" to="." method="goToScene" binds= ["res://scenes/levels/proto.tscn"]]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/Option" to="." method="requestPanelSwitch" binds= ["option"]]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/Credit" to="." method="requestPanelSwitch" binds= ["credit"]]
