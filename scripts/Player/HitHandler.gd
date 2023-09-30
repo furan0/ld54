@@ -43,6 +43,9 @@ func hit(stunDuration : float, impactVector : Vector2 = Vector2.ZERO, bypassProt
 	changeRotation.emit(impactVector.angle() + PI) # make the player face the blow
 
 
+func setProtected(status : bool):
+	isProtected = status
+
 func _ready():
 	# if rigidbody not set, take its parent if compatible
 	if (rigidbody == null):

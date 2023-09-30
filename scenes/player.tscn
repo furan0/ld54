@@ -73,7 +73,7 @@ script = ExtResource("6_amawv")
 script = ExtResource("11_ejq0w")
 hitbox = NodePath("../LookAt/Hitbox")
 stunDuration = 0.3
-hitForce = 500.0
+hitForce = 750.0
 
 [node name="ChargeHandler" type="Node" parent="."]
 script = ExtResource("8_i7hbo")
@@ -274,7 +274,9 @@ script = ExtResource("7_fa1bx")
 [connection signal="state_entered" from="StateMachine/CompoundState/free/Idle" to="MovementHandler" method="canMove" binds= [true]]
 [connection signal="state_entered" from="StateMachine/CompoundState/free/guard" to="Sprite" method="set_modulate" binds= [Color(0, 1, 1, 1)]]
 [connection signal="state_entered" from="StateMachine/CompoundState/free/guard" to="MovementHandler" method="canMove" binds= [false]]
+[connection signal="state_entered" from="StateMachine/CompoundState/free/guard" to="HitHandler" method="setProtected" binds= [true]]
 [connection signal="state_exited" from="StateMachine/CompoundState/free/guard" to="Sprite" method="set_modulate" binds= [Color(0, 1, 0, 1)]]
+[connection signal="state_exited" from="StateMachine/CompoundState/free/guard" to="HitHandler" method="setProtected" binds= [false]]
 [connection signal="state_entered" from="StateMachine/CompoundState/free/tackle" to="TackleHandler" method="tackle"]
 [connection signal="state_entered" from="StateMachine/CompoundState/free/tackle" to="LookAt" method="canLookAtThings" binds= [false]]
 [connection signal="state_entered" from="StateMachine/CompoundState/free/tackle" to="LookAt/Hitbox/CollisionShape2D" method="set_debug_color" binds= [Color(1, 0, 0, 0.803922)]]
