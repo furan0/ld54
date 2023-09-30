@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://cl5me5crmsilp"]
+[gd_scene load_steps=4 format=3 uid="uid://cl5me5crmsilp"]
 
 [ext_resource type="Texture2D" uid="uid://b2gkmndwllhr5" path="res://assets/art/background/background.png" id="1_6tfnp"]
-[ext_resource type="Texture2D" uid="uid://c1gj1dkhww386" path="res://assets/art/placeholder/Terrain.png" id="2_ljbks"]
 [ext_resource type="PackedScene" uid="uid://d1h1msw0tmfw4" path="res://scenes/player.tscn" id="3_vg4tc"]
 [ext_resource type="PackedScene" uid="uid://cack3kykwsqny" path="res://scenes/Enemy.tscn" id="4_cbq2a"]
 
@@ -9,14 +8,8 @@
 
 [node name="background" type="Sprite2D" parent="."]
 position = Vector2(574.5, 324)
-scale = Vector2(2.322, 1.338)
+scale = Vector2(1.046, 0.603)
 texture = ExtResource("1_6tfnp")
-
-[node name="Arena" type="Sprite2D" parent="."]
-modulate = Color(1, 0, 0, 1)
-position = Vector2(574.5, 324)
-scale = Vector2(2.93591, 2.91484)
-texture = ExtResource("2_ljbks")
 
 [node name="Player" parent="." instance=ExtResource("3_vg4tc")]
 
