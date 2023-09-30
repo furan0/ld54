@@ -1,26 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://cl5me5crmsilp"]
+[gd_scene load_steps=5 format=3 uid="uid://cl5me5crmsilp"]
 
 [ext_resource type="Texture2D" uid="uid://bg2bdwlmu5ycs" path="res://assets/godot.svg" id="1_1u3rl"]
 [ext_resource type="Texture2D" uid="uid://c1gj1dkhww386" path="res://assets/art/placeholder/Terrain.png" id="2_ljbks"]
-[ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="3_b2ho8"]
 [ext_resource type="PackedScene" uid="uid://d1h1msw0tmfw4" path="res://scenes/player.tscn" id="3_vg4tc"]
-
-[sub_resource type="GDScript" id="GDScript_e7c6c"]
-script/source = "extends Node2D
-## DEBUUUUUUUUUUUUUUUUUUG only
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	get_node(\"Ennemy/InputHandler\").free()
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	pass
-"
+[ext_resource type="PackedScene" uid="uid://cack3kykwsqny" path="res://scenes/Enemy.tscn" id="4_cbq2a"]
 
 [node name="proto" type="Node2D"]
-script = SubResource("GDScript_e7c6c")
 
 [node name="background" type="Sprite2D" parent="."]
 self_modulate = Color(1, 1, 0.501961, 1)
@@ -34,14 +19,7 @@ position = Vector2(574.5, 324)
 scale = Vector2(2.93591, 2.91484)
 texture = ExtResource("2_ljbks")
 
-[node name="StateChartDebugger" parent="." instance=ExtResource("3_b2ho8")]
-offset_left = 792.0
-offset_top = 13.0
-offset_right = 1139.0
-offset_bottom = 590.0
-initial_node_to_watch = NodePath("../Player")
-
-[node name="Ennemy" parent="." instance=ExtResource("3_vg4tc")]
-position = Vector2(707, 315)
-
 [node name="Player" parent="." instance=ExtResource("3_vg4tc")]
+
+[node name="Enemy" parent="." instance=ExtResource("4_cbq2a")]
+position = Vector2(776, 320)

@@ -75,8 +75,9 @@ func _process(_delta : float):
 		var status := ResourceLoader.load_threaded_get_status(sceneCurrentlyLoading, progress) 
 		match status:
 			ResourceLoader.THREAD_LOAD_IN_PROGRESS:
-				print("Scene " + sceneCurrentlyLoading + " loading : " + str(progress[0]) + "%")
-				$LoadingUI.loadPercent = progress[0]
+				var loadPercent = progress[0] * 100
+				print("Scene " + sceneCurrentlyLoading + " loading : " + str(loadPercent) + "%")
+				$LoadingUI.loadPercent = loadPercent
 			ResourceLoader.THREAD_LOAD_FAILED | ResourceLoader.THREAD_LOAD_INVALID_RESOURCE:
 				# Error !! Signal it then abort scene switching
 				push_error("Scene loading failed ! Wanted scene : " + sceneCurrentlyLoading)

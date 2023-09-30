@@ -18,25 +18,36 @@ func setRotation(value: float):
 	
 	if !is_equal_approx(maxAngularVelocity, 0.0):
 		# TODO : fix that crap
-		var rotationToDo : = value - rotation
+		var rotationToDo := value
+		print(value)
+#		if (abs(rotationToDo) > PI):
+#			rotationToDo=-rotationToDo
+		
+		
 		if abs(rotationToDo) >= maxAngularVelocity:
 			rotation += (maxAngularVelocity * sign(rotationToDo))
 		else:
 			rotation += rotationToDo
 	else:
-		rotation = value
+		rotation = rotation+value
 
 
 ##Set rotation with a given vector
 func setRotationVect(vector : Vector2):
-	setRotation(vector.angle())
+#	print(vector)
+	var direction := Vector2(cos(rotation),sin(rotation))
+	
+	setRotation(direction.angle_to(vector))
 
 ## Rotate to the given value with a maximal angular speed
 func setRotationSlowed(value : float, angularSpeed : float):
 	if !canUpdateItsRotation:
 		return
 	
-	var rotationToDo := value - rotation 
+	var rotationToDo := value - rotation
+	
+	
+	
 	if abs(rotationToDo) >= angularSpeed:
 		rotation += (angularSpeed * sign(rotationToDo))
 	else:
