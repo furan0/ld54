@@ -22,7 +22,7 @@ var timeSinceStartOfStun : float = 0.0
 var currentStunDuration : float = 0.0
 
 ## signal called when a stun is started with its time
-signal isStuned(duration : float)
+signal isStuned()
 ##Called when the current stun is completed
 signal stunCompleted()
 
@@ -40,7 +40,7 @@ func stun(stunName : String):
 	
 	currentStunDuration = stunDuration
 	isCurrentlyStuned = true
-	isStuned.emit(stunDuration)
+	isStuned.emit()
 	_print("Stun " + stunName + " started for " + str(stunDuration) + "s")
 
 
@@ -48,7 +48,7 @@ func stun(stunName : String):
 func stunFor(stunDuration : float):
 	currentStunDuration = stunDuration
 	isCurrentlyStuned = true
-	isStuned.emit(stunDuration)
+	isStuned.emit()
 	_print("generic Stun started for " + str(stunDuration) + "s")
 
 
