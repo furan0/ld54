@@ -30,7 +30,7 @@ signal moveEnded()
 
 
 ## Check all inputs to send appropriate signals
-func _physics_process(_delta):
+func _process(_delta):
 	# Check tackle and charge
 	if Input.is_action_pressed("charge"):
 		# Not charged yet, check 

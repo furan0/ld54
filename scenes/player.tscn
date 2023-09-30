@@ -23,6 +23,8 @@ radius = 44.0454
 [node name="Player" type="RigidBody2D" groups=["player"]]
 position = Vector2(369, 324)
 gravity_scale = 0.0
+max_contacts_reported = 3
+contact_monitor = true
 lock_rotation = true
 freeze_mode = 1
 linear_damp = 10.0
@@ -59,7 +61,7 @@ defaultForce = 4500.0
 script = ExtResource("5_d88al")
 stunDurations = {
 "Wrestle": 1.5,
-"charge": 1.5,
+"charge": 0.3,
 "pushed": 2.0
 }
 
@@ -70,11 +72,14 @@ script = ExtResource("6_amawv")
 [node name="TackleHandler" type="Node" parent="." node_paths=PackedStringArray("hitbox")]
 script = ExtResource("11_ejq0w")
 hitbox = NodePath("../LookAt/Hitbox")
+stunDuration = 0.3
 hitForce = 500.0
 
 [node name="ChargeHandler" type="Node" parent="."]
 script = ExtResource("8_i7hbo")
-maxChargeTime = 2.0
+isVerbose = true
+additionalForcePerSecond = 3000.0
+maxChargeTime = 0.6
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("5_7qtpj")
@@ -253,8 +258,10 @@ script = ExtResource("7_fa1bx")
 [connection signal="chargeStart" from="InputHandler" to="StateMachine" method="send_event" binds= ["startCharge"]]
 [connection signal="guardEnd" from="InputHandler" to="StateMachine" method="send_event" binds= ["stopGuard"]]
 [connection signal="guardStart" from="InputHandler" to="StateMachine" method="send_event" binds= ["startGuard"]]
-[connection signal="moveRequested" from="InputHandler" to="LookAt" method="setRtationVect"]
+[connection signal="moveEnded" from="InputHandler" to="ChargeHandler" method="setCurrentStickDirection" binds= [Vector2(0, 0)]]
+[connection signal="moveRequested" from="InputHandler" to="LookAt" method="setRotationVect"]
 [connection signal="moveRequested" from="InputHandler" to="MovementHandler" method="requestMovement"]
+[connection signal="moveRequested" from="InputHandler" to="ChargeHandler" method="setCurrentStickDirection"]
 [connection signal="tackleRequested" from="InputHandler" to="StateMachine" method="send_event" binds= ["tackle"]]
 [connection signal="isStuned" from="StunHandler" to="StateMachine" method="send_event" binds= ["stun"]]
 [connection signal="stunCompleted" from="StunHandler" to="StateMachine" method="send_event" binds= ["free"]]

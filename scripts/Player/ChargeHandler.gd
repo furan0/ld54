@@ -7,17 +7,23 @@ class_name ChargeHandler
 ## rigidbody to influence. if not set, will take its parent
 @export var rigidbody : RigidBody2D
 ## rotation reference. if not set, will take %LookAt
-@export var rotationRef : Node2D
+@export var rotationRef : LookAt
 
 @export var isVerbose : bool = false
 
 @export_group("Charge parameters")
 ## Additional impulse force to the target per second of charge
-@export var additionalForcePerSecond : float = 200
+@export var additionalForcePerSecond : float = 6000
+## Stun duration
+@export var pushedStunDuration : float = 0.6
 ## Maximum charge time. afterward, no more impact on runtime and impulse force
-@export var maxChargeTime : float = 3
+@export var maxChargeTime : float = 0.7
 ## Charge Run force applied to the player
 @export var chargeRunForce : float = 8000
+## Max rotation speed while charging
+@export var chargeMaxRotationSpeed : float = (PI / 2) / 60
+## Player direction influence for trajectory
+@export var stickInfluenceForce : float = 200
 
 # Time ellapsed since start of charge
 var chargingTime : float = 0.0
@@ -27,6 +33,12 @@ var isCharging : bool = false
 var isRunning : bool = false
 # Time spent running
 var ellapsedRunningTime : float = 0.0
+
+# Current colliders with the rigidBody
+var hitedBody : Array[Node2D] = []
+
+# Stick direction
+var currentStickDirection : Vector2 = Vector2.ZERO
 
 # === Signals
 ## Emitted when the character starts to run...
@@ -42,11 +54,19 @@ func _ready():
 			rigidbody = get_parent() as RigidBody2D
 		else:
 			push_error("Rigidbody must be set or the node parent must be of type RigidBody2D")
-			
+	
+	# Connect collision signals to body list
+	rigidbody.body_entered.connect(func (node : Node2D):
+		hitedBody.append(node))
+	rigidbody.body_exited.connect(func (node : Node2D):
+		var index := hitedBody.find(node)
+		if index != -1:
+			hitedBody.remove_at(index))
+	
 	# if rotationRef not set, take %LookAt if available
 	if (rotationRef == null):
 		if %LookAt != null:
-			rotationRef = %LookAt as Node2D
+			rotationRef = %LookAt as LookAt
 		else:
 			push_error("rotationRef must be set or the node %LookAt must exist")
 
@@ -56,6 +76,8 @@ func startCharging():
 	isCharging = true;
 	chargingTime = 0.0
 	_print("Charging started")
+	# Reduce rotation speed while charging 
+	rotationRef.setMaxRotationSpeed(chargeMaxRotationSpeed)
 
 
 # Stop charging. Now run baby, run !
@@ -63,8 +85,10 @@ func stopCharging():
 	isCharging = false
 	# make sure charge time is not greater than max charge time
 	chargingTime = min(chargingTime, maxChargeTime)
-	_print("Charging ended. Run now little bastard !")
+	_print("Charging ended. Run now little bastard ! For : " + str(chargingTime) + "s")
 	doCharge.emit()
+	# Retablish max rotation speed
+	rotationRef.setMaxRotationSpeed(0.0)
 
 
 ## Call this function to start the running phase with previously calculated parameters
@@ -74,14 +98,22 @@ func startRunning():
 	pass
 
 
+##called to set the stick direction
+func setCurrentStickDirection(direction : Vector2):
+	currentStickDirection = direction
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _physics_process(delta):
 	# If we are charging, increment charging time
 	if isCharging:
 		chargingTime += delta
 	
 	# If we are running, add force to the character rigidbody
 	if isRunning:
+		# check if we collided with someone
+		if _checkCollisionAndHit():
+			_endCharge()
+			
 		# check if we still need to run
 		ellapsedRunningTime += delta
 		if ellapsedRunningTime >= chargingTime:
@@ -90,17 +122,32 @@ func _process(delta):
 			
 		# Move rigidbody in the right direction
 		var direction := Vector2.RIGHT.rotated(rotationRef.rotation)
-		rigidbody.apply_force(direction * chargeRunForce)
-		# TODO : influence the direction with the joystick
+		var ortho := direction.orthogonal()
+		var runForce = direction * chargeRunForce
 		
-		# check if we collided with someone
-		if _checkCollisionAndHit():
-			_endCharge()
+		var stickDirection = currentStickDirection.normalized()
+		var stickForce = abs(ortho.dot(stickDirection)) * stickInfluenceForce * stickDirection
+		
+		var totalForce = runForce + stickForce
+		rigidbody.apply_force(totalForce)
+		rotationRef.rotation = totalForce.normalized().angle()
+		
+		
 
 
 ## Called to check collision and apply hit if necessary. Return true if we collided.
 func _checkCollisionAndHit() -> bool:
-	## TODO
+	if !hitedBody.is_empty():
+		_print("HIT !")
+		# Let know all bodies that they were hitted
+		for node in hitedBody:
+			# If the entity has a stun handler, stun it !
+			var hitHandler = node.get_node("%HitHandler") as HitHandler
+			if (hitHandler != null):
+				var hitDir = (node.position - get_parent().position).normalized()
+				var hitForce = additionalForcePerSecond * chargingTime
+				hitHandler.hit(pushedStunDuration, hitDir * hitForce)
+		return true
 	return false
 
 ## Called to end the charge
