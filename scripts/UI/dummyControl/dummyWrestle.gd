@@ -5,6 +5,14 @@ class_name dummyWrestle
 ## This script manage a dummy wrestle
 @export var actionTime: float = 0.1
 
+@onready var rig = dummy.get_node("2D_character_rig")
+@onready var animButton = dummy.get_node("Smashbutton")
+
+func _ready():
+	if rig != null:
+		rig.signal_to_anim("wsl")
+		animButton.show()
+
 func _animation():
 	# Start move
 	# TODO
