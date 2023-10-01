@@ -1,0 +1,77 @@
+[gd_scene load_steps=5 format=3 uid="uid://cm17707fu5t37"]
+
+[ext_resource type="Script" path="res://scripts/UI/StandardUiPanel.gd" id="1_cv4s6"]
+[ext_resource type="Script" path="res://scripts/UI/dummyControl/ADummyControl.gd" id="2_fe7g1"]
+[ext_resource type="PackedScene" uid="uid://e5rj1by8p1yx" path="res://scenes/pantin.tscn" id="2_qgfcr"]
+
+[sub_resource type="GDScript" id="GDScript_vj5se"]
+script/source = "extends RigidBody2D
+## Player Main class
+##
+## This script handle absolutely nothing for now....
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+"
+
+[node name="ControlUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cv4s6")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="Move" type="HBoxContainer" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("2_fe7g1")
+isPlaying = null
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/GridContainer/Move"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="MarginContainer/GridContainer/Move/CenterContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SubViewport" type="SubViewport" parent="MarginContainer/GridContainer/Move/CenterContainer/SubViewportContainer"]
+disable_3d = true
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(100, 100)
+render_target_update_mode = 4
+
+[node name="Pantin" parent="MarginContainer/GridContainer/Move/CenterContainer/SubViewportContainer/SubViewport" instance=ExtResource("2_qgfcr")]
+position = Vector2(45, 65)
+script = SubResource("GDScript_vj5se")
+
+[node name="Button" type="TextureRect" parent="MarginContainer/GridContainer/Move"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/GridContainer/Move"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Move todo"

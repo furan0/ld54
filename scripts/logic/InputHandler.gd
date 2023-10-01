@@ -16,7 +16,7 @@ var isCharging : bool = false
 var isMoving : bool = false
 
 ## === Multiplayer handling
-enum ECurrentInputProvider {PLAYER1, PLAYER2}
+enum ECurrentInputProvider {PLAYER1, PLAYER2, SPOOF_ONLY}
 ## Listen to this player input 
 @export var inputProvider : ECurrentInputProvider = ECurrentInputProvider.PLAYER1
 
@@ -94,6 +94,11 @@ func spoofInput(inputName : String, value):
 				guardEnd.emit()
 		"move":
 			moveRequested.emit(value)
+		"setMove":
+			if value:
+				moveStarted.emit()
+			else:
+				moveEnded.emit()
 		"tackle":
 			tackleRequested.emit()
 
@@ -105,3 +110,5 @@ func getAction(actionName : String):
 			return actionName
 		ECurrentInputProvider.PLAYER2:
 			return "p2_" + actionName
+		ECurrentInputProvider.SPOOF_ONLY:
+			return "no_action"

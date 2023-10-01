@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://e5rj1by8p1yx"]
+
+[ext_resource type="PackedScene" uid="uid://d1h1msw0tmfw4" path="res://scenes/player.tscn" id="1_uwljh"]
+
+[node name="Pantin" instance=ExtResource("1_uwljh")]
+freeze = true
+freeze_mode = 0
+
+[node name="CollisionShape2D" parent="LookAt/Hitbox" index="0"]
+visible = false
+
+[node name="Arrow" parent="LookAt" index="1"]
+visible = false
+
+[node name="InputHandler" parent="." index="2"]
+inputProvider = 2
+
+[node name="MovementHandler" parent="." index="3"]
+defaultForce = 0.0
+
+[node name="ChargeHandler" parent="." index="7"]
+chargeRunForce = 0.0

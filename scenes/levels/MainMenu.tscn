@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://bxgb8qx4485pi"]
+[gd_scene load_steps=7 format=3 uid="uid://bxgb8qx4485pi"]
 
 [ext_resource type="PackedScene" uid="uid://duxcaaa2ewb7q" path="res://scenes/UI/UiHandler.tscn" id="1_5li7n"]
 [ext_resource type="PackedScene" uid="uid://djfdxmwa6507n" path="res://scenes/UI/MainMenuUi.tscn" id="2_emmkq"]
 [ext_resource type="PackedScene" uid="uid://c1lmfdelwaxbs" path="res://scenes/UI/OptionUI.tscn" id="3_2aexv"]
 [ext_resource type="PackedScene" uid="uid://bbqd8tlv4v8nq" path="res://scenes/UI/Option2UI.tscn" id="4_uh8ej"]
 [ext_resource type="PackedScene" uid="uid://p7o51iq35snm" path="res://scenes/UI/CreditUI.tscn" id="5_rqt24"]
+[ext_resource type="Texture2D" uid="uid://cbhq6inb3f5nb" path="res://comm/concept1.png" id="6_jqt22"]
 
 [node name="MainMenu" type="Node"]
 
@@ -16,3 +17,22 @@ panels = {
 "option2": ExtResource("4_uh8ej")
 }
 rootPanel = "mainMenu"
+
+[node name="Background" type="MarginContainer" parent="UiHandler"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = -50
+theme_override_constants/margin_top = -50
+theme_override_constants/margin_right = -50
+theme_override_constants/margin_bottom = -50
+
+[node name="TextureRect" type="TextureRect" parent="UiHandler/Background"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("6_jqt22")
+expand_mode = 3
+stretch_mode = 5
