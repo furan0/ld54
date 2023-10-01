@@ -75,14 +75,15 @@ script = ExtResource("6_amawv")
 [node name="TackleHandler" type="Node" parent="." node_paths=PackedStringArray("hitbox")]
 script = ExtResource("11_ejq0w")
 hitbox = NodePath("../LookAt/Hitbox")
-stunDuration = 0.3
+stunDuration = 0.6
 hitForce = 1000.0
 
 [node name="ChargeHandler" type="Node" parent="."]
 script = ExtResource("8_i7hbo")
-additionalForcePerSecond = 5000.0
-maxChargeTime = 0.6
-chargeRunForce = 12000.0
+additionalForcePerSecond = 5200.0
+maxChargeTime = 0.5
+chargeRunForce = 11000.0
+stickInfluenceForce = 300.0
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("5_7qtpj")
@@ -290,7 +291,6 @@ looker = NodePath("../LookAt")
 [connection signal="state_entered" from="StateMachine/CompoundState/free/tackle" to="TackleHandler" method="tackle"]
 [connection signal="state_entered" from="StateMachine/CompoundState/free/tackle" to="LookAt" method="canLookAtThings" binds= [false]]
 [connection signal="state_entered" from="StateMachine/CompoundState/free/tackle" to="LookAt/Hitbox/CollisionShape2D" method="set_debug_color" binds= [Color(1, 0, 0, 0.803922)]]
-[connection signal="state_entered" from="StateMachine/CompoundState/free/tackle" to="LookAt/Arrow" method="set_modulate" binds= [Color(1, 0, 0, 0.627451)]]
 [connection signal="state_entered" from="StateMachine/CompoundState/free/tackle" to="MovementHandler" method="canMove" binds= [false]]
 [connection signal="state_entered" from="StateMachine/CompoundState/free/tackle" to="2D_character_rig" method="signal_to_anim" binds= ["tackle"]]
 [connection signal="state_exited" from="StateMachine/CompoundState/free/tackle" to="LookAt" method="canLookAtThings" binds= [true]]
@@ -304,3 +304,4 @@ looker = NodePath("../LookAt")
 [connection signal="state_entered" from="StateMachine/CompoundState/free/charge/charge" to="LookAt" method="canLookAtThings" binds= [false]]
 [connection signal="state_entered" from="StateMachine/CompoundState/free/charge/charge" to="2D_character_rig" method="signal_to_anim" binds= ["charge"]]
 [connection signal="state_exited" from="StateMachine/CompoundState/free/charge/charge" to="2D_character_rig" method="signal_to_anim" binds= ["post_charge"]]
+[connection signal="state_entered" from="StateMachine/CompoundState/stun" to="2D_character_rig" method="signal_to_anim" binds= ["idle"]]

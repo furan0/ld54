@@ -619,7 +619,7 @@ size_flags_vertical = 6
 size_flags_stretch_ratio = 1.55
 theme_override_constants/line_separation = 5
 bbcode_enabled = true
-text = "For multiplayer, the control are remapped as follows: 
+text = "For [b]multiplayer[/b], the control are remapped as follows: 
 - [b]PLAYER1[/b] : [i]W/Q/S/D[/i] to move, [i]G[/i] to tackle & charge, [i]H[/i] to guard & wrestle
 - [b]PLAYER2[/b] : [i]Arrows[/i] or [i]left stick[/i] to move, [i]K[/i] or gamepad [i]A[/i] to tackle & charge, [i]L[/i] or gamepad [i]B[/i] to guard & wrestle"
 fit_content = true
