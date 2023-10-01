@@ -1907,7 +1907,6 @@ offset = Vector2(49, -39)
 [node name="CSlipNeutral" type="Sprite2D" parent="muppet"]
 z_index = 3
 position = Vector2(-48, -79)
-scale = Vector2(1, 1)
 texture = ExtResource("22_oll06")
 offset = Vector2(18, 97)
 
@@ -1918,7 +1917,6 @@ libraries = {
 }
 
 [node name="particle" type="Node2D" parent="."]
-visible = false
 
 [node name="smoke_charge1" type="GPUParticles2D" parent="particle"]
 z_index = 2

@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://ds4m16odg5ccq"]
+
+[ext_resource type="PackedScene" uid="uid://d1h1msw0tmfw4" path="res://scenes/player.tscn" id="1_bpfrm"]
+[ext_resource type="Script" path="res://scripts/logic/IA/IA_dumb.gd" id="2_f3jhm"]
+
+[node name="Player" instance=ExtResource("1_bpfrm")]
+
+[node name="InputHandler" parent="." index="3"]
+inputProvider = 3
+
+[node name="IA_dumb" type="Node" parent="." index="12"]
+script = ExtResource("2_f3jhm")

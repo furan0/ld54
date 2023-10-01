@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://bf7y0ff1xfyk2"]
+
+[ext_resource type="PackedScene" uid="uid://ds4m16odg5ccq" path="res://scenes/IA_dumb.tscn" id="1_3qp7l"]
+
+[node name="test_IA" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_3qp7l")]
+position = Vector2(394, 244)
+
+[node name="InputHandler" parent="Player" index="3"]
+inputProvider = 0
+
+[node name="IA_dumb" parent="Player" index="12" node_paths=PackedStringArray("target_node")]
+target_node = NodePath("../../Player2")
+start_on_load = false
+
+[node name="Player2" parent="." instance=ExtResource("1_3qp7l")]
+position = Vector2(840, 256)
+
+[node name="IA_dumb" parent="Player2" index="12" node_paths=PackedStringArray("target_node")]
+target_node = NodePath("../../Player")
+
+[editable path="Player"]
+[editable path="Player2"]

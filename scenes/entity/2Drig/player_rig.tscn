@@ -1853,7 +1853,6 @@ libraries = {
 }
 
 [node name="particle" type="Node2D" parent="."]
-visible = false
 
 [node name="smoke_charge1" type="GPUParticles2D" parent="particle"]
 z_index = 2

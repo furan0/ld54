@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://b7bhlrk5k7lft"]
+[gd_scene load_steps=48 format=3 uid="uid://c2ocj3h80y1mx"]
 
 [ext_resource type="Script" path="res://scripts/entity/2D_rig/character_rig.gd" id="1_r7p3d"]
 [ext_resource type="Texture2D" uid="uid://xp301kjmw7j" path="res://assets/art/char/peon/keyframe/charge.png" id="2_revj6"]
@@ -1683,7 +1683,6 @@ libraries = {
 }
 
 [node name="particle" type="Node2D" parent="."]
-visible = false
 
 [node name="smoke_charge1" type="GPUParticles2D" parent="particle"]
 z_index = 2
