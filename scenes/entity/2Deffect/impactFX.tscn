@@ -1,0 +1,80 @@
+[gd_scene load_steps=11 format=3 uid="uid://dkc4h15wpeje8"]
+
+[ext_resource type="Texture2D" uid="uid://rkk0nmnsythp" path="res://assets/art/FX/ImpactC/0000.png" id="1_7u8vm"]
+[ext_resource type="Texture2D" uid="uid://c4ql0f8wiq640" path="res://assets/art/FX/ImpactC/0001.png" id="2_igbmg"]
+[ext_resource type="Texture2D" uid="uid://f2vsqvgjog11" path="res://assets/art/FX/ImpactC/0002.png" id="3_huad2"]
+[ext_resource type="Texture2D" uid="uid://dls2mfvra0kq1" path="res://assets/art/FX/ImpactC/0003.png" id="4_s3svq"]
+[ext_resource type="Texture2D" uid="uid://co7e17inpbgkw" path="res://assets/art/FX/ImpactC/0004.png" id="5_jtvl1"]
+[ext_resource type="Texture2D" uid="uid://dwcors4igyp6i" path="res://assets/art/FX/ImpactC/0005.png" id="6_yu4pa"]
+[ext_resource type="Texture2D" uid="uid://cuhmjreud27or" path="res://assets/art/FX/ImpactC/0006.png" id="7_tsihg"]
+[ext_resource type="Script" path="res://scripts/entity/Sprite_FX.gd" id="8_ioups"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6o7hn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_7u8vm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_igbmg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_huad2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_s3svq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_jtvl1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_yu4pa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_tsihg")
+}],
+"loop": false,
+"name": &"default",
+"speed": 20.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sqlrc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_7u8vm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_igbmg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_huad2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_s3svq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_jtvl1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_yu4pa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_tsihg")
+}],
+"loop": false,
+"name": &"default",
+"speed": 20.0
+}]
+
+[node name="impactFX" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_6o7hn")
+script = ExtResource("8_ioups")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -1)
+rotation = -1.65298
+scale = Vector2(0.669232, 0.669232)
+sprite_frames = SubResource("SpriteFrames_sqlrc")
+script = ExtResource("8_ioups")
+queue_free_at_end = false
