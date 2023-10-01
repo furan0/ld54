@@ -36,6 +36,8 @@ var isCharging : bool = false
 var isRunning : bool = false
 # Time spent running
 var ellapsedRunningTime : float = 0.0
+# Was guarder
+var hitGuard : bool = false
 
 # Current colliders with the rigidBody
 var hitedBody : Array[Node2D] = []
@@ -48,6 +50,8 @@ var currentStickDirection : Vector2 = Vector2.ZERO
 signal doCharge()
 ## Emitted when it's time to stop running...
 signal endCharge()
+##Emitted when charge ended by hiting a guard
+signal endChargeGuarded()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -152,24 +156,31 @@ func _checkCollisionAndHit() -> bool:
 
 func doHit(node : Node2D):
 	var hitDir = (node.position - get_parent().position).normalized()
-	var hitForce = additionalForcePerSecond * chargingTime
 	var hitHandler = node.get_node("%HitHandler") as HitHandler
 		
 	#If the entity has a WrestleHandler : WREstle time !
 	var ennemyHandler = node.get_node("%WrestleHandler") as WrestleHandler
 	if (wrestleHandler != null) && wrestleHandler.canWrestle && (ennemyHandler != null) && ennemyHandler.canWrestle:
 		_print("Wrestling time baby !")
+		var hitForce = additionalForcePerSecond * maxChargeTime # Max push always
 		var timer : SceneTreeTimer = get_tree().create_timer(wrestleDuration)
 		ennemyHandler.beginWrestling(pushedStunDuration, hitDir * hitForce, wrestleHandler, timer)
 		
 	# If the entity has a stun handler, stun it instead !
 	elif (hitHandler != null):
-		hitHandler.hit(pushedStunDuration, hitDir * hitForce)
+		var hitForce = additionalForcePerSecond * chargingTime
+		var hitReceived = hitHandler.hit(pushedStunDuration, hitDir * hitForce)
+		if !hitReceived:
+			hitGuard = true
 
 
 ## Called to end the charge
 func _endCharge():
-	endCharge.emit()
+	if hitGuard:
+		endChargeGuarded.emit()
+		hitGuard = false
+	else:
+		endCharge.emit()
 	_print("Charge terminated")
 	# Reset everything
 	isRunning = false

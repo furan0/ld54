@@ -4,6 +4,12 @@ class_name WrestleHandler
 ##
 ## This script receive stuns, impulse & hits
 
+##Multiply win wrestling by this factor
+@export var weaselWinForceFactor : float = 0.15
+@export var weaselWinStun: float = 0.2
+
+@export var playerRB : RigidBody2D
+
 @export var isVerbose : bool = false
 
 ## Can wrestle right now
@@ -48,6 +54,8 @@ func wrestleFinished(didWeLose : bool):
 				hitHandler.hit(wrestleHitStunDuration, wrestleHitForce)
 		else:
 			_print("Wrestling ended : we Won with " + str(buttonCounter) + " inputs !")
+			if hitHandler != null:
+				hitHandler.hit(weaselWinStun, wrestleHitForce * weaselWinForceFactor)
 		wrestlingEnded.emit()
 		
 func _endOfWrestling():
@@ -76,6 +84,18 @@ func beginWrestling(stunDuration : float, hitDirection : Vector2, handler : Wres
 		wrestlingStarted.emit()
 		_print("Wrestling started !!")
 		changeRotation.emit(hitDirection.angle() + PI) # make the player face the blow
+		# kill its velocity
+		clearRigidbodyVelocity()
+		
+func clearRigidbodyVelocity():
+	if playerRB == null:
+		playerRB = get_node("..")
+	playerRB.freeze = true
+	_deferredClear.call_deferred()
+
+func _deferredClear():
+	playerRB.freeze = false
+
 	
 func _print(text : String):
 	if isVerbose:

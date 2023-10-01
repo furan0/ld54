@@ -369,7 +369,7 @@ size = Vector2i(100, 100)
 render_target_update_mode = 4
 
 [node name="Pantin" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/GridContainer/WrestlePanel/Wrestle/CenterContainer/SubViewportContainer/SubViewport" instance=ExtResource("2_qgfcr")]
-position = Vector2(25.555, 58.94)
+position = Vector2(75.66, 58.94)
 script = SubResource("GDScript_vj5se")
 
 [node name="Control" type="Control" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/GridContainer/WrestlePanel/Wrestle"]

@@ -26,21 +26,22 @@ signal changeRotation(rotation : Vector2)
 ## - stunDuration : duration of the stun associated with the hit
 ## - impactVector : impact Vector for hit impulse calculation
 ## - bypassProtection : can this hit bypass guard protection
-func hit(stunDuration : float, impactVector : Vector2 = Vector2.ZERO, bypassProtection : bool = false):
+func hit(stunDuration : float, impactVector : Vector2 = Vector2.ZERO, bypassProtection : bool = false) -> bool:
 	# Check if we can receive the hit
 	if invulnerable:
 		_print("Received a hit while invulnerable. Ignoring it")
-		return
+		return false
 	
 	if isProtected && !bypassProtection:
 		_print("Received a non-bypassing hit while protected. Ignoring it")
-		return
+		return false
 	
 	# Not protected -> receive the hit
 	_print("Character hit and stuned for " + str(stunDuration))
 	startStun.emit(stunDuration)
 	rigidbody.apply_impulse(impactVector)
 	changeRotation.emit(impactVector.angle() + PI) # make the player face the blow
+	return true
 
 
 func setProtected(status : bool):
