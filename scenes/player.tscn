@@ -33,6 +33,21 @@ func _ready():
 	$AnimationPlayer.play(\"buttonSmash\")
 "
 
+[sub_resource type="Animation" id="Animation_kv31g"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ButtonWrestle:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_uac4i")]
+}
+
 [sub_resource type="Animation" id="Animation_wuth2"]
 resource_name = "buttonSmash"
 length = 0.2
@@ -48,21 +63,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [ExtResource("3_uac4i"), ExtResource("4_81pqu")]
-}
-
-[sub_resource type="Animation" id="Animation_kv31g"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ButtonWrestle:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("3_uac4i")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3rx8t"]
@@ -362,10 +362,10 @@ looker = NodePath("../LookAt")
 [connection signal="startStun" from="HitHandler" to="StunHandler" method="stunFor"]
 [connection signal="endCharge" from="ChargeHandler" to="StunHandler" method="stun" binds= ["charge"]]
 [connection signal="changeRotation" from="WrestleHandler" to="LookAt" method="set_rotation"]
-[connection signal="wrestlingEnded" from="WrestleHandler" to="StateMachine" method="send_event" binds= ["stopWrestling"]]
 [connection signal="wrestlingEnded" from="WrestleHandler" to="StateMachine" method="set_expression_property" binds= ["isWrestling", false]]
-[connection signal="wrestlingStarted" from="WrestleHandler" to="StateMachine" method="send_event" binds= ["startWrestling"]]
+[connection signal="wrestlingEnded" from="WrestleHandler" to="StateMachine" method="send_event" binds= ["stopWrestling"]]
 [connection signal="wrestlingStarted" from="WrestleHandler" to="StateMachine" method="set_expression_property" binds= ["isWrestling", true]]
+[connection signal="wrestlingStarted" from="WrestleHandler" to="StateMachine" method="send_event" binds= ["startWrestling"]]
 [connection signal="state_exited" from="StateMachine/CompoundState/free" to="LookAt" method="canLookAtThings" binds= [false]]
 [connection signal="state_exited" from="StateMachine/CompoundState/free" to="MovementHandler" method="canMove" binds= [false]]
 [connection signal="state_entered" from="StateMachine/CompoundState/free/Idle" to="LookAt" method="canLookAtThings" binds= [true]]
@@ -392,8 +392,8 @@ looker = NodePath("../LookAt")
 [connection signal="state_entered" from="StateMachine/CompoundState/free/charge/charge" to="2D_character_rig" method="signal_to_anim" binds= ["charge"]]
 [connection signal="state_exited" from="StateMachine/CompoundState/free/charge/charge" to="2D_character_rig" method="signal_to_anim" binds= ["post_charge"]]
 [connection signal="state_entered" from="StateMachine/CompoundState/stun" to="WrestleHandler" method="setCanWrestle" binds= [false]]
-[connection signal="state_entered" from="StateMachine/CompoundState/stun" to="2D_character_rig" method="set_modulate" binds= [Color(0.294118, 0.294118, 0.294118, 1)]]
 [connection signal="state_entered" from="StateMachine/CompoundState/stun" to="2D_character_rig" method="signal_to_anim" binds= ["idle"]]
+[connection signal="state_entered" from="StateMachine/CompoundState/stun" to="2D_character_rig" method="set_modulate" binds= [Color(0.294118, 0.294118, 0.294118, 1)]]
 [connection signal="state_exited" from="StateMachine/CompoundState/stun" to="2D_character_rig" method="set_modulate" binds= [Color(1, 1, 1, 1)]]
 [connection signal="state_entered" from="StateMachine/CompoundState/wrestle" to="Smashbutton" method="show"]
 [connection signal="state_entered" from="StateMachine/CompoundState/wrestle" to="2D_character_rig" method="set_modulate" binds= [Color(1, 0, 0, 1)]]
