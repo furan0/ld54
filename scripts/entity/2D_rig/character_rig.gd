@@ -63,7 +63,7 @@ var available_animation_parameter = {CHARA_ANIMATION.IDLE : "idle-loop",
 ###### FUNCTION FOR ANIMATION #####
 
 func play_wsl(param):
-	play_animation(param)
+	_play_anim(param)
 	set_keyframe_mode(true)
 	$keyframe/Wsl.visible = true
 	$particle/smoke_wsl1.emitting = true
