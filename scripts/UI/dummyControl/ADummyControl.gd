@@ -45,7 +45,7 @@ func _ready():
 			displayButton = $Button as BaseButton
 		else:
 			push_error("displayButton must be set or a child called $Button must exist")
-	#displayButton.disabled = true
+	# displayButton.disabled = true
 	displayButton.toggle_mode = true
 	
 	##handle timer

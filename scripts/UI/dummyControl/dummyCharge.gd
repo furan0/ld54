@@ -17,7 +17,7 @@ func _animation():
 	
 	timer.start(actionTime)
 	await timer.timeout
-	displayButton.set_pressed_no_signal(false)
 	
 	# Start move
 	_dummyInput.spoofInput("charge", false)
+	displayButton.set_pressed_no_signal(false)
