@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://c2ocj3h80y1mx"]
+[gd_scene load_steps=48 format=3 uid="uid://b7bhlrk5k7lft"]
 
 [ext_resource type="Script" path="res://scripts/entity/2D_rig/character_rig.gd" id="1_r7p3d"]
 [ext_resource type="Texture2D" uid="uid://xp301kjmw7j" path="res://assets/art/char/peon/keyframe/charge.png" id="2_revj6"]
@@ -503,10 +503,10 @@ tracks/0/path = NodePath("muppet/CBellyNeutral:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(-3, -82)]
+"values": [Vector2(-3, -82), Vector2(-0.333481, -76.0641), Vector2(-3, -82)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -515,10 +515,10 @@ tracks/1/path = NodePath("muppet/CBellyNeutral:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [0.0]
+"values": [0.0, 0.0, 0.0]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -527,10 +527,10 @@ tracks/2/path = NodePath("muppet/CHeadNeutral:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.2, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(13, -130)]
+"values": [Vector2(13, -130), Vector2(15.6665, -124.064), Vector2(18, -121), Vector2(13, -130)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -539,10 +539,10 @@ tracks/3/path = NodePath("muppet/CHeadNeutral:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.2, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [0.0]
+"values": [0.0, 0.0, 0.0, 0.0]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -551,10 +551,10 @@ tracks/4/path = NodePath("muppet/LArmNeutral:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(58, -94)]
+"values": [Vector2(58, -94), Vector2(65, -88), Vector2(58, -94)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -563,10 +563,10 @@ tracks/5/path = NodePath("muppet/LArmNeutral:rotation")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [0.0]
+"values": [0.0, -0.521745, 0.0]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -575,10 +575,10 @@ tracks/6/path = NodePath("muppet/RArmNeutral:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(-23, -97)]
+"values": [Vector2(-23, -97), Vector2(-32, -91), Vector2(-23, -97)]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
@@ -587,10 +587,10 @@ tracks/7/path = NodePath("muppet/RArmNeutral:rotation")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [0.0]
+"values": [0.0, 0.785692, 0.0]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
@@ -599,10 +599,10 @@ tracks/8/path = NodePath("muppet/LLegNeutral:position")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(52, -45)]
+"values": [Vector2(52, -45), Vector2(52, -45)]
 }
 tracks/9/type = "value"
 tracks/9/imported = false
@@ -611,10 +611,10 @@ tracks/9/path = NodePath("muppet/LLegNeutral:rotation")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.0]
+"values": [0.0, 0.0]
 }
 tracks/10/type = "value"
 tracks/10/imported = false
@@ -623,10 +623,10 @@ tracks/10/path = NodePath("muppet/RLegNeutral:position")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(-48, -43)]
+"values": [Vector2(-48, -43), Vector2(-48, -43)]
 }
 tracks/11/type = "value"
 tracks/11/imported = false
@@ -635,10 +635,10 @@ tracks/11/path = NodePath("muppet/RLegNeutral:rotation")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.0]
+"values": [0.0, 0.0]
 }
 tracks/12/type = "value"
 tracks/12/imported = false
@@ -647,10 +647,10 @@ tracks/12/path = NodePath("muppet/CSlipNeutral:position")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(-42, -95)]
+"values": [Vector2(-42, -95), Vector2(-42, -95)]
 }
 tracks/13/type = "value"
 tracks/13/imported = false
@@ -659,10 +659,10 @@ tracks/13/path = NodePath("muppet/CSlipNeutral:rotation")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.0]
+"values": [0.0, 0.0]
 }
 
 [sub_resource type="Animation" id="Animation_4nd70"]
@@ -676,8 +676,8 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0, 0),
-"points": PackedFloat32Array(-17, -0.25, 0, 0.25, 0, -6.62036, -0.25, 0, 0.25, 0, -17, -0.25, 0, 0.25, 0, -3, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.3, 0.8, 1.3)
+"points": PackedFloat32Array(-36, -0.25, 0, 0.25, 0, -20, -0.25, 0, 0.25, 0, -17, -0.25, 0, 0.25, 0, -2, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.3, 0.8, 1.30001)
 }
 tracks/1/type = "bezier"
 tracks/1/imported = false
@@ -687,8 +687,8 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0, 0),
-"points": PackedFloat32Array(-73, -0.25, 0, 0.25, 0, -60.8546, -0.25, 0, 0.25, 0, -73, -0.25, 0, 0.25, 0, -76.6303, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.3, 0.8, 1.3)
+"points": PackedFloat32Array(-73, -0.25, 0, 0.25, 0, -65, -0.25, 0, 0.25, 0, -73, -0.25, 0, 0.25, 0, -77, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.3, 0.8, 1.30001)
 }
 tracks/2/type = "bezier"
 tracks/2/imported = false
@@ -698,8 +698,8 @@ tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.3, 0.8, 1.3)
+"points": PackedFloat32Array(-0.224084, -0.25, 0, 0.25, 0, 0.15621, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, -0.116515, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.3, 0.8, 1.30001)
 }
 tracks/3/type = "bezier"
 tracks/3/imported = false
@@ -709,7 +709,7 @@ tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0, 0),
-"points": PackedFloat32Array(12, -0.25, 0, 0.25, 0, 22.3796, -0.25, 0, 0.25, 0, 12, -0.25, 0, 0.25, 0, 19.5485, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(3.8147e-06, -0.25, 0, 0.25, 0, 22.3796, -0.25, 0, 0.25, 0, 12, -0.25, 0, 0.25, 0, 25, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 0.4, 0.7, 1.3)
 }
 tracks/4/type = "bezier"
@@ -720,7 +720,7 @@ tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0, 0),
-"points": PackedFloat32Array(-101, -0.25, 0, 0.25, 0, -88.8546, -0.25, 0, 0.25, 0, -101, -0.25, 0, 0.25, 0, -107.483, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(-103, -0.25, 0, 0.25, 0, -88.8546, -0.25, 0, 0.25, 0, -101, -0.25, 0, 0.25, 0, -122, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 0.4, 0.7, 1.3)
 }
 tracks/5/type = "bezier"
@@ -731,7 +731,7 @@ tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0, 0),
-"points": PackedFloat32Array(0.650787, -0.25, 0, 0.25, 0, 0.650787, -0.25, 0, 0.25, 0, 0.650787, -0.25, 0, 0.25, 0, 0.160787, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(0.468743, -0.25, 0, 0.25, 0, 0.650787, -0.25, 0, 0.25, 0, 0.650787, -0.25, 0, 0.25, 0, -0.0645152, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 0.4, 0.7, 1.3)
 }
 tracks/6/type = "bezier"
@@ -742,7 +742,7 @@ tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0, 0),
-"points": PackedFloat32Array(21, -0.25, 0, 0.25, 0, 31.3796, -0.25, 0, 0.25, 0, 21, -0.25, 0, 0.25, 0, 38, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(43, -0.25, 0, 0.25, 0, 51, -0.25, 0, 0.25, 0, 54, -0.25, 0, 0.25, 0, 66.2121, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 0.4, 0.8, 1.3)
 }
 tracks/7/type = "bezier"
@@ -753,7 +753,7 @@ tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0, 0),
-"points": PackedFloat32Array(-60, -0.25, 0, 0.25, 0, -47.8546, -0.25, 0, 0.25, 0, -60, -0.25, 0, 0.25, 0, -75.166, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(-73, -0.25, 0, 0.25, 0, -53, -0.25, 0, 0.25, 0, -67, -0.25, 0, 0.25, 0, -97.5891, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 0.4, 0.8, 1.3)
 }
 tracks/8/type = "bezier"
@@ -764,7 +764,7 @@ tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(-0.691199, -0.25, 0, 0.25, 0, -0.731743, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 0.4, 0.8, 1.3)
 }
 tracks/9/type = "bezier"
@@ -775,7 +775,7 @@ tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0, 0),
-"points": PackedFloat32Array(-77, -0.25, 0, 0.25, 0, -66.6204, -0.25, 0, 0.25, 0, -77, -0.25, 0, 0.25, 0, -50, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(-42, -0.25, 0, 0.25, 0, -34, -0.25, 0, 0.25, 0, -44, -0.25, 0, 0.25, 0, -32, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 0.4, 0.8, 1.3)
 }
 tracks/10/type = "bezier"
@@ -786,7 +786,7 @@ tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0, 0),
-"points": PackedFloat32Array(-79, -0.25, 0, 0.25, 0, -66.8546, -0.25, 0, 0.25, 0, -79, -0.25, 0, 0.25, 0, -69.1056, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(-89, -0.25, 0, 0.25, 0, -73, -0.25, 0, 0.25, 0, -86, -0.25, 0, 0.25, 0, -103, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 0.4, 0.8, 1.3)
 }
 tracks/11/type = "bezier"
@@ -797,7 +797,7 @@ tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, -0.12604, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, -0.00777193, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 0.4, 0.8, 1.3)
 }
 tracks/12/type = "bezier"
@@ -807,9 +807,9 @@ tracks/12/path = NodePath("muppet/LLegNeutral:position:x")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(26, -0.25, 0, 0.25, 0, -22, -0.25, 0, 0.25, 0, 35, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.3, 1.3)
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(26, -0.25, 0, 0.25, 0, 18.0469, -0.25, 0, 0.25, 0, 25, -0.25, 0, 0.25, 0, 49, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.3, 0.8, 1.30001)
 }
 tracks/13/type = "bezier"
 tracks/13/imported = false
@@ -818,9 +818,9 @@ tracks/13/path = NodePath("muppet/LLegNeutral:position:y")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(-28, -0.25, 0, 0.25, 0, -14, -0.25, 0, 0.25, 0, -40, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.3, 1.3)
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(-28, -0.25, 0, 0.25, 0, -21.4096, -0.25, 0, 0.25, 0, -24, -0.25, 0, 0.25, 0, -32, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.3, 0.8, 1.30001)
 }
 tracks/14/type = "bezier"
 tracks/14/imported = false
@@ -829,9 +829,9 @@ tracks/14/path = NodePath("muppet/LLegNeutral:rotation")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(-0.544597, -0.25, 0, 0.25, 0, -0.618087, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.3, 1.3)
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(-0.544597, -0.25, 0, 0.25, 0, -0.618087, -0.25, 0, 0.25, 0, -0.309048, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.3, 0.8, 1.30001)
 }
 tracks/15/type = "bezier"
 tracks/15/imported = false
@@ -841,8 +841,8 @@ tracks/15/interp = 1
 tracks/15/loop_wrap = true
 tracks/15/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(-65, -0.25, 0, 0.25, 0, -75, -0.25, 0, 0.25, 0, -50, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.3, 1.3)
+"points": PackedFloat32Array(-65, -0.25, 0, 0.25, 0, -62.9531, -0.25, 0, 0.25, 0, -43, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.3, 1.30001)
 }
 tracks/16/type = "bezier"
 tracks/16/imported = false
@@ -852,8 +852,8 @@ tracks/16/interp = 1
 tracks/16/loop_wrap = true
 tracks/16/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(-22, -0.25, 0, 0.25, 0, -22, -0.25, 0, 0.25, 0, -52, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.3, 1.3)
+"points": PackedFloat32Array(-22, -0.25, 0, 0.25, 0, -23.4096, -0.25, 0, 0.25, 0, -32, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.3, 1.30001)
 }
 tracks/17/type = "bezier"
 tracks/17/imported = false
@@ -864,7 +864,7 @@ tracks/17/loop_wrap = true
 tracks/17/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0),
 "points": PackedFloat32Array(-0.697484, -0.25, 0, 0.25, 0, -0.697484, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.3, 1.3)
+"times": PackedFloat32Array(0, 0.3, 1.30001)
 }
 tracks/18/type = "bezier"
 tracks/18/imported = false
@@ -902,711 +902,522 @@ tracks/20/keys = {
 
 [sub_resource type="Animation" id="Animation_6w2ga"]
 resource_name = "precharge-loop"
-length = 0.666675
+length = 0.5
 loop_mode = 1
 step = 0.0416667
-tracks/0/type = "bezier"
+tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("muppet/CBellyNeutral:position:x")
+tracks/0/path = NodePath("muppet/CSlipNeutral:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(-3, -0.25, 0, 0.25, 0, -3, -0.25, 0, 0.25, 0, -3, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.333333, 0.666667)
+"times": PackedFloat32Array(0, 0.25, 0.5004),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-29.719, -132.616), Vector2(-29.719, -132.616), Vector2(-29.719, -132.616)]
 }
-tracks/1/type = "bezier"
+tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("muppet/CBellyNeutral:position:y")
+tracks/1/path = NodePath("muppet/CSlipNeutral:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(-66, -0.25, 0, 0.25, 0, -66, -0.25, 0, 0.25, 0, -66, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.333333, 0.666667)
+"times": PackedFloat32Array(0, 0.25, 0.5004),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 0.0]
 }
-tracks/2/type = "bezier"
+tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("muppet/CBellyNeutral:rotation")
+tracks/2/path = NodePath("muppet/CBellyNeutral:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0.200691, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.333333, 0.666667)
+"times": PackedFloat32Array(0, 0.25, 0.5004),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-1.71899, -85.6162), Vector2(-5, -95), Vector2(-1.71899, -85.6162)]
 }
-tracks/3/type = "bezier"
+tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("muppet/CHeadNeutral:position:x")
+tracks/3/path = NodePath("muppet/CBellyNeutral:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(37, -0.25, 0, 0.25, 0, 19, -0.25, 0, 0.25, 0, 37, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.333333, 0.666667)
+"times": PackedFloat32Array(0, 0.25, 0.5004),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, -0.270729, 0.0]
 }
-tracks/4/type = "bezier"
+tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("muppet/CHeadNeutral:position:y")
+tracks/4/path = NodePath("muppet/CHeadNeutral:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(-87, -0.25, 0, 0.25, 0, -88, -0.25, 0, 0.25, 0, -87, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.333333, 0.666667)
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.5004),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(31, -103), Vector2(26, -114.616), Vector2(31, -103), Vector2(35.281, -114.616)]
 }
-tracks/5/type = "bezier"
+tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/path = NodePath("muppet/CHeadNeutral:rotation")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(0.074897, -0.25, 0, 0.25, 0, 0.074897, -0.25, 0, 0.25, 0, 0.074897, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.333333, 0.666667)
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.5004),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [-0.19291, -0.101087, -0.19291, -0.101087]
 }
-tracks/6/type = "bezier"
+tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("muppet/LArmNeutral:position:x")
+tracks/6/path = NodePath("muppet/LArmNeutral:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(69, -0.25, 0, 0.25, 0, 47, -0.25, 0, 0.25, 0, 69, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.375, 0.666667)
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.5004),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(75.2167, -86.6807), Vector2(77.0768, -111.089), Vector2(75.2167, -86.6807), Vector2(80.281, -102.616)]
 }
-tracks/7/type = "bezier"
+tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("muppet/LArmNeutral:position:y")
+tracks/7/path = NodePath("muppet/LArmNeutral:rotation")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(-85, -0.25, 0, 0.25, 0, -81, -0.25, 0, 0.25, 0, -85, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.375, 0.666667)
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.5004),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [-0.129487, -1.41723, -0.129489, -0.425796]
 }
-tracks/8/type = "bezier"
+tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("muppet/LArmNeutral:rotation")
+tracks/8/path = NodePath("muppet/RArmNeutral:position")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(0.0413329, -0.25, 0, 0.25, 0, 0.0413329, -0.25, 0, 0.25, 0, 0.0413329, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.375, 0.666667)
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.5004),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-36.7833, -151.681), Vector2(-48.9232, -114.089), Vector2(-36.7833, -151.681), Vector2(-38.719, -109.616)]
 }
-tracks/9/type = "bezier"
+tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("muppet/RArmNeutral:position:x")
+tracks/9/path = NodePath("muppet/RArmNeutral:rotation")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(-40, -0.25, 0, 0.25, 0, -52, -0.25, 0, 0.25, 0, -40, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.333333, 0.666667)
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.5004),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [2.15602, 0.598463, 2.15602, 1.12004]
 }
-tracks/10/type = "bezier"
+tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("muppet/RArmNeutral:position:y")
+tracks/10/path = NodePath("muppet/LLegNeutral:position")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(-90, -0.25, 0, 0.25, 0, -90, -0.25, 0, 0.25, 0, -90, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.333333, 0.666667)
+"times": PackedFloat32Array(0, 0.1251, 0.2502, 0.375, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(26, -36), Vector2(26, -74), Vector2(26, -36), Vector2(26, -73.9697), Vector2(26, -36.0607)]
 }
-tracks/11/type = "bezier"
+tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("muppet/RArmNeutral:rotation")
+tracks/11/path = NodePath("muppet/LLegNeutral:rotation")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(1.12004, -0.25, 0, 0.25, 0, 1.12004, -0.25, 0, 0.25, 0, 1.12004, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.333333, 0.666667)
+"times": PackedFloat32Array(0, 0.1251, 0.2502, 0.375, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 0.0, 0.0, 0.0]
 }
-tracks/12/type = "bezier"
+tracks/12/type = "value"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("muppet/LLegNeutral:position:x")
+tracks/12/path = NodePath("muppet/RLegNeutral:position")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(26, -0.25, 0, 0.25, 0, 39, -0.25, 0, 0.25, 0, 26, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.333333, 0.666667)
+"times": PackedFloat32Array(0, 0.1251, 0.2502, 0.375, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-50, -79), Vector2(-46, -46), Vector2(-50, -79), Vector2(-46.0032, -46.0263), Vector2(-49.9936, -78.9473)]
 }
-tracks/13/type = "bezier"
+tracks/13/type = "value"
 tracks/13/imported = false
 tracks/13/enabled = true
-tracks/13/path = NodePath("muppet/LLegNeutral:position:y")
+tracks/13/path = NodePath("muppet/RLegNeutral:rotation")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(-28, -0.25, 0, 0, -17, -54, -0.25, 0, 0.25, 0, -28, -0.0036813, -17, 0.25, 0),
-"times": PackedFloat32Array(0, 0.333333, 0.666667)
-}
-tracks/14/type = "bezier"
-tracks/14/imported = false
-tracks/14/enabled = true
-tracks/14/path = NodePath("muppet/LLegNeutral:rotation")
-tracks/14/interp = 1
-tracks/14/loop_wrap = true
-tracks/14/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.333333, 0.666667)
-}
-tracks/15/type = "bezier"
-tracks/15/imported = false
-tracks/15/enabled = true
-tracks/15/path = NodePath("muppet/RLegNeutral:position:x")
-tracks/15/interp = 1
-tracks/15/loop_wrap = true
-tracks/15/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(-50, -0.25, 0, 0.25, 0, -34, -0.25, 0, 0.25, 0, -50, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.333333, 0.666667)
-}
-tracks/16/type = "bezier"
-tracks/16/imported = false
-tracks/16/enabled = true
-tracks/16/path = NodePath("muppet/RLegNeutral:position:y")
-tracks/16/interp = 1
-tracks/16/loop_wrap = true
-tracks/16/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(-71, -0.25, 0, 0.0833333, 0, -38, 0, -23, 3.57628e-07, -21, -71, -0.181894, 1, 0.25, 0),
-"times": PackedFloat32Array(0, 0.333333, 0.666667)
-}
-tracks/17/type = "bezier"
-tracks/17/imported = false
-tracks/17/enabled = true
-tracks/17/path = NodePath("muppet/RLegNeutral:rotation")
-tracks/17/interp = 1
-tracks/17/loop_wrap = true
-tracks/17/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.333333, 0.666667)
-}
-tracks/18/type = "bezier"
-tracks/18/imported = false
-tracks/18/enabled = true
-tracks/18/path = NodePath("muppet/CSlipNeutral:position:x")
-tracks/18/interp = 1
-tracks/18/loop_wrap = true
-tracks/18/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(-31, -0.25, 0, 0.25, 0, 5, -0.25, 0, 0.25, 0, -31, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.375, 0.666667)
-}
-tracks/19/type = "bezier"
-tracks/19/imported = false
-tracks/19/enabled = true
-tracks/19/path = NodePath("muppet/CSlipNeutral:position:y")
-tracks/19/interp = 1
-tracks/19/loop_wrap = true
-tracks/19/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(-113, -0.25, 0, 0.25, 0, -111, -0.25, 0, 0.25, 0, -113, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.375, 0.666667)
-}
-tracks/20/type = "bezier"
-tracks/20/imported = false
-tracks/20/enabled = true
-tracks/20/path = NodePath("muppet/CSlipNeutral:rotation")
-tracks/20/interp = 1
-tracks/20/loop_wrap = true
-tracks/20/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.375, 0.666667)
+"times": PackedFloat32Array(0, 0.1251, 0.2502, 0.375, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.214702, 0.0, -0.214531, -0.000342906]
 }
 
 [sub_resource type="Animation" id="Animation_ccfv2"]
 resource_name = "tackled"
 length = 2.00001
-tracks/0/type = "bezier"
+tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("muppet/CBellyNeutral:position:x")
+tracks/0/path = NodePath("muppet/CSlipNeutral:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0),
-"points": PackedFloat32Array(-3, -0.25, 0, 0.25, 0, -15.3543, -0.25, 0, 0.25, 0, -17.5452, -0.25, 0, 0.25, 0, -3, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.2, 0.5, 2.1)
+"times": PackedFloat32Array(0, 1.1, 1.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-42, -95), Vector2(-42, -95), Vector2(-42, -95)]
 }
-tracks/1/type = "bezier"
+tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("muppet/CBellyNeutral:position:y")
+tracks/1/path = NodePath("muppet/CSlipNeutral:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0),
-"points": PackedFloat32Array(-76.6303, -0.25, 0, 0.25, 0, -80.3639, -0.25, 0, 0.25, 0, -74.3639, -0.25, 0, 0.25, 0, -76.6303, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.2, 0.5, 2.1)
+"times": PackedFloat32Array(0, 1.1, 1.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 0.0]
 }
-tracks/2/type = "bezier"
+tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("muppet/CBellyNeutral:rotation")
+tracks/2/path = NodePath("muppet/CHeadNeutral:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.2, 0.5, 2.1)
+"times": PackedFloat32Array(0, 1.1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(24.45, -112.019), Vector2(31, -103), Vector2(16.4443, -123.043)]
 }
-tracks/3/type = "bezier"
+tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("muppet/CHeadNeutral:position:x")
+tracks/3/path = NodePath("muppet/CHeadNeutral:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0),
-"points": PackedFloat32Array(42, -0.25, 0, 0.25, 0, 26.7711, -0.25, 0, 0.25, 0, 24.5802, -0.25, 0, 0.25, 0, 19.5485, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.2, 0.5, 2.1)
+"times": PackedFloat32Array(0, 1.1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.365106, 0.663829, 0.0]
 }
-tracks/4/type = "bezier"
+tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("muppet/CHeadNeutral:position:y")
+tracks/4/path = NodePath("muppet/LArmNeutral:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0),
-"points": PackedFloat32Array(-97.8198, -0.25, 0, 0.25, 0, -99, -0.25, 0, 0.25, 0, -103.82, -0.25, 0, 0.25, 0, -107.483, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(-0.3, 0, 0.2, 2.1)
+"times": PackedFloat32Array(0, 1.1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(78.04, -92.93), Vector2(91, -95), Vector2(62.2, -90.4)]
 }
-tracks/5/type = "bezier"
+tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("muppet/CHeadNeutral:rotation")
+tracks/5/path = NodePath("muppet/LArmNeutral:rotation")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0),
-"points": PackedFloat32Array(0.841325, -0.25, 0, 0.25, 0, 0.733604, -0.25, 0, 0.25, 0, 0.733604, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.2, 0.5, 2.1)
+"times": PackedFloat32Array(0, 1.1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-1.02282, -1.60354, -0.313047]
 }
-tracks/6/type = "bezier"
+tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("muppet/LArmNeutral:position:x")
+tracks/6/path = NodePath("muppet/RArmNeutral:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0),
-"points": PackedFloat32Array(61, -0.25, 0, 0.25, 0, 58.0552, -0.25, 0, 0.25, 0, 19.2753, -0.25, 0, 0.25, 0, 38, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.2, 0.8, 2.1)
+"times": PackedFloat32Array(0, 1.1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-24.33, -89.88), Vector2(-21, -87), Vector2(-28.4, -93.4)]
 }
-tracks/7/type = "bezier"
+tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("muppet/LArmNeutral:position:y")
+tracks/7/path = NodePath("muppet/RArmNeutral:rotation")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0),
-"points": PackedFloat32Array(-73, -0.25, 0, 0.25, 0, -73.2773, -0.25, 0, 0.25, 0, -67.4128, -0.25, 0, 0.25, 0, -75.166, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.2, 0.8, 2.1)
+"times": PackedFloat32Array(0, 1.1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-0.88697, -1.99838, 0.471415]
 }
-tracks/8/type = "bezier"
+tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("muppet/LArmNeutral:rotation")
+tracks/8/path = NodePath("muppet/LLegNeutral:position")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.2, 0.8, 2.1)
+"times": PackedFloat32Array(0, 1.1, 1.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(44.85, -32.9), Vector2(39, -23), Vector2(52, -45)]
 }
-tracks/9/type = "bezier"
+tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("muppet/RArmNeutral:position:x")
+tracks/9/path = NodePath("muppet/LLegNeutral:rotation")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, -5.52987, -0.25, 0, 0.25, 0, -47.8, -0.25, 0, 0.25, 0, -50, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.2, 0.8, 2.1)
+"times": PackedFloat32Array(0, 1.1, 1.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-0.615818, -1.11967, 0.0]
 }
-tracks/10/type = "bezier"
+tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("muppet/RArmNeutral:position:y")
+tracks/10/path = NodePath("muppet/RLegNeutral:position")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0),
-"points": PackedFloat32Array(-78, -0.25, 0, 0.25, 0, -76.8612, -0.25, 0, 0.25, 0, -69.618, -0.25, 0, 0.25, 0, -69.1056, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.2, 0.8, 2.1)
+"times": PackedFloat32Array(0, 1.1, 1.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-40, -42), Vector2(-56, -35), Vector2(-48, -43)]
 }
-tracks/11/type = "bezier"
-tracks/11/imported = false
-tracks/11/enabled = true
-tracks/11/path = NodePath("muppet/RArmNeutral:rotation")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0),
-"points": PackedFloat32Array(-0.482237, -0.25, 0, 0.25, 0, -0.420493, -0.25, 0, 0.25, 0, -0.360382, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.2, 0.8, 2.1)
-}
-tracks/12/type = "bezier"
-tracks/12/imported = false
-tracks/12/enabled = true
-tracks/12/path = NodePath("muppet/LLegNeutral:position:x")
-tracks/12/interp = 1
-tracks/12/loop_wrap = true
-tracks/12/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0),
-"points": PackedFloat32Array(35, -0.25, 0, 0.25, 0, 22, -0.25, 0, 0.25, 0, -15, -0.25, 0, 0.25, 0, 35, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.2, 0.5, 2.1)
-}
-tracks/13/type = "bezier"
-tracks/13/imported = false
-tracks/13/enabled = true
-tracks/13/path = NodePath("muppet/LLegNeutral:position:y")
-tracks/13/interp = 1
-tracks/13/loop_wrap = true
-tracks/13/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0),
-"points": PackedFloat32Array(-40, -0.25, 0, 0.25, 0, -30, -0.25, 0, 0.25, 0, -43, -0.25, 0, 0.25, 0, -40, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.2, 0.5, 2.1)
-}
-tracks/14/type = "bezier"
-tracks/14/imported = false
-tracks/14/enabled = true
-tracks/14/path = NodePath("muppet/LLegNeutral:rotation")
-tracks/14/interp = 1
-tracks/14/loop_wrap = true
-tracks/14/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -0.999913, -0.25, 0, 0.25, 0, -0.218155, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.2, 0.5, 2.1)
-}
-tracks/15/type = "bezier"
-tracks/15/imported = false
-tracks/15/enabled = true
-tracks/15/path = NodePath("muppet/RLegNeutral:position:x")
-tracks/15/interp = 1
-tracks/15/loop_wrap = true
-tracks/15/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0),
-"points": PackedFloat32Array(-50, -0.25, 0, 0.25, 0, -65, -0.25, 0, 0.25, 0, -50, -0.25, 0, 0.25, 0, -50, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.2, 0.5, 2.1)
-}
-tracks/16/type = "bezier"
-tracks/16/imported = false
-tracks/16/enabled = true
-tracks/16/path = NodePath("muppet/RLegNeutral:position:y")
-tracks/16/interp = 1
-tracks/16/loop_wrap = true
-tracks/16/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0),
-"points": PackedFloat32Array(-52, -0.25, 0, 0.25, 0, -27, -0.25, 0, 0.25, 0, -44, -0.25, 0, 0.25, 0, -52, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.2, 0.5, 2.1)
-}
-tracks/17/type = "bezier"
-tracks/17/imported = false
-tracks/17/enabled = true
-tracks/17/path = NodePath("muppet/RLegNeutral:rotation")
-tracks/17/interp = 1
-tracks/17/loop_wrap = true
-tracks/17/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -0.869626, -0.25, 0, 0.25, 0, 0.69801, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.2, 0.5, 2.1)
-}
-tracks/18/type = "bezier"
-tracks/18/imported = false
-tracks/18/enabled = true
-tracks/18/path = NodePath("muppet/CSlipNeutral:position:x")
-tracks/18/interp = 1
-tracks/18/loop_wrap = true
-tracks/18/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0),
-"points": PackedFloat32Array(-19, -0.25, 0, 0.25, 0, -21.7053, -0.25, 0, 0.25, 0, -63, -0.25, 0, 0.25, 0, -40.129, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.2, 0.7, 2.1)
-}
-tracks/19/type = "bezier"
-tracks/19/imported = false
-tracks/19/enabled = true
-tracks/19/path = NodePath("muppet/CSlipNeutral:position:y")
-tracks/19/interp = 1
-tracks/19/loop_wrap = true
-tracks/19/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0),
-"points": PackedFloat32Array(-92, -0.25, 0, 0.25, 0, -93.3424, -0.25, 0, 0.25, 0, -90, -0.25, 0, 0.25, 0, -102.484, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.2, 0.7, 2.1)
-}
-tracks/20/type = "bezier"
-tracks/20/imported = false
-tracks/20/enabled = true
-tracks/20/path = NodePath("muppet/CSlipNeutral:rotation")
-tracks/20/interp = 1
-tracks/20/loop_wrap = true
-tracks/20/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.2, 0.7, 2.1)
-}
-
-[sub_resource type="Animation" id="Animation_sexot"]
-resource_name = "walk_loop"
-length = 0.666671
-loop_mode = 1
-step = 0.0416667
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("muppet/CBellyNeutral:position:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
-"points": PackedFloat32Array(-0.49057, -0.25, 0, 0.25, 0, -8.76163, -0.25, 0, 0.25, 0, -0.49057, -0.25, 0, 0.25, 0, -8.76163, -0.25, 0, 0.25, 0, -0.49057, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.166667, 0.333334, 0.5, 0.666667)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("muppet/CBellyNeutral:position:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
-"points": PackedFloat32Array(-116.459, -0.25, 0, 0.25, 0, -93.3103, -0.25, 0, 0.25, 0, -116.459, -0.25, 0, 0.25, 0, -93.3103, -0.25, 0, 0.25, 0, -116.459, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.166667, 0.333334, 0.5, 0.666667)
-}
-tracks/2/type = "bezier"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("muppet/CBellyNeutral:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.166667, 0.333334, 0.5, 0.666667)
-}
-tracks/3/type = "bezier"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("muppet/CHeadNeutral:position:x")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
-"points": PackedFloat32Array(-18, -0.25, 0, 0.25, 0, -17, -0.25, 0, 0.25, 0, -4, -0.25, 0, 0.25, 0, -17, -0.25, 0, 0.25, 0, -18, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.166667, 0.333334, 0.5, 0.666667)
-}
-tracks/4/type = "bezier"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("muppet/CHeadNeutral:position:y")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
-"points": PackedFloat32Array(-162, -0.25, 0, 0.25, 0, -132, -0.25, 0, 0.25, 0, -171, -0.25, 0, 0.25, 0, -132, -0.25, 0, 0.25, 0, -162, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.166667, 0.333334, 0.5, 0.666667)
-}
-tracks/5/type = "bezier"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("muppet/CHeadNeutral:rotation")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
-"points": PackedFloat32Array(-0.350293, -0.25, 0, 0.25, 0, -0.350293, -0.25, 0, 0.25, 0, -0.350293, -0.25, 0, 0.25, 0, -0.350293, -0.25, 0, 0.25, 0, -0.350293, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.166667, 0.333334, 0.5, 0.666667)
-}
-tracks/6/type = "bezier"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("muppet/LLegNeutral:position:x")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
-"points": PackedFloat32Array(-21.4906, -0.25, 0, 0.25, 0, 9.75471, -0.25, 0, 0.25, 0, 41, -0.25, 0, 0.25, 0, 9.75471, -0.25, 0, 0.25, 0, -21.4906, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.166667, 0.333334, 0.5, 0.666667)
-}
-tracks/7/type = "bezier"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("muppet/LLegNeutral:position:y")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
-"points": PackedFloat32Array(-63.9586, -0.25, 0, 0.25, 0, -68.9793, -0.25, 0, 0.25, 0, -74, -0.25, 0, 0.25, 0, -68.9793, -0.25, 0, 0.25, 0, -63.9586, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.166667, 0.333334, 0.5, 0.666667)
-}
-tracks/8/type = "bezier"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("muppet/LLegNeutral:rotation")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
-"points": PackedFloat32Array(1.49106, -0.25, 0, 0.25, 0, 0.319317, -0.25, 0, 0.25, 0, -0.852426, -0.25, 0, 0.25, 0, 0.319317, -0.25, 0, 0.25, 0, 1.49106, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.166667, 0.333334, 0.5, 0.666667)
-}
-tracks/9/type = "bezier"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("muppet/RLegNeutral:position:x")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
-"points": PackedFloat32Array(-22.4906, -0.25, 0, 0.25, 0, -25.2453, -0.25, 0, 0.25, 0, -28, -0.25, 0, 0.25, 0, -25.2453, -0.25, 0, 0.25, 0, -22.4906, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.166667, 0.333334, 0.5, 0.666667)
-}
-tracks/10/type = "bezier"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath("muppet/RLegNeutral:position:y")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
-"points": PackedFloat32Array(-59.9586, -0.25, 0, 0.25, 0, -65.4793, -0.25, 0, 0.25, 0, -71, -0.25, 0, 0.25, 0, -65.4793, -0.25, 0, 0.25, 0, -59.9586, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.166667, 0.333334, 0.5, 0.666667)
-}
-tracks/11/type = "bezier"
+tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
 tracks/11/path = NodePath("muppet/RLegNeutral:rotation")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
-"points": PackedFloat32Array(-1.12971, -0.25, 0, 0.25, 0, -0.00842714, -0.25, 0, 0.25, 0, 1.11285, -0.25, 0, 0.25, 0, -0.00842714, -0.25, 0, 0.25, 0, -1.12971, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.166667, 0.333334, 0.5, 0.666667)
+"times": PackedFloat32Array(0, 1.1, 1.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-0.396718, -0.721305, 0.0]
 }
-tracks/12/type = "bezier"
+tracks/12/type = "value"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("muppet/LArmNeutral:position:x")
+tracks/12/path = NodePath("muppet/CBellyNeutral:position")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
-"points": PackedFloat32Array(40, -0.25, 0, 0.25, 0, 12.4837, -0.25, 0, 0.25, 0, -46, -0.25, 0, 0.25, 0, 12.4837, -0.25, 0, 0.25, 0, 40, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.166667, 0.333334, 0.5, 0.666667)
+"times": PackedFloat32Array(0, 1.1, 1.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-9.98004, -77.0973), Vector2(-17, -76), Vector2(-1.40009, -78.4384)]
 }
-tracks/13/type = "bezier"
+tracks/13/type = "value"
 tracks/13/imported = false
 tracks/13/enabled = true
-tracks/13/path = NodePath("muppet/LArmNeutral:position:y")
+tracks/13/path = NodePath("muppet/CBellyNeutral:rotation")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
-"points": PackedFloat32Array(-116, -0.25, 0, 0.25, 0, -97.831, -0.25, 0, 0.25, 0, -134, -0.25, 0, 0.25, 0, -97.831, -0.25, 0, 0.25, 0, -116, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.166667, 0.333334, 0.5, 0.666667)
+"times": PackedFloat32Array(0, 1.1, 1.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.20594, 0.374436, 0.0]
 }
-tracks/14/type = "bezier"
-tracks/14/imported = false
-tracks/14/enabled = true
-tracks/14/path = NodePath("muppet/LArmNeutral:rotation")
-tracks/14/interp = 1
-tracks/14/loop_wrap = true
-tracks/14/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
-"points": PackedFloat32Array(-1.71475, -0.25, 0, 0.25, 0, -2.31827, -0.25, 0, 0.25, 0, -4.37946, -0.25, 0, 0.25, 0, -2.31827, -0.25, 0, 0.25, 0, -1.71475, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.166667, 0.333334, 0.5, 0.666667)
+
+[sub_resource type="Animation" id="Animation_sexot"]
+resource_name = "walk_loop"
+length = 0.5
+loop_mode = 1
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("muppet/CSlipNeutral:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2502, 0.5004),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-42, -95), Vector2(-42.0091, -113.624), Vector2(-42, -95)]
 }
-tracks/15/type = "bezier"
-tracks/15/imported = false
-tracks/15/enabled = true
-tracks/15/path = NodePath("muppet/RArmNeutral:position:x")
-tracks/15/interp = 1
-tracks/15/loop_wrap = true
-tracks/15/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
-"points": PackedFloat32Array(-40.4906, -0.25, 0, 0.25, 0, -12, -0.25, 0, 0.25, 0, 34, -0.25, 0, 0.25, 0, -12, -0.25, 0, 0.25, 0, -40.4906, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.166667, 0.333334, 0.5, 0.666667)
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("muppet/CSlipNeutral:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2502, 0.5004),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 0.0]
 }
-tracks/16/type = "bezier"
-tracks/16/imported = false
-tracks/16/enabled = true
-tracks/16/path = NodePath("muppet/RArmNeutral:position:y")
-tracks/16/interp = 1
-tracks/16/loop_wrap = true
-tracks/16/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
-"points": PackedFloat32Array(-108.959, -0.25, 0, 0.25, 0, -72, -0.25, 0, 0.25, 0, -111, -0.25, 0, 0.25, 0, -72, -0.25, 0, 0.25, 0, -108.959, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.166667, 0.333334, 0.5, 0.666667)
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("muppet/CBellyNeutral:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2502, 0.5004),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-3, -82), Vector2(-3.00906, -100.624), Vector2(-3, -82)]
 }
-tracks/17/type = "bezier"
-tracks/17/imported = false
-tracks/17/enabled = true
-tracks/17/path = NodePath("muppet/RArmNeutral:rotation")
-tracks/17/interp = 1
-tracks/17/loop_wrap = true
-tracks/17/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
-"points": PackedFloat32Array(1.05398, -0.25, 0, 0.25, 0, -0.118673, -0.25, 0, 0.25, 0, -1.29133, -0.25, 0, 0.25, 0, -0.118673, -0.25, 0, 0.25, 0, 1.05398, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.166667, 0.333334, 0.5, 0.666667)
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("muppet/CBellyNeutral:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2502, 0.5004),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 0.0]
 }
-tracks/18/type = "bezier"
-tracks/18/imported = false
-tracks/18/enabled = true
-tracks/18/path = NodePath("muppet/CSlipNeutral:position:x")
-tracks/18/interp = 1
-tracks/18/loop_wrap = true
-tracks/18/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
-"points": PackedFloat32Array(-48, -0.25, 0, 0.25, 0, -63, -0.25, 0, 0.25, 0, -48, -0.25, 0, 0.25, 0, -63, -0.25, 0, 0.25, 0, -48, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.166667, 0.333334, 0.5, 0.666667)
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("muppet/CHeadNeutral:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.2919, 0.5004),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(13, -125), Vector2(19, -148.605), Vector2(13, -125)]
 }
-tracks/19/type = "bezier"
-tracks/19/imported = false
-tracks/19/enabled = true
-tracks/19/path = NodePath("muppet/CSlipNeutral:position:y")
-tracks/19/interp = 1
-tracks/19/loop_wrap = true
-tracks/19/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
-"points": PackedFloat32Array(-95, -0.25, 0, 0.25, 0, -85, -0.25, 0, 0.25, 0, -95, -0.25, 0, 0.25, 0, -85, -0.25, 0, 0.25, 0, -95, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.166667, 0.333334, 0.5, 0.666667)
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("muppet/CHeadNeutral:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.2919, 0.5004),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 0.0]
 }
-tracks/20/type = "bezier"
-tracks/20/imported = false
-tracks/20/enabled = true
-tracks/20/path = NodePath("muppet/CSlipNeutral:rotation")
-tracks/20/interp = 1
-tracks/20/loop_wrap = true
-tracks/20/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.166667, 0.333334, 0.5, 0.666667)
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("muppet/LArmNeutral:position")
+tracks/6/interp = 2
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.1251, 0.5004),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(58, -94), Vector2(60.9976, -112.609), Vector2(58, -94)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("muppet/LArmNeutral:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.1251, 0.5004),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-0.949651, -1.31181, -0.671546]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("muppet/RArmNeutral:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.1251, 0.5, 0.5004),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-36, -107), Vector2(-45, -130), Vector2(-36, -107), Vector2(-36, -107)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("muppet/RArmNeutral:rotation")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.1251, 0.5, 0.5004),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [1.38345, 1.57727, 1.38345, 1.38345]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("muppet/LLegNeutral:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 0.2502, 0.5004),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(52, -45), Vector2(58.9909, -64.6242), Vector2(52, -45)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("muppet/LLegNeutral:rotation")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 0.2502, 0.5004),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.4434, -0.607323, 0.4434]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("muppet/RLegNeutral:position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0, 0.2502, 0.5004),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-40, -44), Vector2(-55.0091, -63.6242), Vector2(-40, -44)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("muppet/RLegNeutral:rotation")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0, 0.2502, 0.5004),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-0.501236, 0.741455, -0.501236]
 }
 
 [sub_resource type="Animation" id="Animation_yjsm3"]
@@ -1801,7 +1612,6 @@ position = Vector2(12, -50)
 texture = ExtResource("5_daasv")
 
 [node name="CGhostDead" type="Sprite2D" parent="keyframe/Dead"]
-visible = false
 z_index = -1
 position = Vector2(36, -24)
 texture = ExtResource("6_8rhkf")
@@ -1856,7 +1666,7 @@ texture = ExtResource("22_vo378")
 offset = Vector2(-44, -49)
 
 [node name="RLegNeutral" type="Sprite2D" parent="muppet"]
-z_index = -1
+z_index = 1
 position = Vector2(-47, -50)
 rotation = -0.0868172
 texture = ExtResource("23_85fui")
@@ -1868,7 +1678,6 @@ position = Vector2(-48, -79)
 offset = Vector2(44, 11)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-speed_scale = 1.7
 libraries = {
 "": SubResource("AnimationLibrary_vk3mb")
 }
