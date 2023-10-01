@@ -5,7 +5,6 @@ class_name ADummyControl
 ##
 ## This script manage a dummy and a button to show controls
 
-@export_group("Configuration")
 ## Dummy to control
 @export var dummy : Node2D :
 	set(value):
@@ -16,7 +15,7 @@ class_name ADummyControl
 @onready var _dummyInput : InputHandler = dummy.get_node("%InputHandler") as InputHandler
 
 ## Button to display the control
-@export var displayButton : Button :
+@export var displayButton : BaseButton :
 	set(value):
 		if (displayButton != value):
 			displayButton = value
@@ -42,11 +41,12 @@ func _ready():
 		return
 		
 	if (displayButton == null):
-		if is_instance_of($Button, Button):
-			displayButton = $Button as Button
+		if is_instance_of($Button, BaseButton):
+			displayButton = $Button as BaseButton
 		else:
 			push_error("displayButton must be set or a child called $Button must exist")
-	displayButton.disabled = true
+	#displayButton.disabled = true
+	displayButton.toggle_mode = true
 	
 	##handle timer
 	add_child(timer)
@@ -86,7 +86,7 @@ func _get_configuration_warnings():
 		if dummy.get_node("%InputHandler") == null:
 			warnings.append("Dummy InputHandler not found")
 		
-	if (displayButton == null) && !(is_instance_of($Button, Button)):
+	if (displayButton == null) && !(is_instance_of($Button, BaseButton)):
 		warnings.append("displayButton must be set or a child called $Button must exist")
 
 	# Returning an empty array means "no warning".
