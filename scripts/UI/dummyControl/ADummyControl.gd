@@ -32,9 +32,8 @@ class_name ADummyControl
 		elif (!value && (isPlaying != value)):
 			isPlaying = value
 
-@export_group("Animation config")
 ## Delay in between two anim
-@export var delayInBetween : float = 2.0
+@export var delayInBetween : float = 0.5
 @onready var timer : Timer = Timer.new()
 
 # Called when the node enters the scene tree for the first time.

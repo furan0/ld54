@@ -8,4 +8,9 @@ class_name DummyMove
 func _animation():
 	# Start move
 	_dummyInput.spoofInput("setMove", true)
+
+	timer.start(movingTime)
+	await timer.timeout
 	
+	# Stop move
+	_dummyInput.spoofInput("setMove", false)
