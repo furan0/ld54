@@ -56,7 +56,7 @@ var available_animation_parameter = {CHARA_ANIMATION.IDLE : "idle-loop",
 	CHARA_ANIMATION.TACKLE : anim_tackle,
 	CHARA_ANIMATION.GUARD : anim_guard,
 	CHARA_ANIMATION.EXHAUSTED : _play_anim,
-	CHARA_ANIMATION.DEAD : _play_anim,
+	CHARA_ANIMATION.DEAD : anim_dead,
 	CHARA_ANIMATION.PUSHED: _play_anim,
 	CHARA_ANIMATION.WSL : play_wsl}
 
