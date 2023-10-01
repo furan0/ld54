@@ -24,6 +24,9 @@ class_name ChargeHandler
 @export var chargeMaxRotationSpeed : float = (PI / 2) / 60
 ## Player direction influence for trajectory
 @export var stickInfluenceForce : float = 200
+## Charge Wrestle duration
+@export var wrestleDuration : float = 4.0
+@onready var wrestleHandler = get_node("%WrestleHandler") as WrestleHandler
 
 # Time ellapsed since start of charge
 var chargingTime : float = 0.0
@@ -54,6 +57,9 @@ func _ready():
 			rigidbody = get_parent() as RigidBody2D
 		else:
 			push_error("Rigidbody must be set or the node parent must be of type RigidBody2D")
+		
+	if wrestleHandler == null || !is_instance_of(wrestleHandler, WrestleHandler):
+		push_error("Wrestle handler not found...Expecting a node calles %HitHandler")
 	
 	# Connect collision signals to body list
 	rigidbody.body_entered.connect(func (node : Node2D):
@@ -113,6 +119,7 @@ func _physics_process(delta):
 		# check if we collided with someone
 		if _checkCollisionAndHit():
 			_endCharge()
+			return
 			
 		# check if we still need to run
 		ellapsedRunningTime += delta
@@ -131,8 +138,6 @@ func _physics_process(delta):
 		var totalForce = runForce + stickForce
 		rigidbody.apply_force(totalForce)
 		rotationRef.rotation = totalForce.normalized().angle()
-		
-		
 
 
 ## Called to check collision and apply hit if necessary. Return true if we collided.
@@ -141,14 +146,26 @@ func _checkCollisionAndHit() -> bool:
 		_print("HIT !")
 		# Let know all bodies that they were hitted
 		for node in hitedBody:
-			# If the entity has a stun handler, stun it !
-			var hitHandler = node.get_node("%HitHandler") as HitHandler
-			if (hitHandler != null):
-				var hitDir = (node.position - get_parent().position).normalized()
-				var hitForce = additionalForcePerSecond * chargingTime
-				hitHandler.hit(pushedStunDuration, hitDir * hitForce)
+			doHit(node)
 		return true
 	return false
+
+func doHit(node : Node2D):
+	var hitDir = (node.position - get_parent().position).normalized()
+	var hitForce = additionalForcePerSecond * chargingTime
+	var hitHandler = node.get_node("%HitHandler") as HitHandler
+		
+	#If the entity has a WrestleHandler : WREstle time !
+	var ennemyHandler = node.get_node("%WrestleHandler") as WrestleHandler
+	if (wrestleHandler != null) && wrestleHandler.canWrestle && (ennemyHandler != null) && ennemyHandler.canWrestle:
+		_print("Wrestling time baby !")
+		var timer : SceneTreeTimer = get_tree().create_timer(wrestleDuration)
+		ennemyHandler.beginWrestling(pushedStunDuration, hitDir * hitForce, wrestleHandler, timer)
+		
+	# If the entity has a stun handler, stun it instead !
+	elif (hitHandler != null):
+		hitHandler.hit(pushedStunDuration, hitDir * hitForce)
+
 
 ## Called to end the charge
 func _endCharge():

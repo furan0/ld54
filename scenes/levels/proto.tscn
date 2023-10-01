@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cl5me5crmsilp"]
+[gd_scene load_steps=5 format=3 uid="uid://cl5me5crmsilp"]
 
 [ext_resource type="Texture2D" uid="uid://b2gkmndwllhr5" path="res://assets/art/background/background.png" id="1_6tfnp"]
 [ext_resource type="PackedScene" uid="uid://d1h1msw0tmfw4" path="res://scenes/player.tscn" id="3_vg4tc"]
+[ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="4_6imkc"]
 [ext_resource type="PackedScene" uid="uid://cack3kykwsqny" path="res://scenes/Enemy.tscn" id="4_cbq2a"]
 
 [node name="proto" type="Node2D"]
@@ -17,3 +18,11 @@ position = Vector2(369, 328)
 
 [node name="Enemy" parent="." instance=ExtResource("4_cbq2a")]
 position = Vector2(776, 320)
+freeze_mode = 1
+
+[node name="StateChartDebugger" parent="." instance=ExtResource("4_6imkc")]
+offset_left = -9.0
+offset_top = -25.0
+offset_right = 315.0
+offset_bottom = 582.0
+initial_node_to_watch = NodePath("../Enemy")

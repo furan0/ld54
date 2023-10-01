@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://d1h1msw0tmfw4"]
+[gd_scene load_steps=19 format=3 uid="uid://d1h1msw0tmfw4"]
 
 [ext_resource type="Script" path="res://scripts/logic/LookAt.gd" id="2_r5dgl"]
 [ext_resource type="Script" path="res://scripts/logic/InputHandler.gd" id="3_320l3"]
@@ -11,8 +11,10 @@
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="7_fa1bx"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="8_5ha87"]
 [ext_resource type="Script" path="res://scripts/Player/ChargeHandler.gd" id="8_i7hbo"]
+[ext_resource type="Script" path="res://scripts/Player/WrestleHandler.gd" id="9_katet"]
 [ext_resource type="Script" path="res://scripts/Player/TackleHandler.gd" id="11_ejq0w"]
 [ext_resource type="PackedScene" uid="uid://bq8s6d65y33h6" path="res://scenes/entity/2Drig/player_rig.tscn" id="14_5urwl"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/expression_guard.gd" id="14_8jw7n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l2xwr"]
 size = Vector2(35.5, 57)
@@ -20,13 +22,16 @@ size = Vector2(35.5, 57)
 [sub_resource type="CircleShape2D" id="CircleShape2D_2fvwc"]
 radius = 44.0454
 
+[sub_resource type="Resource" id="Resource_70l1s"]
+script = ExtResource("14_8jw7n")
+expression = "isWrestling == false"
+
 [node name="Player" type="RigidBody2D" groups=["player"]]
 mass = 0.6
 gravity_scale = 0.0
 max_contacts_reported = 3
 contact_monitor = true
 lock_rotation = true
-freeze_mode = 1
 linear_damp = 15.0
 
 [node name="LookAt" type="Node2D" parent="."]
@@ -79,10 +84,18 @@ stunDuration = 0.3
 hitForce = 1000.0
 
 [node name="ChargeHandler" type="Node" parent="."]
+unique_name_in_owner = true
 script = ExtResource("8_i7hbo")
-additionalForcePerSecond = 5000.0
-maxChargeTime = 0.6
-chargeRunForce = 12000.0
+isVerbose = false
+additionalForcePerSecond = 5200.0
+maxChargeTime = 0.5
+chargeRunForce = 11000.0
+stickInfluenceForce = 300.0
+
+[node name="WrestleHandler" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("9_katet")
+isVerbose = true
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("5_7qtpj")
@@ -225,7 +238,7 @@ event = &"stun"
 [node name="toWrestle" type="Node" parent="StateMachine/CompoundState/free/charge/charge"]
 script = ExtResource("8_5ha87")
 to = NodePath("../../../../wrestle")
-event = &"startWrestle"
+event = &"startWrestling"
 
 [node name="stun" type="Node" parent="StateMachine/CompoundState"]
 script = ExtResource("7_fa1bx")
@@ -246,12 +259,13 @@ script = ExtResource("7_fa1bx")
 [node name="toFree" type="Node" parent="StateMachine/CompoundState/wrestle"]
 script = ExtResource("8_5ha87")
 to = NodePath("../../free")
-event = &"stopWrestle"
+event = &"stopWrestling"
 
 [node name="toStun" type="Node" parent="StateMachine/CompoundState/wrestle"]
 script = ExtResource("8_5ha87")
 to = NodePath("../../stun")
 event = &"stun"
+guard = SubResource("Resource_70l1s")
 
 [node name="dead" type="Node" parent="StateMachine/CompoundState"]
 editor_description = "There is no escaping death...."
@@ -265,6 +279,7 @@ looker = NodePath("../LookAt")
 [connection signal="chargeEnd" from="InputHandler" to="StateMachine" method="send_event" binds= ["doCharge"]]
 [connection signal="chargeStart" from="InputHandler" to="StateMachine" method="send_event" binds= ["startCharge"]]
 [connection signal="guardEnd" from="InputHandler" to="StateMachine" method="send_event" binds= ["stopGuard"]]
+[connection signal="guardStart" from="InputHandler" to="WrestleHandler" method="buttonSmashed"]
 [connection signal="guardStart" from="InputHandler" to="StateMachine" method="send_event" binds= ["startGuard"]]
 [connection signal="iscurrentlyMoving" from="InputHandler" to="StateMachine" method="send_event" binds= ["move"]]
 [connection signal="moveEnded" from="InputHandler" to="ChargeHandler" method="setCurrentStickDirection" binds= [Vector2(0, 0)]]
@@ -279,6 +294,11 @@ looker = NodePath("../LookAt")
 [connection signal="changeRotation" from="HitHandler" to="LookAt" method="set_rotation"]
 [connection signal="startStun" from="HitHandler" to="StunHandler" method="stunFor"]
 [connection signal="endCharge" from="ChargeHandler" to="StunHandler" method="stun" binds= ["charge"]]
+[connection signal="changeRotation" from="WrestleHandler" to="LookAt" method="set_rotation"]
+[connection signal="wrestlingEnded" from="WrestleHandler" to="StateMachine" method="set_expression_property" binds= ["isWrestling", false]]
+[connection signal="wrestlingEnded" from="WrestleHandler" to="StateMachine" method="send_event" binds= ["stopWrestling"]]
+[connection signal="wrestlingStarted" from="WrestleHandler" to="StateMachine" method="set_expression_property" binds= ["isWrestling", true]]
+[connection signal="wrestlingStarted" from="WrestleHandler" to="StateMachine" method="send_event" binds= ["startWrestling"]]
 [connection signal="state_exited" from="StateMachine/CompoundState/free" to="LookAt" method="canLookAtThings" binds= [false]]
 [connection signal="state_exited" from="StateMachine/CompoundState/free" to="MovementHandler" method="canMove" binds= [false]]
 [connection signal="state_entered" from="StateMachine/CompoundState/free/Idle" to="LookAt" method="canLookAtThings" binds= [true]]
@@ -295,7 +315,6 @@ looker = NodePath("../LookAt")
 [connection signal="state_entered" from="StateMachine/CompoundState/free/tackle" to="MovementHandler" method="canMove" binds= [false]]
 [connection signal="state_entered" from="StateMachine/CompoundState/free/tackle" to="2D_character_rig" method="signal_to_anim" binds= ["tackle"]]
 [connection signal="state_exited" from="StateMachine/CompoundState/free/tackle" to="LookAt" method="canLookAtThings" binds= [true]]
-[connection signal="state_exited" from="StateMachine/CompoundState/free/tackle" to="LookAt/Hitbox/CollisionShape2D" method="set_debug_color" binds= [Color(0.760784, 0, 0, 0.254902)]]
 [connection signal="state_entered" from="StateMachine/CompoundState/free/move" to="2D_character_rig" method="signal_to_anim" binds= ["movement"]]
 [connection signal="state_entered" from="StateMachine/CompoundState/free/charge" to="MovementHandler" method="canMove" binds= [false]]
 [connection signal="state_entered" from="StateMachine/CompoundState/free/charge/preCharge" to="ChargeHandler" method="startCharging"]
@@ -304,5 +323,12 @@ looker = NodePath("../LookAt")
 [connection signal="state_entered" from="StateMachine/CompoundState/free/charge/charge" to="ChargeHandler" method="startRunning"]
 [connection signal="state_entered" from="StateMachine/CompoundState/free/charge/charge" to="LookAt" method="canLookAtThings" binds= [false]]
 [connection signal="state_entered" from="StateMachine/CompoundState/free/charge/charge" to="2D_character_rig" method="signal_to_anim" binds= ["charge"]]
+[connection signal="state_entered" from="StateMachine/CompoundState/free/charge/charge" to="WrestleHandler" method="setCanWrestle" binds= [true]]
 [connection signal="state_exited" from="StateMachine/CompoundState/free/charge/charge" to="2D_character_rig" method="signal_to_anim" binds= ["post_charge"]]
-[connection signal="state_entered" from="StateMachine/CompoundState/stun" to="2D_character_rig" method="signal_to_anim" binds= [&"stun"]]
+[connection signal="state_entered" from="StateMachine/CompoundState/stun" to="2D_character_rig" method="set_modulate" binds= [Color(0.294118, 0.294118, 0.294118, 1)]]
+[connection signal="state_entered" from="StateMachine/CompoundState/stun" to="2D_character_rig" method="signal_to_anim" binds= ["idle"]]
+[connection signal="state_entered" from="StateMachine/CompoundState/stun" to="WrestleHandler" method="setCanWrestle" binds= [false]]
+[connection signal="state_exited" from="StateMachine/CompoundState/stun" to="2D_character_rig" method="set_modulate" binds= [Color(1, 1, 1, 1)]]
+[connection signal="state_entered" from="StateMachine/CompoundState/wrestle" to="2D_character_rig" method="set_modulate" binds= [Color(1, 0, 0, 1)]]
+[connection signal="state_exited" from="StateMachine/CompoundState/wrestle" to="2D_character_rig" method="set_modulate" binds= [Color(1, 1, 1, 1)]]
+[connection signal="state_exited" from="StateMachine/CompoundState/wrestle" to="WrestleHandler" method="setCanWrestle" binds= [false]]
