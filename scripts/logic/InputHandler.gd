@@ -16,7 +16,7 @@ var isCharging : bool = false
 var isMoving : bool = false
 
 ## === Multiplayer handling
-enum ECurrentInputProvider {PLAYER1, PLAYER2, SPOOF_ONLY}
+enum ECurrentInputProvider {PLAYER1, PLAYER2, BOTH, SPOOF_ONLY}
 ## Listen to this player input 
 @export var inputProvider : ECurrentInputProvider = ECurrentInputProvider.PLAYER1
 
@@ -106,8 +106,10 @@ func spoofInput(inputName : String, value):
 ## Map given action for each player and return the new action string
 func getAction(actionName : String):
 	match inputProvider:
-		ECurrentInputProvider.PLAYER1:
+		ECurrentInputProvider.BOTH:
 			return actionName
+		ECurrentInputProvider.PLAYER1:
+			return "p1_" + actionName
 		ECurrentInputProvider.PLAYER2:
 			return "p2_" + actionName
 		ECurrentInputProvider.SPOOF_ONLY:

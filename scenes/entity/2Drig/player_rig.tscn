@@ -10,67 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://ckbl764kv56v5" path="res://assets/art/char/player/neutral/L_leg_neutral.png" id="6_5aa6g"]
 [ext_resource type="Texture2D" uid="uid://e1chedt2mgx0" path="res://assets/art/char/player/neutral/R_leg_neutral.png" id="7_jtf03"]
 [ext_resource type="Texture2D" uid="uid://3ww3yhkm52j0" path="res://assets/art/char/player/neutral/C_slip_neutral.png" id="8_g27pn"]
-[ext_resource type="Shader" path="res://scripts/shaders/ditheralpha.gdshader" id="10_64hgo"]
-[ext_resource type="Texture2D" uid="uid://cxjx2888m66em" path="res://assets/art/FX/smoke_static/smokeA.png" id="11_jar7f"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_3pq3r"]
-shader = ExtResource("10_64hgo")
-shader_parameter/color = Color(0.486275, 0.286275, 0.298039, 1)
-shader_parameter/intensity = 1.279
-
-[sub_resource type="Curve" id="Curve_iwjm2"]
-max_value = 100.0
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1e-05, 8.42105), 0.0, 0.0, 0, 0, Vector2(1, 93.6842), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_cegqe"]
-curve = SubResource("Curve_iwjm2")
-
-[sub_resource type="Curve" id="Curve_2r7bw"]
-_data = [Vector2(0, 0), 0.0, 31.3263, 0, 0, Vector2(0.0810185, 0.936842), 0.0, 0.0, 0, 0, Vector2(0.99999, 0.884211), 0.0, 0.0, 0, 0, Vector2(1, 0.694737), -3.36842, 0.0, 0, 0]
-point_count = 4
-
-[sub_resource type="CurveTexture" id="CurveTexture_r7x3x"]
-curve = SubResource("Curve_2r7bw")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_klpes"]
-emission_shape = 4
-emission_point_count = 1
-particle_flag_disable_z = true
-direction = Vector3(0, -0.775, 0)
-spread = 5.72
-gravity = Vector3(0, 1, 0)
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
-damping_max = 14.16
-damping_curve = SubResource("CurveTexture_cegqe")
-angle_min = -581.1
-angle_max = 138.9
-scale_min = 0.8
-scale_max = 1.5
-scale_curve = SubResource("CurveTexture_r7x3x")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_dy1t2"]
-shader = ExtResource("10_64hgo")
-shader_parameter/color = Color(0.294118, 0.160784, 0.168627, 1)
-shader_parameter/intensity = 1.279
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mq3ht"]
-emission_shape = 4
-emission_point_count = 1
-particle_flag_disable_z = true
-direction = Vector3(0, -0.775, 0)
-spread = 5.72
-gravity = Vector3(0, 1, 0)
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
-damping_max = 14.16
-damping_curve = SubResource("CurveTexture_cegqe")
-angle_min = -581.1
-angle_max = 138.9
-scale_min = 0.8
-scale_max = 2.0
-scale_curve = SubResource("CurveTexture_r7x3x")
+[ext_resource type="Texture2D" uid="uid://b6juc1iq6tat7" path="res://assets/art/FX/smoke_particle/smoke_particle_dithered.png" id="11_b0m76"]
 
 [sub_resource type="Animation" id="Animation_8lsiv"]
 length = 1.40001
@@ -1496,20 +1436,77 @@ _data = {
 "walk-loop": SubResource("Animation_sexot")
 }
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_67sye"]
+[sub_resource type="Gradient" id="Gradient_yij71"]
+offsets = PackedFloat32Array(0, 0.371571, 1)
+colors = PackedColorArray(0.54902, 0.521569, 0.478431, 0.737255, 1, 1, 1, 1, 1, 1, 1, 0.0627451)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_t4b2l"]
+gradient = SubResource("Gradient_yij71")
+
+[sub_resource type="Curve" id="Curve_iwjm2"]
+max_value = 100.0
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1e-05, 8.42105), 0.0, 0.0, 0, 0, Vector2(1, 93.6842), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_cegqe"]
+curve = SubResource("Curve_iwjm2")
+
+[sub_resource type="Curve" id="Curve_2r7bw"]
+_data = [Vector2(0, 0), 0.0, 31.3263, 0, 0, Vector2(0.0810185, 0.936842), 0.0, 0.0, 0, 0, Vector2(0.99999, 0.884211), 0.0, 0.0, 0, 0, Vector2(1, 0.694737), -3.36842, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_r7x3x"]
+curve = SubResource("Curve_2r7bw")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yidv8"]
 emission_shape = 4
 emission_point_count = 1
 particle_flag_disable_z = true
 direction = Vector3(0, -0.775, 0)
-spread = 10.33
+spread = 12.7
 gravity = Vector3(0, 1, 0)
-initial_velocity_min = 289.47
-initial_velocity_max = 383.81
+initial_velocity_min = 149.12
+initial_velocity_max = 241.51
 orbit_velocity_min = 0.0
 orbit_velocity_max = 0.0
-damping_max = 28.195
+damping_min = 27.194
+damping_max = 36.528
 damping_curve = SubResource("CurveTexture_cegqe")
+angle_min = -720.0
+angle_max = 372.8
+scale_min = 0.2
+scale_max = 0.6
 scale_curve = SubResource("CurveTexture_r7x3x")
+color = Color(0.635294, 0.164706, 0.258824, 1)
+color_ramp = SubResource("GradientTexture1D_t4b2l")
+
+[sub_resource type="Gradient" id="Gradient_o3jpu"]
+colors = PackedColorArray(0.803922, 0.631373, 0.607843, 0.654902, 0.921569, 0.509804, 0.596078, 0.0313726)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_hxr5t"]
+gradient = SubResource("Gradient_o3jpu")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mq3ht"]
+emission_shape = 4
+emission_point_count = 1
+particle_flag_disable_z = true
+direction = Vector3(0, 0, 0)
+spread = 38.09
+gravity = Vector3(0, -20, 0)
+initial_velocity_min = 70.18
+initial_velocity_max = 407.9
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+damping_min = 12.281
+damping_max = 21.616
+damping_curve = SubResource("CurveTexture_cegqe")
+angle_min = -581.1
+angle_max = 138.9
+scale_min = 0.1
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_r7x3x")
+color = Color(0.87451, 0.87451, 0.87451, 1)
+color_ramp = SubResource("GradientTexture1D_hxr5t")
 
 [node name="2D_character_rig" type="Node2D"]
 script = ExtResource("1_jetxj")
@@ -1520,29 +1517,6 @@ script = ExtResource("1_jetxj")
 visible = false
 position = Vector2(5, -82)
 texture = ExtResource("2_itmls")
-
-[node name="Smoke_big2" type="GPUParticles2D" parent="keyframe/Charge"]
-z_index = -3
-material = SubResource("ShaderMaterial_3pq3r")
-position = Vector2(-49, 55)
-rotation = -0.945708
-scale = Vector2(1.24988, 1.26702)
-amount = 20
-process_material = SubResource("ParticleProcessMaterial_klpes")
-texture = ExtResource("11_jar7f")
-lifetime = 0.7
-interpolate = false
-
-[node name="Smoke_big" type="GPUParticles2D" parent="keyframe/Charge"]
-z_index = -5
-material = SubResource("ShaderMaterial_dy1t2")
-position = Vector2(-49, 55)
-rotation = -0.945708
-amount = 25
-process_material = SubResource("ParticleProcessMaterial_mq3ht")
-texture = ExtResource("11_jar7f")
-lifetime = 0.7
-interpolate = false
 
 [node name="Tackle" type="Sprite2D" parent="keyframe"]
 visible = false
@@ -1594,31 +1568,51 @@ texture = ExtResource("8_g27pn")
 offset = Vector2(44, 11)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+speed_scale = 1.7
 libraries = {
 "": SubResource("AnimationLibrary_vk3mb")
 }
 
-[node name="Smoke_procharge" type="Node2D" parent="."]
-visible = false
+[node name="particle" type="Node2D" parent="."]
 
-[node name="Smoke_big" type="GPUParticles2D" parent="Smoke_procharge"]
+[node name="smoke_charge1" type="GPUParticles2D" parent="particle"]
 z_index = 2
-material = SubResource("ShaderMaterial_3pq3r")
-position = Vector2(-22, -6)
-rotation = -1.5158
-amount = 2
-process_material = SubResource("ParticleProcessMaterial_67sye")
-texture = ExtResource("11_jar7f")
+position = Vector2(-1, 18)
+emitting = false
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_yidv8")
+texture = ExtResource("11_b0m76")
+randomness = 0.19
+interpolate = false
+
+[node name="smoke_charge2" type="GPUParticles2D" parent="particle"]
+z_index = 2
+position = Vector2(-1, 18)
+emitting = false
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_yidv8")
+texture = ExtResource("11_b0m76")
+randomness = 0.19
+interpolate = false
+
+[node name="smoke_precharge2" type="GPUParticles2D" parent="particle"]
+z_index = 3
+position = Vector2(-42, 16)
+rotation = -2.04761
+emitting = false
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_mq3ht")
+texture = ExtResource("11_b0m76")
 lifetime = 0.7
 interpolate = false
 
-[node name="Smoke_big2" type="GPUParticles2D" parent="Smoke_procharge"]
-z_index = -1
-material = SubResource("ShaderMaterial_3pq3r")
-position = Vector2(-22, -6)
-rotation = 1.48327
-amount = 2
-process_material = SubResource("ParticleProcessMaterial_67sye")
-texture = ExtResource("11_jar7f")
+[node name="smoke_precharge1" type="GPUParticles2D" parent="particle"]
+z_index = 5
+position = Vector2(35, 34)
+rotation = -0.86263
+emitting = false
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_mq3ht")
+texture = ExtResource("11_b0m76")
 lifetime = 0.7
 interpolate = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bxgb8qx4485pi"]
+[gd_scene load_steps=9 format=3 uid="uid://bxgb8qx4485pi"]
 
 [ext_resource type="PackedScene" uid="uid://duxcaaa2ewb7q" path="res://scenes/UI/UiHandler.tscn" id="1_5li7n"]
 [ext_resource type="PackedScene" uid="uid://djfdxmwa6507n" path="res://scenes/UI/MainMenuUi.tscn" id="2_emmkq"]
@@ -6,11 +6,25 @@
 [ext_resource type="PackedScene" uid="uid://bbqd8tlv4v8nq" path="res://scenes/UI/Option2UI.tscn" id="4_uh8ej"]
 [ext_resource type="PackedScene" uid="uid://p7o51iq35snm" path="res://scenes/UI/CreditUI.tscn" id="5_rqt24"]
 [ext_resource type="Texture2D" uid="uid://cbhq6inb3f5nb" path="res://comm/concept1.png" id="6_jqt22"]
+[ext_resource type="PackedScene" uid="uid://cm17707fu5t37" path="res://scenes/UI/ControlUI.tscn" id="6_l452m"]
+
+[sub_resource type="GDScript" id="GDScript_6qv5s"]
+resource_name = "MainMenu"
+script/source = "extends Node
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	var handler : UiHandler = $UiHandler as UiHandler
+	handler.backRequestedWithEmptyHierarchy.connect(Global.goto_scene.bind(\"res://scenes/levels/proto.tscn\"))
+"
 
 [node name="MainMenu" type="Node"]
+script = SubResource("GDScript_6qv5s")
 
 [node name="UiHandler" parent="." instance=ExtResource("1_5li7n")]
 panels = {
+"control": ExtResource("6_l452m"),
 "credit": ExtResource("5_rqt24"),
 "mainMenu": ExtResource("2_emmkq"),
 "option": ExtResource("3_2aexv"),
