@@ -257,9 +257,10 @@ event = &"stun"
 editor_description = "There is no escaping death...."
 script = ExtResource("7_fa1bx")
 
-[node name="2D_character_rig" parent="." instance=ExtResource("14_5urwl")]
+[node name="2D_character_rig" parent="." node_paths=PackedStringArray("looker") instance=ExtResource("14_5urwl")]
 position = Vector2(0, 23.46)
 scale = Vector2(0.373, 0.373)
+looker = NodePath("../LookAt")
 
 [connection signal="chargeEnd" from="InputHandler" to="StateMachine" method="send_event" binds= ["doCharge"]]
 [connection signal="chargeStart" from="InputHandler" to="StateMachine" method="send_event" binds= ["startCharge"]]

@@ -30,8 +30,11 @@ var str_to_anim = {
 # The animation to play if the animation is not yet implemented
 @export var fallback_animation :=  CHARA_ANIMATION.IDLE
 @export var looker : Node2D
-@export var angle_max := PI/4
-@export var angle_min := -PI/4
+@export var angle_max := PI/5
+@export var angle_min := -PI/5
+
+var defined_scale = 1.0
+
 
 var available_animation_parameter = {CHARA_ANIMATION.IDLE : "idle-loop",
 	CHARA_ANIMATION.MOVEMENT : "walk-loop",
@@ -96,6 +99,7 @@ func play_animation(desired_animation : CHARA_ANIMATION):
 
 ## Called when the node enters the scene tree for the first time.
 func _ready():
+	defined_scale = scale.x
 	play_animation(CHARA_ANIMATION.IDLE)
 
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -104,8 +108,11 @@ func _process(delta):
 	if not(looker == null):
 		var angle = looker.rotation
 		angle = fmod(angle,PI+PI)
-		if(cos(angle)<0):
-			angle = fmod(-angle,PI+PI) + PI
+		if(cos(angle)<-0.1):
+			angle = fmod(angle,PI+PI) + PI
+			scale.x = defined_scale * -1
+		else : 
+			scale.x = defined_scale 
 		angle = fmod(angle,PI+PI)
 		if(angle<PI):
 			rotation = clampf(angle,0,angle_max)
