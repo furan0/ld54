@@ -1,13 +1,16 @@
-[gd_scene load_steps=29 format=3 uid="uid://bq8s6d65y33h6"]
+[gd_scene load_steps=33 format=3 uid="uid://bq8s6d65y33h6"]
 
 [ext_resource type="Script" path="res://scripts/entity/2D_rig/character_rig.gd" id="1_jetxj"]
 [ext_resource type="Texture2D" uid="uid://cd2bbjl4nn1a7" path="res://assets/art/char/player/charge/full_charge.png" id="2_itmls"]
 [ext_resource type="Texture2D" uid="uid://bpkvxcxj8i51" path="res://assets/art/char/player/neutral/C_belly_neutral.png" id="2_nwqt7"]
 [ext_resource type="Texture2D" uid="uid://dsbtvsqfgajqm" path="res://assets/art/char/player/neutral/C_head_neutral.png" id="3_7e0ku"]
+[ext_resource type="Texture2D" uid="uid://dpbkfp05d3woh" path="res://assets/art/char/player/guard/full_guard.png" id="4_gy66i"]
 [ext_resource type="Texture2D" uid="uid://1d4djjks0w3d" path="res://assets/art/char/player/neutral/L_arm_neutral.png" id="4_ydtkt"]
 [ext_resource type="Texture2D" uid="uid://cd7i0jttr7dbs" path="res://assets/art/char/player/neutral/R_arm_neutral.png" id="5_8rhxv"]
+[ext_resource type="Texture2D" uid="uid://c38et4uv8qtkm" path="res://assets/art/char/player/dead/C_body_dead.png" id="5_h05ns"]
 [ext_resource type="Texture2D" uid="uid://nbfp12oabwh3" path="res://assets/art/char/player/tackle/full_tackle.png" id="5_icv7o"]
 [ext_resource type="Texture2D" uid="uid://ckbl764kv56v5" path="res://assets/art/char/player/neutral/L_leg_neutral.png" id="6_5aa6g"]
+[ext_resource type="Texture2D" uid="uid://byeuhsyapbwgb" path="res://assets/art/char/player/dead/C_ghost_dead.png" id="6_pj1v7"]
 [ext_resource type="Texture2D" uid="uid://e1chedt2mgx0" path="res://assets/art/char/player/neutral/R_leg_neutral.png" id="7_jtf03"]
 [ext_resource type="Texture2D" uid="uid://3ww3yhkm52j0" path="res://assets/art/char/player/neutral/C_slip_neutral.png" id="8_g27pn"]
 [ext_resource type="Texture2D" uid="uid://b6juc1iq6tat7" path="res://assets/art/FX/smoke_particle/smoke_particle_dithered.png" id="11_b0m76"]
@@ -244,6 +247,77 @@ tracks/20/keys = {
 "handle_modes": PackedInt32Array(0),
 "points": PackedFloat32Array(-0.0868172, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
+}
+tracks/21/type = "bezier"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("keyframe/Dead/CGhostDead:position:x")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(36, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/22/type = "bezier"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("keyframe/Dead/CGhostDead:position:y")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-24, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/23/type = "bezier"
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/path = NodePath("keyframe/Dead/CGhostDead:rotation")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_2nrdk"]
+resource_name = "dead"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("keyframe/Dead/CGhostDead:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(25, -0.25, 0, 0.25, 0, 36, -0.25, 0, 0.25, 0, 25, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1.3, 3)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("keyframe/Dead/CGhostDead:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(16, -0.25, 0, 0.25, 0, -18, -0.25, 0, 0.25, 0, 16, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1.3, 3)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("keyframe/Dead/CGhostDead:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1.3, 3)
 }
 
 [sub_resource type="Animation" id="Animation_04muj"]
@@ -1429,6 +1503,7 @@ tracks/20/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vk3mb"]
 _data = {
 "RESET": SubResource("Animation_8lsiv"),
+"dead": SubResource("Animation_2nrdk"),
 "idle-loop": SubResource("Animation_04muj"),
 "postcharge": SubResource("Animation_4nd70"),
 "precharge-loop": SubResource("Animation_6w2ga"),
@@ -1523,7 +1598,23 @@ visible = false
 position = Vector2(-5, -73)
 texture = ExtResource("5_icv7o")
 
+[node name="Guard" type="Sprite2D" parent="keyframe"]
+visible = false
+position = Vector2(-4, -75)
+texture = ExtResource("4_gy66i")
+
+[node name="Dead" type="Sprite2D" parent="keyframe"]
+visible = false
+position = Vector2(12, -50)
+texture = ExtResource("5_h05ns")
+
+[node name="CGhostDead" type="Sprite2D" parent="keyframe/Dead"]
+z_index = -1
+position = Vector2(36, -24)
+texture = ExtResource("6_pj1v7")
+
 [node name="muppet" type="Node2D" parent="."]
+visible = false
 
 [node name="CBellyNeutral" type="Sprite2D" parent="muppet"]
 position = Vector2(-3, -82)

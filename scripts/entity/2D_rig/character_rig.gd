@@ -21,9 +21,9 @@ var str_to_anim = {
 	"post_charge" : CHARA_ANIMATION.POST_CHARGE,
 	"tackle" : CHARA_ANIMATION.TACKLE,
 	"guard" : CHARA_ANIMATION.GUARD,
-	"exhausted" : CHARA_ANIMATION.EXHAUSTED,
+	"exhausted" : CHARA_ANIMATION.PUSHED,
 	"dead" : CHARA_ANIMATION.DEAD,
-	"pushed" : CHARA_ANIMATION.PUSHED,
+	"stun" : CHARA_ANIMATION.PUSHED,
 }
 
 
@@ -42,9 +42,9 @@ var available_animation_parameter = {CHARA_ANIMATION.IDLE : "idle-loop",
 	CHARA_ANIMATION.CHARGE : null,
 	CHARA_ANIMATION.POST_CHARGE : "postcharge",
 	CHARA_ANIMATION.TACKLE : "tackled",
-	CHARA_ANIMATION.GUARD : [],
-	CHARA_ANIMATION.EXHAUSTED : [],
-	CHARA_ANIMATION.DEAD : [],
+	CHARA_ANIMATION.GUARD : null,
+	CHARA_ANIMATION.EXHAUSTED : "tackled",
+	CHARA_ANIMATION.DEAD : "dead",
 	CHARA_ANIMATION.PUSHED: "tackled"}
 
 @onready var available_action = {CHARA_ANIMATION.IDLE : _play_anim,
@@ -53,7 +53,7 @@ var available_animation_parameter = {CHARA_ANIMATION.IDLE : "idle-loop",
 	CHARA_ANIMATION.CHARGE : anim_charge,
 	CHARA_ANIMATION.POST_CHARGE : _play_anim,
 	CHARA_ANIMATION.TACKLE : anim_tackle,
-	CHARA_ANIMATION.GUARD : _play_anim,
+	CHARA_ANIMATION.GUARD : anim_guard,
 	CHARA_ANIMATION.EXHAUSTED : _play_anim,
 	CHARA_ANIMATION.DEAD : _play_anim,
 	CHARA_ANIMATION.PUSHED: _play_anim}
@@ -71,6 +71,19 @@ func set_keyframe_mode(active : bool):
 		child.visible = false
 	for child in $particle.get_children():
 		child.emitting = false
+
+func anim_dead(param):
+	play_animation(param)
+	set_keyframe_mode(true)
+	$keyframe/Dead.visible = true
+	
+
+func anim_guard(param):
+	set_keyframe_mode(true)
+	$keyframe/Guard.visible = true
+	
+	
+#	$particle/smoke_charge2.emitting = true
 
 func anim_charge(param):
 	set_keyframe_mode(true)
