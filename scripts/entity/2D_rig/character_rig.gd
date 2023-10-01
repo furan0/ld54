@@ -11,7 +11,8 @@ enum CHARA_ANIMATION {
 	GUARD,
 	EXHAUSTED,
 	DEAD,
-	PUSHED}
+	PUSHED,
+	WSL}
 
 var str_to_anim = {
 	"idle" : CHARA_ANIMATION.IDLE,
@@ -24,6 +25,7 @@ var str_to_anim = {
 	"exhausted" : CHARA_ANIMATION.PUSHED,
 	"dead" : CHARA_ANIMATION.DEAD,
 	"stun" : CHARA_ANIMATION.PUSHED,
+	"wsl" : CHARA_ANIMATION.WSL
 }
 
 # The animation to play if the animation is not yet implemented
@@ -43,7 +45,8 @@ var available_animation_parameter = {CHARA_ANIMATION.IDLE : "idle-loop",
 	CHARA_ANIMATION.GUARD : null,
 	CHARA_ANIMATION.EXHAUSTED : "tackled",
 	CHARA_ANIMATION.DEAD : "dead",
-	CHARA_ANIMATION.PUSHED: "tackled"}
+	CHARA_ANIMATION.PUSHED: "tackled",
+	CHARA_ANIMATION.WSL : "wsl"}
 
 @onready var available_action = {CHARA_ANIMATION.IDLE : _play_anim,
 	CHARA_ANIMATION.MOVEMENT : _play_anim,
@@ -54,9 +57,20 @@ var available_animation_parameter = {CHARA_ANIMATION.IDLE : "idle-loop",
 	CHARA_ANIMATION.GUARD : anim_guard,
 	CHARA_ANIMATION.EXHAUSTED : _play_anim,
 	CHARA_ANIMATION.DEAD : _play_anim,
-	CHARA_ANIMATION.PUSHED: _play_anim}
+	CHARA_ANIMATION.PUSHED: _play_anim,
+	CHARA_ANIMATION.WSL : play_wsl}
 
 ###### FUNCTION FOR ANIMATION #####
+
+func play_wsl(param):
+	play_animation(param)
+	set_keyframe_mode(true)
+	$keyframe/Wsl.visible = true
+	$particle/smoke_wsl1.emitting = true
+	$particle/smoke_wsl2.emitting = true
+	$particle/smoke_wsl3.emitting = true
+	$keyframe/anim_wsl.visible = true
+	
 func _play_anim(anim_name : String):
 	set_keyframe_mode(false)
 	$AnimationPlayer.play(anim_name)
