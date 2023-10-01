@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cio7blv0gu1du"]
+[gd_scene load_steps=15 format=3 uid="uid://cio7blv0gu1du"]
 
 [ext_resource type="Texture2D" uid="uid://bplr5fkwhl42c" path="res://assets/art/FX/ImpactA/0000.png" id="1_2k4ju"]
 [ext_resource type="Texture2D" uid="uid://cr5vi1h3skewu" path="res://assets/art/FX/ImpactA/0001.png" id="2_ffgyk"]
@@ -13,7 +13,25 @@
 [ext_resource type="Texture2D" uid="uid://ce1ebwcdusm0v" path="res://assets/art/FX/ImpactA/0010.png" id="11_5i60q"]
 [ext_resource type="Script" path="res://scripts/entity/Sprite_FX.gd" id="12_7cg7p"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_5fev2"]
+[sub_resource type="GDScript" id="GDScript_26iq7"]
+script/source = "extends Node2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+
+func _on_sprite_fx_animation_finished():
+	queue_free()
+"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3wghw"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -51,9 +69,19 @@ animations = [{
 }],
 "loop": false,
 "name": &"default",
-"speed": 30.0
+"speed": 20.0
 }]
 
-[node name="impact_FX2" type="AnimatedSprite2D"]
-sprite_frames = SubResource("SpriteFrames_5fev2")
+[node name="impact_FX2" type="Node2D"]
+script = SubResource("GDScript_26iq7")
+
+[node name="Sprite_FX" type="AnimatedSprite2D" parent="."]
+position = Vector2(19, -2)
+rotation = -1.59267
+sprite_frames = SubResource("SpriteFrames_3wghw")
+frame = 10
+frame_progress = 1.0
 script = ExtResource("12_7cg7p")
+queue_free_at_end = false
+
+[connection signal="animation_finished" from="Sprite_FX" to="." method="_on_sprite_fx_animation_finished"]

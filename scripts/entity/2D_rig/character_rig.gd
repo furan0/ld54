@@ -26,7 +26,6 @@ var str_to_anim = {
 	"stun" : CHARA_ANIMATION.PUSHED,
 }
 
-
 # The animation to play if the animation is not yet implemented
 @export var fallback_animation :=  CHARA_ANIMATION.IDLE
 @export var looker : Node2D
@@ -34,7 +33,6 @@ var str_to_anim = {
 @export var angle_min := -PI/5
 
 var defined_scale = 1.0
-
 
 var available_animation_parameter = {CHARA_ANIMATION.IDLE : "idle-loop",
 	CHARA_ANIMATION.MOVEMENT : "walk-loop",
