@@ -30,12 +30,12 @@ var str_to_anim = {
 # The animation to play if the animation is not yet implemented
 @export var fallback_animation :=  CHARA_ANIMATION.IDLE
 @export var looker : Node2D
-
-
+@export var angle_max := PI/4
+@export var angle_min := -PI/4
 
 var available_animation_parameter = {CHARA_ANIMATION.IDLE : "idle-loop",
 	CHARA_ANIMATION.MOVEMENT : "walk-loop",
-	CHARA_ANIMATION.PRE_CHARGE : "pre_charge",
+	CHARA_ANIMATION.PRE_CHARGE : "precharge-loop",
 	CHARA_ANIMATION.CHARGE : null,
 	CHARA_ANIMATION.POST_CHARGE : "postcharge",
 	CHARA_ANIMATION.TACKLE : "tackled",
@@ -46,7 +46,7 @@ var available_animation_parameter = {CHARA_ANIMATION.IDLE : "idle-loop",
 
 @onready var available_action = {CHARA_ANIMATION.IDLE : _play_anim,
 	CHARA_ANIMATION.MOVEMENT : _play_anim,
-	CHARA_ANIMATION.PRE_CHARGE : _play_anim,
+	CHARA_ANIMATION.PRE_CHARGE : anim_precharge,
 	CHARA_ANIMATION.CHARGE : anim_charge,
 	CHARA_ANIMATION.POST_CHARGE : _play_anim,
 	CHARA_ANIMATION.TACKLE : anim_tackle,
@@ -59,16 +59,28 @@ var available_animation_parameter = {CHARA_ANIMATION.IDLE : "idle-loop",
 func _play_anim(anim_name : String):
 	set_keyframe_mode(false)
 	$AnimationPlayer.play(anim_name)
-	
+
 func set_keyframe_mode(active : bool):
+	$AnimationPlayer.speed_scale = 1.0
 	$muppet.visible = not(active)
 	$keyframe.visible = active
 	for child in $keyframe.get_children():
 		child.visible = false
+	for child in $particle.get_children():
+		child.emitting = false
 
 func anim_charge(param):
 	set_keyframe_mode(true)
 	$keyframe/Charge.visible = true
+	$particle/smoke_charge1.emitting = true
+#	$particle/smoke_charge2.emitting = true
+
+func anim_precharge(param):
+	_play_anim(param)
+	$AnimationPlayer.speed_scale =  2.0
+	$particle/smoke_precharge1.emitting = true
+	$particle/smoke_precharge2.emitting = true
+	
 
 func anim_tackle(param):
 	set_keyframe_mode(true)
@@ -88,10 +100,18 @@ func _ready():
 
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+#	pass
 	if not(looker == null):
-		pass
+		var angle = looker.rotation
+		angle = fmod(angle,PI+PI)
+		if(cos(angle)<0):
+			angle = fmod(-angle,PI+PI) + PI
+		angle = fmod(angle,PI+PI)
+		if(angle<PI):
+			rotation = clampf(angle,0,angle_max)
+		else:
+			rotation = clampf(angle,PI+PI+angle_min,PI+PI)
 
 func signal_to_anim(state : String):
-	print(state)
 	play_animation(str_to_anim[state])
 
