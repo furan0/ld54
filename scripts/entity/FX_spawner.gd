@@ -19,17 +19,6 @@ func spwan_FX2(position_offset,rotation_offset,scale_offset,param_supp_spw):
 	spawned.rotation += rotation_offset
 	spawned.scale += scale_offset
 	spawned.set_notify_local_transform(false)
-	
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
 
 func play_fx(fx_name : String, position_offset = Vector2.ZERO, rotation_offset = 0.0, scale_offset = 1.0, param_supp_spw := {}):
 	if (fx_name in available_fx):

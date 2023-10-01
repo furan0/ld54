@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://bq8s6d65y33h6"]
+[gd_scene load_steps=36 format=3 uid="uid://bq8s6d65y33h6"]
 
 [ext_resource type="Script" path="res://scripts/entity/2D_rig/character_rig.gd" id="1_jetxj"]
 [ext_resource type="Texture2D" uid="uid://cd2bbjl4nn1a7" path="res://assets/art/char/player/charge/full_charge.png" id="2_itmls"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://e1chedt2mgx0" path="res://assets/art/char/player/neutral/R_leg_neutral.png" id="7_jtf03"]
 [ext_resource type="Texture2D" uid="uid://3ww3yhkm52j0" path="res://assets/art/char/player/neutral/C_slip_neutral.png" id="8_g27pn"]
 [ext_resource type="Texture2D" uid="uid://b6juc1iq6tat7" path="res://assets/art/FX/smoke_particle/smoke_particle_dithered.png" id="11_b0m76"]
+[ext_resource type="Texture2D" uid="uid://cxjx2888m66em" path="res://assets/art/FX/smoke_static/smokeA.png" id="15_pqqmx"]
 
 [sub_resource type="Animation" id="Animation_8lsiv"]
 length = 1.40001
@@ -280,6 +281,42 @@ tracks/23/keys = {
 "handle_modes": PackedInt32Array(0),
 "points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
+}
+tracks/24/type = "value"
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/path = NodePath("keyframe/Wsl:position")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(49.5528, -74.9452)]
+}
+tracks/25/type = "value"
+tracks/25/imported = false
+tracks/25/enabled = true
+tracks/25/path = NodePath("keyframe/Wsl:rotation")
+tracks/25/interp = 1
+tracks/25/loop_wrap = true
+tracks/25/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.214072]
+}
+tracks/26/type = "value"
+tracks/26/imported = false
+tracks/26/enabled = true
+tracks/26/path = NodePath("keyframe/Wsl:scale")
+tracks/26/interp = 1
+tracks/26/loop_wrap = true
+tracks/26/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_2nrdk"]
@@ -1500,6 +1537,47 @@ tracks/20/keys = {
 "times": PackedFloat32Array(0, 0.166667, 0.333334, 0.5, 0.666667)
 }
 
+[sub_resource type="Animation" id="Animation_yjsm3"]
+resource_name = "wsl"
+length = 1.00001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("keyframe/Wsl:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(49.5528, -74.9452), Vector2(48, -70), Vector2(54, -66), Vector2(40, -71), Vector2(37, -70), Vector2(30, -65), Vector2(31, -63), Vector2(30, -65), Vector2(34, -71), Vector2(35, -76), Vector2(49.5528, -74.9452)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("keyframe/Wsl:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.214072, 0.214072, 0.214072, 0.214072, 0.214072, 0.214072, 0.214072, 0.214072, 0.214072, 0.214072, 0.214072]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("keyframe/Wsl:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.957866, 1.03484), Vector2(0.915732, 1.06968), Vector2(0.962515, 1.03342), Vector2(1.0093, 0.997167), Vector2(1.05608, 0.960913), Vector2(1.0093, 0.997167), Vector2(0.962515, 1.03342), Vector2(0.915732, 1.06968), Vector2(0.957866, 1.03484), Vector2(1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vk3mb"]
 _data = {
 "RESET": SubResource("Animation_8lsiv"),
@@ -1508,12 +1586,13 @@ _data = {
 "postcharge": SubResource("Animation_4nd70"),
 "precharge-loop": SubResource("Animation_6w2ga"),
 "tackled": SubResource("Animation_ccfv2"),
-"walk-loop": SubResource("Animation_sexot")
+"walk-loop": SubResource("Animation_sexot"),
+"wsl": SubResource("Animation_yjsm3")
 }
 
 [sub_resource type="Gradient" id="Gradient_yij71"]
-offsets = PackedFloat32Array(0, 0.371571, 1)
-colors = PackedColorArray(0.54902, 0.521569, 0.478431, 0.737255, 1, 1, 1, 1, 1, 1, 1, 0.0627451)
+offsets = PackedFloat32Array(0, 0.044, 0.816, 1)
+colors = PackedColorArray(1, 1, 1, 0.643137, 0.850566, 0.631313, 0.253371, 1, 0.921909, 0.279332, 0.261441, 0.783205, 0, 0, 0, 0.0627451)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_t4b2l"]
 gradient = SubResource("Gradient_yij71")
@@ -1553,6 +1632,26 @@ scale_min = 0.2
 scale_max = 0.6
 scale_curve = SubResource("CurveTexture_r7x3x")
 color = Color(0.635294, 0.164706, 0.258824, 1)
+color_ramp = SubResource("GradientTexture1D_t4b2l")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4ghmn"]
+emission_shape = 4
+emission_point_count = 1
+particle_flag_disable_z = true
+direction = Vector3(0, -0.775, 0)
+spread = 12.7
+gravity = Vector3(0, 1, 0)
+initial_velocity_min = 156.78
+initial_velocity_max = 544.19
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+damping_max = 7.792
+damping_curve = SubResource("CurveTexture_cegqe")
+angle_min = -389.0
+angle_max = 196.2
+scale_min = 0.2
+scale_max = 0.2
+scale_curve = SubResource("CurveTexture_r7x3x")
 color_ramp = SubResource("GradientTexture1D_t4b2l")
 
 [sub_resource type="Gradient" id="Gradient_o3jpu"]
@@ -1596,6 +1695,11 @@ texture = ExtResource("2_itmls")
 [node name="Tackle" type="Sprite2D" parent="keyframe"]
 visible = false
 position = Vector2(-5, -73)
+texture = ExtResource("5_icv7o")
+
+[node name="Wsl" type="Sprite2D" parent="keyframe"]
+position = Vector2(49.5528, -74.9452)
+rotation = 0.214072
 texture = ExtResource("5_icv7o")
 
 [node name="Guard" type="Sprite2D" parent="keyframe"]
@@ -1676,6 +1780,28 @@ texture = ExtResource("11_b0m76")
 randomness = 0.19
 interpolate = false
 
+[node name="smoke_wsl1" type="GPUParticles2D" parent="particle"]
+z_index = 2
+position = Vector2(158, -110)
+rotation = -0.206265
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_4ghmn")
+texture = ExtResource("15_pqqmx")
+lifetime = 0.5
+randomness = 0.19
+interpolate = false
+
+[node name="smoke_wsl2" type="GPUParticles2D" parent="particle"]
+z_index = 2
+position = Vector2(158, -110)
+rotation = -2.64959
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_4ghmn")
+texture = ExtResource("15_pqqmx")
+lifetime = 0.5
+randomness = 0.19
+interpolate = false
+
 [node name="smoke_charge2" type="GPUParticles2D" parent="particle"]
 z_index = 2
 position = Vector2(-1, 18)
@@ -1707,3 +1833,5 @@ process_material = SubResource("ParticleProcessMaterial_mq3ht")
 texture = ExtResource("11_b0m76")
 lifetime = 0.7
 interpolate = false
+
+[node name="Node2D" type="Node2D" parent="."]
