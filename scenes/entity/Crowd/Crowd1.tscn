@@ -1,0 +1,37 @@
+[gd_scene load_steps=10 format=3 uid="uid://bm431xhe6u056"]
+
+[ext_resource type="Script" path="res://scripts/entity/Crowd.gd" id="1_w8o21"]
+[ext_resource type="Texture2D" uid="uid://bn1wco6ghnrxm" path="res://assets/art/crowd/0001.png" id="2_bj5mj"]
+[ext_resource type="Texture2D" uid="uid://sjrh851nrnli" path="res://assets/art/crowd/0004.png" id="3_6a0xg"]
+[ext_resource type="Texture2D" uid="uid://dttwl33cs2sgk" path="res://assets/art/crowd/0007.png" id="4_712wc"]
+[ext_resource type="Texture2D" uid="uid://yg115ltu5why" path="res://assets/art/crowd/0008.png" id="5_f6wm5"]
+[ext_resource type="Texture2D" uid="uid://yb37i60wkxf8" path="res://assets/art/crowd/0012.png" id="6_48uby"]
+[ext_resource type="Texture2D" uid="uid://dvyp3xyj3r870" path="res://assets/art/crowd/0013.png" id="7_06qlw"]
+[ext_resource type="Texture2D" uid="uid://dyynlm8lcp4ho" path="res://assets/art/crowd/0016.png" id="8_ln2no"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_tbb2o"]
+a = Vector2(96, 171)
+b = Vector2(133, 171)
+
+[node name="Crowd" type="Node2D"]
+z_index = -10
+script = ExtResource("1_w8o21")
+framesIdle = Array[Texture2D]([ExtResource("2_bj5mj"), ExtResource("3_6a0xg")])
+framesHappy = Array[Texture2D]([ExtResource("4_712wc"), ExtResource("5_f6wm5"), ExtResource("6_48uby")])
+framesDead = Array[Texture2D]([ExtResource("7_06qlw"), ExtResource("8_ln2no")])
+maxNbFrameBetweenTransition = 20
+minNbFrameBetweenTransition = 8
+
+[node name="Sprite" type="Polygon2D" parent="."]
+position = Vector2(-114, -171)
+texture = ExtResource("3_6a0xg")
+polygon = PackedVector2Array(58, 91, 175, 91, 176, 234, 53, 235)
+uv = PackedVector2Array(17, 86, 223, 91, 170, 262, 17, 260)
+
+[node name="hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(-114, -171)
+shape = SubResource("SegmentShape2D_tbb2o")
+
+[connection signal="body_entered" from="hitbox" to="." method="kill" unbinds=1]

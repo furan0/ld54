@@ -85,7 +85,7 @@ func set_keyframe_mode(active : bool):
 		child.emitting = false
 
 func anim_dead(param):
-	play_animation(param)
+	_play_anim(param)
 	set_keyframe_mode(true)
 	$keyframe/Dead.visible = true
 	

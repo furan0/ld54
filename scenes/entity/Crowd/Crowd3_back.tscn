@@ -1,0 +1,18 @@
+[gd_scene load_steps=9 format=3 uid="uid://bnkkokvpyd42t"]
+
+[ext_resource type="PackedScene" uid="uid://co7o0xanuf85b" path="res://scenes/entity/Crowd/Crowd3.tscn" id="1_2acue"]
+[ext_resource type="Texture2D" uid="uid://mr53h5frsafr" path="res://assets/art/crowd/corwd_noligt0001.png" id="2_olskj"]
+[ext_resource type="Texture2D" uid="uid://d1res86atcth1" path="res://assets/art/crowd/corwd_noligt0004.png" id="3_xxfvn"]
+[ext_resource type="Texture2D" uid="uid://bykj3jt6dvjfx" path="res://assets/art/crowd/corwd_noligt0007.png" id="4_lrwyb"]
+[ext_resource type="Texture2D" uid="uid://bspgdxx0cfnde" path="res://assets/art/crowd/corwd_noligt0008.png" id="5_w8poa"]
+[ext_resource type="Texture2D" uid="uid://b2g1806hsi2ue" path="res://assets/art/crowd/corwd_noligt0012.png" id="6_2vl3a"]
+[ext_resource type="Texture2D" uid="uid://bkm2cc4mpk1wx" path="res://assets/art/crowd/corwd_noligt0013.png" id="7_mrcbv"]
+[ext_resource type="Texture2D" uid="uid://c70bu6uchg4u5" path="res://assets/art/crowd/corwd_noligt0016.png" id="8_ksioj"]
+
+[node name="Crowd" instance=ExtResource("1_2acue")]
+framesIdle = Array[Texture2D]([ExtResource("2_olskj"), ExtResource("3_xxfvn")])
+framesHappy = Array[Texture2D]([ExtResource("4_lrwyb"), ExtResource("5_w8poa"), ExtResource("6_2vl3a")])
+framesDead = Array[Texture2D]([ExtResource("7_mrcbv"), ExtResource("8_ksioj")])
+
+[node name="Sprite" parent="." index="0"]
+texture = ExtResource("2_olskj")

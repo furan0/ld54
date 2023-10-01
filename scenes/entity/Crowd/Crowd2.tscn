@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cv48fw7iri57f"]
+
+[ext_resource type="PackedScene" uid="uid://bm431xhe6u056" path="res://scenes/entity/Crowd/Crowd1.tscn" id="1_xeq2o"]
+
+[node name="Crowd" instance=ExtResource("1_xeq2o")]
+
+[node name="Sprite" parent="." index="0"]
+position = Vector2(-129, -168)
+uv = PackedVector2Array(182, 85, 342, 84, 358, 253, 181, 257)

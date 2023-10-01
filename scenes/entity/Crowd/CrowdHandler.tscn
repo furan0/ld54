@@ -1,0 +1,450 @@
+[gd_scene load_steps=12 format=3 uid="uid://cipdvjdamv1gv"]
+
+[ext_resource type="Script" path="res://scripts/entity/CrowdHandler.gd" id="1_j2dc8"]
+[ext_resource type="PackedScene" uid="uid://bm431xhe6u056" path="res://scenes/entity/Crowd/Crowd1.tscn" id="2_h2vaw"]
+[ext_resource type="PackedScene" uid="uid://bx1fk2vlwehmy" path="res://scenes/entity/Crowd/Crowd5.tscn" id="3_3f22n"]
+[ext_resource type="PackedScene" uid="uid://cqnltfhkjs254" path="res://scenes/entity/Crowd/Crowd4.tscn" id="4_cwj1g"]
+[ext_resource type="PackedScene" uid="uid://co7o0xanuf85b" path="res://scenes/entity/Crowd/Crowd3.tscn" id="5_eexec"]
+[ext_resource type="PackedScene" uid="uid://cv48fw7iri57f" path="res://scenes/entity/Crowd/Crowd2.tscn" id="6_l2yu5"]
+[ext_resource type="PackedScene" uid="uid://7fbkk3akgs0q" path="res://scenes/entity/Crowd/Crowd1_back.tscn" id="7_pj7ux"]
+[ext_resource type="PackedScene" uid="uid://b27yhgt01ved7" path="res://scenes/entity/Crowd/Crowd5_back.tscn" id="8_auf4e"]
+[ext_resource type="PackedScene" uid="uid://bcc7bl2sparvn" path="res://scenes/entity/Crowd/Crowd4_back.tscn" id="9_5unyj"]
+[ext_resource type="PackedScene" uid="uid://bnkkokvpyd42t" path="res://scenes/entity/Crowd/Crowd3_back.tscn" id="10_si3ms"]
+[ext_resource type="PackedScene" uid="uid://dww17rpjfuiop" path="res://scenes/entity/Crowd/Crowd2_back.tscn" id="11_te0vy"]
+
+[node name="CrowdHandler" type="Node2D"]
+script = ExtResource("1_j2dc8")
+
+[node name="Peon1" type="Node2D" parent="."]
+position = Vector2(-2, -308)
+
+[node name="Target1" type="Node2D" parent="Peon1"]
+
+[node name="Target2" type="Node2D" parent="Peon1"]
+position = Vector2(0, 56)
+
+[node name="Target3" type="Node2D" parent="Peon1"]
+position = Vector2(0, 125)
+
+[node name="Crowd" parent="Peon1" instance=ExtResource("2_h2vaw")]
+position = Vector2(0, 1)
+
+[node name="Peon15" type="Node2D" parent="."]
+position = Vector2(-172, -316)
+rotation = -0.185791
+
+[node name="Target1" type="Node2D" parent="Peon15"]
+
+[node name="Target2" type="Node2D" parent="Peon15"]
+position = Vector2(0, 56)
+
+[node name="Target3" type="Node2D" parent="Peon15"]
+position = Vector2(0, 125)
+
+[node name="Crowd" parent="Peon15" instance=ExtResource("3_3f22n")]
+
+[node name="Peon11" type="Node2D" parent="."]
+position = Vector2(63, -308)
+
+[node name="Target1" type="Node2D" parent="Peon11"]
+
+[node name="Target2" type="Node2D" parent="Peon11"]
+position = Vector2(7, 56)
+
+[node name="Target3" type="Node2D" parent="Peon11"]
+position = Vector2(11, 124)
+
+[node name="Crowd" parent="Peon11" instance=ExtResource("4_cwj1g")]
+
+[node name="Peon12" type="Node2D" parent="."]
+position = Vector2(371, -191)
+rotation = 0.571525
+
+[node name="Target1" type="Node2D" parent="Peon12"]
+
+[node name="Target2" type="Node2D" parent="Peon12"]
+position = Vector2(-18.8539, 66.8171)
+
+[node name="Target3" type="Node2D" parent="Peon12"]
+position = Vector2(-33.446, 110.681)
+
+[node name="Crowd" parent="Peon12" instance=ExtResource("4_cwj1g")]
+
+[node name="Peon7" type="Node2D" parent="."]
+position = Vector2(-93, -308)
+rotation = -0.0850149
+
+[node name="Target1" type="Node2D" parent="Peon7"]
+
+[node name="Target2" type="Node2D" parent="Peon7"]
+position = Vector2(0, 56)
+
+[node name="Target3" type="Node2D" parent="Peon7"]
+position = Vector2(0, 125)
+
+[node name="Crowd" parent="Peon7" instance=ExtResource("5_eexec")]
+scale = Vector2(0.785, 0.785)
+
+[node name="Peon9" type="Node2D" parent="."]
+position = Vector2(-301, -257)
+rotation = -0.349751
+
+[node name="Target1" type="Node2D" parent="Peon9"]
+
+[node name="Target2" type="Node2D" parent="Peon9"]
+position = Vector2(13.0065, 66.4818)
+
+[node name="Target3" type="Node2D" parent="Peon9"]
+position = Vector2(23.0405, 114.848)
+
+[node name="Crowd" parent="Peon9" instance=ExtResource("5_eexec")]
+scale = Vector2(0.785, 0.785)
+
+[node name="Peon8" type="Node2D" parent="."]
+position = Vector2(259, -279)
+rotation = 0.325971
+
+[node name="Target1" type="Node2D" parent="Peon8"]
+
+[node name="Target2" type="Node2D" parent="Peon8"]
+position = Vector2(-2.26819, 61.9908)
+
+[node name="Target3" type="Node2D" parent="Peon8"]
+position = Vector2(-0.119873, 121.433)
+
+[node name="Crowd" parent="Peon8" instance=ExtResource("5_eexec")]
+scale = Vector2(0.785, 0.785)
+
+[node name="Peon4" type="Node2D" parent="."]
+position = Vector2(-53, -308)
+
+[node name="Target1" type="Node2D" parent="Peon4"]
+
+[node name="Target2" type="Node2D" parent="Peon4"]
+position = Vector2(0, 56)
+
+[node name="Target3" type="Node2D" parent="Peon4"]
+position = Vector2(0, 125)
+
+[node name="Crowd" parent="Peon4" instance=ExtResource("6_l2yu5")]
+
+[node name="Peon16" type="Node2D" parent="."]
+position = Vector2(300, -258)
+rotation = 0.600636
+scale = Vector2(1, 1)
+
+[node name="Target1" type="Node2D" parent="Peon16"]
+
+[node name="Target2" type="Node2D" parent="Peon16"]
+position = Vector2(3.90558, 67.6294)
+
+[node name="Target3" type="Node2D" parent="Peon16"]
+position = Vector2(24.265, 120.35)
+
+[node name="Crowd" parent="Peon16" instance=ExtResource("3_3f22n")]
+scale = Vector2(0.85, 0.85)
+
+[node name="Peon6" type="Node2D" parent="."]
+position = Vector2(-340, -227)
+rotation = -0.658825
+
+[node name="Target1" type="Node2D" parent="Peon6"]
+
+[node name="Target2" type="Node2D" parent="Peon6"]
+position = Vector2(6.55406, 68.3084)
+
+[node name="Target3" type="Node2D" parent="Peon6"]
+position = Vector2(11.3995, 117.589)
+
+[node name="Crowd" parent="Peon6" instance=ExtResource("6_l2yu5")]
+
+[node name="Peon2" type="Node2D" parent="."]
+position = Vector2(-259, -280)
+rotation = -0.381389
+
+[node name="Target1" type="Node2D" parent="Peon2"]
+
+[node name="Target2" type="Node2D" parent="Peon2"]
+position = Vector2(-2.98648, 63.4472)
+
+[node name="Target3" type="Node2D" parent="Peon2"]
+position = Vector2(1.93546, 121.447)
+
+[node name="Crowd" parent="Peon2" instance=ExtResource("2_h2vaw")]
+position = Vector2(0, 1)
+
+[node name="Peon13" type="Node2D" parent="."]
+position = Vector2(450, -142)
+rotation = 0.598267
+
+[node name="Target1" type="Node2D" parent="Peon13"]
+
+[node name="Target2" type="Node2D" parent="Peon13"]
+position = Vector2(-40.2343, 79.4619)
+
+[node name="Target3" type="Node2D" parent="Peon13"]
+position = Vector2(-52.296, 120.358)
+
+[node name="Crowd" parent="Peon13" instance=ExtResource("4_cwj1g")]
+
+[node name="Peon5" type="Node2D" parent="."]
+position = Vector2(401, -151)
+rotation = 0.471354
+
+[node name="Target1" type="Node2D" parent="Peon5"]
+
+[node name="Target2" type="Node2D" parent="Peon5"]
+position = Vector2(-40.2369, 59.7913)
+
+[node name="Target3" type="Node2D" parent="Peon5"]
+position = Vector2(-63.6835, 93.0668)
+
+[node name="Crowd" parent="Peon5" instance=ExtResource("6_l2yu5")]
+
+[node name="Peon14" type="Node2D" parent="."]
+position = Vector2(-379, -185)
+rotation = -0.698295
+
+[node name="Target1" type="Node2D" parent="Peon14"]
+
+[node name="Target2" type="Node2D" parent="Peon14"]
+position = Vector2(20.8828, 68.4464)
+
+[node name="Target3" type="Node2D" parent="Peon14"]
+position = Vector2(31.4948, 108.688)
+
+[node name="Crowd" parent="Peon14" instance=ExtResource("4_cwj1g")]
+scale = Vector2(0.815, 0.815)
+
+[node name="Peon17" type="Node2D" parent="."]
+position = Vector2(-403, -151)
+rotation = -0.833114
+
+[node name="Target1" type="Node2D" parent="Peon17"]
+
+[node name="Target2" type="Node2D" parent="Peon17"]
+position = Vector2(29.3195, 67.9439)
+
+[node name="Target3" type="Node2D" parent="Peon17"]
+position = Vector2(35.3687, 104.336)
+
+[node name="Crowd" parent="Peon17" instance=ExtResource("3_3f22n")]
+scale = Vector2(0.47, 0.47)
+
+[node name="Peon10" type="Node2D" parent="."]
+position = Vector2(-421, -108)
+rotation = -0.674275
+
+[node name="Target1" type="Node2D" parent="Peon10"]
+
+[node name="Target2" type="Node2D" parent="Peon10"]
+position = Vector2(34.3889, 65.8893)
+
+[node name="Target3" type="Node2D" parent="Peon10"]
+position = Vector2(55.1755, 99.1447)
+
+[node name="Crowd" parent="Peon10" instance=ExtResource("5_eexec")]
+scale = Vector2(0.785, 0.785)
+
+[node name="Peon30" type="Node2D" parent="."]
+position = Vector2(-442, 44)
+rotation = 0.0546469
+scale = Vector2(1, 1)
+
+[node name="Target1" type="Node2D" parent="Peon30"]
+
+[node name="Target2" type="Node2D" parent="Peon30"]
+position = Vector2(52.5386, -9.8844)
+
+[node name="Target3" type="Node2D" parent="Peon30"]
+position = Vector2(98.0483, -38.4127)
+
+[node name="Crowd" parent="Peon30" instance=ExtResource("7_pj7ux")]
+
+[node name="Peon3" type="Node2D" parent="."]
+position = Vector2(183, -302)
+rotation = 0.122307
+
+[node name="Target1" type="Node2D" parent="Peon3"]
+
+[node name="Target2" type="Node2D" parent="Peon3"]
+position = Vector2(-1.8566, 58.6648)
+
+[node name="Target3" type="Node2D" parent="Peon3"]
+position = Vector2(2.08481, 122.662)
+
+[node name="Crowd" parent="Peon3" instance=ExtResource("2_h2vaw")]
+position = Vector2(0, 1)
+
+[node name="Peon18" type="Node2D" parent="."]
+position = Vector2(435, -68)
+rotation = 0.624217
+
+[node name="Target1" type="Node2D" parent="Peon18"]
+
+[node name="Target2" type="Node2D" parent="Peon18"]
+position = Vector2(-37.7391, 69.0851)
+
+[node name="Target3" type="Node2D" parent="Peon18"]
+position = Vector2(-56.203, 103.335)
+
+[node name="Crowd" parent="Peon18" instance=ExtResource("2_h2vaw")]
+position = Vector2(0, 1)
+scale = Vector2(0.875, 0.875)
+
+[node name="Peon19" type="Node2D" parent="."]
+position = Vector2(132, 307)
+
+[node name="Target1" type="Node2D" parent="Peon19"]
+
+[node name="Target2" type="Node2D" parent="Peon19"]
+position = Vector2(3, -53)
+
+[node name="Target3" type="Node2D" parent="Peon19"]
+position = Vector2(3, -122)
+
+[node name="Crowd" parent="Peon19" instance=ExtResource("8_auf4e")]
+
+[node name="Peon20" type="Node2D" parent="."]
+position = Vector2(-264, 279)
+rotation = 0.995922
+
+[node name="Target1" type="Node2D" parent="Peon20"]
+
+[node name="Target2" type="Node2D" parent="Peon20"]
+position = Vector2(-53.9021, -49.2197)
+
+[node name="Target3" type="Node2D" parent="Peon20"]
+position = Vector2(-74.9783, -70.0234)
+
+[node name="Crowd" parent="Peon20" instance=ExtResource("8_auf4e")]
+rotation = -0.916746
+
+[node name="Peon22" type="Node2D" parent="."]
+position = Vector2(57, 305)
+
+[node name="Target1" type="Node2D" parent="Peon22"]
+
+[node name="Target2" type="Node2D" parent="Peon22"]
+position = Vector2(-6, -49)
+
+[node name="Target3" type="Node2D" parent="Peon22"]
+position = Vector2(-20, -116)
+
+[node name="Crowd" parent="Peon22" instance=ExtResource("9_5unyj")]
+
+[node name="Peon23" type="Node2D" parent="."]
+position = Vector2(-419, 108)
+rotation = -0.296453
+
+[node name="Target1" type="Node2D" parent="Peon23"]
+
+[node name="Target2" type="Node2D" parent="Peon23"]
+position = Vector2(70.2921, 2.65002)
+
+[node name="Target3" type="Node2D" parent="Peon23"]
+position = Vector2(113.141, -4.12811)
+
+[node name="Crowd" parent="Peon23" instance=ExtResource("9_5unyj")]
+
+[node name="Peon24" type="Node2D" parent="."]
+position = Vector2(205, 298)
+rotation = 0.0192363
+
+[node name="Target1" type="Node2D" parent="Peon24"]
+
+[node name="Target2" type="Node2D" parent="Peon24"]
+position = Vector2(-8.0374, -53.8553)
+
+[node name="Target3" type="Node2D" parent="Peon24"]
+position = Vector2(-22.958, -101.577)
+
+[node name="Crowd" parent="Peon24" instance=ExtResource("10_si3ms")]
+
+[node name="Peon26" type="Node2D" parent="."]
+position = Vector2(420, 119)
+rotation = 0.233638
+
+[node name="Target1" type="Node2D" parent="Peon26"]
+
+[node name="Target2" type="Node2D" parent="Peon26"]
+position = Vector2(-75.1372, -4.73299)
+
+[node name="Target3" type="Node2D" parent="Peon26"]
+position = Vector2(-109.834, -3.67119)
+
+[node name="Crowd" parent="Peon26" instance=ExtResource("10_si3ms")]
+scale = Vector2(0.82, 0.82)
+
+[node name="Peon29" type="Node2D" parent="."]
+position = Vector2(339, 231)
+rotation = 0.0546469
+scale = Vector2(1, 1)
+
+[node name="Target1" type="Node2D" parent="Peon29"]
+
+[node name="Target2" type="Node2D" parent="Peon29"]
+position = Vector2(-45.9946, -53.5677)
+
+[node name="Target3" type="Node2D" parent="Peon29"]
+position = Vector2(-65.4271, -97.5721)
+
+[node name="Crowd" parent="Peon29" instance=ExtResource("7_pj7ux")]
+
+[node name="Peon21" type="Node2D" parent="."]
+position = Vector2(264, 279)
+
+[node name="Target1" type="Node2D" parent="Peon21"]
+
+[node name="Target2" type="Node2D" parent="Peon21"]
+position = Vector2(-9, -70)
+
+[node name="Target3" type="Node2D" parent="Peon21"]
+position = Vector2(-25, -111)
+
+[node name="Crowd" parent="Peon21" instance=ExtResource("8_auf4e")]
+position = Vector2(0, -1)
+scale = Vector2(0.83, 0.83)
+
+[node name="Peon25" type="Node2D" parent="."]
+position = Vector2(-369, 206)
+rotation = 0.0546469
+
+[node name="Target1" type="Node2D" parent="Peon25"]
+
+[node name="Target2" type="Node2D" parent="Peon25"]
+position = Vector2(41.8588, -40.3465)
+
+[node name="Target3" type="Node2D" parent="Peon25"]
+position = Vector2(84.4276, -67.7125)
+
+[node name="Crowd" parent="Peon25" instance=ExtResource("10_si3ms")]
+
+[node name="Peon27" type="Node2D" parent="."]
+position = Vector2(-130, 305)
+rotation = 0.0546469
+
+[node name="Target1" type="Node2D" parent="Peon27"]
+
+[node name="Target2" type="Node2D" parent="Peon27"]
+position = Vector2(4.20399, -51.3062)
+
+[node name="Target3" type="Node2D" parent="Peon27"]
+position = Vector2(33.5497, -119.01)
+
+[node name="Crowd" parent="Peon27" instance=ExtResource("11_te0vy")]
+
+[node name="Peon28" type="Node2D" parent="."]
+position = Vector2(-212, 294)
+rotation = 0.0546469
+
+[node name="Target1" type="Node2D" parent="Peon28"]
+
+[node name="Target2" type="Node2D" parent="Peon28"]
+position = Vector2(-4.49419, -63.8498)
+
+[node name="Target3" type="Node2D" parent="Peon28"]
+position = Vector2(14.742, -114.977)
+
+[node name="Crowd" parent="Peon28" instance=ExtResource("11_te0vy")]
+scale = Vector2(1.355, 1.355)
