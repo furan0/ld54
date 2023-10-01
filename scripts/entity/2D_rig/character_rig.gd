@@ -90,14 +90,14 @@ func anim_dead(param):
 	$keyframe/Dead.visible = true
 	
 
-func anim_guard(param):
+func anim_guard(_param):
 	set_keyframe_mode(true)
 	$keyframe/Guard.visible = true
 	
 	
 #	$particle/smoke_charge2.emitting = true
 
-func anim_charge(param):
+func anim_charge(_param):
 	set_keyframe_mode(true)
 	$keyframe/Charge.visible = true
 	$particle/smoke_charge1.emitting = true
@@ -110,7 +110,7 @@ func anim_precharge(param):
 	$particle/smoke_precharge2.emitting = true
 	
 
-func anim_tackle(param):
+func anim_tackle(_param):
 	set_keyframe_mode(true)
 	$keyframe/Tackle.visible = true
 
@@ -128,7 +128,7 @@ func _ready():
 	play_animation(CHARA_ANIMATION.IDLE)
 
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 #	pass
 	if not(looker == null):
 		var angle = looker.rotation

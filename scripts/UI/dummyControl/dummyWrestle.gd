@@ -10,17 +10,17 @@ class_name dummyWrestle
 
 func _ready():
 	if rig != null:
-		rig.signal_to_anim("wsl")
-		animButton.show()
+		_startAnimDefered.call_deferred()
+
+func _startAnimDefered():
+	rig.signal_to_anim("wsl")
 
 func _animation():
 	# Start move
-	# TODO
 	displayButton.set_pressed_no_signal(true)
 
 	timer.start(actionTime)
 	await timer.timeout
 	
 	# Stop move
-	# TODO
 	displayButton.set_pressed_no_signal(false)

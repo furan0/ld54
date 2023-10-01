@@ -4,7 +4,6 @@
 
 [node name="Pantin" instance=ExtResource("1_uwljh")]
 freeze = true
-freeze_mode = 0
 
 [node name="CollisionShape2D" parent="LookAt/Hitbox" index="0"]
 visible = false
@@ -12,11 +11,18 @@ visible = false
 [node name="Arrow" parent="LookAt" index="1"]
 visible = false
 
-[node name="InputHandler" parent="." index="2"]
+[node name="InputHandler" parent="." index="3"]
 inputProvider = 2
 
-[node name="MovementHandler" parent="." index="3"]
+[node name="MovementHandler" parent="." index="4"]
 defaultForce = 0.0
 
-[node name="ChargeHandler" parent="." index="7"]
+[node name="StunHandler" parent="." index="5"]
+stunDurations = {
+"Wrestle": 0.0,
+"charge": 0.0,
+"pushed": 0.0
+}
+
+[node name="ChargeHandler" parent="." index="8"]
 chargeRunForce = 0.0

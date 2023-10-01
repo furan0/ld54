@@ -161,7 +161,6 @@ wrestleDuration = 2.0
 [node name="WrestleHandler" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("9_katet")
-isVerbose = true
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("5_7qtpj")
@@ -396,7 +395,6 @@ looker = NodePath("../LookAt")
 [connection signal="state_entered" from="StateMachine/CompoundState/stun" to="2D_character_rig" method="set_modulate" binds= [Color(0.294118, 0.294118, 0.294118, 1)]]
 [connection signal="state_exited" from="StateMachine/CompoundState/stun" to="2D_character_rig" method="set_modulate" binds= [Color(1, 1, 1, 1)]]
 [connection signal="state_entered" from="StateMachine/CompoundState/wrestle" to="Smashbutton" method="show"]
-[connection signal="state_entered" from="StateMachine/CompoundState/wrestle" to="2D_character_rig" method="set_modulate" binds= [Color(1, 0, 0, 1)]]
+[connection signal="state_entered" from="StateMachine/CompoundState/wrestle" to="2D_character_rig" method="signal_to_anim" binds= ["wsl"]]
 [connection signal="state_exited" from="StateMachine/CompoundState/wrestle" to="Smashbutton" method="hide"]
 [connection signal="state_exited" from="StateMachine/CompoundState/wrestle" to="WrestleHandler" method="setCanWrestle" binds= [false]]
-[connection signal="state_exited" from="StateMachine/CompoundState/wrestle" to="2D_character_rig" method="set_modulate" binds= [Color(1, 1, 1, 1)]]

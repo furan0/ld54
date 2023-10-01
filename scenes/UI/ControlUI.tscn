@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cm17707fu5t37"]
+[gd_scene load_steps=13 format=3 uid="uid://cm17707fu5t37"]
 
 [ext_resource type="Script" path="res://scripts/UI/StandardUiPanel.gd" id="1_cv4s6"]
 [ext_resource type="Theme" uid="uid://mxwvwg8snm7m" path="res://assets/defaultUiTheme.tres" id="1_iq16k"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://scripts/UI/dummyControl/dummyTackle.gd" id="6_wy6ac"]
 [ext_resource type="Script" path="res://scripts/UI/dummyControl/dummyWrestle.gd" id="8_3aed4"]
 [ext_resource type="Script" path="res://scripts/UI/dummyControl/dummyCharge.gd" id="8_540ar"]
+[ext_resource type="Script" path="res://scripts/UI/dummyControl/dummyDeath.gd" id="11_rknlc"]
 
 [sub_resource type="GDScript" id="GDScript_vj5se"]
 script/source = "extends RigidBody2D
@@ -368,7 +369,7 @@ size = Vector2i(100, 100)
 render_target_update_mode = 4
 
 [node name="Pantin" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/GridContainer/WrestlePanel/Wrestle/CenterContainer/SubViewportContainer/SubViewport" instance=ExtResource("2_qgfcr")]
-position = Vector2(45, 65)
+position = Vector2(25.555, 58.94)
 script = SubResource("GDScript_vj5se")
 
 [node name="Control" type="Control" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/GridContainer/WrestlePanel/Wrestle"]
@@ -520,7 +521,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 20
-script = ExtResource("2_h75vd")
+script = ExtResource("11_rknlc")
 dummy = NodePath("CenterContainer/SubViewportContainer/SubViewport/Pantin")
 displayButton = NodePath("Control/Button")
 
