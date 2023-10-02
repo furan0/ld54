@@ -1,12 +1,12 @@
 [gd_scene load_steps=3 format=3 uid="uid://co7o0xanuf85b"]
 
 [ext_resource type="PackedScene" uid="uid://bm431xhe6u056" path="res://scenes/entity/Crowd/Crowd1.tscn" id="1_j0nh6"]
-[ext_resource type="Texture2D" uid="uid://bn1wco6ghnrxm" path="res://assets/art/crowd/0001.png" id="2_l0143"]
+[ext_resource type="Texture2D" uid="uid://dvyp3xyj3r870" path="res://assets/art/crowd/0013.png" id="2_qhunp"]
 
 [node name="Crowd" instance=ExtResource("1_j0nh6")]
 
 [node name="Sprite" parent="." index="0"]
 position = Vector2(-407, -204)
-texture = ExtResource("2_l0143")
+texture = ExtResource("2_qhunp")
 polygon = PackedVector2Array(345.833, 88.4259, 453.241, 82.8704, 434, 214, 431, 257, 433, 264, 465, 276, 459, 327, 428, 348, 301, 323, 309, 282, 324, 244, 353, 239, 375, 246)
 uv = PackedVector2Array(345.833, 88.4259, 453.241, 82.8704, 441.667, 259.722, 378.241, 257.87)
