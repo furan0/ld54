@@ -1,9 +1,11 @@
 extends RigidBody2D
+class_name Player
 ## Player class.. Wrapper for underlying logic mostly
 
 var isDead : bool = false
 
 signal dead()
+signal resurect()
 signal wrestlingStarted()
 
 #Force a charge for this duration
@@ -31,3 +33,18 @@ func kill():
 
 func signalWrestling():
 	wrestlingStarted.emit()
+
+
+func unkill():
+	resurect.emit()
+
+func goTo(position : Vector2):
+	%IA.move_to(position)
+
+func lockControl():
+	%InputHandler.disableStandardInput = true
+	%IA.set_ia_active(false)
+
+func unlockControl():
+	%InputHandler.disableStandardInput = false
+	%IA.set_ia_active(true)

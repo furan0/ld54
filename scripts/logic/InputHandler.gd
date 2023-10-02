@@ -20,6 +20,19 @@ enum ECurrentInputProvider {PLAYER1, PLAYER2, BOTH, SPOOF_ONLY}
 ## Listen to this player input 
 @export var inputProvider : ECurrentInputProvider = ECurrentInputProvider.PLAYER1
 
+@export var disableStandardInput : bool = false :
+	set(value):
+		disableStandardInput = value
+		if disableStandardInput:
+			# Reset charging var
+			guardEnd.emit()
+			moveEnded.emit()
+			isMoving = false
+			if isCharging:
+				## TODO might cause issues...
+				chargeEnd.emit()
+				isCharging = false
+				timeEllapsedSinceChargePress = 0.0
 
 # === Inputs Signals
 ## Emitted when a charge input is changed
@@ -40,6 +53,9 @@ signal moveEnded()
 
 ## Check all inputs to send appropriate signals
 func _process(_delta):
+	if disableStandardInput:
+		return
+		
 	# Check tackle and charge
 	if Input.is_action_pressed(getAction("charge")):
 		# Not charged yet, check 
@@ -114,3 +130,7 @@ func getAction(actionName : String):
 			return "p2_" + actionName
 		ECurrentInputProvider.SPOOF_ONLY:
 			return "no_action"
+
+
+func disableInput(status : bool):
+	disableStandardInput = status

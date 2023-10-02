@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://d1h1msw0tmfw4"]
+[gd_scene load_steps=28 format=3 uid="uid://d1h1msw0tmfw4"]
 
 [ext_resource type="Script" path="res://scripts/Player/Player.gd" id="1_21uft"]
 [ext_resource type="Script" path="res://scripts/logic/LookAt.gd" id="2_r5dgl"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" path="res://scripts/Player/ChargeHandler.gd" id="8_i7hbo"]
 [ext_resource type="Script" path="res://scripts/Player/WrestleHandler.gd" id="9_katet"]
 [ext_resource type="Script" path="res://scripts/Player/TackleHandler.gd" id="11_ejq0w"]
+[ext_resource type="Script" path="res://scripts/logic/IA/IA_dumb.gd" id="13_ofswa"]
 [ext_resource type="PackedScene" uid="uid://bq8s6d65y33h6" path="res://scenes/entity/2Drig/player_rig.tscn" id="14_5urwl"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/expression_guard.gd" id="14_8jw7n"]
 [ext_resource type="Script" path="res://scripts/entity/rig_signal_connector.gd" id="18_ka1ft"]
@@ -129,6 +130,9 @@ libraries = {
 [node name="InputHandler" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("3_320l3")
+delayBeforeCharge = null
+inputProvider = 2
+disableStandardInput = null
 
 [node name="MovementHandler" type="Node" parent="."]
 script = ExtResource("4_a12nu")
@@ -168,6 +172,11 @@ wrestleDuration = 2.0
 unique_name_in_owner = true
 script = ExtResource("9_katet")
 playerRB = NodePath("..")
+
+[node name="IA" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("13_ofswa")
+start_on_load = false
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("5_7qtpj")
@@ -312,6 +321,11 @@ script = ExtResource("8_5ha87")
 to = NodePath("../../../../wrestle")
 event = &"startWrestling"
 
+[node name="toDead" type="Node" parent="StateMachine/CompoundState/free"]
+script = ExtResource("8_5ha87")
+to = NodePath("../../dead")
+event = &"dead"
+
 [node name="stun" type="Node" parent="StateMachine/CompoundState"]
 script = ExtResource("7_fa1bx")
 
@@ -343,6 +357,11 @@ guard = SubResource("Resource_70l1s")
 editor_description = "There is no escaping death...."
 script = ExtResource("7_fa1bx")
 
+[node name="toFree" type="Node" parent="StateMachine/CompoundState/dead"]
+script = ExtResource("8_5ha87")
+to = NodePath("../../free")
+event = &"reset"
+
 [node name="2D_character_rig" parent="." node_paths=PackedStringArray("looker") instance=ExtResource("14_5urwl")]
 position = Vector2(0, 23.46)
 scale = Vector2(0.373, 0.373)
@@ -352,6 +371,7 @@ looker = NodePath("../LookAt")
 script = ExtResource("18_ka1ft")
 
 [connection signal="dead" from="." to="StateMachine" method="send_event" binds= ["dead"]]
+[connection signal="resurect" from="." to="StateMachine" method="send_event" binds= ["reset"]]
 [connection signal="chargeEnd" from="InputHandler" to="StateMachine" method="send_event" binds= ["doCharge"]]
 [connection signal="chargeStart" from="InputHandler" to="StateMachine" method="send_event" binds= ["startCharge"]]
 [connection signal="guardEnd" from="InputHandler" to="StateMachine" method="send_event" binds= ["stopGuard"]]
@@ -400,3 +420,6 @@ script = ExtResource("18_ka1ft")
 [connection signal="state_entered" from="StateMachine/CompoundState/wrestle" to="Smashbutton" method="show"]
 [connection signal="state_exited" from="StateMachine/CompoundState/wrestle" to="Smashbutton" method="hide"]
 [connection signal="state_exited" from="StateMachine/CompoundState/wrestle" to="WrestleHandler" method="setCanWrestle" binds= [false]]
+[connection signal="state_entered" from="StateMachine/CompoundState/dead" to="IA" method="stop_action"]
+[connection signal="state_entered" from="StateMachine/CompoundState/dead" to="InputHandler" method="disableInput" binds= [true]]
+[connection signal="state_entered" from="StateMachine/CompoundState/dead" to="IA" method="set_ia_active" binds= [false]]

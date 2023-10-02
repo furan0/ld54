@@ -1,10 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://cl5me5crmsilp"]
+[gd_scene load_steps=14 format=3 uid="uid://cl5me5crmsilp"]
 
 [ext_resource type="Texture2D" uid="uid://byiv7gx4e8g5q" path="res://assets/art/background/backgroundV2.png" id="1_2cc7n"]
 [ext_resource type="PackedScene" uid="uid://d1h1msw0tmfw4" path="res://scenes/player.tscn" id="3_vg4tc"]
 [ext_resource type="PackedScene" uid="uid://cipdvjdamv1gv" path="res://scenes/entity/Crowd/CrowdHandler.tscn" id="4_4nfb2"]
 [ext_resource type="PackedScene" uid="uid://cack3kykwsqny" path="res://scenes/Enemy.tscn" id="4_cbq2a"]
-[ext_resource type="Script" path="res://scripts/logic/Arena.gd" id="4_ek7c4"]
+[ext_resource type="Script" path="res://scripts/Arena.gd" id="4_r6e6i"]
+[ext_resource type="Script" path="res://scripts/logic/GameManager.gd" id="6_f1f3y"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="7_inov0"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="8_gu0po"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="9_toyb6"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="10_wf50o"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oukdq"]
 radius = 272.92
@@ -38,7 +43,7 @@ freeze_mode = 1
 
 [node name="Arena" type="Area2D" parent="."]
 position = Vector2(578, 323)
-script = ExtResource("4_ek7c4")
+script = ExtResource("4_r6e6i")
 
 [node name="ArenaBig" type="CollisionShape2D" parent="Arena"]
 rotation = 1.5708
@@ -56,3 +61,89 @@ shape = SubResource("CapsuleShape2D_r6vxw")
 debug_color = Color(1, 0.0941176, 0.0627451, 0.419608)
 
 [node name="CrowdHandler" parent="Arena" instance=ExtResource("4_4nfb2")]
+
+[node name="GameManager" type="Node2D" parent="."]
+script = ExtResource("6_f1f3y")
+
+[node name="StateMachine" type="Node" parent="GameManager"]
+script = ExtResource("7_inov0")
+
+[node name="States" type="Node" parent="GameManager/StateMachine"]
+script = ExtResource("8_gu0po")
+initial_state = NodePath("init")
+
+[node name="init" type="Node" parent="GameManager/StateMachine/States"]
+script = ExtResource("9_toyb6")
+
+[node name="toMatch" type="Node" parent="GameManager/StateMachine/States/init"]
+script = ExtResource("10_wf50o")
+to = NodePath("../../match")
+delay_seconds = 1.0
+
+[node name="match" type="Node" parent="GameManager/StateMachine/States"]
+script = ExtResource("8_gu0po")
+initial_state = NodePath("reset")
+
+[node name="reset" type="Node" parent="GameManager/StateMachine/States/match"]
+script = ExtResource("9_toyb6")
+
+[node name="toEnemyEnter" type="Node" parent="GameManager/StateMachine/States/match/reset"]
+script = ExtResource("10_wf50o")
+to = NodePath("../../enemyEnter")
+event = &"next"
+
+[node name="enemyEnter" type="Node" parent="GameManager/StateMachine/States/match"]
+script = ExtResource("9_toyb6")
+
+[node name="toRound" type="Node" parent="GameManager/StateMachine/States/match/enemyEnter"]
+script = ExtResource("10_wf50o")
+to = NodePath("../../round")
+event = &"startRound"
+
+[node name="round" type="Node" parent="GameManager/StateMachine/States/match"]
+script = ExtResource("8_gu0po")
+initial_state = NodePath("ready")
+
+[node name="ready" type="Node" parent="GameManager/StateMachine/States/match/round"]
+script = ExtResource("9_toyb6")
+
+[node name="toFight" type="Node" parent="GameManager/StateMachine/States/match/round/ready"]
+script = ExtResource("10_wf50o")
+to = NodePath("../../fight")
+event = &"startFight"
+
+[node name="fight" type="Node" parent="GameManager/StateMachine/States/match/round"]
+script = ExtResource("9_toyb6")
+
+[node name="toOutOfArena" type="Node" parent="GameManager/StateMachine/States/match/round/fight"]
+script = ExtResource("10_wf50o")
+to = NodePath("../../outOfArena")
+event = &"outOfArena"
+
+[node name="outOfArena" type="Node" parent="GameManager/StateMachine/States/match/round"]
+script = ExtResource("9_toyb6")
+
+[node name="toRoundReset" type="Node" parent="GameManager/StateMachine/States/match/round/outOfArena"]
+script = ExtResource("10_wf50o")
+to = NodePath("../../roundReset")
+event = &"startRound"
+
+[node name="toMatchReset" type="Node" parent="GameManager/StateMachine/States/match/round/outOfArena"]
+script = ExtResource("10_wf50o")
+to = NodePath("../../../reset")
+event = &"startMatch"
+
+[node name="toEnd" type="Node" parent="GameManager/StateMachine/States/match/round/outOfArena"]
+script = ExtResource("10_wf50o")
+to = NodePath("../../../../end")
+event = &"finish"
+
+[node name="roundReset" type="Node" parent="GameManager/StateMachine/States/match/round"]
+script = ExtResource("9_toyb6")
+
+[node name="toRound" type="Node" parent="GameManager/StateMachine/States/match/round/roundReset"]
+script = ExtResource("10_wf50o")
+to = NodePath("../../ready")
+
+[node name="end" type="Node" parent="GameManager/StateMachine/States"]
+script = ExtResource("9_toyb6")
