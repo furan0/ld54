@@ -16,6 +16,9 @@ signal charge
 ## Param de Strategie
 @export var ZAD : Array[Vector2] = [Vector2(576,320),Vector2(768,320),Vector2(448,448),Vector2(460,200)]
 @export var frame_react := 8
+
+@export var level := 0.5
+var smart_counter := 0
 ##
 
 
@@ -196,9 +199,16 @@ func pick_attaque(threshold_for_charge=80):
 		make_charge(target_node)
 
 func parade_riposte():
-	stop_action()
-	brain_timer.start(0.4)
-	make_guard(target_node)
+	if (smart_counter>0):
+		if (randf() < level):
+			smart_counter = 0
+	if(smart_counter<1):
+		smart_counter += 1
+		stop_action()
+		brain_timer.start(0.4)
+		make_guard(target_node)
+	
+	
 
 ## Wait fot nodes to be ready
 func set_advanced_settings():
@@ -227,7 +237,7 @@ func pick_action():
 			elif (p<0.25):
 				brain_timer.start(0.4)
 				make_guard(target_node)
-			elif (p<0.8):
+			elif (p<0.8-(1.0-level)*2):
 				pick_attaque()
 			else:
 				go_to_orthogonal_ZAD()
