@@ -2,7 +2,9 @@ extends CanvasLayer
 
 @onready var uis : Dictionary = {
 	"ready":$Ready,
-	"fight":$Fight}
+	"fight":$Fight,
+	"victory":$Victory,
+	"defeat":$Defeat}
 
 @onready var player : AnimationPlayer = $AnimationPlayer
 	

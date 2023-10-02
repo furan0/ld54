@@ -3,6 +3,7 @@ class_name Player
 ## Player class.. Wrapper for underlying logic mostly
 
 var isDead : bool = false
+var matchNumber = 0
 
 signal dead()
 signal resurect()
