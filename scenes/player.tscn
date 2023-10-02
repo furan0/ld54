@@ -197,6 +197,7 @@ playerRB = NodePath("..")
 unique_name_in_owner = true
 script = ExtResource("13_ofswa")
 start_on_load = false
+i_am_robot = false
 
 [node name="brain_process" type="Timer" parent="IA"]
 wait_time = 0.5
@@ -441,8 +442,10 @@ bus = &"Sfx"
 script = ExtResource("23_obpe4")
 audio_clips = Array[AudioStream]([ExtResource("40_w2wwy")])
 
+[connection signal="dead" from="." to="LookAt/Arrow" method="hide"]
 [connection signal="dead" from="." to="MovementHandler" method="setMaxDampening" binds= [true]]
 [connection signal="dead" from="." to="StateMachine" method="send_event" binds= ["dead"]]
+[connection signal="resurect" from="." to="LookAt/Arrow" method="show"]
 [connection signal="resurect" from="." to="MovementHandler" method="setMaxDampening" binds= [false]]
 [connection signal="resurect" from="." to="StateMachine" method="send_event" binds= ["reset"]]
 [connection signal="chargeEnd" from="InputHandler" to="StateMachine" method="send_event" binds= ["doCharge"]]
@@ -464,6 +467,7 @@ audio_clips = Array[AudioStream]([ExtResource("40_w2wwy")])
 [connection signal="stunCompleted" from="StunHandler" to="StateMachine" method="send_event" binds= ["free"]]
 [connection signal="changeRotation" from="HitHandler" to="LookAt" method="set_rotation"]
 [connection signal="startStun" from="HitHandler" to="StunHandler" method="stunFor"]
+[connection signal="wasHit" from="HitHandler" to="." method="signalHit"]
 [connection signal="wasHit" from="HitHandler" to="AudioPlayers/impact" method="play_sound"]
 [connection signal="wasHit" from="HitHandler" to="AudioPlayers/hurt" method="play_sound"]
 [connection signal="endCharge" from="ChargeHandler" to="StunHandler" method="stun" binds= ["charge"]]
