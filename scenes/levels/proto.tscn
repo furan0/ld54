@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://cl5me5crmsilp"]
+[gd_scene load_steps=50 format=3 uid="uid://cl5me5crmsilp"]
 
 [ext_resource type="Texture2D" uid="uid://opx64atbwl5l" path="res://assets/art/title_screen/title_screen_BG.jpg" id="1_dkxa3"]
 [ext_resource type="Script" path="res://scripts/ShakyShaky.gd" id="1_pgyyd"]
@@ -37,7 +37,6 @@
 [ext_resource type="Texture2D" uid="uid://douvgvsitckrv" path="res://assets/art/background/final_screen.png" id="27_cgdsr"]
 [ext_resource type="AudioStream" uid="uid://cstca1aafqsvd" path="res://assets/audio/ambiance/ring_fin_session.wav" id="27_uyd3w"]
 [ext_resource type="Texture2D" uid="uid://2itm2shntolw" path="res://assets/art/FX/shadow/shadow_character.png" id="28_caahm"]
-[ext_resource type="Script" path="res://scripts/entity/autoloadanim.gd" id="28_qgxf2"]
 [ext_resource type="AudioStream" uid="uid://bwso7ajyxccg" path="res://assets/audio/FX/WSL_session.wav" id="30_5cb55"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_yu5ia"]
@@ -160,7 +159,7 @@ _data = {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_h8edu"]
 shader = ExtResource("27_2do7a")
 shader_parameter/color = Color(0, 0, 0, 0.745098)
-shader_parameter/intensity = 1.122
+shader_parameter/intensity = 1.24
 
 [sub_resource type="GDScript" id="GDScript_c4yqt"]
 script/source = "extends Button
@@ -178,138 +177,6 @@ func goBack():
 	Global.goto_scene(\"res://scenes/levels/MainMenu.tscn\")
 
 "
-
-[sub_resource type="Animation" id="Animation_o2e2n"]
-resource_name = "FINAL_ANIM"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TextureRect:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(411, 759), Vector2(450, 126)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("TextureRect:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 0.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("TextureRect:size")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(304, 299), Vector2(304, 299)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite2D:material:shader_parameter/intensity")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [2.0, 1.24]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("../../Background:modulate")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0.847059, 0.882353, 0.878431, 1), Color(0.419608, 0.45098, 0.407843, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_ru76v"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TextureRect:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(423, 166)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("TextureRect:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("TextureRect:size")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(304, 299)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite2D:material:shader_parameter/intensity")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.122]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("../../Background:modulate")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0.847059, 0.882353, 0.878431, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_foy8h"]
-_data = {
-"FINAL_ANIM": SubResource("Animation_o2e2n"),
-"RESET": SubResource("Animation_ru76v")
-}
 
 [sub_resource type="GDScript" id="GDScript_ahv4r"]
 script/source = "extends Button
@@ -349,7 +216,7 @@ anchor_mode = 0
 script = ExtResource("1_pgyyd")
 
 [node name="Background" type="Sprite2D" parent="."]
-modulate = Color(0.847059, 0.882353, 0.878431, 1)
+modulate = Color(0.654902, 0.768627, 0.760784, 1)
 z_index = -30
 position = Vector2(601, 318)
 scale = Vector2(1.85734, 1.07072)
@@ -890,10 +757,10 @@ texture = ExtResource("28_caahm")
 
 [node name="TextureRect" type="TextureRect" parent="UIText/EndGameWon"]
 layout_mode = 0
-offset_left = 423.0
-offset_top = 166.0
-offset_right = 727.0
-offset_bottom = 465.0
+offset_left = 450.0
+offset_top = 126.0
+offset_right = 754.0
+offset_bottom = 425.0
 scale = Vector2(1.5888, 1.4436)
 pivot_offset = Vector2(160.547, 147.441)
 texture = ExtResource("27_cgdsr")
@@ -930,13 +797,6 @@ script = SubResource("GDScript_c4yqt")
 [node name="Spacer" type="Control" parent="UIText/EndGameWon/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="UIText/EndGameWon"]
-libraries = {
-"": SubResource("AnimationLibrary_foy8h")
-}
-script = ExtResource("28_qgxf2")
-anim_toplay = "FINAL_ANIM"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="UIText/EndGameWon"]
 
