@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://d1h1msw0tmfw4"]
+[gd_scene load_steps=35 format=3 uid="uid://d1h1msw0tmfw4"]
 
 [ext_resource type="Script" path="res://scripts/Player/Player.gd" id="1_21uft"]
 [ext_resource type="Script" path="res://scripts/logic/LookAt.gd" id="2_r5dgl"]
@@ -22,6 +22,11 @@
 [ext_resource type="Script" path="res://scripts/entity/rig_signal_connector.gd" id="18_ka1ft"]
 [ext_resource type="Script" path="res://scripts/audio/SimpleAudioPlayer.gd" id="21_rjjgd"]
 [ext_resource type="AudioStream" uid="uid://hxr71661i51x" path="res://assets/audio/back.wav" id="22_jqtes"]
+[ext_resource type="Script" path="res://scripts/audio/audio_effect.gd" id="23_obpe4"]
+[ext_resource type="AudioStream" uid="uid://c738ifxostb06" path="res://assets/audio/ambiance/buitdebas_session.wav" id="24_fax40"]
+[ext_resource type="AudioStream" uid="uid://jmcatelsq5sc" path="res://assets/audio/FX/charge_presqueloop_r1_session.wav" id="25_4o37h"]
+[ext_resource type="AudioStream" uid="uid://dykhrkoy5xxi2" path="res://assets/audio/FX/charge_presqueloop_r2_session.wav" id="26_s4via"]
+[ext_resource type="AudioStream" uid="uid://cghw6wtbrtuyh" path="res://assets/audio/FX/charge_presqueloop_r3_session.wav" id="27_367km"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l2xwr"]
 size = Vector2(35.5, 57)
@@ -383,6 +388,18 @@ audioPlayer = NodePath("AudioStreamPlayer")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SimpleAudioPlayer"]
 bus = &"Sfx"
 
+[node name="walk" type="AudioStreamPlayer" parent="SimpleAudioPlayer"]
+volume_db = -10.359
+bus = &"Sfx"
+script = ExtResource("23_obpe4")
+audio_clips = Array[AudioStream]([ExtResource("24_fax40")])
+
+[node name="pre_charge" type="AudioStreamPlayer" parent="SimpleAudioPlayer"]
+volume_db = -4.558
+bus = &"Sfx"
+script = ExtResource("23_obpe4")
+audio_clips = Array[AudioStream]([ExtResource("25_4o37h"), ExtResource("26_s4via"), ExtResource("27_367km")])
+
 [connection signal="dead" from="." to="Colision" method="set_disabled" binds= [true]]
 [connection signal="dead" from="." to="MovementHandler" method="setMaxDampening" binds= [true]]
 [connection signal="dead" from="." to="StateMachine" method="send_event" binds= ["dead"]]
@@ -427,9 +444,13 @@ bus = &"Sfx"
 [connection signal="state_entered" from="StateMachine/CompoundState/free/tackle" to="LookAt/Hitbox/CollisionShape2D" method="set_debug_color" binds= [Color(1, 0, 0, 0.803922)]]
 [connection signal="state_entered" from="StateMachine/CompoundState/free/tackle" to="MovementHandler" method="canMove" binds= [false]]
 [connection signal="state_exited" from="StateMachine/CompoundState/free/tackle" to="LookAt" method="canLookAtThings" binds= [true]]
+[connection signal="state_entered" from="StateMachine/CompoundState/free/move" to="SimpleAudioPlayer/walk" method="play_sound"]
+[connection signal="state_exited" from="StateMachine/CompoundState/free/move" to="SimpleAudioPlayer/walk" method="stop_play"]
 [connection signal="state_entered" from="StateMachine/CompoundState/free/charge" to="MovementHandler" method="canMove" binds= [false]]
 [connection signal="state_entered" from="StateMachine/CompoundState/free/charge/preCharge" to="ChargeHandler" method="startCharging"]
+[connection signal="state_entered" from="StateMachine/CompoundState/free/charge/preCharge" to="SimpleAudioPlayer/pre_charge" method="play_sound"]
 [connection signal="state_exited" from="StateMachine/CompoundState/free/charge/preCharge" to="ChargeHandler" method="stopCharging"]
+[connection signal="state_exited" from="StateMachine/CompoundState/free/charge/preCharge" to="SimpleAudioPlayer/pre_charge" method="stop_play"]
 [connection signal="state_entered" from="StateMachine/CompoundState/free/charge/charge" to="ChargeHandler" method="startRunning"]
 [connection signal="state_entered" from="StateMachine/CompoundState/free/charge/charge" to="LookAt" method="canLookAtThings" binds= [false]]
 [connection signal="state_entered" from="StateMachine/CompoundState/free/charge/charge" to="WrestleHandler" method="setCanWrestle" binds= [true]]
