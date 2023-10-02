@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://djfdxmwa6507n"]
+[gd_scene load_steps=4 format=3 uid="uid://djfdxmwa6507n"]
 
 [ext_resource type="Script" path="res://scripts/UI/StandardUiPanel.gd" id="1_5i0kg"]
+[ext_resource type="Theme" uid="uid://mxwvwg8snm7m" path="res://assets/defaultUiTheme.tres" id="1_p47q6"]
 [ext_resource type="Texture2D" uid="uid://wk68xh0siinh" path="res://assets/art/title_screen/title_screen_title.png" id="2_pr8wp"]
 
 [node name="MainMenuUi" type="Control" node_paths=PackedStringArray("initialFocus")]
@@ -8,12 +9,13 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 248.0
-offset_top = 266.0
-offset_right = 248.0
-offset_bottom = 266.0
+offset_left = 3.0
+offset_top = -4.0
+offset_right = 3.0
+offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_p47q6")
 script = ExtResource("1_5i0kg")
 initialFocus = NodePath("MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/Play")
 
@@ -27,7 +29,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_constants/margin_left = 120
+theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = 80
 theme_override_constants/margin_right = 120
 theme_override_constants/margin_bottom = 80
@@ -54,10 +56,9 @@ theme_override_font_sizes/font_size = 45
 text = "Sumo City !"
 
 [node name="Spacer" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 0.18
+size_flags_stretch_ratio = 0.01
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -66,14 +67,17 @@ theme_override_constants/separation = 5
 
 [node name="Play" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 27
 text = "Play !"
 
 [node name="Option" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 27
 text = "Option"
 
 [node name="Credit" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 27
 text = "Credit"
 
 [node name="version" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
@@ -83,6 +87,7 @@ text = "Version 0.0.1"
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_stretch_ratio = 4.32
 theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 50

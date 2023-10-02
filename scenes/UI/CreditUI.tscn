@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://p7o51iq35snm"]
+[gd_scene load_steps=3 format=3 uid="uid://p7o51iq35snm"]
 
+[ext_resource type="Theme" uid="uid://mxwvwg8snm7m" path="res://assets/defaultUiTheme.tres" id="1_7r0io"]
 [ext_resource type="Script" path="res://scripts/UI/StandardUiPanel.gd" id="1_uo0fe"]
 
 [node name="CreditUI" type="Control"]
@@ -9,6 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_7r0io")
 script = ExtResource("1_uo0fe")
 
 [node name="Label" type="Label" parent="."]
@@ -29,10 +31,10 @@ text = "Ceci est un crédit"
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 0
-offset_left = 1013.0
-offset_top = 493.0
-offset_right = 1164.0
-offset_bottom = 524.0
+offset_left = 963.0
+offset_top = 423.0
+offset_right = 1164.96
+offset_bottom = 507.296
 rotation = 0.774886
 text = "Let me out of here"
 
