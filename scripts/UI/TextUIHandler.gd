@@ -17,13 +17,14 @@ func showUI(uiName : String, hideWhenFinished : bool):
 	if uis.has(uiName):
 		uis[uiName].show()
 		print("Show " + uiName)
-		if player.has_animation("ready"):
-			player.play("ready")
+		if player.has_animation(uiName):
+			player.play(uiName)
 			if hideWhenFinished:
 				await player.animation_finished
 				hideUI(uiName)
 
 func hideUI(uiName : String):
+	player.seek(0.0, false)
 	if uis.has(uiName):
 		uis[uiName].hide()
 
