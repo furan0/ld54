@@ -12,7 +12,6 @@ func doShake(amount):
 
 func shake():
 	var amount = pow(force, force_power)
-	print("Shake amount : " + str(amount))
 	rotation = max_roll * amount * randf_range(-1, 1)
 	offset.x = max_offset.x * amount * randf_range(-1, 1)
 	offset.y = max_offset.y * amount * randf_range(-1, 1)

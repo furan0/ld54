@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://cl5me5crmsilp"]
+[gd_scene load_steps=46 format=3 uid="uid://cl5me5crmsilp"]
 
 [ext_resource type="Texture2D" uid="uid://opx64atbwl5l" path="res://assets/art/title_screen/title_screen_BG.jpg" id="1_dkxa3"]
 [ext_resource type="Script" path="res://scripts/ShakyShaky.gd" id="1_pgyyd"]
@@ -11,11 +11,14 @@
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="7_inov0"]
 [ext_resource type="PackedScene" uid="uid://cqutmoew07l58" path="res://scenes/GOD.tscn" id="7_prk6a"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="8_gu0po"]
+[ext_resource type="PackedScene" uid="uid://dwlikrab7vhu1" path="res://scenes/peon_gent.tscn" id="9_oewga"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="9_toyb6"]
+[ext_resource type="PackedScene" uid="uid://b5gjc8kpk582" path="res://scenes/peon_king.tscn" id="10_ajkl0"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="10_wf50o"]
 [ext_resource type="Script" path="res://scripts/UI/UIRounds.gd" id="12_40cwf"]
 [ext_resource type="Texture2D" uid="uid://bbwb5a70qp278" path="res://assets/art/UI/text_UI/ready_text.png" id="12_dt75w"]
 [ext_resource type="Texture2D" uid="uid://bv7cjgv0iecpq" path="res://assets/art/UI/counter_empty.png" id="12_f02h5"]
+[ext_resource type="PackedScene" uid="uid://c65b83q5h21ls" path="res://scenes/peon_king_ultime.tscn" id="12_v2wiv"]
 [ext_resource type="Script" path="res://scripts/UI/TextUIHandler.gd" id="12_yqcsr"]
 [ext_resource type="Texture2D" uid="uid://cmayfd4bbjfko" path="res://assets/art/UI/counter_win.png" id="13_7io1t"]
 [ext_resource type="Texture2D" uid="uid://j3ri8ks4lj3t" path="res://assets/art/UI/counter_lose.png" id="14_45apn"]
@@ -263,7 +266,7 @@ unique_name_in_owner = true
 script = ExtResource("6_f1f3y")
 arena = NodePath("../Arena")
 player = NodePath("../Player")
-enemyList = Array[PackedScene]([ExtResource("6_dcx4b"), ExtResource("7_prk6a")])
+enemyList = Array[PackedScene]([ExtResource("6_dcx4b"), ExtResource("9_oewga"), ExtResource("10_ajkl0"), ExtResource("7_prk6a"), ExtResource("12_v2wiv")])
 targetPlayer = NodePath("../Arena/Targets/positionPlayer")
 targetEnemy = NodePath("../Arena/Targets/positionEnemy")
 targetSpawn = NodePath("../Arena/Targets/spawnEnemy")

@@ -1,58 +1,242 @@
-[gd_scene load_steps=10 format=3 uid="uid://dan5iblvyp87s"]
+[gd_scene load_steps=42 format=3 uid="uid://weqnbipcr2ao"]
 
-[ext_resource type="Texture2D" uid="uid://byiv7gx4e8g5q" path="res://assets/art/background/backgroundV2.png" id="1_mqu0n"]
+[ext_resource type="Script" path="res://scripts/ShakyShaky.gd" id="1_e3e8a"]
+[ext_resource type="Texture2D" uid="uid://opx64atbwl5l" path="res://assets/art/title_screen/title_screen_BG.jpg" id="2_j3b45"]
 [ext_resource type="Script" path="res://scripts/Arena.gd" id="3_hb3lt"]
 [ext_resource type="PackedScene" uid="uid://cipdvjdamv1gv" path="res://scenes/entity/Crowd/CrowdHandler.tscn" id="4_8hy5o"]
 [ext_resource type="PackedScene" uid="uid://cdfuwisuud2q1" path="res://scenes/player1.tscn" id="4_gdias"]
 [ext_resource type="PackedScene" uid="uid://cack3kykwsqny" path="res://scenes/player2.tscn" id="5_3ccnj"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oukdq"]
-radius = 272.92
-height = 807.88
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ald5m"]
-radius = 224.47
-height = 662.29
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r6vxw"]
-radius = 155.3
-height = 527.63
+[ext_resource type="PackedScene" uid="uid://bw3mv3pn2ulwn" path="res://scenes/entity/2Deffect/rope_tracer.tscn" id="5_xp5ei"]
+[ext_resource type="Script" path="res://scripts/logic/GameManager.gd" id="7_jrq5d"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="10_gs5s7"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="11_te0ay"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="12_8pbtt"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="13_acecr"]
+[ext_resource type="Script" path="res://scripts/UI/UIRounds.gd" id="14_on1y0"]
+[ext_resource type="Texture2D" uid="uid://bv7cjgv0iecpq" path="res://assets/art/UI/counter_empty.png" id="15_cg7ko"]
+[ext_resource type="Texture2D" uid="uid://cmayfd4bbjfko" path="res://assets/art/UI/counter_win.png" id="16_vd7md"]
+[ext_resource type="Texture2D" uid="uid://j3ri8ks4lj3t" path="res://assets/art/UI/counter_lose.png" id="17_tdxws"]
+[ext_resource type="Script" path="res://scripts/UI/TextUIHandler.gd" id="18_dj8d0"]
+[ext_resource type="Texture2D" uid="uid://bbwb5a70qp278" path="res://assets/art/UI/text_UI/ready_text.png" id="19_fjxr2"]
+[ext_resource type="Texture2D" uid="uid://r7r5anv5ms6x" path="res://assets/art/UI/text_UI/victory_text.png" id="20_04wd7"]
+[ext_resource type="Texture2D" uid="uid://dgpt5f6ohg3vu" path="res://assets/art/UI/text_UI/defeat_text.png" id="21_crj62"]
+[ext_resource type="Texture2D" uid="uid://dwsott110gfiv" path="res://assets/art/UI/text_UI/start_text.png" id="22_c2kd7"]
+[ext_resource type="Theme" uid="uid://mxwvwg8snm7m" path="res://assets/defaultUiTheme.tres" id="23_er5fh"]
+[ext_resource type="AudioStream" uid="uid://cnsmqheehqwfn" path="res://assets/audio/ambiance/wai_r2_session.wav" id="24_s07dw"]
+[ext_resource type="Script" path="res://scripts/audio/audio_effect.gd" id="25_p6nq5"]
+[ext_resource type="AudioStream" uid="uid://bt0cn6gyh5cr4" path="res://assets/audio/ambiance/wai_r1_session.wav" id="26_wod7m"]
+[ext_resource type="AudioStream" uid="uid://5w8eb583v8p7" path="res://assets/audio/ambiance/sacretatane_session.wav" id="27_v61qg"]
+[ext_resource type="AudioStream" uid="uid://c7nv28vohtlrc" path="res://assets/audio/ambiance/whaou_r2_session.wav" id="28_nb8oj"]
+[ext_resource type="AudioStream" uid="uid://cjilarya4krpd" path="res://assets/audio/ambiance/ring_debut_session.wav" id="29_fr57o"]
+[ext_resource type="AudioStream" uid="uid://bwso7ajyxccg" path="res://assets/audio/FX/WSL_session.wav" id="30_6r3cr"]
+[ext_resource type="AudioStream" uid="uid://cstca1aafqsvd" path="res://assets/audio/ambiance/ring_fin_session.wav" id="31_f1e7q"]
+[ext_resource type="AudioStream" uid="uid://dsag7eeqha7y0" path="res://assets/audio/ambiance/musique_amb_session.mp3" id="32_ogqs6"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_yu5ia"]
 a = Vector2(0, -28)
 b = Vector2(0, 38)
 
-[node name="multi" type="Node2D"]
+[sub_resource type="Animation" id="Animation_m7mop"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ready/MarginContainer/VBoxContainer/Spacer2:size_flags_stretch_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(6.3, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Fight/MarginContainer/VBoxContainer/Spacer2:size_flags_stretch_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1.29, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Victory/MarginContainer/VBoxContainer/Spacer2:size_flags_stretch_ratio")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(6.3, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Defeat/MarginContainer/VBoxContainer/HBoxContainer/TextureRect:size_flags_stretch_ratio")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[sub_resource type="Animation" id="Animation_j50d8"]
+resource_name = "defeat"
+length = 0.6
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Defeat/MarginContainer/VBoxContainer/HBoxContainer/TextureRect:size_flags_stretch_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 2.21, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.6)
+}
+
+[sub_resource type="Animation" id="Animation_dtwij"]
+resource_name = "fight"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Fight/MarginContainer/VBoxContainer/Spacer2:size_flags_stretch_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 3, 0),
+"points": PackedFloat32Array(1.29, -0.25, 0, 0.2, -0.485579, 1.29051, -0.108748, -0.353518, 0.108748, 0.353518, 5.39, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.3, 1)
+}
+
+[sub_resource type="Animation" id="Animation_6715u"]
+resource_name = "ready_pop_in"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ready/MarginContainer/VBoxContainer/Spacer2:size_flags_stretch_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 2),
+"points": PackedFloat32Array(6.3, -0.25, 0, 0.25, 0, 1.09, -0.25, 0, 0.1, -0.0204393, 1.64403, -0.2, -0.022095, 0, 0),
+"times": PackedFloat32Array(0, 0.4, 0.7)
+}
+
+[sub_resource type="Animation" id="Animation_ln1k2"]
+resource_name = "victory"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Victory/MarginContainer/VBoxContainer/Spacer2:size_flags_stretch_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 2, 0),
+"points": PackedFloat32Array(6.3, -0.25, 0, 0.162589, -0.084702, 1.09, -0.137411, 0.0909766, 0.199999, -0.132415, 1.09, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4, 1)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i7n73"]
+_data = {
+"RESET": SubResource("Animation_m7mop"),
+"defeat": SubResource("Animation_j50d8"),
+"fight": SubResource("Animation_dtwij"),
+"ready": SubResource("Animation_6715u"),
+"victory": SubResource("Animation_ln1k2")
+}
+
+[sub_resource type="GDScript" id="GDScript_c4yqt"]
+script/source = "extends Button
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pressed.connect(goBack)
+	visibility_changed.connect(func ():
+		if visible:
+			grab_focus())
+
+
+func goBack():
+	Global.goto_scene(\"res://scenes/levels/MainMenu.tscn\")
+
+"
+
+[sub_resource type="GDScript" id="GDScript_ahv4r"]
+script/source = "extends Button
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pressed.connect(goMainMenu)
+
+
+func goMainMenu():
+	Global.goto_scene(\"res://scenes/levels/MainMenu.tscn\")
+"
+
+[sub_resource type="GDScript" id="GDScript_a70u4"]
+script/source = "extends Button
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pressed.connect(goBack)
+	visibility_changed.connect(func ():
+		if visible:
+			grab_focus())
+
+
+func goBack():
+	Global.goto_scene(\"res://scenes/levels/proto.tscn\")
+
+"
+
+[node name="proto" type="Node2D"]
+
+[node name="Camera" type="Camera2D" parent="."]
+unique_name_in_owner = true
 anchor_mode = 0
+script = ExtResource("1_e3e8a")
 
 [node name="Background" type="Sprite2D" parent="."]
+modulate = Color(0.847059, 0.882353, 0.878431, 1)
 z_index = -30
-position = Vector2(574.5, 324)
-scale = Vector2(1.046, 0.603)
-texture = ExtResource("1_mqu0n")
+position = Vector2(601, 318)
+scale = Vector2(1.85734, 1.07072)
+texture = ExtResource("2_j3b45")
+
+[node name="Player" parent="." instance=ExtResource("4_gdias")]
+position = Vector2(369, 327)
 
 [node name="Arena" type="Area2D" parent="."]
 position = Vector2(578, 323)
 script = ExtResource("3_hb3lt")
 
-[node name="ArenaBig" type="CollisionShape2D" parent="Arena"]
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_oukdq")
-debug_color = Color(0.8, 0.537255, 0, 0.419608)
+[node name="TracerBig" parent="Arena" node_paths=PackedStringArray("colliderToDraw") instance=ExtResource("5_xp5ei")]
+z_index = -29
+colliderToDraw = NodePath("../ArenaBig")
 
-[node name="ArenaMedium" type="CollisionShape2D" parent="Arena"]
-visible = false
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_ald5m")
-debug_color = Color(0.964706, 0.262745, 0.741176, 0.419608)
+[node name="TracerMedium" parent="Arena" node_paths=PackedStringArray("colliderToDraw") instance=ExtResource("5_xp5ei")]
+z_index = -29
+colliderToDraw = NodePath("../ArenaMedium")
 
-[node name="ArenaSmall" type="CollisionShape2D" parent="Arena"]
-visible = false
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_r6vxw")
-debug_color = Color(1, 0.0941176, 0.0627451, 0.419608)
+[node name="TracerSmall" parent="Arena" node_paths=PackedStringArray("colliderToDraw") instance=ExtResource("5_xp5ei")]
+z_index = -29
+colliderToDraw = NodePath("../ArenaSmall")
+
+[node name="ArenaBig" type="CollisionPolygon2D" parent="Arena"]
+polygon = PackedVector2Array(-201, -264, -134, -273, 133, -274, 201, -266, 267, -237, 326, -192, 368, -136, 396, -70, 404, -1, 395, 73, 368, 136, 324, 195, 268, 236, 203, 265, 134, 273, -133, 273, -201, 264, -269, 236, -324, 193, -369, 136, -395, 69, -405, -2, -395, -72, -368, -137, -324, -194, -267, -237)
+
+[node name="ArenaMedium" type="CollisionPolygon2D" parent="Arena"]
+polygon = PackedVector2Array(-110, -224, 109, -224, 164, -217, 219, -194, 266, -159, 301, -112, 324, -58, 331, 1, 324, 58, 302, 111, 267, 159, 220, 194, 164, 218, 109, 224, -110, 224, -163, 217, -220, 195, -266, 158, -302, 112, -324, 57, -332, -1, -324, -58, -302, -112, -266, -159, -218, -195, -165, -217)
+
+[node name="ArenaSmall" type="CollisionPolygon2D" parent="Arena"]
+polygon = PackedVector2Array(-110, -155, 110, -156, 149, -150, 185, -136, 219, -110, 243, -77, 258, -41, 264, -1, 259, 40, 244, 77, 219, 109, 187, 134, 149, 151, 108, 155, -108, 155, -149, 150, -187, 134, -219, 108, -243, 77, -259, 39, -264, -1, -259, -41, -243, -79, -218, -111, -188, -135, -148, -150)
 
 [node name="CrowdHandler" parent="Arena" instance=ExtResource("4_8hy5o")]
 
@@ -73,8 +257,631 @@ shape = SubResource("SegmentShape2D_yu5ia")
 [node name="spawnEnemy" type="Node2D" parent="Arena/Targets"]
 position = Vector2(938, 0)
 
-[node name="Player1" parent="." instance=ExtResource("4_gdias")]
-position = Vector2(368, 324)
+[node name="GameManager" type="Node2D" parent="." node_paths=PackedStringArray("arena", "player", "targetPlayer", "targetEnemy", "targetSpawn", "enemyInPositionArea")]
+unique_name_in_owner = true
+script = ExtResource("7_jrq5d")
+arena = NodePath("../Arena")
+player = NodePath("../Player")
+enemyList = Array[PackedScene]([ExtResource("5_3ccnj")])
+targetPlayer = NodePath("../Arena/Targets/positionPlayer")
+targetEnemy = NodePath("../Arena/Targets/positionEnemy")
+targetSpawn = NodePath("../Arena/Targets/spawnEnemy")
+enemyInPositionArea = NodePath("../Arena/Targets/positionEnemy/enemyInPositionDetector")
 
-[node name="Player2" parent="." instance=ExtResource("5_3ccnj")]
-position = Vector2(775, 323)
+[node name="StateMachine" type="Node" parent="GameManager"]
+script = ExtResource("10_gs5s7")
+
+[node name="States" type="Node" parent="GameManager/StateMachine"]
+script = ExtResource("11_te0ay")
+initial_state = NodePath("init")
+
+[node name="init" type="Node" parent="GameManager/StateMachine/States"]
+script = ExtResource("12_8pbtt")
+
+[node name="toMatch" type="Node" parent="GameManager/StateMachine/States/init"]
+script = ExtResource("13_acecr")
+to = NodePath("../../match")
+delay_seconds = 0.5
+
+[node name="match" type="Node" parent="GameManager/StateMachine/States"]
+script = ExtResource("11_te0ay")
+initial_state = NodePath("reset")
+
+[node name="reset" type="Node" parent="GameManager/StateMachine/States/match"]
+script = ExtResource("12_8pbtt")
+
+[node name="toEnemyEnter" type="Node" parent="GameManager/StateMachine/States/match/reset"]
+script = ExtResource("13_acecr")
+to = NodePath("../../enemyEnter")
+delay_seconds = 3.0
+
+[node name="enemyEnter" type="Node" parent="GameManager/StateMachine/States/match"]
+script = ExtResource("12_8pbtt")
+
+[node name="toRound" type="Node" parent="GameManager/StateMachine/States/match/enemyEnter"]
+script = ExtResource("13_acecr")
+to = NodePath("../../round")
+event = &"startRound"
+delay_seconds = 0.5
+
+[node name="round" type="Node" parent="GameManager/StateMachine/States/match"]
+script = ExtResource("11_te0ay")
+initial_state = NodePath("ready")
+
+[node name="ready" type="Node" parent="GameManager/StateMachine/States/match/round"]
+script = ExtResource("12_8pbtt")
+
+[node name="toFight" type="Node" parent="GameManager/StateMachine/States/match/round/ready"]
+script = ExtResource("13_acecr")
+to = NodePath("../../fight")
+delay_seconds = 1.0
+
+[node name="fight" type="Node" parent="GameManager/StateMachine/States/match/round"]
+script = ExtResource("12_8pbtt")
+
+[node name="toOutOfArena" type="Node" parent="GameManager/StateMachine/States/match/round/fight"]
+script = ExtResource("13_acecr")
+to = NodePath("../../outOfArena")
+event = &"endOfRound"
+delay_seconds = 1.0
+
+[node name="outOfArena" type="Node" parent="GameManager/StateMachine/States/match/round"]
+script = ExtResource("12_8pbtt")
+
+[node name="toRoundReset" type="Node" parent="GameManager/StateMachine/States/match/round/outOfArena"]
+script = ExtResource("13_acecr")
+to = NodePath("../../roundReset")
+event = &"resetRound"
+
+[node name="toMatchReset" type="Node" parent="GameManager/StateMachine/States/match/round/outOfArena"]
+script = ExtResource("13_acecr")
+to = NodePath("../../../reset")
+event = &"startMatch"
+
+[node name="toEnd" type="Node" parent="GameManager/StateMachine/States/match/round/outOfArena"]
+script = ExtResource("13_acecr")
+to = NodePath("../../../../end")
+event = &"finish"
+
+[node name="roundReset" type="Node" parent="GameManager/StateMachine/States/match/round"]
+script = ExtResource("12_8pbtt")
+
+[node name="toRound" type="Node" parent="GameManager/StateMachine/States/match/round/roundReset"]
+script = ExtResource("13_acecr")
+to = NodePath("../../ready")
+event = &"startRound"
+delay_seconds = 2.0
+
+[node name="end" type="Node" parent="GameManager/StateMachine/States"]
+script = ExtResource("12_8pbtt")
+
+[node name="UIRounds" type="CanvasLayer" parent="." node_paths=PackedStringArray("uiRound1", "uiRound2", "uiRound3")]
+script = ExtResource("14_on1y0")
+uiRound1 = NodePath("MarginContainer/HBoxContainer/Round 1")
+uiRound2 = NodePath("MarginContainer/HBoxContainer/Round 2")
+uiRound3 = NodePath("MarginContainer/HBoxContainer/Round 3")
+
+[node name="MarginContainer" type="MarginContainer" parent="UIRounds"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UIRounds/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Round 1" type="Control" parent="UIRounds/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="empty" type="TextureRect" parent="UIRounds/MarginContainer/HBoxContainer/Round 1"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -37.2308
+offset_right = 100.0
+offset_bottom = 37.2308
+grow_vertical = 2
+texture = ExtResource("15_cg7ko")
+expand_mode = 5
+
+[node name="player" type="TextureRect" parent="UIRounds/MarginContainer/HBoxContainer/Round 1"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -37.2308
+offset_right = 100.0
+offset_bottom = 37.2308
+grow_vertical = 2
+texture = ExtResource("16_vd7md")
+expand_mode = 5
+
+[node name="enemy" type="TextureRect" parent="UIRounds/MarginContainer/HBoxContainer/Round 1"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -37.2308
+offset_right = 100.0
+offset_bottom = 37.2308
+grow_vertical = 2
+texture = ExtResource("17_tdxws")
+expand_mode = 5
+
+[node name="Round 2" type="Control" parent="UIRounds/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 100)
+layout_mode = 2
+
+[node name="empty" type="TextureRect" parent="UIRounds/MarginContainer/HBoxContainer/Round 2"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -37.2308
+offset_right = 100.0
+offset_bottom = 37.2308
+grow_vertical = 2
+texture = ExtResource("15_cg7ko")
+expand_mode = 5
+
+[node name="player" type="TextureRect" parent="UIRounds/MarginContainer/HBoxContainer/Round 2"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -37.2308
+offset_right = 100.0
+offset_bottom = 37.2308
+grow_vertical = 2
+texture = ExtResource("16_vd7md")
+expand_mode = 5
+
+[node name="enemy" type="TextureRect" parent="UIRounds/MarginContainer/HBoxContainer/Round 2"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -37.2308
+offset_right = 100.0
+offset_bottom = 37.2308
+grow_vertical = 2
+texture = ExtResource("17_tdxws")
+expand_mode = 5
+
+[node name="Round 3" type="Control" parent="UIRounds/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="empty" type="TextureRect" parent="UIRounds/MarginContainer/HBoxContainer/Round 3"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -37.2308
+offset_right = 100.0
+offset_bottom = 37.2308
+grow_vertical = 2
+texture = ExtResource("15_cg7ko")
+expand_mode = 5
+
+[node name="player" type="TextureRect" parent="UIRounds/MarginContainer/HBoxContainer/Round 3"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -37.2308
+offset_right = 100.0
+offset_bottom = 37.2308
+grow_vertical = 2
+texture = ExtResource("16_vd7md")
+expand_mode = 5
+
+[node name="enemy" type="TextureRect" parent="UIRounds/MarginContainer/HBoxContainer/Round 3"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -37.2308
+offset_right = 100.0
+offset_bottom = 37.2308
+grow_vertical = 2
+texture = ExtResource("17_tdxws")
+expand_mode = 5
+
+[node name="UIText" type="CanvasLayer" parent="."]
+script = ExtResource("18_dj8d0")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UIText"]
+libraries = {
+"": SubResource("AnimationLibrary_i7n73")
+}
+
+[node name="Ready" type="Control" parent="UIText"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="UIText/Ready"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UIText/Ready/MarginContainer"]
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="UIText/Ready/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.05
+
+[node name="TextureRect" type="TextureRect" parent="UIText/Ready/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("19_fjxr2")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Spacer2" type="Control" parent="UIText/Ready/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 6.3
+
+[node name="Victory" type="Control" parent="UIText"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="UIText/Victory"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UIText/Victory/MarginContainer"]
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="UIText/Victory/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.05
+
+[node name="TextureRect" type="TextureRect" parent="UIText/Victory/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("20_04wd7")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Spacer2" type="Control" parent="UIText/Victory/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 6.3
+
+[node name="Defeat" type="Control" parent="UIText"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="UIText/Defeat"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UIText/Defeat/MarginContainer"]
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="UIText/Defeat/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.05
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UIText/Defeat/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Control2" type="Control" parent="UIText/Defeat/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="UIText/Defeat/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.0
+texture = ExtResource("21_crj62")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="Control" type="Control" parent="UIText/Defeat/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Spacer2" type="Control" parent="UIText/Defeat/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.8
+
+[node name="Fight" type="Control" parent="UIText"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="UIText/Fight"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UIText/Fight/MarginContainer"]
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="UIText/Fight/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.05
+
+[node name="TextureRect" type="TextureRect" parent="UIText/Fight/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("22_c2kd7")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Spacer2" type="Control" parent="UIText/Fight/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.29
+
+[node name="NextMatch" type="Control" parent="UIText"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("23_er5fh")
+
+[node name="MarginContainer" type="MarginContainer" parent="UIText/NextMatch"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -81.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 75
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UIText/NextMatch/MarginContainer"]
+layout_mode = 2
+
+[node name="Spacer2" type="Control" parent="UIText/NextMatch/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="UIText/NextMatch/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.65
+text = "Start next Duel !"
+
+[node name="Spacer" type="Control" parent="UIText/NextMatch/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="EndGameWon" type="Control" parent="UIText"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("23_er5fh")
+
+[node name="MarginContainer" type="MarginContainer" parent="UIText/EndGameWon"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -81.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 75
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UIText/EndGameWon/MarginContainer"]
+layout_mode = 2
+
+[node name="Spacer2" type="Control" parent="UIText/EndGameWon/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="UIText/EndGameWon/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.65
+text = "Savour the victory !"
+script = SubResource("GDScript_c4yqt")
+
+[node name="Spacer" type="Control" parent="UIText/EndGameWon/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="EndGameLost" type="Control" parent="UIText"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("23_er5fh")
+
+[node name="MarginContainer" type="MarginContainer" parent="UIText/EndGameLost"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -81.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 75
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UIText/EndGameLost/MarginContainer"]
+layout_mode = 2
+
+[node name="Spacer2" type="Control" parent="UIText/EndGameLost/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button back" type="Button" parent="UIText/EndGameLost/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.65
+text = "Quit"
+script = SubResource("GDScript_ahv4r")
+
+[node name="Spacer" type="Control" parent="UIText/EndGameLost/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.3
+
+[node name="Button back2" type="Button" parent="UIText/EndGameLost/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.65
+text = "Play Again"
+script = SubResource("GDScript_a70u4")
+
+[node name="Control" type="Control" parent="UIText/EndGameLost/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Audio_lvl" type="Node" parent="."]
+
+[node name="youpi" type="AudioStreamPlayer" parent="Audio_lvl"]
+stream = ExtResource("24_s07dw")
+bus = &"Sfx"
+script = ExtResource("25_p6nq5")
+audio_clips = Array[AudioStream]([ExtResource("26_wod7m"), ExtResource("24_s07dw"), ExtResource("27_v61qg"), ExtResource("28_nb8oj")])
+
+[node name="RING_strt" type="AudioStreamPlayer" parent="Audio_lvl"]
+stream = ExtResource("29_fr57o")
+bus = &"Sfx"
+script = ExtResource("25_p6nq5")
+audio_clips = Array[AudioStream]([ExtResource("29_fr57o")])
+
+[node name="WSL_samere" type="AudioStreamPlayer" parent="Audio_lvl"]
+stream = ExtResource("29_fr57o")
+bus = &"Sfx"
+script = ExtResource("25_p6nq5")
+audio_clips = Array[AudioStream]([ExtResource("30_6r3cr")])
+
+[node name="RING_end" type="AudioStreamPlayer" parent="Audio_lvl"]
+volume_db = 8.0
+bus = &"Sfx"
+script = ExtResource("25_p6nq5")
+audio_clips = Array[AudioStream]([ExtResource("31_f1e7q")])
+
+[node name="Music" type="AudioStreamPlayer" parent="Audio_lvl"]
+stream = ExtResource("32_ogqs6")
+autoplay = true
+bus = &"Music"
+
+[connection signal="hitReceived" from="Player" to="Camera" method="doShake" binds= [0.25]]
+[connection signal="wrestlingStarted" from="Player" to="Arena/CrowdHandler" method="superHappy"]
+[connection signal="wrestlingStarted" from="Player" to="Audio_lvl/youpi" method="play_sound"]
+[connection signal="wrestlingStarted" from="Player" to="Audio_lvl/WSL_samere" method="play_sound"]
+[connection signal="wrestlingStarted" from="Player" to="Camera" method="doShake" binds= [0.45]]
+[connection signal="endOfGame" from="GameManager" to="GameManager/StateMachine" method="send_event" binds= ["finish"]]
+[connection signal="endOfRound" from="GameManager" to="GameManager/StateMachine" method="send_event" binds= ["endOfRound"]]
+[connection signal="enemyWonGame" from="GameManager" to="UIText" method="showUI" binds= ["defeat", false]]
+[connection signal="enemyWonGame" from="GameManager" to="UIText" method="showUIAfterDelay" binds= ["gameLost", 1.0]]
+[connection signal="enemyWonRound" from="GameManager" to="UIRounds" method="setRound" binds= [false]]
+[connection signal="playerWonGame" from="GameManager" to="UIText" method="showUI" binds= ["victory", false]]
+[connection signal="playerWonGame" from="GameManager" to="UIText" method="showUIAfterDelay" binds= ["gameLost", 1.0]]
+[connection signal="playerWonMatch" from="GameManager" to="Arena/CrowdHandler" method="superHappy"]
+[connection signal="playerWonMatch" from="GameManager" to="Audio_lvl/youpi" method="play_sound"]
+[connection signal="playerWonMatch" from="GameManager" to="UIText" method="showUI" binds= ["victory", false]]
+[connection signal="playerWonMatch" from="GameManager" to="UIText" method="showUIAfterDelay" binds= ["nextMatch", 0.5]]
+[connection signal="playerWonRound" from="GameManager" to="UIRounds" method="setRound" binds= [true]]
+[connection signal="resetPlayerPositions" from="GameManager" to="GameManager/StateMachine" method="send_event" binds= ["resetRound"]]
+[connection signal="startRound" from="GameManager" to="GameManager/StateMachine" method="send_event" binds= ["startRound"]]
+[connection signal="state_entered" from="GameManager/StateMachine/States/match/reset" to="GameManager" method="resetMatch"]
+[connection signal="state_entered" from="GameManager/StateMachine/States/match/reset" to="UIRounds" method="resetRound"]
+[connection signal="state_entered" from="GameManager/StateMachine/States/match/reset" to="UIText" method="hideAllUi"]
+[connection signal="state_entered" from="GameManager/StateMachine/States/match/enemyEnter" to="GameManager" method="spawnEnemy"]
+[connection signal="state_exited" from="GameManager/StateMachine/States/match/enemyEnter" to="Camera" method="doShake" binds= [0.45]]
+[connection signal="state_entered" from="GameManager/StateMachine/States/match/round/ready" to="GameManager" method="lookAtEachOther"]
+[connection signal="state_entered" from="GameManager/StateMachine/States/match/round/ready" to="UIText" method="showUI" binds= ["ready", false]]
+[connection signal="state_exited" from="GameManager/StateMachine/States/match/round/ready" to="UIText" method="hideUI" binds= ["ready"]]
+[connection signal="state_entered" from="GameManager/StateMachine/States/match/round/fight" to="GameManager" method="fightStarted"]
+[connection signal="state_entered" from="GameManager/StateMachine/States/match/round/fight" to="Audio_lvl/RING_strt" method="play_sound"]
+[connection signal="state_entered" from="GameManager/StateMachine/States/match/round/fight" to="UIText" method="showUI" binds= ["fight", true]]
+[connection signal="state_entered" from="GameManager/StateMachine/States/match/round/outOfArena" to="GameManager" method="endCurrentRound"]
+[connection signal="state_exited" from="GameManager/StateMachine/States/match/round/outOfArena" to="Audio_lvl/RING_end" method="play_sound"]
+[connection signal="state_entered" from="GameManager/StateMachine/States/match/round/roundReset" to="GameManager" method="resetRound"]
+[connection signal="pressed" from="UIText/NextMatch/MarginContainer/HBoxContainer/Button" to="GameManager/StateMachine" method="send_event" binds= ["startMatch"]]
