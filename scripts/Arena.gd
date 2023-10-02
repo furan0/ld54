@@ -11,7 +11,7 @@ var currentArena : EArena = EArena.BIG
 @export var crowdHandler : Node2D
 @export var delayBetweenResurectAndMove : float = 1.5
 
-signal playerLeavedArena(player : Node2D)
+signal playerLeavedArena(player : Player)
 
 func _ready():
 	if areaBig == null:
@@ -24,7 +24,9 @@ func _ready():
 		crowdHandler = $CrowdHandler
 		
 	body_exited.connect(func (body : Node2D):
-		print(body.name + " exited the arena"))
+		if is_instance_of(body, Player):
+			print(body.name + " exited the arena")
+			playerLeavedArena.emit(body as Player))
 
 # reset arena & crowd
 func reset():
@@ -49,3 +51,12 @@ func switchArena(arenaSize : EArena):
 			areaBig.disabled = true
 			areaMedium.disabled = true
 			crowdHandler.moveTo(3)
+
+func switchArenaNum(sizeNumber : int):
+	match sizeNumber:
+		0:
+			switchArena(EArena.BIG)
+		1:
+			switchArena(EArena.MEDIUM)
+		2:
+			switchArena(EArena.SMALL)

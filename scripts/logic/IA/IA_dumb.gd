@@ -26,7 +26,8 @@ var timer
  #Lancer IA
 func start_ia():
 	is_ia_active=true
-	connect("stop",pick_action)
+	if !stop.is_connected(pick_action):
+		connect("stop",pick_action)
 	pick_action()
 	
 # Autorise l'IA a choisir des action à realiser.
@@ -80,7 +81,7 @@ func follow(target : Node2D, offset:=Vector2.ZERO, epsilon:=1936.0):
 		await get_tree().process_frame
 	stop.emit()
 
-func think(tps := 1.0):
+func think(_tps := 1.0):
 	while (keep_going_global):
 		await get_tree().process_frame
 	stop.emit()
@@ -92,7 +93,7 @@ func take_a_break(shouldemit:=true):
 		if(shouldemit):
 			stop.emit()
 
-func make_charge(target : Node2D, offset:=Vector2.ZERO,tps=3000.0,proxim_threshold:=300000):
+func make_charge(target : Node2D, offset:=Vector2.ZERO,_tps=3000.0,_proxim_threshold:=300000):
 	
 	var keep_going := true
 	input_handler.spoofInput("charge",true)

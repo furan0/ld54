@@ -1,12 +1,13 @@
-[gd_scene load_steps=14 format=3 uid="uid://cl5me5crmsilp"]
+[gd_scene load_steps=16 format=3 uid="uid://cl5me5crmsilp"]
 
 [ext_resource type="Texture2D" uid="uid://byiv7gx4e8g5q" path="res://assets/art/background/backgroundV2.png" id="1_2cc7n"]
 [ext_resource type="PackedScene" uid="uid://d1h1msw0tmfw4" path="res://scenes/player.tscn" id="3_vg4tc"]
 [ext_resource type="PackedScene" uid="uid://cipdvjdamv1gv" path="res://scenes/entity/Crowd/CrowdHandler.tscn" id="4_4nfb2"]
-[ext_resource type="PackedScene" uid="uid://cack3kykwsqny" path="res://scenes/Enemy.tscn" id="4_cbq2a"]
 [ext_resource type="Script" path="res://scripts/Arena.gd" id="4_r6e6i"]
+[ext_resource type="PackedScene" uid="uid://cp6pf6jki310y" path="res://scenes/peon.tscn" id="6_dcx4b"]
 [ext_resource type="Script" path="res://scripts/logic/GameManager.gd" id="6_f1f3y"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="7_inov0"]
+[ext_resource type="PackedScene" uid="uid://cqutmoew07l58" path="res://scenes/GOD.tscn" id="7_prk6a"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="8_gu0po"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="9_toyb6"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="10_wf50o"]
@@ -23,6 +24,10 @@ height = 662.29
 radius = 155.3
 height = 527.63
 
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_yu5ia"]
+a = Vector2(0, -28)
+b = Vector2(0, 38)
+
 [node name="proto" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -36,10 +41,6 @@ texture = ExtResource("1_2cc7n")
 
 [node name="Player" parent="." instance=ExtResource("3_vg4tc")]
 position = Vector2(369, 328)
-
-[node name="Enemy" parent="." instance=ExtResource("4_cbq2a")]
-position = Vector2(776, 320)
-freeze_mode = 1
 
 [node name="Arena" type="Area2D" parent="."]
 position = Vector2(578, 323)
@@ -62,8 +63,32 @@ debug_color = Color(1, 0.0941176, 0.0627451, 0.419608)
 
 [node name="CrowdHandler" parent="Arena" instance=ExtResource("4_4nfb2")]
 
-[node name="GameManager" type="Node2D" parent="."]
+[node name="Targets" type="Node2D" parent="Arena"]
+
+[node name="positionPlayer" type="Node2D" parent="Arena/Targets"]
+position = Vector2(-209, 0)
+
+[node name="positionEnemy" type="Node2D" parent="Arena/Targets"]
+position = Vector2(198, 0)
+
+[node name="enemyInPositionDetector" type="Area2D" parent="Arena/Targets/positionEnemy"]
+
+[node name="Collider" type="CollisionShape2D" parent="Arena/Targets/positionEnemy/enemyInPositionDetector"]
+position = Vector2(44, -6)
+shape = SubResource("SegmentShape2D_yu5ia")
+
+[node name="spawnEnemy" type="Node2D" parent="Arena/Targets"]
+position = Vector2(938, 0)
+
+[node name="GameManager" type="Node2D" parent="." node_paths=PackedStringArray("arena", "player", "targetPlayer", "targetEnemy", "targetSpawn", "enemyInPositionArea")]
 script = ExtResource("6_f1f3y")
+arena = NodePath("../Arena")
+player = NodePath("../Player")
+enemyList = Array[PackedScene]([ExtResource("6_dcx4b"), ExtResource("7_prk6a")])
+targetPlayer = NodePath("../Arena/Targets/positionPlayer")
+targetEnemy = NodePath("../Arena/Targets/positionEnemy")
+targetSpawn = NodePath("../Arena/Targets/spawnEnemy")
+enemyInPositionArea = NodePath("../Arena/Targets/positionEnemy/enemyInPositionDetector")
 
 [node name="StateMachine" type="Node" parent="GameManager"]
 script = ExtResource("7_inov0")
@@ -90,7 +115,7 @@ script = ExtResource("9_toyb6")
 [node name="toEnemyEnter" type="Node" parent="GameManager/StateMachine/States/match/reset"]
 script = ExtResource("10_wf50o")
 to = NodePath("../../enemyEnter")
-event = &"next"
+delay_seconds = 3.0
 
 [node name="enemyEnter" type="Node" parent="GameManager/StateMachine/States/match"]
 script = ExtResource("9_toyb6")
@@ -99,6 +124,7 @@ script = ExtResource("9_toyb6")
 script = ExtResource("10_wf50o")
 to = NodePath("../../round")
 event = &"startRound"
+delay_seconds = 0.5
 
 [node name="round" type="Node" parent="GameManager/StateMachine/States/match"]
 script = ExtResource("8_gu0po")
@@ -110,7 +136,7 @@ script = ExtResource("9_toyb6")
 [node name="toFight" type="Node" parent="GameManager/StateMachine/States/match/round/ready"]
 script = ExtResource("10_wf50o")
 to = NodePath("../../fight")
-event = &"startFight"
+delay_seconds = 1.0
 
 [node name="fight" type="Node" parent="GameManager/StateMachine/States/match/round"]
 script = ExtResource("9_toyb6")
@@ -118,7 +144,8 @@ script = ExtResource("9_toyb6")
 [node name="toOutOfArena" type="Node" parent="GameManager/StateMachine/States/match/round/fight"]
 script = ExtResource("10_wf50o")
 to = NodePath("../../outOfArena")
-event = &"outOfArena"
+event = &"endOfRound"
+delay_seconds = 2.0
 
 [node name="outOfArena" type="Node" parent="GameManager/StateMachine/States/match/round"]
 script = ExtResource("9_toyb6")
@@ -126,7 +153,7 @@ script = ExtResource("9_toyb6")
 [node name="toRoundReset" type="Node" parent="GameManager/StateMachine/States/match/round/outOfArena"]
 script = ExtResource("10_wf50o")
 to = NodePath("../../roundReset")
-event = &"startRound"
+event = &"resetRound"
 
 [node name="toMatchReset" type="Node" parent="GameManager/StateMachine/States/match/round/outOfArena"]
 script = ExtResource("10_wf50o")
@@ -144,6 +171,20 @@ script = ExtResource("9_toyb6")
 [node name="toRound" type="Node" parent="GameManager/StateMachine/States/match/round/roundReset"]
 script = ExtResource("10_wf50o")
 to = NodePath("../../ready")
+event = &"startRound"
+delay_seconds = 2.0
 
 [node name="end" type="Node" parent="GameManager/StateMachine/States"]
 script = ExtResource("9_toyb6")
+
+[connection signal="endOfGame" from="GameManager" to="GameManager/StateMachine" method="send_event" binds= ["finish"]]
+[connection signal="endOfMatch" from="GameManager" to="GameManager/StateMachine" method="send_event" binds= ["startMatch"]]
+[connection signal="endOfRound" from="GameManager" to="GameManager/StateMachine" method="send_event" binds= ["endOfRound"]]
+[connection signal="resetPlayerPositions" from="GameManager" to="GameManager/StateMachine" method="send_event" binds= ["resetRound"]]
+[connection signal="startRound" from="GameManager" to="GameManager/StateMachine" method="send_event" binds= ["startRound"]]
+[connection signal="state_entered" from="GameManager/StateMachine/States/match/reset" to="GameManager" method="resetMatch"]
+[connection signal="state_entered" from="GameManager/StateMachine/States/match/enemyEnter" to="GameManager" method="spawnEnemy"]
+[connection signal="state_entered" from="GameManager/StateMachine/States/match/round/ready" to="GameManager" method="lookAtEachOther"]
+[connection signal="state_entered" from="GameManager/StateMachine/States/match/round/fight" to="GameManager" method="fightStarted"]
+[connection signal="state_entered" from="GameManager/StateMachine/States/match/round/outOfArena" to="GameManager" method="endCurrentRound"]
+[connection signal="state_entered" from="GameManager/StateMachine/States/match/round/roundReset" to="GameManager" method="resetRound"]
