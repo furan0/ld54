@@ -1,0 +1,62 @@
+[gd_scene load_steps=3 format=3 uid="uid://c14btfg46urgy"]
+
+[ext_resource type="PackedScene" uid="uid://c2ocj3h80y1mx" path="res://scenes/entity/2Drig/peon_rig.tscn" id="1_u3hs3"]
+[ext_resource type="Texture2D" uid="uid://d4c1mfxjp8nwc" path="res://assets/art/char/cosmetic/gentleman.png" id="2_18ivq"]
+
+[node name="2D_character_rig" instance=ExtResource("1_u3hs3")]
+
+[node name="keyframe" parent="." index="0"]
+visible = true
+
+[node name="Gentleman2" type="Sprite2D" parent="keyframe/Charge" index="0"]
+z_index = 5
+position = Vector2(43, -50)
+rotation = 0.579978
+scale = Vector2(1, 1)
+texture = ExtResource("2_18ivq")
+offset = Vector2(3.69588, 62.4857)
+
+[node name="Gentleman5" type="Sprite2D" parent="keyframe/Tackle" index="0"]
+z_index = 5
+position = Vector2(-60, -117)
+rotation = 0.579978
+scale = Vector2(1, 1)
+texture = ExtResource("2_18ivq")
+offset = Vector2(3.69588, 62.4857)
+
+[node name="Gentleman4" type="Sprite2D" parent="keyframe/Guard" index="0"]
+z_index = 5
+position = Vector2(21, -65)
+rotation = 0.579978
+scale = Vector2(1, 1)
+texture = ExtResource("2_18ivq")
+offset = Vector2(3.69588, 62.4857)
+
+[node name="Gentleman3" type="Sprite2D" parent="keyframe/Dead" index="1"]
+z_index = 5
+position = Vector2(-131, 123)
+rotation = 0.437158
+scale = Vector2(1, 1)
+texture = ExtResource("2_18ivq")
+offset = Vector2(3.69588, 62.4857)
+
+[node name="Wsl" parent="keyframe" index="5"]
+visible = true
+
+[node name="Gentleman4" type="Sprite2D" parent="keyframe/Wsl" index="1"]
+z_index = 5
+position = Vector2(-33, -125)
+rotation = 0.793954
+scale = Vector2(1, 1)
+texture = ExtResource("2_18ivq")
+offset = Vector2(3.69588, 62.4857)
+
+[node name="muppet" parent="." index="1"]
+visible = false
+
+[node name="Gentleman" type="Sprite2D" parent="muppet/CHeadNeutral" index="0"]
+z_index = 5
+position = Vector2(0.767853, -47.259)
+rotation = 0.49024
+texture = ExtResource("2_18ivq")
+offset = Vector2(3.69588, 62.4857)

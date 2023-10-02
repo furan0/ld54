@@ -1,0 +1,35 @@
+[gd_scene load_steps=8 format=3 uid="uid://dwlikrab7vhu1"]
+
+[ext_resource type="PackedScene" uid="uid://d1h1msw0tmfw4" path="res://scenes/player.tscn" id="1_oqy86"]
+[ext_resource type="PackedScene" uid="uid://c14btfg46urgy" path="res://scenes/entity/2Drig/2d_character_rig_peon_gent.tscn" id="2_836ep"]
+[ext_resource type="AudioStream" uid="uid://bbcohtfgelxyk" path="res://assets/audio/FX/peon/peon_hurt_r1_session.wav" id="3_a3ofk"]
+[ext_resource type="AudioStream" uid="uid://ckkoku2qfqdih" path="res://assets/audio/FX/peon/peon_hurt_r2_session.wav" id="4_yknlc"]
+[ext_resource type="AudioStream" uid="uid://bcgri1l4bjva6" path="res://assets/audio/FX/peon/peon_attaque_r1_session.wav" id="5_nk7m4"]
+[ext_resource type="AudioStream" uid="uid://rxmev7h1eep8" path="res://assets/audio/FX/peon/peon_attaque_r2_session.wav" id="6_osl7n"]
+[ext_resource type="AudioStream" uid="uid://dtbjhb0y74s27" path="res://assets/audio/FX/peon/peon_neutral_r1_session.wav" id="7_50x5g"]
+
+[node name="Player" instance=ExtResource("1_oqy86")]
+
+[node name="InputHandler" parent="." index="3"]
+inputProvider = 3
+
+[node name="IA" parent="." index="10"]
+start_on_load = true
+level = 0.3
+
+[node name="2D_character_rig" parent="." index="12"]
+visible = false
+
+[node name="2D_character_rig2" parent="." index="13" instance=ExtResource("2_836ep")]
+
+[node name="rig_signal_connector" parent="." index="14" node_paths=PackedStringArray("rig")]
+rig = NodePath("../2D_character_rig2")
+
+[node name="hurt" parent="AudioPlayers" index="5"]
+audio_clips = Array[AudioStream]([ExtResource("3_a3ofk"), ExtResource("4_yknlc")])
+
+[node name="attaque" parent="AudioPlayers" index="6"]
+audio_clips = Array[AudioStream]([ExtResource("5_nk7m4"), ExtResource("6_osl7n")])
+
+[node name="neutral" parent="AudioPlayers" index="7"]
+audio_clips = Array[AudioStream]([ExtResource("7_50x5g")])
