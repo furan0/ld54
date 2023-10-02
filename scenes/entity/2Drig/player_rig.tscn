@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://bq8s6d65y33h6"]
+[gd_scene load_steps=52 format=3 uid="uid://bq8s6d65y33h6"]
 
 [ext_resource type="Script" path="res://scripts/entity/2D_rig/character_rig.gd" id="1_jetxj"]
 [ext_resource type="Texture2D" uid="uid://cd2bbjl4nn1a7" path="res://assets/art/char/player/charge/full_charge.png" id="2_itmls"]
@@ -26,6 +26,8 @@
 [ext_resource type="Texture2D" uid="uid://cs4uavxjajfe8" path="res://assets/art/FX/ImpactB/0008.png" id="24_fdr30"]
 [ext_resource type="Texture2D" uid="uid://2mvcf8uns84" path="res://assets/art/FX/ImpactB/0009.png" id="25_sa2lj"]
 [ext_resource type="Texture2D" uid="uid://c0adwcs27pqco" path="res://assets/art/FX/ImpactB/0010.png" id="26_ptesc"]
+[ext_resource type="Shader" path="res://scripts/shaders/ditheralpha.gdshader" id="27_3gqoc"]
+[ext_resource type="Texture2D" uid="uid://2itm2shntolw" path="res://assets/art/FX/shadow/shadow_character.png" id="28_3ln0m"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1o0m4"]
 animations = [{
@@ -1754,6 +1756,11 @@ scale_curve = SubResource("CurveTexture_r7x3x")
 color = Color(0.87451, 0.87451, 0.87451, 1)
 color_ramp = SubResource("GradientTexture1D_hxr5t")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0gt2q"]
+shader = ExtResource("27_3gqoc")
+shader_parameter/color = Color(0.447059, 0.223529, 0.227451, 0.635294)
+shader_parameter/intensity = 1.537
+
 [node name="2D_character_rig" type="Node2D"]
 script = ExtResource("1_jetxj")
 
@@ -1930,3 +1937,9 @@ process_material = SubResource("ParticleProcessMaterial_mq3ht")
 texture = ExtResource("11_b0m76")
 lifetime = 0.7
 interpolate = false
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -11
+material = SubResource("ShaderMaterial_0gt2q")
+position = Vector2(6, -79)
+texture = ExtResource("28_3ln0m")

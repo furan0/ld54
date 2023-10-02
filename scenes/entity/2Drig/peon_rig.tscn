@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://c2ocj3h80y1mx"]
+[gd_scene load_steps=51 format=3 uid="uid://c2ocj3h80y1mx"]
 
 [ext_resource type="Script" path="res://scripts/entity/2D_rig/character_rig.gd" id="1_r7p3d"]
 [ext_resource type="Texture2D" uid="uid://xp301kjmw7j" path="res://assets/art/char/peon/keyframe/charge.png" id="2_revj6"]
@@ -24,7 +24,9 @@
 [ext_resource type="Texture2D" uid="uid://c4ahcunqdvisw" path="res://assets/art/char/peon/neutral/L_foot.png" id="22_vo378"]
 [ext_resource type="Texture2D" uid="uid://lixoi4rxvy5p" path="res://assets/art/char/peon/neutral/R_foot.png" id="23_85fui"]
 [ext_resource type="Texture2D" uid="uid://b6juc1iq6tat7" path="res://assets/art/FX/smoke_particle/smoke_particle_dithered.png" id="25_mqxj6"]
+[ext_resource type="Shader" path="res://scripts/shaders/ditheralpha.gdshader" id="26_2ktc5"]
 [ext_resource type="Texture2D" uid="uid://da3h3qsung5wx" path="res://assets/art/FX/trail/traintmanga1.png" id="26_spnre"]
+[ext_resource type="Texture2D" uid="uid://2itm2shntolw" path="res://assets/art/FX/shadow/shadow_character.png" id="27_jvjjg"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1o0m4"]
 animations = [{
@@ -1585,6 +1587,11 @@ scale_curve = SubResource("CurveTexture_r7x3x")
 color = Color(0.87451, 0.87451, 0.87451, 1)
 color_ramp = SubResource("GradientTexture1D_hxr5t")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uutge"]
+shader = ExtResource("26_2ktc5")
+shader_parameter/color = Color(0.447059, 0.223529, 0.227451, 0.627451)
+shader_parameter/intensity = 1.529
+
 [node name="2D_character_rig" type="Node2D"]
 script = ExtResource("1_r7p3d")
 speed_anim = {
@@ -1769,3 +1776,9 @@ process_material = SubResource("ParticleProcessMaterial_mq3ht")
 texture = ExtResource("25_mqxj6")
 lifetime = 0.7
 interpolate = false
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -11
+material = SubResource("ShaderMaterial_uutge")
+position = Vector2(2, -92)
+texture = ExtResource("27_jvjjg")

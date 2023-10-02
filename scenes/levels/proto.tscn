@@ -212,6 +212,7 @@ func goBack():
 anchor_mode = 0
 
 [node name="Background" type="Sprite2D" parent="."]
+modulate = Color(0.847059, 0.882353, 0.878431, 1)
 z_index = -30
 position = Vector2(601, 318)
 scale = Vector2(1.85734, 1.07072)

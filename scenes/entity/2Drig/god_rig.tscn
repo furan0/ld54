@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://c6kq86qdq5wfs"]
+[gd_scene load_steps=51 format=3 uid="uid://c6kq86qdq5wfs"]
 
 [ext_resource type="Script" path="res://scripts/entity/2D_rig/character_rig.gd" id="1_5uh0t"]
 [ext_resource type="Texture2D" uid="uid://odn6g8fsh3r5" path="res://assets/art/char/god/charge/full_charge_god.png" id="2_ck4uc"]
@@ -22,8 +22,10 @@
 [ext_resource type="Texture2D" uid="uid://kty7gph1yett" path="res://assets/art/char/god/neutral/L_leg_neutral_god.png" id="20_q6yld"]
 [ext_resource type="Texture2D" uid="uid://cn0sobrsxx530" path="res://assets/art/char/god/neutral/R_leg_neutral_god.png" id="21_b2uqq"]
 [ext_resource type="Texture2D" uid="uid://dfxtkh8j1w36i" path="res://assets/art/char/god/neutral/C_halo_neutral_god.png" id="22_oll06"]
+[ext_resource type="Shader" path="res://scripts/shaders/ditheralpha.gdshader" id="25_3cu2i"]
 [ext_resource type="Texture2D" uid="uid://b6juc1iq6tat7" path="res://assets/art/FX/smoke_particle/smoke_particle_dithered.png" id="25_rg1hj"]
 [ext_resource type="Texture2D" uid="uid://da3h3qsung5wx" path="res://assets/art/FX/trail/traintmanga1.png" id="26_mnl1y"]
+[ext_resource type="Texture2D" uid="uid://2itm2shntolw" path="res://assets/art/FX/shadow/shadow_character.png" id="26_vl8t7"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1o0m4"]
 animations = [{
@@ -1819,10 +1821,16 @@ scale_curve = SubResource("CurveTexture_r7x3x")
 color = Color(0.87451, 0.87451, 0.87451, 1)
 color_ramp = SubResource("GradientTexture1D_hxr5t")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kgrjt"]
+shader = ExtResource("25_3cu2i")
+shader_parameter/color = Color(0.447059, 0.223529, 0.227451, 0.545098)
+shader_parameter/intensity = 1.385
+
 [node name="2D_character_rig" type="Node2D"]
 script = ExtResource("1_5uh0t")
 
 [node name="keyframe" type="Node2D" parent="."]
+visible = false
 
 [node name="Charge" type="Sprite2D" parent="keyframe"]
 visible = false
@@ -1868,7 +1876,6 @@ rotation = 0.214072
 texture = ExtResource("18_paw18")
 
 [node name="muppet" type="Node2D" parent="."]
-visible = false
 
 [node name="CBellyNeutral" type="Sprite2D" parent="muppet"]
 position = Vector2(-3, -82)
@@ -1993,3 +2000,9 @@ process_material = SubResource("ParticleProcessMaterial_mq3ht")
 texture = ExtResource("25_rg1hj")
 lifetime = 0.7
 interpolate = false
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -11
+material = SubResource("ShaderMaterial_kgrjt")
+position = Vector2(8, -59)
+texture = ExtResource("26_vl8t7")

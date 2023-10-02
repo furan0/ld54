@@ -76,12 +76,12 @@ func move_to(target_pos : Vector2,threhsold_for_stop=10.0):
 	stop.emit()
 
 ## Ask the input for walking to the target + offset., epsilon here to stop the guy.
-func follow(target : Node2D, offset:=Vector2.ZERO, epsilon:=1936.0):
+func follow(target : Node2D, offset:=Vector2.ZERO, epsilon:=70):
 	var keep_going := true
 	walking.emit()
 	while(keep_going and keep_going_global):
 		var dir = target.position+offset-get_parent().position
-		if(dir).length_squared() > epsilon:
+		if(dir).length_squared() > (epsilon*epsilon):
 			dir=dir.normalized()
 			input_handler.spoofInput("setMove",true)
 			input_handler.spoofInput("move",dir)
@@ -182,12 +182,12 @@ func pick_attaque(threshold_for_charge=80):
 			look_target()
 		var p = randf()
 		if (p<0.7):
-			brain_timer.start(0.4)
+			brain_timer.start(0.4+(1.0-level)*0.2)
 			
 			input_handler.spoofInput("tackle",null)
 			stop.emit()
 		else:
-			brain_timer.start(0.3)
+			brain_timer.start(0.3+(1.0-level)*0.2)
 			make_guard(target_node)
 		
 	else :
@@ -195,15 +195,15 @@ func pick_attaque(threshold_for_charge=80):
 			# simule un temps de reaction 
 			await get_tree().physics_frame
 			look_target()
-		get_tree().create_timer(0.4).timeout.connect(stop_action)
+		brain_timer.start(0.4+(1.0-level)*0.2)
 		make_charge(target_node)
 
 func parade_riposte():
 	if (smart_counter>0):
-		if (randf() < level):
+		if ((randf()*2.0) < level):
 			smart_counter = 0
 	if(smart_counter<1):
-		smart_counter += 1
+		smart_counter += 3
 		stop_action()
 		brain_timer.start(0.4)
 		make_guard(target_node)
@@ -225,7 +225,7 @@ func pick_action():
 			keep_going_global=true
 			input_handler.spoofInput("setMove",false)
 			input_handler.spoofInput("move",Vector2.ZERO)
-			await get_tree().create_timer(randf()*0.2+0.01).timeout
+			await get_tree().create_timer(randf()*0.2+(1.0-level)*0.2).timeout
 			
 			var p = randf()
 			look_target()
@@ -233,14 +233,16 @@ func pick_action():
 				brain_timer.start(0.4)
 				follow(target_node)
 			elif (p<0.2):
+				brain_timer.start(0.4)
 				flee()
 			elif (p<0.25):
-				brain_timer.start(0.4)
+				brain_timer.start(0.3)
 				make_guard(target_node)
-			elif (p<0.8-(1.0-level)*2):
+			elif (p<0.8-(1.0-level)*0.5):
 				pick_attaque()
 			else:
-				go_to_orthogonal_ZAD()
+				brain_timer.start(0.4)
+				follow(target_node)
 
 
 
