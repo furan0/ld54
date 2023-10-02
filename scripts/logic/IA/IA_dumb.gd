@@ -11,7 +11,7 @@ signal charge
 @export var target_node : Node2D
 @export var start_on_load = true
 ## Param de Strategie
-@export var ZAD : Array[Vector2] = [Vector2(600,300),Vector2(700,300),Vector2(550,150),Vector2(750,450)]
+@export var ZAD : Array[Vector2] = [Vector2(576,320),Vector2(768,320),Vector2(448,448),Vector2(460,200)]
 @export var frame_react := 8
 ##
 
@@ -21,6 +21,7 @@ var papa : Node2D
 var is_ia_active = false
 var keep_going_global := true
 var timer
+var dumb = true
 ###
 
  #Lancer IA
@@ -156,35 +157,59 @@ func flee():
 			best_pose = pos
 	move_to(best_pose)
 
+func look_target():
+	var dir = target_node.position - papa.position
+	input_handler.spoofInput("setMove",true)
+	input_handler.spoofInput("move",dir)
+
 ## Attaque suivant la position de la target.
-func pick_attaque(threshold_for_charge=40.0):
+func pick_attaque(threshold_for_charge=60):
 	if (target_node.position-papa.position).length_squared() < threshold_for_charge*threshold_for_charge:
-		for i in range(frame_react):
+		look_target()
+		for i in range(2):
 			# simule un temps de reaction 
 			await get_tree().physics_frame
-		get_tree().create_timer(0.6).timeout.connect(stop_action)
-		input_handler.spoofInput("tackle",null)
-	elif (target_node.position-papa.position).length_squared() < 1.7*1.7*threshold_for_charge*threshold_for_charge:
-		# tkt
-		get_tree().create_timer(0.3).timeout.connect(stop_action)
-		make_guard(target_node)
+			look_target()
+		var p = randf()
+		if (p<0.5):
+			get_tree().create_timer(0.2).timeout.connect(stop_action)
+			
+			input_handler.spoofInput("tackle",null)
+		else:
+			
+			get_tree().create_timer(0.3).timeout.connect(stop_action)
+			make_guard(target_node)
+		
 	else :
-		for i in range(frame_react):
+		for i in range(2):
 			# simule un temps de reaction 
 			await get_tree().physics_frame
-		get_tree().create_timer(0.9).timeout.connect(stop_action)
+			look_target()
+		get_tree().create_timer(0.4).timeout.connect(stop_action)
 		make_charge(target_node)
+
+func parade_riposte():
+	make_guard(target_node)
+
+## Wait fot nodes to be ready
+func set_advanced_settings():
+	dumb=false
+	target_node.get_node("StateMachine/CompoundState/free/charge/preCharge").state_exited.connect(parade_riposte)
+
 
 func pick_action():
 	if(is_ia_active):
 		if(target_node != null):
+			if(dumb):
+				set_advanced_settings()
+			
 			keep_going_global=true
 			input_handler.spoofInput("setMove",false)
 			input_handler.spoofInput("move",Vector2.ZERO)
 			await get_tree().create_timer(randf()*0.5+0.1).timeout
 			
 			var p = randf()
-			
+			look_target()
 			if (p<0.1):
 				get_tree().create_timer(0.5).timeout.connect(stop_action)
 				follow(target_node)
@@ -203,6 +228,7 @@ func pick_action():
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	papa = get_parent() as Node2D
+
 	if(start_on_load):
 		start_ia()
 		
