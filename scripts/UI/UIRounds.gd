@@ -25,9 +25,10 @@ func setRoundColor(ui : Control, isPlayerVictory : bool):
 		tween.tween_property(ui.get_node("enemy"), "modulate", Color(1, 1, 1, 1), tweenTime)
 
 func resetRound():
-	var tween1 = get_tree().create_tween().set_ease(Tween.EASE_OUT)
-	tween1.tween_property(uiRound1.get_node("player"), "modulate", Color(1, 1, 1, 0), tweenTime)
-	var tween2 = get_tree().create_tween().set_ease(Tween.EASE_OUT)
-	tween2.tween_property(uiRound2.get_node("player"), "modulate", Color(1, 1, 1, 0), tweenTime)
-	var tween3 = get_tree().create_tween().set_ease(Tween.EASE_OUT)
-	tween3.tween_property(uiRound3.get_node("player"), "modulate", Color(1, 1, 1, 0), tweenTime)
+	var tween = get_tree().create_tween().set_ease(Tween.EASE_OUT)
+	tween.tween_property(uiRound1.get_node("player"), "modulate", Color(1, 1, 1, 0), tweenTime)
+	tween.tween_property(uiRound2.get_node("player"), "modulate", Color(1, 1, 1, 0), tweenTime)
+	tween.tween_property(uiRound3.get_node("player"), "modulate", Color(1, 1, 1, 0), tweenTime)
+	tween.tween_property(uiRound1.get_node("enemy"), "modulate", Color(1, 1, 1, 0), tweenTime)
+	tween.tween_property(uiRound2.get_node("enemy"), "modulate", Color(1, 1, 1, 0), tweenTime)
+	tween.tween_property(uiRound3.get_node("enemy"), "modulate", Color(1, 1, 1, 0), tweenTime)

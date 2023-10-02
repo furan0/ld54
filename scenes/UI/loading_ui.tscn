@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bsutykcmunj6m"]
+[gd_scene load_steps=3 format=3 uid="uid://bsutykcmunj6m"]
 
 [ext_resource type="Script" path="res://scenes/UI/LoadingUI.gd" id="1_dtaya"]
+[ext_resource type="Theme" uid="uid://mxwvwg8snm7m" path="res://assets/defaultUiTheme.tres" id="2_uo847"]
 
 [node name="LoadingUI" type="CanvasLayer" node_paths=PackedStringArray("loadingBar")]
 layer = 50
@@ -15,6 +16,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("2_uo847")
 
 [node name="MarginContainer" type="MarginContainer" parent="Panel"]
 layout_mode = 1

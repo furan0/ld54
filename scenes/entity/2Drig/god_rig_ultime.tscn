@@ -1,0 +1,53 @@
+[gd_scene load_steps=3 format=3 uid="uid://c6vl8h60wm7sw"]
+
+[ext_resource type="PackedScene" uid="uid://c6kq86qdq5wfs" path="res://scenes/entity/2Drig/god_rig.tscn" id="1_uk7lx"]
+[ext_resource type="Texture2D" uid="uid://dlv4ml8g65vyv" path="res://assets/art/char/cosmetic/royal.png" id="2_ch8lk"]
+
+[node name="2D_character_rig" instance=ExtResource("1_uk7lx")]
+
+[node name="keyframe" parent="." index="0"]
+visible = true
+
+[node name="Royal2" type="Sprite2D" parent="keyframe/Charge" index="0"]
+position = Vector2(-31, -110)
+rotation = 0.108357
+scale = Vector2(1, 1)
+texture = ExtResource("2_ch8lk")
+offset = Vector2(-6, 66)
+
+[node name="Royal3" type="Sprite2D" parent="keyframe/Tackle" index="0"]
+position = Vector2(-91, -106)
+rotation = -0.971127
+scale = Vector2(1, 1)
+texture = ExtResource("2_ch8lk")
+offset = Vector2(-6, 66)
+
+[node name="Royal4" type="Sprite2D" parent="keyframe/Guard" index="0"]
+position = Vector2(55, -102)
+rotation = 1.33036
+scale = Vector2(1, 1)
+texture = ExtResource("2_ch8lk")
+offset = Vector2(-6, 66)
+
+[node name="Royal5" type="Sprite2D" parent="keyframe/Dead" index="1"]
+position = Vector2(-37, -42)
+rotation = 0.0835605
+scale = Vector2(0.797759, 0.725981)
+texture = ExtResource("2_ch8lk")
+offset = Vector2(-6, 66)
+
+[node name="Royal6" type="Sprite2D" parent="keyframe/Wsl/Wsl" index="0"]
+position = Vector2(-100.139, -121.327)
+rotation = -0.681401
+scale = Vector2(0.797759, 2.17508)
+texture = ExtResource("2_ch8lk")
+offset = Vector2(-6, 66)
+
+[node name="muppet" parent="." index="1"]
+visible = false
+
+[node name="Royal" type="Sprite2D" parent="muppet/CSlipNeutral" index="0"]
+position = Vector2(20, -23)
+rotation = 0.104486
+texture = ExtResource("2_ch8lk")
+offset = Vector2(-6, 66)

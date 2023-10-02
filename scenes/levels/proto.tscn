@@ -1,19 +1,24 @@
-[gd_scene load_steps=43 format=3 uid="uid://cl5me5crmsilp"]
+[gd_scene load_steps=46 format=3 uid="uid://cl5me5crmsilp"]
 
 [ext_resource type="Texture2D" uid="uid://opx64atbwl5l" path="res://assets/art/title_screen/title_screen_BG.jpg" id="1_dkxa3"]
+[ext_resource type="Script" path="res://scripts/ShakyShaky.gd" id="1_pgyyd"]
 [ext_resource type="PackedScene" uid="uid://d1h1msw0tmfw4" path="res://scenes/player.tscn" id="3_vg4tc"]
 [ext_resource type="PackedScene" uid="uid://cipdvjdamv1gv" path="res://scenes/entity/Crowd/CrowdHandler.tscn" id="4_4nfb2"]
 [ext_resource type="Script" path="res://scripts/Arena.gd" id="4_r6e6i"]
+[ext_resource type="PackedScene" uid="uid://bw3mv3pn2ulwn" path="res://scenes/entity/2Deffect/rope_tracer.tscn" id="5_3k0dg"]
 [ext_resource type="PackedScene" uid="uid://cp6pf6jki310y" path="res://scenes/peon.tscn" id="6_dcx4b"]
 [ext_resource type="Script" path="res://scripts/logic/GameManager.gd" id="6_f1f3y"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="7_inov0"]
 [ext_resource type="PackedScene" uid="uid://cqutmoew07l58" path="res://scenes/GOD.tscn" id="7_prk6a"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="8_gu0po"]
+[ext_resource type="PackedScene" uid="uid://dwlikrab7vhu1" path="res://scenes/peon_gent.tscn" id="9_oewga"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="9_toyb6"]
+[ext_resource type="PackedScene" uid="uid://b5gjc8kpk582" path="res://scenes/peon_king.tscn" id="10_ajkl0"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="10_wf50o"]
 [ext_resource type="Script" path="res://scripts/UI/UIRounds.gd" id="12_40cwf"]
 [ext_resource type="Texture2D" uid="uid://bbwb5a70qp278" path="res://assets/art/UI/text_UI/ready_text.png" id="12_dt75w"]
 [ext_resource type="Texture2D" uid="uid://bv7cjgv0iecpq" path="res://assets/art/UI/counter_empty.png" id="12_f02h5"]
+[ext_resource type="PackedScene" uid="uid://c65b83q5h21ls" path="res://scenes/peon_king_ultime.tscn" id="12_v2wiv"]
 [ext_resource type="Script" path="res://scripts/UI/TextUIHandler.gd" id="12_yqcsr"]
 [ext_resource type="Texture2D" uid="uid://cmayfd4bbjfko" path="res://assets/art/UI/counter_win.png" id="13_7io1t"]
 [ext_resource type="Texture2D" uid="uid://j3ri8ks4lj3t" path="res://assets/art/UI/counter_lose.png" id="14_45apn"]
@@ -29,18 +34,7 @@
 [ext_resource type="AudioStream" uid="uid://c7nv28vohtlrc" path="res://assets/audio/ambiance/whaou_r2_session.wav" id="25_q0q33"]
 [ext_resource type="AudioStream" uid="uid://cjilarya4krpd" path="res://assets/audio/ambiance/ring_debut_session.wav" id="26_wb46u"]
 [ext_resource type="AudioStream" uid="uid://cstca1aafqsvd" path="res://assets/audio/ambiance/ring_fin_session.wav" id="27_uyd3w"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oukdq"]
-radius = 272.92
-height = 807.88
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ald5m"]
-radius = 224.47
-height = 662.29
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r6vxw"]
-radius = 155.3
-height = 527.63
+[ext_resource type="AudioStream" uid="uid://bwso7ajyxccg" path="res://assets/audio/FX/WSL_session.wav" id="30_5cb55"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_yu5ia"]
 a = Vector2(0, -28)
@@ -208,8 +202,10 @@ func goBack():
 
 [node name="proto" type="Node2D"]
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera" type="Camera2D" parent="."]
+unique_name_in_owner = true
 anchor_mode = 0
+script = ExtResource("1_pgyyd")
 
 [node name="Background" type="Sprite2D" parent="."]
 modulate = Color(0.847059, 0.882353, 0.878431, 1)
@@ -225,20 +221,26 @@ position = Vector2(369, 328)
 position = Vector2(578, 323)
 script = ExtResource("4_r6e6i")
 
-[node name="ArenaBig" type="CollisionShape2D" parent="Arena"]
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_oukdq")
-debug_color = Color(0.8, 0.537255, 0, 0.419608)
+[node name="TracerBig" parent="Arena" node_paths=PackedStringArray("colliderToDraw") instance=ExtResource("5_3k0dg")]
+z_index = -29
+colliderToDraw = NodePath("../ArenaBig")
 
-[node name="ArenaMedium" type="CollisionShape2D" parent="Arena"]
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_ald5m")
-debug_color = Color(0.964706, 0.262745, 0.741176, 0.419608)
+[node name="TracerMedium" parent="Arena" node_paths=PackedStringArray("colliderToDraw") instance=ExtResource("5_3k0dg")]
+z_index = -29
+colliderToDraw = NodePath("../ArenaMedium")
 
-[node name="ArenaSmall" type="CollisionShape2D" parent="Arena"]
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_r6vxw")
-debug_color = Color(1, 0.0941176, 0.0627451, 0.419608)
+[node name="TracerSmall" parent="Arena" node_paths=PackedStringArray("colliderToDraw") instance=ExtResource("5_3k0dg")]
+z_index = -29
+colliderToDraw = NodePath("../ArenaSmall")
+
+[node name="ArenaBig" type="CollisionPolygon2D" parent="Arena"]
+polygon = PackedVector2Array(-201, -264, -134, -273, 133, -274, 201, -266, 267, -237, 326, -192, 368, -136, 396, -70, 404, -1, 395, 73, 368, 136, 324, 195, 268, 236, 203, 265, 134, 273, -133, 273, -201, 264, -269, 236, -324, 193, -369, 136, -395, 69, -405, -2, -395, -72, -368, -137, -324, -194, -267, -237)
+
+[node name="ArenaMedium" type="CollisionPolygon2D" parent="Arena"]
+polygon = PackedVector2Array(-110, -224, 109, -224, 164, -217, 219, -194, 266, -159, 301, -112, 324, -58, 331, 1, 324, 58, 302, 111, 267, 159, 220, 194, 164, 218, 109, 224, -110, 224, -163, 217, -220, 195, -266, 158, -302, 112, -324, 57, -332, -1, -324, -58, -302, -112, -266, -159, -218, -195, -165, -217)
+
+[node name="ArenaSmall" type="CollisionPolygon2D" parent="Arena"]
+polygon = PackedVector2Array(-110, -155, 110, -156, 149, -150, 185, -136, 219, -110, 243, -77, 258, -41, 264, -1, 259, 40, 244, 77, 219, 109, 187, 134, 149, 151, 108, 155, -108, 155, -149, 150, -187, 134, -219, 108, -243, 77, -259, 39, -264, -1, -259, -41, -243, -79, -218, -111, -188, -135, -148, -150)
 
 [node name="CrowdHandler" parent="Arena" instance=ExtResource("4_4nfb2")]
 
@@ -264,7 +266,7 @@ unique_name_in_owner = true
 script = ExtResource("6_f1f3y")
 arena = NodePath("../Arena")
 player = NodePath("../Player")
-enemyList = Array[PackedScene]([ExtResource("6_dcx4b"), ExtResource("7_prk6a")])
+enemyList = Array[PackedScene]([ExtResource("6_dcx4b"), ExtResource("9_oewga"), ExtResource("10_ajkl0"), ExtResource("7_prk6a"), ExtResource("12_v2wiv")])
 targetPlayer = NodePath("../Arena/Targets/positionPlayer")
 targetEnemy = NodePath("../Arena/Targets/positionEnemy")
 targetSpawn = NodePath("../Arena/Targets/spawnEnemy")
@@ -560,6 +562,7 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 6.3
 
 [node name="Victory" type="Control" parent="UIText"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -730,6 +733,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="EndGameWon" type="Control" parent="UIText"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -826,16 +830,25 @@ size_flags_horizontal = 3
 
 [node name="youpi" type="AudioStreamPlayer" parent="Audio_lvl"]
 stream = ExtResource("23_siste")
+bus = &"Sfx"
 script = ExtResource("21_k10s6")
 audio_clips = Array[AudioStream]([ExtResource("22_fh4vi"), ExtResource("23_siste"), ExtResource("24_nbmtq"), ExtResource("25_q0q33")])
 
 [node name="RING_strt" type="AudioStreamPlayer" parent="Audio_lvl"]
 stream = ExtResource("26_wb46u")
+bus = &"Sfx"
 script = ExtResource("21_k10s6")
 audio_clips = Array[AudioStream]([ExtResource("26_wb46u")])
 
+[node name="WSL_samere" type="AudioStreamPlayer" parent="Audio_lvl"]
+stream = ExtResource("26_wb46u")
+bus = &"Sfx"
+script = ExtResource("21_k10s6")
+audio_clips = Array[AudioStream]([ExtResource("30_5cb55")])
+
 [node name="RING_end" type="AudioStreamPlayer" parent="Audio_lvl"]
 volume_db = 8.0
+bus = &"Sfx"
 script = ExtResource("21_k10s6")
 audio_clips = Array[AudioStream]([ExtResource("27_uyd3w")])
 
@@ -844,19 +857,22 @@ stream = ExtResource("22_8g3oj")
 autoplay = true
 bus = &"Music"
 
+[connection signal="hitReceived" from="Player" to="Camera" method="doShake" binds= [0.25]]
 [connection signal="wrestlingStarted" from="Player" to="Arena/CrowdHandler" method="superHappy"]
 [connection signal="wrestlingStarted" from="Player" to="Audio_lvl/youpi" method="play_sound"]
+[connection signal="wrestlingStarted" from="Player" to="Audio_lvl/WSL_samere" method="play_sound"]
+[connection signal="wrestlingStarted" from="Player" to="Camera" method="doShake" binds= [0.45]]
 [connection signal="endOfGame" from="GameManager" to="GameManager/StateMachine" method="send_event" binds= ["finish"]]
 [connection signal="endOfRound" from="GameManager" to="GameManager/StateMachine" method="send_event" binds= ["endOfRound"]]
-[connection signal="enemyWonGame" from="GameManager" to="UIText" method="showUIAfterDelay" binds= ["gameLost", 1.0]]
 [connection signal="enemyWonGame" from="GameManager" to="UIText" method="showUI" binds= ["defeat", false]]
+[connection signal="enemyWonGame" from="GameManager" to="UIText" method="showUIAfterDelay" binds= ["gameLost", 1.0]]
 [connection signal="enemyWonRound" from="GameManager" to="UIRounds" method="setRound" binds= [false]]
-[connection signal="playerWonGame" from="GameManager" to="UIText" method="showUIAfterDelay" binds= ["gameWon", 1.0]]
 [connection signal="playerWonGame" from="GameManager" to="UIText" method="showUI" binds= ["victory", false]]
+[connection signal="playerWonGame" from="GameManager" to="UIText" method="showUIAfterDelay" binds= ["gameWon", 1.0]]
 [connection signal="playerWonMatch" from="GameManager" to="Arena/CrowdHandler" method="superHappy"]
 [connection signal="playerWonMatch" from="GameManager" to="Audio_lvl/youpi" method="play_sound"]
-[connection signal="playerWonMatch" from="GameManager" to="UIText" method="showUIAfterDelay" binds= ["nextMatch", 0.5]]
 [connection signal="playerWonMatch" from="GameManager" to="UIText" method="showUI" binds= ["victory", false]]
+[connection signal="playerWonMatch" from="GameManager" to="UIText" method="showUIAfterDelay" binds= ["nextMatch", 0.5]]
 [connection signal="playerWonRound" from="GameManager" to="UIRounds" method="setRound" binds= [true]]
 [connection signal="resetPlayerPositions" from="GameManager" to="GameManager/StateMachine" method="send_event" binds= ["resetRound"]]
 [connection signal="startRound" from="GameManager" to="GameManager/StateMachine" method="send_event" binds= ["startRound"]]
@@ -864,6 +880,7 @@ bus = &"Music"
 [connection signal="state_entered" from="GameManager/StateMachine/States/match/reset" to="UIRounds" method="resetRound"]
 [connection signal="state_entered" from="GameManager/StateMachine/States/match/reset" to="UIText" method="hideAllUi"]
 [connection signal="state_entered" from="GameManager/StateMachine/States/match/enemyEnter" to="GameManager" method="spawnEnemy"]
+[connection signal="state_exited" from="GameManager/StateMachine/States/match/enemyEnter" to="Camera" method="doShake" binds= [0.45]]
 [connection signal="state_entered" from="GameManager/StateMachine/States/match/round/ready" to="GameManager" method="lookAtEachOther"]
 [connection signal="state_entered" from="GameManager/StateMachine/States/match/round/ready" to="UIText" method="showUI" binds= ["ready", false]]
 [connection signal="state_exited" from="GameManager/StateMachine/States/match/round/ready" to="UIText" method="hideUI" binds= ["ready"]]

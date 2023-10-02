@@ -165,6 +165,7 @@ func lockPlayers(isLocked : bool):
 func setupPlayer(playerToSetup : Player):
 	playerToSetup.setupIaTarget(player)
 	playerToSetup.matchNumber = currentMatchNumber
+	playerToSetup.hitReceived.connect(%Camera.doShake.bind(0.3))
 
 
 func lookAtEachOther():

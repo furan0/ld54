@@ -1,8 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://cack3kykwsqny"]
+[gd_scene load_steps=3 format=3 uid="uid://cack3kykwsqny"]
 
 [ext_resource type="PackedScene" uid="uid://d1h1msw0tmfw4" path="res://scenes/player.tscn" id="1_emhan"]
+[ext_resource type="PackedScene" uid="uid://c14btfg46urgy" path="res://scenes/entity/2Drig/2d_character_rig_peon_gent.tscn" id="2_lm5p7"]
 
 [node name="Player2" instance=ExtResource("1_emhan")]
 
 [node name="InputHandler" parent="." index="3"]
 inputProvider = 1
+
+[node name="2D_character_rig" parent="." index="12"]
+visible = false
+
+[node name="2D_character_rig2" parent="." index="13" node_paths=PackedStringArray("looker") instance=ExtResource("2_lm5p7")]
+position = Vector2(0, 23.46)
+scale = Vector2(0.373, 0.373)
+looker = NodePath("../LookAt")
+
+[node name="rig_signal_connector" parent="." index="14" node_paths=PackedStringArray("rig")]
+rig = NodePath("../2D_character_rig2")

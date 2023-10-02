@@ -9,6 +9,7 @@ signal dead()
 signal resurect()
 signal wrestlingStarted()
 signal moveCompleted()
+signal hitReceived()
 
 #Force a charge for this duration
 func charge(duration : float):
@@ -44,6 +45,9 @@ func kill():
 
 func signalWrestling():
 	wrestlingStarted.emit()
+
+func signalHit():
+	hitReceived.emit()
 
 
 func unkill():

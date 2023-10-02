@@ -4,9 +4,12 @@ extends Area2D
 enum EArena {BIG, MEDIUM, SMALL}
 var currentArena : EArena = EArena.BIG
 
-@export var areaBig : CollisionShape2D
-@export var areaMedium : CollisionShape2D
-@export var areaSmall : CollisionShape2D
+@export var areaBig : CollisionPolygon2D
+@export var tracerBig : Node2D
+@export var areaMedium : CollisionPolygon2D
+@export var tracerMedium : Node2D
+@export var areaSmall : CollisionPolygon2D
+@export var tracerSmall : Node2D
 
 @export var crowdHandler : Node2D
 @export var delayBetweenResurectAndMove : float = 1.5
@@ -20,8 +23,18 @@ func _ready():
 		areaMedium = $ArenaMedium
 	if areaSmall == null:
 		areaSmall = $ArenaSmall
+	if tracerBig == null:
+		tracerBig = $TracerBig
+	if tracerMedium == null:
+		tracerMedium = $TracerMedium
+	if tracerSmall == null:
+		tracerSmall = $TracerSmall
 	if crowdHandler == null:
 		crowdHandler = $CrowdHandler
+	
+	tracerBig.show()
+	tracerMedium.hide()
+	tracerSmall.hide()
 		
 	body_exited.connect(func (body : Node2D):
 		if is_instance_of(body, Player):
@@ -35,21 +48,27 @@ func reset():
 	switchArena(EArena.BIG)
 
 func switchArena(arenaSize : EArena):
+	tracerBig.hide()
+	tracerMedium.hide()
+	tracerSmall.hide()
 	match(arenaSize):
 		EArena.BIG:
 			areaBig.disabled = false
 			areaMedium.disabled = true
 			areaSmall.disabled = true
+			tracerBig.show()
 			crowdHandler.moveTo(1)
 		EArena.MEDIUM:
 			areaMedium.disabled = false
 			areaBig.disabled = true
 			areaSmall.disabled = true
+			tracerMedium.show()
 			crowdHandler.moveTo(2)
 		EArena.SMALL:
 			areaSmall.disabled = false
 			areaBig.disabled = true
 			areaMedium.disabled = true
+			tracerSmall.show()
 			crowdHandler.moveTo(3)
 
 func switchArenaNum(sizeNumber : int):

@@ -1,18 +1,10 @@
 extends Node2D
 
-
-
-
-
+@export var colliderToDraw : CollisionPolygon2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+	draw_according_collision_shape.bind(colliderToDraw).call_deferred()
 
 ## Trace a rope according a CollisionPolygon2D shape.
 func draw_according_collision_shape(collider : CollisionPolygon2D) :

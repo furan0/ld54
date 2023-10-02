@@ -13,6 +13,14 @@
 [node name="InputHandler" parent="." index="3"]
 inputProvider = 3
 
+[node name="MovementHandler" parent="." index="4"]
+defaultForce = 2000.0
+
+[node name="IA" parent="." index="10"]
+start_on_load = true
+i_am_robot = true
+level = 0.8
+
 [node name="2D_character_rig" parent="." index="12"]
 visible = false
 
