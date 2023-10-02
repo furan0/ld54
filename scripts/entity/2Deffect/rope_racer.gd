@@ -4,7 +4,7 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	draw_according_collision_shape(colliderToDraw)
+	draw_according_collision_shape.bind(colliderToDraw).call_deferred()
 
 ## Trace a rope according a CollisionPolygon2D shape.
 func draw_according_collision_shape(collider : CollisionPolygon2D) :

@@ -218,14 +218,17 @@ position = Vector2(369, 328)
 position = Vector2(578, 323)
 script = ExtResource("4_r6e6i")
 
-[node name="TracerBig" parent="Arena" instance=ExtResource("5_3k0dg")]
+[node name="TracerBig" parent="Arena" node_paths=PackedStringArray("colliderToDraw") instance=ExtResource("5_3k0dg")]
 z_index = -29
+colliderToDraw = NodePath("../ArenaBig")
 
-[node name="TracerMedium" parent="Arena" instance=ExtResource("5_3k0dg")]
+[node name="TracerMedium" parent="Arena" node_paths=PackedStringArray("colliderToDraw") instance=ExtResource("5_3k0dg")]
 z_index = -29
+colliderToDraw = NodePath("../ArenaMedium")
 
-[node name="TracerSmall" parent="Arena" instance=ExtResource("5_3k0dg")]
+[node name="TracerSmall" parent="Arena" node_paths=PackedStringArray("colliderToDraw") instance=ExtResource("5_3k0dg")]
 z_index = -29
+colliderToDraw = NodePath("../ArenaSmall")
 
 [node name="ArenaBig" type="CollisionPolygon2D" parent="Arena"]
 polygon = PackedVector2Array(-201, -264, -134, -273, 133, -274, 201, -266, 267, -237, 326, -192, 368, -136, 396, -70, 404, -1, 395, 73, 368, 136, 324, 195, 268, 236, 203, 265, 134, 273, -133, 273, -201, 264, -269, 236, -324, 193, -369, 136, -395, 69, -405, -2, -395, -72, -368, -137, -324, -194, -267, -237)
