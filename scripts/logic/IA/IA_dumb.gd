@@ -16,6 +16,26 @@ var keep_going_global := true
 var timer
 ###
 
+
+func move_to(target_pos : Vector2,threhsold_for_stop=10.0):
+	var keep_going := true
+	var sqrd_thr = threhsold_for_stop * threhsold_for_stop
+	walking.emit()
+	
+	while(keep_going and keep_going_global):
+		var dir = target_pos-get_parent().position
+		if ((dir).length_squared() > sqrd_thr):
+			dir=dir.normalized()
+			input_handler.spoofInput("setMove",true)
+			input_handler.spoofInput("move",dir)
+		else:
+			keep_going = false
+		await get_tree().process_frame
+	
+	input_handler.spoofInput("setMove",false)
+	input_handler.spoofInput("move",Vector2.ZERO)
+	stop.emit()
+
 ## Ask the input for walking to the target + offset., epsilon here to stop the guy.
 func follow(target : Node2D, offset:=Vector2.ZERO, epsilon:=1936.0):
 	var keep_going := true
@@ -108,6 +128,7 @@ func stop_action():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
 	if(start_on_load):
 		connect("stop",pick_action)
 		pick_action()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://d1h1msw0tmfw4"]
+[gd_scene load_steps=27 format=3 uid="uid://d1h1msw0tmfw4"]
 
 [ext_resource type="Script" path="res://scripts/Player/Player.gd" id="1_21uft"]
 [ext_resource type="Script" path="res://scripts/logic/LookAt.gd" id="2_r5dgl"]
@@ -350,7 +350,6 @@ looker = NodePath("../LookAt")
 
 [node name="rig_signal_connector" type="Node" parent="."]
 script = ExtResource("18_ka1ft")
-
 
 [connection signal="dead" from="." to="StateMachine" method="send_event" binds= ["dead"]]
 [connection signal="chargeEnd" from="InputHandler" to="StateMachine" method="send_event" binds= ["doCharge"]]
