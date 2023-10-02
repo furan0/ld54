@@ -18,6 +18,8 @@ class_name ChargeHandler
 @export var pushedStunDuration : float = 0.6
 ## Maximum charge time. afterward, no more impact on runtime and impulse force
 @export var maxChargeTime : float = 0.7
+##fector between charge time & run time
+@export var chargeRunFactor : float = 0.75
 ## Charge Run force applied to the player
 @export var chargeRunForce : float = 8000
 ## Max rotation speed while charging
@@ -27,9 +29,11 @@ class_name ChargeHandler
 ## Charge Wrestle duration
 @export var wrestleDuration : float = 4.0
 @onready var wrestleHandler = get_node("%WrestleHandler") as WrestleHandler
+@export var wrestleForceFactor : float = 1.2
 
 # Time ellapsed since start of charge
 var chargingTime : float = 0.0
+var runningTime : float = 0.0
 # Are we charging right now ?
 var isCharging : bool = false
 # Are we running right now ?
@@ -95,7 +99,8 @@ func stopCharging():
 	isCharging = false
 	# make sure charge time is not greater than max charge time
 	chargingTime = min(chargingTime, maxChargeTime)
-	_print("Charging ended. Run now little bastard ! For : " + str(chargingTime) + "s")
+	runningTime = chargingTime * chargeRunFactor
+	_print("Charging ended. Run now little bastard ! For : " + str(runningTime) + "s")
 	doCharge.emit()
 	# Retablish max rotation speed
 	rotationRef.setMaxRotationSpeed(0.0)
@@ -105,7 +110,6 @@ func stopCharging():
 func startRunning():
 	ellapsedRunningTime = 0.0
 	isRunning = true
-	pass
 
 
 ##called to set the stick direction
@@ -127,7 +131,7 @@ func _physics_process(delta):
 			
 		# check if we still need to run
 		ellapsedRunningTime += delta
-		if ellapsedRunningTime >= chargingTime:
+		if ellapsedRunningTime >= runningTime:
 			# You ran for long enough ! Stop that crap...
 			terminateCharge()
 			
@@ -162,7 +166,7 @@ func doHit(node : Node2D):
 	var ennemyHandler = node.get_node("%WrestleHandler") as WrestleHandler
 	if (wrestleHandler != null) && wrestleHandler.canWrestle && (ennemyHandler != null) && ennemyHandler.canWrestle:
 		_print("Wrestling time baby !")
-		var hitForce = additionalForcePerSecond * maxChargeTime # Max push always
+		var hitForce = additionalForcePerSecond * maxChargeTime * wrestleForceFactor # Max push always
 		var timer : SceneTreeTimer = get_tree().create_timer(wrestleDuration)
 		ennemyHandler.beginWrestling(pushedStunDuration, hitDir * hitForce, wrestleHandler, timer)
 		
@@ -176,6 +180,10 @@ func doHit(node : Node2D):
 
 ## Called to end the charge
 func terminateCharge():
+	# if not charging, do nothing
+	if !isRunning && !isCharging:
+		return
+		
 	if hitGuard:
 		endChargeGuarded.emit()
 		hitGuard = false

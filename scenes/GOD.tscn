@@ -5,6 +5,9 @@
 
 [node name="Player" instance=ExtResource("1_dk7mn")]
 
+[node name="InputHandler" parent="." index="3"]
+inputProvider = 3
+
 [node name="2D_character_rig" parent="." index="12"]
 visible = false
 

@@ -5,6 +5,12 @@
 
 [node name="Player" instance=ExtResource("1_7ssky")]
 
+[node name="InputHandler" parent="." index="3"]
+inputProvider = 3
+
+[node name="IA" parent="." index="10"]
+start_on_load = true
+
 [node name="2D_character_rig" parent="." index="12"]
 visible = false
 

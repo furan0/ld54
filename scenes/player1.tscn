@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cdfuwisuud2q1"]
+
+[ext_resource type="PackedScene" uid="uid://d1h1msw0tmfw4" path="res://scenes/player.tscn" id="1_fy07c"]
+
+[node name="Player1" instance=ExtResource("1_fy07c")]
+
+[node name="InputHandler" parent="." index="3"]
+inputProvider = 0

@@ -11,3 +11,4 @@ func _ready():
 	$"../StateMachine/CompoundState/free/charge/charge".connect("state_entered",rig.signal_to_anim.bind("charge"))
 	$"../StateMachine/CompoundState/stun".connect("state_entered",rig.signal_to_anim.bind("stun"))
 	$"../StateMachine/CompoundState/wrestle".connect("state_entered",rig.signal_to_anim.bind("wsl"))
+	$"../StateMachine/CompoundState/dead".connect("state_entered",rig.signal_to_anim.bind("dead"))

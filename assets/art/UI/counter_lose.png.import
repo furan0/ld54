@@ -2,7 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
+<<<<<<< HEAD
 uid="uid://56klm0vjgdiv"
+=======
+uid="uid://b5le1hsa6q8nv"
+>>>>>>> a08688807b63264b8f678633a6fe9779d0b94b78
 path="res://.godot/imported/counter_lose.png-4fac0982f3656b6982d5bb263a2acc92.ctex"
 metadata={
 "vram_texture": false
