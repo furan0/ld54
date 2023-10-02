@@ -830,6 +830,7 @@ size_flags_horizontal = 3
 
 [node name="youpi" type="AudioStreamPlayer" parent="Audio_lvl"]
 stream = ExtResource("23_siste")
+volume_db = -5.0
 bus = &"Sfx"
 script = ExtResource("21_k10s6")
 audio_clips = Array[AudioStream]([ExtResource("22_fh4vi"), ExtResource("23_siste"), ExtResource("24_nbmtq"), ExtResource("25_q0q33")])
@@ -867,6 +868,8 @@ bus = &"Music"
 [connection signal="enemyWonGame" from="GameManager" to="UIText" method="showUI" binds= ["defeat", false]]
 [connection signal="enemyWonGame" from="GameManager" to="UIText" method="showUIAfterDelay" binds= ["gameLost", 1.0]]
 [connection signal="enemyWonRound" from="GameManager" to="UIRounds" method="setRound" binds= [false]]
+[connection signal="playerWonGame" from="GameManager" to="Arena/CrowdHandler" method="superHappy"]
+[connection signal="playerWonGame" from="GameManager" to="Audio_lvl/youpi" method="play_sound"]
 [connection signal="playerWonGame" from="GameManager" to="UIText" method="showUI" binds= ["victory", false]]
 [connection signal="playerWonGame" from="GameManager" to="UIText" method="showUIAfterDelay" binds= ["gameWon", 1.0]]
 [connection signal="playerWonMatch" from="GameManager" to="Arena/CrowdHandler" method="superHappy"]

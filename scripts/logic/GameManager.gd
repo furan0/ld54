@@ -205,7 +205,6 @@ func endCurrentRound():
 			enemyWonMatch.emit()
 			enemyWonGame.emit()
 		else:
-			playerWonMatch.emit()
 			currentMatchNumber += 1
 			
 			## Kill enemy & resurect plyer if required
@@ -221,6 +220,7 @@ func endCurrentRound():
 				endOfGame.emit()
 				playerWonGame.emit()
 			else:
+				playerWonMatch.emit()
 				endOfMatch.emit()
 	else:
 		resetPlayerPositions.emit()

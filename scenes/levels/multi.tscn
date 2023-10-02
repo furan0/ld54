@@ -18,8 +18,8 @@
 [ext_resource type="Texture2D" uid="uid://j3ri8ks4lj3t" path="res://assets/art/UI/counter_lose.png" id="17_tdxws"]
 [ext_resource type="Script" path="res://scripts/UI/TextUIHandler.gd" id="18_dj8d0"]
 [ext_resource type="Texture2D" uid="uid://bbwb5a70qp278" path="res://assets/art/UI/text_UI/ready_text.png" id="19_fjxr2"]
-[ext_resource type="Texture2D" uid="uid://r7r5anv5ms6x" path="res://assets/art/UI/text_UI/victory_text.png" id="20_04wd7"]
-[ext_resource type="Texture2D" uid="uid://dgpt5f6ohg3vu" path="res://assets/art/UI/text_UI/defeat_text.png" id="21_crj62"]
+[ext_resource type="Texture2D" uid="uid://54oea8b65rka" path="res://assets/art/UI/text_UI/victory_player1_text.png" id="19_vujbi"]
+[ext_resource type="Texture2D" uid="uid://b5hpc73y4cao8" path="res://assets/art/UI/text_UI/victory_player2_text.png" id="20_3m654"]
 [ext_resource type="Texture2D" uid="uid://dwsott110gfiv" path="res://assets/art/UI/text_UI/start_text.png" id="22_c2kd7"]
 [ext_resource type="Theme" uid="uid://mxwvwg8snm7m" path="res://assets/defaultUiTheme.tres" id="23_er5fh"]
 [ext_resource type="AudioStream" uid="uid://cnsmqheehqwfn" path="res://assets/audio/ambiance/wai_r2_session.wav" id="24_s07dw"]
@@ -196,7 +196,7 @@ func goBack():
 
 "
 
-[node name="proto" type="Node2D"]
+[node name="multi" type="Node2D"]
 
 [node name="Camera" type="Camera2D" parent="."]
 unique_name_in_owner = true
@@ -586,7 +586,7 @@ size_flags_stretch_ratio = 0.05
 [node name="TextureRect" type="TextureRect" parent="UIText/Victory/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-texture = ExtResource("20_04wd7")
+texture = ExtResource("19_vujbi")
 expand_mode = 3
 stretch_mode = 5
 
@@ -635,7 +635,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.0
-texture = ExtResource("21_crj62")
+texture = ExtResource("20_3m654")
 expand_mode = 5
 stretch_mode = 5
 
@@ -824,6 +824,7 @@ size_flags_horizontal = 3
 
 [node name="youpi" type="AudioStreamPlayer" parent="Audio_lvl"]
 stream = ExtResource("24_s07dw")
+volume_db = -5.0
 bus = &"Sfx"
 script = ExtResource("25_p6nq5")
 audio_clips = Array[AudioStream]([ExtResource("26_wod7m"), ExtResource("24_s07dw"), ExtResource("27_v61qg"), ExtResource("28_nb8oj")])
@@ -861,6 +862,8 @@ bus = &"Music"
 [connection signal="enemyWonGame" from="GameManager" to="UIText" method="showUI" binds= ["defeat", false]]
 [connection signal="enemyWonGame" from="GameManager" to="UIText" method="showUIAfterDelay" binds= ["gameLost", 1.0]]
 [connection signal="enemyWonRound" from="GameManager" to="UIRounds" method="setRound" binds= [false]]
+[connection signal="playerWonGame" from="GameManager" to="Arena/CrowdHandler" method="superHappy"]
+[connection signal="playerWonGame" from="GameManager" to="Audio_lvl/youpi" method="play_sound"]
 [connection signal="playerWonGame" from="GameManager" to="UIText" method="showUI" binds= ["victory", false]]
 [connection signal="playerWonGame" from="GameManager" to="UIText" method="showUIAfterDelay" binds= ["gameLost", 1.0]]
 [connection signal="playerWonMatch" from="GameManager" to="Arena/CrowdHandler" method="superHappy"]
