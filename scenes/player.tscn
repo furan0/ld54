@@ -198,6 +198,10 @@ unique_name_in_owner = true
 script = ExtResource("13_ofswa")
 start_on_load = false
 
+[node name="brain_process" type="Timer" parent="IA"]
+wait_time = 0.5
+one_shot = true
+
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("5_7qtpj")
 
@@ -465,10 +469,10 @@ audio_clips = Array[AudioStream]([ExtResource("40_w2wwy")])
 [connection signal="endCharge" from="ChargeHandler" to="StunHandler" method="stun" binds= ["charge"]]
 [connection signal="endChargeGuarded" from="ChargeHandler" to="StunHandler" method="stun" binds= ["chargeGuarded"]]
 [connection signal="changeRotation" from="WrestleHandler" to="LookAt" method="set_rotation"]
-[connection signal="wrestlingEnded" from="WrestleHandler" to="StateMachine" method="send_event" binds= ["stopWrestling"]]
 [connection signal="wrestlingEnded" from="WrestleHandler" to="StateMachine" method="set_expression_property" binds= ["isWrestling", false]]
-[connection signal="wrestlingStarted" from="WrestleHandler" to="StateMachine" method="send_event" binds= ["startWrestling"]]
+[connection signal="wrestlingEnded" from="WrestleHandler" to="StateMachine" method="send_event" binds= ["stopWrestling"]]
 [connection signal="wrestlingStarted" from="WrestleHandler" to="StateMachine" method="set_expression_property" binds= ["isWrestling", true]]
+[connection signal="wrestlingStarted" from="WrestleHandler" to="StateMachine" method="send_event" binds= ["startWrestling"]]
 [connection signal="state_exited" from="StateMachine/CompoundState/free" to="LookAt" method="canLookAtThings" binds= [false]]
 [connection signal="state_exited" from="StateMachine/CompoundState/free" to="MovementHandler" method="canMove" binds= [false]]
 [connection signal="state_entered" from="StateMachine/CompoundState/free/Idle" to="LookAt" method="canLookAtThings" binds= [true]]

@@ -10,11 +10,16 @@ signal charge
 @onready var input_handler := %InputHandler as InputHandler
 @export var target_node : Node2D
 @export var start_on_load = true
+
+@export var i_am_robot = true
+
 ## Param de Strategie
 @export var ZAD : Array[Vector2] = [Vector2(576,320),Vector2(768,320),Vector2(448,448),Vector2(460,200)]
 @export var frame_react := 8
 ##
 
+
+@onready var brain_timer := $brain_process
 var papa : Node2D
 ###
 # Don not modify directly use set_ia_active
@@ -39,10 +44,12 @@ func set_ia_active(active:bool):
 		if not(old_state):
 			start_ia()
 	else :
+		brain_timer.stop()
 		keep_going_global = false
 		
 ## Ne stop pas l'IA
 func stop_action():
+	brain_timer.stop()
 	keep_going_global = false
 
 ## Move to a direction an emit a stop.
@@ -163,7 +170,7 @@ func look_target():
 	input_handler.spoofInput("move",dir)
 
 ## Attaque suivant la position de la target.
-func pick_attaque(threshold_for_charge=60):
+func pick_attaque(threshold_for_charge=80):
 	if (target_node.position-papa.position).length_squared() < threshold_for_charge*threshold_for_charge:
 		look_target()
 		for i in range(2):
@@ -171,13 +178,13 @@ func pick_attaque(threshold_for_charge=60):
 			await get_tree().physics_frame
 			look_target()
 		var p = randf()
-		if (p<0.5):
-			get_tree().create_timer(0.2).timeout.connect(stop_action)
+		if (p<0.7):
+			brain_timer.start(0.4)
 			
 			input_handler.spoofInput("tackle",null)
+			stop.emit()
 		else:
-			
-			get_tree().create_timer(0.3).timeout.connect(stop_action)
+			brain_timer.start(0.3)
 			make_guard(target_node)
 		
 	else :
@@ -189,6 +196,8 @@ func pick_attaque(threshold_for_charge=60):
 		make_charge(target_node)
 
 func parade_riposte():
+	stop_action()
+	brain_timer.start(0.4)
 	make_guard(target_node)
 
 ## Wait fot nodes to be ready
@@ -198,7 +207,7 @@ func set_advanced_settings():
 
 
 func pick_action():
-	if(is_ia_active):
+	if(is_ia_active and i_am_robot):
 		if(target_node != null):
 			if(dumb):
 				set_advanced_settings()
@@ -206,19 +215,19 @@ func pick_action():
 			keep_going_global=true
 			input_handler.spoofInput("setMove",false)
 			input_handler.spoofInput("move",Vector2.ZERO)
-			await get_tree().create_timer(randf()*0.5+0.1).timeout
+			await get_tree().create_timer(randf()*0.2+0.01).timeout
 			
 			var p = randf()
 			look_target()
 			if (p<0.1):
-				get_tree().create_timer(0.5).timeout.connect(stop_action)
+				brain_timer.start(0.4)
 				follow(target_node)
-			elif (p<0.3):
+			elif (p<0.2):
 				flee()
-			elif (p<0.4):
-				get_tree().create_timer(0.5).timeout.connect(stop_action)
+			elif (p<0.25):
+				brain_timer.start(0.4)
 				make_guard(target_node)
-			elif (p<0.6):
+			elif (p<0.8):
 				pick_attaque()
 			else:
 				go_to_orthogonal_ZAD()
@@ -228,7 +237,7 @@ func pick_action():
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	papa = get_parent() as Node2D
-
+	brain_timer.timeout.connect(stop_action)
 	if(start_on_load):
 		start_ia()
 		
