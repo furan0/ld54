@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://d1h1msw0tmfw4"]
+[gd_scene load_steps=48 format=3 uid="uid://d1h1msw0tmfw4"]
 
 [ext_resource type="Script" path="res://scripts/Player/Player.gd" id="1_21uft"]
 [ext_resource type="Script" path="res://scripts/logic/LookAt.gd" id="2_r5dgl"]
@@ -20,13 +20,26 @@
 [ext_resource type="PackedScene" uid="uid://bq8s6d65y33h6" path="res://scenes/entity/2Drig/player_rig.tscn" id="14_5urwl"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/expression_guard.gd" id="14_8jw7n"]
 [ext_resource type="Script" path="res://scripts/entity/rig_signal_connector.gd" id="18_ka1ft"]
-[ext_resource type="Script" path="res://scripts/audio/SimpleAudioPlayer.gd" id="21_rjjgd"]
-[ext_resource type="AudioStream" uid="uid://hxr71661i51x" path="res://assets/audio/back.wav" id="22_jqtes"]
 [ext_resource type="Script" path="res://scripts/audio/audio_effect.gd" id="23_obpe4"]
 [ext_resource type="AudioStream" uid="uid://c738ifxostb06" path="res://assets/audio/ambiance/buitdebas_session.wav" id="24_fax40"]
 [ext_resource type="AudioStream" uid="uid://jmcatelsq5sc" path="res://assets/audio/FX/charge_presqueloop_r1_session.wav" id="25_4o37h"]
 [ext_resource type="AudioStream" uid="uid://dykhrkoy5xxi2" path="res://assets/audio/FX/charge_presqueloop_r2_session.wav" id="26_s4via"]
 [ext_resource type="AudioStream" uid="uid://cghw6wtbrtuyh" path="res://assets/audio/FX/charge_presqueloop_r3_session.wav" id="27_367km"]
+[ext_resource type="AudioStream" uid="uid://ck2pyes4inkyt" path="res://assets/audio/FX/impact1_r1_session.wav" id="28_r8yg2"]
+[ext_resource type="AudioStream" uid="uid://b4gxj3pmywyr6" path="res://assets/audio/FX/impact1_r2_session.wav" id="29_na3ah"]
+[ext_resource type="AudioStream" uid="uid://bdv4h5rro4r31" path="res://assets/audio/FX/impact1_r3_session.wav" id="30_fmcsm"]
+[ext_resource type="AudioStream" uid="uid://dta85jj6xy2v3" path="res://assets/audio/FX/impact1_r4_session.wav" id="31_kurh3"]
+[ext_resource type="AudioStream" uid="uid://umh780buv230" path="res://assets/audio/FX/_tackle_r1_session.wav" id="32_qcibj"]
+[ext_resource type="AudioStream" uid="uid://dv78ok2f11eld" path="res://assets/audio/FX/player/player_hurt_r1_session.wav" id="33_3hrnm"]
+[ext_resource type="AudioStream" uid="uid://db3sy0jvefx01" path="res://assets/audio/FX/_tackle_r2_session.wav" id="33_x3sxe"]
+[ext_resource type="AudioStream" uid="uid://cwfi35wtyicm1" path="res://assets/audio/FX/_tackle_r3_session.wav" id="34_4qisk"]
+[ext_resource type="AudioStream" uid="uid://c0ryxnte2mi86" path="res://assets/audio/FX/player/player_hurt_r2_session.wav" id="34_16mt7"]
+[ext_resource type="AudioStream" uid="uid://dpif20j5lsewu" path="res://assets/audio/FX/player/player_hurt_r3_session.wav" id="35_227bt"]
+[ext_resource type="AudioStream" uid="uid://ul2duhow2qm7" path="res://assets/audio/FX/player/player_attque_r1_session.wav" id="36_df0je"]
+[ext_resource type="AudioStream" uid="uid://cvht643xpkpm8" path="res://assets/audio/FX/player/player_attaque_r2_session.wav" id="37_qhw3j"]
+[ext_resource type="AudioStream" uid="uid://bfelojumma6x4" path="res://assets/audio/FX/player/player_neutral_r1_session.wav" id="38_3jbgw"]
+[ext_resource type="AudioStream" uid="uid://dhvhyqyvok5vd" path="res://assets/audio/FX/player/player_neutral_r2_session.wav" id="39_linyl"]
+[ext_resource type="AudioStream" uid="uid://dehrwuakp83ta" path="res://assets/audio/FX/charge-loop_session.wav" id="40_w2wwy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l2xwr"]
 size = Vector2(35.5, 57)
@@ -378,27 +391,51 @@ looker = NodePath("../LookAt")
 script = ExtResource("18_ka1ft")
 rig = NodePath("../2D_character_rig")
 
-[node name="SimpleAudioPlayer" type="Node" parent="." node_paths=PackedStringArray("audioPlayer")]
-script = ExtResource("21_rjjgd")
-sounds = {
-"hit": ExtResource("22_jqtes")
-}
-audioPlayer = NodePath("AudioStreamPlayer")
+[node name="AudioPlayers" type="Node" parent="."]
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SimpleAudioPlayer"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="AudioPlayers"]
 bus = &"Sfx"
 
-[node name="walk" type="AudioStreamPlayer" parent="SimpleAudioPlayer"]
+[node name="walk" type="AudioStreamPlayer" parent="AudioPlayers"]
 volume_db = -10.359
 bus = &"Sfx"
 script = ExtResource("23_obpe4")
 audio_clips = Array[AudioStream]([ExtResource("24_fax40")])
 
-[node name="pre_charge" type="AudioStreamPlayer" parent="SimpleAudioPlayer"]
+[node name="pre_charge" type="AudioStreamPlayer" parent="AudioPlayers"]
 volume_db = -4.558
 bus = &"Sfx"
 script = ExtResource("23_obpe4")
 audio_clips = Array[AudioStream]([ExtResource("25_4o37h"), ExtResource("26_s4via"), ExtResource("27_367km")])
+
+[node name="impact" type="AudioStreamPlayer" parent="AudioPlayers"]
+bus = &"Sfx"
+script = ExtResource("23_obpe4")
+audio_clips = Array[AudioStream]([ExtResource("28_r8yg2"), ExtResource("29_na3ah"), ExtResource("30_fmcsm"), ExtResource("31_kurh3")])
+
+[node name="tackle" type="AudioStreamPlayer" parent="AudioPlayers"]
+bus = &"Sfx"
+script = ExtResource("23_obpe4")
+audio_clips = Array[AudioStream]([ExtResource("32_qcibj"), ExtResource("33_x3sxe"), ExtResource("34_4qisk")])
+
+[node name="hurt" type="AudioStreamPlayer" parent="AudioPlayers"]
+bus = &"Sfx"
+script = ExtResource("23_obpe4")
+audio_clips = Array[AudioStream]([ExtResource("33_3hrnm"), ExtResource("34_16mt7"), ExtResource("35_227bt")])
+
+[node name="attaque" type="AudioStreamPlayer" parent="AudioPlayers"]
+bus = &"Sfx"
+script = ExtResource("23_obpe4")
+audio_clips = Array[AudioStream]([ExtResource("36_df0je"), ExtResource("37_qhw3j")])
+
+[node name="neutral" type="AudioStreamPlayer" parent="AudioPlayers"]
+script = ExtResource("23_obpe4")
+audio_clips = Array[AudioStream]([ExtResource("38_3jbgw"), ExtResource("39_linyl")])
+
+[node name="charge" type="AudioStreamPlayer" parent="AudioPlayers"]
+bus = &"Sfx"
+script = ExtResource("23_obpe4")
+audio_clips = Array[AudioStream]([ExtResource("40_w2wwy")])
 
 [connection signal="dead" from="." to="MovementHandler" method="setMaxDampening" binds= [true]]
 [connection signal="dead" from="." to="StateMachine" method="send_event" binds= ["dead"]]
@@ -423,6 +460,8 @@ audio_clips = Array[AudioStream]([ExtResource("25_4o37h"), ExtResource("26_s4via
 [connection signal="stunCompleted" from="StunHandler" to="StateMachine" method="send_event" binds= ["free"]]
 [connection signal="changeRotation" from="HitHandler" to="LookAt" method="set_rotation"]
 [connection signal="startStun" from="HitHandler" to="StunHandler" method="stunFor"]
+[connection signal="wasHit" from="HitHandler" to="AudioPlayers/impact" method="play_sound"]
+[connection signal="wasHit" from="HitHandler" to="AudioPlayers/hurt" method="play_sound"]
 [connection signal="endCharge" from="ChargeHandler" to="StunHandler" method="stun" binds= ["charge"]]
 [connection signal="endChargeGuarded" from="ChargeHandler" to="StunHandler" method="stun" binds= ["chargeGuarded"]]
 [connection signal="changeRotation" from="WrestleHandler" to="LookAt" method="set_rotation"]
@@ -438,22 +477,25 @@ audio_clips = Array[AudioStream]([ExtResource("25_4o37h"), ExtResource("26_s4via
 [connection signal="state_entered" from="StateMachine/CompoundState/free/guard" to="HitHandler" method="setProtected" binds= [true]]
 [connection signal="state_exited" from="StateMachine/CompoundState/free/guard" to="HitHandler" method="setProtected" binds= [false]]
 [connection signal="state_entered" from="StateMachine/CompoundState/free/tackle" to="TackleHandler" method="tackle"]
+[connection signal="state_entered" from="StateMachine/CompoundState/free/tackle" to="AudioPlayers/tackle" method="play_sound"]
+[connection signal="state_entered" from="StateMachine/CompoundState/free/tackle" to="AudioPlayers/attaque" method="play_sound"]
 [connection signal="state_entered" from="StateMachine/CompoundState/free/tackle" to="LookAt" method="canLookAtThings" binds= [false]]
 [connection signal="state_entered" from="StateMachine/CompoundState/free/tackle" to="LookAt/Hitbox/CollisionShape2D" method="set_debug_color" binds= [Color(1, 0, 0, 0.803922)]]
 [connection signal="state_entered" from="StateMachine/CompoundState/free/tackle" to="MovementHandler" method="canMove" binds= [false]]
 [connection signal="state_exited" from="StateMachine/CompoundState/free/tackle" to="LookAt" method="canLookAtThings" binds= [true]]
-[connection signal="state_entered" from="StateMachine/CompoundState/free/move" to="SimpleAudioPlayer/walk" method="play_sound"]
-[connection signal="state_exited" from="StateMachine/CompoundState/free/move" to="SimpleAudioPlayer/walk" method="stop_play"]
+[connection signal="state_entered" from="StateMachine/CompoundState/free/move" to="AudioPlayers/walk" method="play_sound"]
+[connection signal="state_exited" from="StateMachine/CompoundState/free/move" to="AudioPlayers/walk" method="stop_play"]
 [connection signal="state_entered" from="StateMachine/CompoundState/free/charge" to="MovementHandler" method="canMove" binds= [false]]
 [connection signal="state_entered" from="StateMachine/CompoundState/free/charge/preCharge" to="ChargeHandler" method="startCharging"]
-[connection signal="state_entered" from="StateMachine/CompoundState/free/charge/preCharge" to="SimpleAudioPlayer/pre_charge" method="play_sound"]
+[connection signal="state_entered" from="StateMachine/CompoundState/free/charge/preCharge" to="AudioPlayers/pre_charge" method="play_sound"]
 [connection signal="state_exited" from="StateMachine/CompoundState/free/charge/preCharge" to="ChargeHandler" method="stopCharging"]
-[connection signal="state_exited" from="StateMachine/CompoundState/free/charge/preCharge" to="SimpleAudioPlayer/pre_charge" method="stop_play"]
+[connection signal="state_exited" from="StateMachine/CompoundState/free/charge/preCharge" to="AudioPlayers/pre_charge" method="stop_play"]
 [connection signal="state_entered" from="StateMachine/CompoundState/free/charge/charge" to="ChargeHandler" method="startRunning"]
+[connection signal="state_entered" from="StateMachine/CompoundState/free/charge/charge" to="AudioPlayers/charge" method="play_sound"]
 [connection signal="state_entered" from="StateMachine/CompoundState/free/charge/charge" to="LookAt" method="canLookAtThings" binds= [false]]
 [connection signal="state_entered" from="StateMachine/CompoundState/free/charge/charge" to="WrestleHandler" method="setCanWrestle" binds= [true]]
+[connection signal="state_exited" from="StateMachine/CompoundState/free/charge/charge" to="AudioPlayers/charge" method="stop_play"]
 [connection signal="state_entered" from="StateMachine/CompoundState/stun" to="WrestleHandler" method="setCanWrestle" binds= [false]]
-[connection signal="state_entered" from="StateMachine/CompoundState/stun" to="SimpleAudioPlayer" method="playSound" binds= ["hit"]]
 [connection signal="state_entered" from="StateMachine/CompoundState/wrestle" to="." method="signalWrestling"]
 [connection signal="state_entered" from="StateMachine/CompoundState/wrestle" to="Smashbutton" method="show"]
 [connection signal="state_exited" from="StateMachine/CompoundState/wrestle" to="Smashbutton" method="hide"]

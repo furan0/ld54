@@ -1,7 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://cp6pf6jki310y"]
+[gd_scene load_steps=8 format=3 uid="uid://cp6pf6jki310y"]
 
 [ext_resource type="PackedScene" uid="uid://d1h1msw0tmfw4" path="res://scenes/player.tscn" id="1_7ssky"]
 [ext_resource type="PackedScene" uid="uid://c2ocj3h80y1mx" path="res://scenes/entity/2Drig/peon_rig.tscn" id="2_c3rn1"]
+[ext_resource type="AudioStream" uid="uid://bbcohtfgelxyk" path="res://assets/audio/FX/peon/peon_hurt_r1_session.wav" id="3_jjq31"]
+[ext_resource type="AudioStream" uid="uid://ckkoku2qfqdih" path="res://assets/audio/FX/peon/peon_hurt_r2_session.wav" id="4_iqhoi"]
+[ext_resource type="AudioStream" uid="uid://bcgri1l4bjva6" path="res://assets/audio/FX/peon/peon_attaque_r1_session.wav" id="5_um4ho"]
+[ext_resource type="AudioStream" uid="uid://rxmev7h1eep8" path="res://assets/audio/FX/peon/peon_attaque_r2_session.wav" id="6_rn02t"]
+[ext_resource type="AudioStream" uid="uid://dtbjhb0y74s27" path="res://assets/audio/FX/peon/peon_neutral_r1_session.wav" id="7_7q38t"]
 
 [node name="Player" instance=ExtResource("1_7ssky")]
 
@@ -21,3 +26,12 @@ rig = NodePath("../2D_character_rig2")
 position = Vector2(1, 27)
 scale = Vector2(0.45, 0.45)
 looker = NodePath("../LookAt")
+
+[node name="hurt" parent="AudioPlayers" index="5"]
+audio_clips = Array[AudioStream]([ExtResource("3_jjq31"), ExtResource("4_iqhoi")])
+
+[node name="attaque" parent="AudioPlayers" index="6"]
+audio_clips = Array[AudioStream]([ExtResource("5_um4ho"), ExtResource("6_rn02t")])
+
+[node name="neutral" parent="AudioPlayers" index="7"]
+audio_clips = Array[AudioStream]([ExtResource("7_7q38t")])

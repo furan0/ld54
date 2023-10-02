@@ -19,6 +19,7 @@ var isProtected : bool = false
 
 ## stun signal
 signal startStun(duration : float)
+signal wasHit()
 signal changeRotation(rotation : Vector2)
 
 ## Call this function to hit the player
@@ -39,6 +40,7 @@ func hit(stunDuration : float, impactVector : Vector2 = Vector2.ZERO, bypassProt
 	# Not protected -> receive the hit
 	_print("Character hit and stuned for " + str(stunDuration))
 	startStun.emit(stunDuration)
+	wasHit.emit()
 	rigidbody.apply_impulse(impactVector)
 	changeRotation.emit(impactVector.angle() + PI) # make the player face the blow
 	return true

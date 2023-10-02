@@ -1,7 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://cqutmoew07l58"]
+[gd_scene load_steps=8 format=3 uid="uid://cqutmoew07l58"]
 
 [ext_resource type="PackedScene" uid="uid://d1h1msw0tmfw4" path="res://scenes/player.tscn" id="1_dk7mn"]
 [ext_resource type="PackedScene" uid="uid://c6kq86qdq5wfs" path="res://scenes/entity/2Drig/god_rig.tscn" id="2_o52n7"]
+[ext_resource type="AudioStream" uid="uid://d2gclcxsm8jq1" path="res://assets/audio/FX/god/god_hurt_r1_session.wav" id="3_tv1sm"]
+[ext_resource type="AudioStream" uid="uid://cludgpl51t08d" path="res://assets/audio/FX/god/god_hurt_r2_session.wav" id="4_sdtk3"]
+[ext_resource type="AudioStream" uid="uid://bfm06ju0rjwh6" path="res://assets/audio/FX/god/god_attaque_r1_session.wav" id="5_r7pgj"]
+[ext_resource type="AudioStream" uid="uid://cp3ylv2t1ibr5" path="res://assets/audio/FX/god/god_attaque_r2_session.wav" id="6_yov2u"]
+[ext_resource type="AudioStream" uid="uid://cat5mf3eupmay" path="res://assets/audio/FX/god/god_neutral_r1_session.wav" id="7_y228d"]
 
 [node name="Player" instance=ExtResource("1_dk7mn")]
 
@@ -18,3 +23,12 @@ rig = NodePath("../2D_character_rig2")
 position = Vector2(13, 25)
 scale = Vector2(0.38, 0.38)
 looker = NodePath("../LookAt")
+
+[node name="hurt" parent="AudioPlayers" index="5"]
+audio_clips = Array[AudioStream]([ExtResource("3_tv1sm"), ExtResource("4_sdtk3")])
+
+[node name="attaque" parent="AudioPlayers" index="6"]
+audio_clips = Array[AudioStream]([ExtResource("5_r7pgj"), ExtResource("6_yov2u")])
+
+[node name="neutral" parent="AudioPlayers" index="7"]
+audio_clips = Array[AudioStream]([ExtResource("7_y228d")])
