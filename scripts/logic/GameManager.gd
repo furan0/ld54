@@ -46,6 +46,8 @@ func _ready():
 		arena.playerLeavedArena.connect(playerExitedArena)
 	if player == null:
 		push_warning("Player must be set")
+	else:
+		setupPlayer(player)
 	if targetPlayer == null:
 		push_warning("targetPlayer must be set")
 	if targetEnemy == null:
@@ -157,6 +159,7 @@ func lockPlayers(isLocked : bool):
 ## Conenct signals and setup params
 func setupPlayer(playerToSetup : Player):
 	playerToSetup.setupIaTarget(player)
+	playerToSetup.matchNumber = currentMatchNumber
 
 
 func lookAtEachOther():
