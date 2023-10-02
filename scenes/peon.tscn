@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cp6pf6jki310y"]
+
+[ext_resource type="PackedScene" uid="uid://d1h1msw0tmfw4" path="res://scenes/player.tscn" id="1_7ssky"]
+[ext_resource type="PackedScene" uid="uid://c2ocj3h80y1mx" path="res://scenes/entity/2Drig/peon_rig.tscn" id="2_c3rn1"]
+
+[node name="Player" instance=ExtResource("1_7ssky")]
+
+[node name="2D_character_rig" parent="." index="12"]
+visible = false
+
+[node name="rig_signal_connector" parent="." index="13" node_paths=PackedStringArray("rig")]
+rig = NodePath("../2D_character_rig2")
+
+[node name="2D_character_rig2" parent="." index="14" node_paths=PackedStringArray("looker") instance=ExtResource("2_c3rn1")]
+position = Vector2(1, 27)
+scale = Vector2(0.45, 0.45)
+looker = NodePath("../LookAt")

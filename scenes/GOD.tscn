@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqutmoew07l58"]
+
+[ext_resource type="PackedScene" uid="uid://d1h1msw0tmfw4" path="res://scenes/player.tscn" id="1_dk7mn"]
+[ext_resource type="PackedScene" uid="uid://c6kq86qdq5wfs" path="res://scenes/entity/2Drig/god_rig.tscn" id="2_o52n7"]
+
+[node name="Player" instance=ExtResource("1_dk7mn")]
+
+[node name="2D_character_rig" parent="." index="12"]
+visible = false
+
+[node name="rig_signal_connector" parent="." index="13" node_paths=PackedStringArray("rig")]
+rig = NodePath("../2D_character_rig2")
+
+[node name="2D_character_rig2" parent="." index="14" node_paths=PackedStringArray("looker") instance=ExtResource("2_o52n7")]
+position = Vector2(13, 25)
+scale = Vector2(0.38, 0.38)
+looker = NodePath("../LookAt")

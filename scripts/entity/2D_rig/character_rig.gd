@@ -1,5 +1,15 @@
 extends Node2D
 
+@export var speed_anim := {
+	"idle-loop" : 1.0,
+	"walk-loop": 1.0,
+	"precharge-loop": 2.0,
+	"postcharge": 1.0,
+	"tackled": 1.0,
+	"dead": 1.0,
+	"wsl": 1.0 
+}
+
 
 enum CHARA_ANIMATION {
 	IDLE,
@@ -74,6 +84,7 @@ func play_wsl(param):
 func _play_anim(anim_name : String):
 	set_keyframe_mode(false)
 	$AnimationPlayer.play(anim_name)
+	$AnimationPlayer.speed_scale = speed_anim[anim_name]
 
 func set_keyframe_mode(active : bool):
 	$AnimationPlayer.speed_scale = 1.0
@@ -105,7 +116,6 @@ func anim_charge(_param):
 
 func anim_precharge(param):
 	_play_anim(param)
-	$AnimationPlayer.speed_scale =  2.0
 	$particle/smoke_precharge1.emitting = true
 	$particle/smoke_precharge2.emitting = true
 	

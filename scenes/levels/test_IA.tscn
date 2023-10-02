@@ -1,24 +1,33 @@
-[gd_scene load_steps=2 format=3 uid="uid://bf7y0ff1xfyk2"]
+[gd_scene load_steps=4 format=3 uid="uid://djqm6llptpo80"]
 
-[ext_resource type="PackedScene" uid="uid://ds4m16odg5ccq" path="res://scenes/IA_dumb.tscn" id="1_3qp7l"]
+[ext_resource type="PackedScene" uid="uid://d1h1msw0tmfw4" path="res://scenes/player.tscn" id="1_iyblr"]
+[ext_resource type="PackedScene" uid="uid://cp6pf6jki310y" path="res://scenes/peon.tscn" id="2_7u8il"]
+[ext_resource type="PackedScene" uid="uid://cqutmoew07l58" path="res://scenes/GOD.tscn" id="3_3g817"]
 
 [node name="test_IA" type="Node2D"]
 
-[node name="Player" parent="." instance=ExtResource("1_3qp7l")]
-position = Vector2(394, 244)
+[node name="Player" parent="." instance=ExtResource("1_iyblr")]
+position = Vector2(231, 310)
 
-[node name="InputHandler" parent="Player" index="3"]
-inputProvider = 0
+[node name="Player2" parent="." instance=ExtResource("2_7u8il")]
+position = Vector2(683, 304)
 
-[node name="IA_dumb" parent="Player" index="12" node_paths=PackedStringArray("target_node")]
-target_node = NodePath("../../Player2")
-start_on_load = false
+[node name="InputHandler" parent="Player2" index="3"]
+inputProvider = 3
 
-[node name="Player2" parent="." instance=ExtResource("1_3qp7l")]
-position = Vector2(840, 256)
-
-[node name="IA_dumb" parent="Player2" index="12" node_paths=PackedStringArray("target_node")]
+[node name="IA" parent="Player2" index="10" node_paths=PackedStringArray("target_node")]
 target_node = NodePath("../../Player")
+start_on_load = true
 
-[editable path="Player"]
+[node name="Player3" parent="." instance=ExtResource("3_3g817")]
+position = Vector2(562, 540)
+
+[node name="InputHandler" parent="Player3" index="3"]
+inputProvider = 3
+
+[node name="IA" parent="Player3" index="10" node_paths=PackedStringArray("target_node")]
+target_node = NodePath("../../Player")
+start_on_load = true
+
 [editable path="Player2"]
+[editable path="Player3"]

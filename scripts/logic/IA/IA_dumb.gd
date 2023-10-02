@@ -11,7 +11,7 @@ signal charge
 @export var target_node : Node2D
 @export var start_on_load = true
 ## Param de Strategie
-@export var ZAD : Array[Vector2] = []
+@export var ZAD : Array[Vector2] = [Vector2(600,300),Vector2(700,300),Vector2(550,150),Vector2(750,450)]
 @export var frame_react := 8
 ##
 
@@ -25,9 +25,10 @@ var timer
 
  #Lancer IA
 func start_ia():
-	pass
-
-
+	is_ia_active=true
+	connect("stop",pick_action)
+	pick_action()
+	
 # Autorise l'IA a choisir des action à realiser.
 func set_ia_active(active:bool):
 	var old_state = is_ia_active
@@ -177,26 +178,24 @@ func pick_action():
 	if(is_ia_active):
 		if(target_node != null):
 			keep_going_global=true
+			input_handler.spoofInput("setMove",false)
+			input_handler.spoofInput("move",Vector2.ZERO)
+			await get_tree().create_timer(randf()*0.5+0.1).timeout
 			
-			var p := randf()
-			var offset = (target_node.position + get_parent().position) * 0.5 - target_node.position
-			offset = offset + (offset as Vector2).orthogonal() 
-			if (p<0.05):
-				get_tree().create_timer(0.3).timeout.connect(stop_action)
-				follow(target_node,offset)
-			elif(p<0.3):
-				get_tree().create_timer(0.4).timeout.connect(stop_action)
-				offset = (get_parent().position-target_node.position).orthogonal()  * 2
-				follow(target_node,offset)
-			elif(p<0.4):
-				get_tree().create_timer(0.3).timeout.connect(stop_action)
-				think()
-			elif(p<0.6):
+			var p = randf()
+			
+			if (p<0.1):
 				get_tree().create_timer(0.5).timeout.connect(stop_action)
-				make_charge(target_node)
-			else:
-				get_tree().create_timer(0.7).timeout.connect(stop_action)
+				follow(target_node)
+			elif (p<0.3):
+				flee()
+			elif (p<0.4):
+				get_tree().create_timer(0.5).timeout.connect(stop_action)
 				make_guard(target_node)
+			elif (p<0.6):
+				pick_attaque()
+			else:
+				go_to_orthogonal_ZAD()
 
 
 
@@ -204,8 +203,8 @@ func pick_action():
 func _ready():
 	papa = get_parent() as Node2D
 	if(start_on_load):
-		connect("stop",pick_action)
-		pick_action()
+		start_ia()
+		
 
 
 ## Called every frame. 'delta' is the elapsed time since the previous frame.

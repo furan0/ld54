@@ -1,6 +1,6 @@
 extends Node
 
-@onready var rig := $"../2D_character_rig"
+@export var rig : Node
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$"../StateMachine/CompoundState/free/Idle".connect("state_entered",rig.signal_to_anim.bind("idle"))

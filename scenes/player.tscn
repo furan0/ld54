@@ -367,8 +367,9 @@ position = Vector2(0, 23.46)
 scale = Vector2(0.373, 0.373)
 looker = NodePath("../LookAt")
 
-[node name="rig_signal_connector" type="Node" parent="."]
+[node name="rig_signal_connector" type="Node" parent="." node_paths=PackedStringArray("rig")]
 script = ExtResource("18_ka1ft")
+rig = NodePath("../2D_character_rig")
 
 [connection signal="dead" from="." to="StateMachine" method="send_event" binds= ["dead"]]
 [connection signal="resurect" from="." to="StateMachine" method="send_event" binds= ["reset"]]
