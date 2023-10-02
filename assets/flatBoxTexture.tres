@@ -1,11 +1,10 @@
 [gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://buyqtt2u146cs"]
 
-[ext_resource type="Texture2D" uid="uid://cdnqsrhhv1ykd" path="res://assets/art/UI/panel_resized.png" id="1_oue6j"]
+[ext_resource type="Texture2D" uid="uid://dp6c4iy5bvu35" path="res://assets/art/UI/panel_small.png" id="1_37oqj"]
 
 [resource]
-texture = ExtResource("1_oue6j")
-texture_margin_left = 39.0
-texture_margin_top = 23.0
-texture_margin_right = 39.0
-texture_margin_bottom = 23.0
-region_rect = Rect2(0, 0, 122, 62)
+texture = ExtResource("1_37oqj")
+texture_margin_left = 31.8391
+texture_margin_top = 38.0633
+texture_margin_right = 31.121
+texture_margin_bottom = 34.2331

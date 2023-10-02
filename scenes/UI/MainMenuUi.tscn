@@ -1,18 +1,24 @@
-[gd_scene load_steps=2 format=3 uid="uid://djfdxmwa6507n"]
+[gd_scene load_steps=3 format=3 uid="uid://djfdxmwa6507n"]
 
 [ext_resource type="Script" path="res://scripts/UI/StandardUiPanel.gd" id="1_5i0kg"]
+[ext_resource type="Texture2D" uid="uid://wk68xh0siinh" path="res://assets/art/title_screen/title_screen_title.png" id="2_pr8wp"]
 
 [node name="MainMenuUi" type="Control" node_paths=PackedStringArray("initialFocus")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 248.0
+offset_top = 266.0
+offset_right = 248.0
+offset_bottom = 266.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_5i0kg")
 initialFocus = NodePath("MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/Play")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
+z_index = 7
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -34,13 +40,21 @@ theme_override_constants/separation = 25
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("2_pr8wp")
+expand_mode = 5
+
 [node name="title" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 45
 text = "Sumo City !"
 
 [node name="Spacer" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.18
@@ -55,12 +69,10 @@ layout_mode = 2
 text = "Play !"
 
 [node name="Option" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
-visible = false
 layout_mode = 2
 text = "Option"
 
 [node name="Credit" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
-visible = false
 layout_mode = 2
 text = "Credit"
 
