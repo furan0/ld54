@@ -127,7 +127,7 @@ rotation = 1.57079
 scale = Vector2(0.065, 0.065)
 texture = ExtResource("3_go2qw")
 
-[node name="Colision" type="CollisionShape2D" parent="."]
+[node name="Collider" type="CollisionShape2D" parent="."]
 scale = Vector2(0.645, 0.645)
 shape = SubResource("CircleShape2D_2fvwc")
 
@@ -197,6 +197,10 @@ playerRB = NodePath("..")
 unique_name_in_owner = true
 script = ExtResource("13_ofswa")
 start_on_load = false
+
+[node name="brain_process" type="Timer" parent="IA"]
+wait_time = 0.5
+one_shot = true
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("5_7qtpj")
@@ -437,10 +441,8 @@ bus = &"Sfx"
 script = ExtResource("23_obpe4")
 audio_clips = Array[AudioStream]([ExtResource("40_w2wwy")])
 
-[connection signal="dead" from="." to="Colision" method="set_disabled" binds= [true]]
 [connection signal="dead" from="." to="MovementHandler" method="setMaxDampening" binds= [true]]
 [connection signal="dead" from="." to="StateMachine" method="send_event" binds= ["dead"]]
-[connection signal="resurect" from="." to="Colision" method="set_disabled" binds= [false]]
 [connection signal="resurect" from="." to="MovementHandler" method="setMaxDampening" binds= [false]]
 [connection signal="resurect" from="." to="StateMachine" method="send_event" binds= ["reset"]]
 [connection signal="chargeEnd" from="InputHandler" to="StateMachine" method="send_event" binds= ["doCharge"]]
@@ -467,10 +469,10 @@ audio_clips = Array[AudioStream]([ExtResource("40_w2wwy")])
 [connection signal="endCharge" from="ChargeHandler" to="StunHandler" method="stun" binds= ["charge"]]
 [connection signal="endChargeGuarded" from="ChargeHandler" to="StunHandler" method="stun" binds= ["chargeGuarded"]]
 [connection signal="changeRotation" from="WrestleHandler" to="LookAt" method="set_rotation"]
-[connection signal="wrestlingEnded" from="WrestleHandler" to="StateMachine" method="send_event" binds= ["stopWrestling"]]
 [connection signal="wrestlingEnded" from="WrestleHandler" to="StateMachine" method="set_expression_property" binds= ["isWrestling", false]]
-[connection signal="wrestlingStarted" from="WrestleHandler" to="StateMachine" method="send_event" binds= ["startWrestling"]]
+[connection signal="wrestlingEnded" from="WrestleHandler" to="StateMachine" method="send_event" binds= ["stopWrestling"]]
 [connection signal="wrestlingStarted" from="WrestleHandler" to="StateMachine" method="set_expression_property" binds= ["isWrestling", true]]
+[connection signal="wrestlingStarted" from="WrestleHandler" to="StateMachine" method="send_event" binds= ["startWrestling"]]
 [connection signal="state_exited" from="StateMachine/CompoundState/free" to="LookAt" method="canLookAtThings" binds= [false]]
 [connection signal="state_exited" from="StateMachine/CompoundState/free" to="MovementHandler" method="canMove" binds= [false]]
 [connection signal="state_entered" from="StateMachine/CompoundState/free/Idle" to="LookAt" method="canLookAtThings" binds= [true]]

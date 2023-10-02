@@ -8,6 +8,8 @@ extends Node
 ##  - Scene handling and scene changes
 ##  - more TBD...
 
+@onready var preloadOnly = preload("res://scenes/pantin.tscn")
+
 
 ## ==== Scene Loading var
 ## Curent scene loaded
