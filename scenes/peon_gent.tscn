@@ -20,7 +20,10 @@ level = 0.3
 [node name="2D_character_rig" parent="." index="12"]
 visible = false
 
-[node name="2D_character_rig2" parent="." index="13" instance=ExtResource("2_836ep")]
+[node name="2D_character_rig2" parent="." index="13" node_paths=PackedStringArray("looker") instance=ExtResource("2_836ep")]
+position = Vector2(48, 24)
+scale = Vector2(0.45, 0.45)
+looker = NodePath("../LookAt")
 
 [node name="rig_signal_connector" parent="." index="14" node_paths=PackedStringArray("rig")]
 rig = NodePath("../2D_character_rig2")

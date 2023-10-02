@@ -23,7 +23,10 @@ visible = false
 [node name="rig_signal_connector" parent="." index="13" node_paths=PackedStringArray("rig")]
 rig = NodePath("../2D_character_rig2")
 
-[node name="2D_character_rig2" parent="." index="14" instance=ExtResource("2_i5jv6")]
+[node name="2D_character_rig2" parent="." index="14" node_paths=PackedStringArray("looker") instance=ExtResource("2_i5jv6")]
+position = Vector2(-2, 17)
+scale = Vector2(0.38, 0.38)
+looker = NodePath("../LookAt")
 
 [node name="hurt" parent="AudioPlayers" index="5"]
 audio_clips = Array[AudioStream]([ExtResource("3_1533b"), ExtResource("4_jb7on")])
