@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://d1h1msw0tmfw4"]
+[gd_scene load_steps=30 format=3 uid="uid://d1h1msw0tmfw4"]
 
 [ext_resource type="Script" path="res://scripts/Player/Player.gd" id="1_21uft"]
 [ext_resource type="Script" path="res://scripts/logic/LookAt.gd" id="2_r5dgl"]
@@ -20,6 +20,8 @@
 [ext_resource type="PackedScene" uid="uid://bq8s6d65y33h6" path="res://scenes/entity/2Drig/player_rig.tscn" id="14_5urwl"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/expression_guard.gd" id="14_8jw7n"]
 [ext_resource type="Script" path="res://scripts/entity/rig_signal_connector.gd" id="18_ka1ft"]
+[ext_resource type="Script" path="res://scripts/audio/SimpleAudioPlayer.gd" id="21_rjjgd"]
+[ext_resource type="AudioStream" uid="uid://hxr71661i51x" path="res://assets/audio/back.wav" id="22_jqtes"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l2xwr"]
 size = Vector2(35.5, 57)
@@ -371,6 +373,16 @@ looker = NodePath("../LookAt")
 script = ExtResource("18_ka1ft")
 rig = NodePath("../2D_character_rig")
 
+[node name="SimpleAudioPlayer" type="Node" parent="." node_paths=PackedStringArray("audioPlayer")]
+script = ExtResource("21_rjjgd")
+sounds = {
+"hit": ExtResource("22_jqtes")
+}
+audioPlayer = NodePath("AudioStreamPlayer")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SimpleAudioPlayer"]
+bus = &"Sfx"
+
 [connection signal="dead" from="." to="MovementHandler" method="setMaxDampening" binds= [true]]
 [connection signal="dead" from="." to="StateMachine" method="send_event" binds= ["dead"]]
 [connection signal="resurect" from="." to="MovementHandler" method="setMaxDampening" binds= [false]]
@@ -420,6 +432,7 @@ rig = NodePath("../2D_character_rig")
 [connection signal="state_entered" from="StateMachine/CompoundState/free/charge/charge" to="LookAt" method="canLookAtThings" binds= [false]]
 [connection signal="state_entered" from="StateMachine/CompoundState/free/charge/charge" to="WrestleHandler" method="setCanWrestle" binds= [true]]
 [connection signal="state_entered" from="StateMachine/CompoundState/stun" to="WrestleHandler" method="setCanWrestle" binds= [false]]
+[connection signal="state_entered" from="StateMachine/CompoundState/stun" to="SimpleAudioPlayer" method="playSound" binds= ["hit"]]
 [connection signal="state_entered" from="StateMachine/CompoundState/wrestle" to="." method="signalWrestling"]
 [connection signal="state_entered" from="StateMachine/CompoundState/wrestle" to="Smashbutton" method="show"]
 [connection signal="state_exited" from="StateMachine/CompoundState/wrestle" to="Smashbutton" method="hide"]
