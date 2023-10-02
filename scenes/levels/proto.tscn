@@ -1,21 +1,22 @@
-[gd_scene load_steps=8 format=3 uid="uid://cl5me5crmsilp"]
+[gd_scene load_steps=9 format=3 uid="uid://cl5me5crmsilp"]
 
 [ext_resource type="Texture2D" uid="uid://byiv7gx4e8g5q" path="res://assets/art/background/backgroundV2.png" id="1_2cc7n"]
 [ext_resource type="PackedScene" uid="uid://d1h1msw0tmfw4" path="res://scenes/player.tscn" id="3_vg4tc"]
 [ext_resource type="PackedScene" uid="uid://cipdvjdamv1gv" path="res://scenes/entity/Crowd/CrowdHandler.tscn" id="4_4nfb2"]
 [ext_resource type="PackedScene" uid="uid://cack3kykwsqny" path="res://scenes/Enemy.tscn" id="4_cbq2a"]
+[ext_resource type="Script" path="res://scripts/logic/Arena.gd" id="4_ek7c4"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oukdq"]
-radius = 307.51
-height = 884.84
+radius = 272.92
+height = 807.88
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ald5m"]
-radius = 252.15
-height = 732.63
+radius = 224.47
+height = 662.29
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r6vxw"]
-radius = 182.97
-height = 652.52
+radius = 155.3
+height = 527.63
 
 [node name="proto" type="Node2D"]
 
@@ -37,6 +38,7 @@ freeze_mode = 1
 
 [node name="Arena" type="Area2D" parent="."]
 position = Vector2(578, 323)
+script = ExtResource("4_ek7c4")
 
 [node name="ArenaBig" type="CollisionShape2D" parent="Arena"]
 rotation = 1.5708

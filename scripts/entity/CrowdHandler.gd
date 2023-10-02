@@ -3,15 +3,7 @@ extends Node2D
 
 @export var maxTimeHappy : float = 5.0
 @export var minTimeHappy : float = 2.3
-
-
-func _ready():
-	## DEBUUUUG
-	moveTo(3)
-	await get_tree().create_timer(5.0).timeout
-	superHappy()
 	
-
 ## Move everyone
 func moveTo(targetNb : int):
 	if targetNb <= 0 || targetNb > 3:
