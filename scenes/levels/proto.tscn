@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://cl5me5crmsilp"]
+[gd_scene load_steps=43 format=3 uid="uid://cl5me5crmsilp"]
 
 [ext_resource type="Texture2D" uid="uid://byiv7gx4e8g5q" path="res://assets/art/background/backgroundV2.png" id="1_2cc7n"]
 [ext_resource type="PackedScene" uid="uid://d1h1msw0tmfw4" path="res://scenes/player.tscn" id="3_vg4tc"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="8_gu0po"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="9_toyb6"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="10_wf50o"]
+[ext_resource type="Script" path="res://scripts/UI/UIRounds.gd" id="12_40cwf"]
 [ext_resource type="Texture2D" uid="uid://bbwb5a70qp278" path="res://assets/art/UI/text_UI/ready_text.png" id="12_dt75w"]
 [ext_resource type="Texture2D" uid="uid://bv7cjgv0iecpq" path="res://assets/art/UI/counter_empty.png" id="12_f02h5"]
 [ext_resource type="Script" path="res://scripts/UI/TextUIHandler.gd" id="12_yqcsr"]
@@ -158,6 +159,53 @@ _data = {
 "victory": SubResource("Animation_ln1k2")
 }
 
+[sub_resource type="GDScript" id="GDScript_c4yqt"]
+script/source = "extends Button
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pressed.connect(goBack)
+	visibility_changed.connect(func ():
+		if visible:
+			grab_focus())
+
+
+func goBack():
+	Global.goto_scene(\"res://scenes/levels/MainMenu.tscn\")
+
+"
+
+[sub_resource type="GDScript" id="GDScript_ahv4r"]
+script/source = "extends Button
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pressed.connect(goMainMenu)
+
+
+func goMainMenu():
+	Global.goto_scene(\"res://scenes/levels/MainMenu.tscn\")
+"
+
+[sub_resource type="GDScript" id="GDScript_a70u4"]
+script/source = "extends Button
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pressed.connect(goBack)
+	visibility_changed.connect(func ():
+		if visible:
+			grab_focus())
+
+
+func goBack():
+	Global.goto_scene(\"res://scenes/levels/proto.tscn\")
+
+"
+
 [node name="proto" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -211,6 +259,7 @@ shape = SubResource("SegmentShape2D_yu5ia")
 position = Vector2(938, 0)
 
 [node name="GameManager" type="Node2D" parent="." node_paths=PackedStringArray("arena", "player", "targetPlayer", "targetEnemy", "targetSpawn", "enemyInPositionArea")]
+unique_name_in_owner = true
 script = ExtResource("6_f1f3y")
 arena = NodePath("../Arena")
 player = NodePath("../Player")
@@ -233,7 +282,7 @@ script = ExtResource("9_toyb6")
 [node name="toMatch" type="Node" parent="GameManager/StateMachine/States/init"]
 script = ExtResource("10_wf50o")
 to = NodePath("../../match")
-delay_seconds = 1.0
+delay_seconds = 0.5
 
 [node name="match" type="Node" parent="GameManager/StateMachine/States"]
 script = ExtResource("8_gu0po")
@@ -275,7 +324,7 @@ script = ExtResource("9_toyb6")
 script = ExtResource("10_wf50o")
 to = NodePath("../../outOfArena")
 event = &"endOfRound"
-delay_seconds = 2.0
+delay_seconds = 1.0
 
 [node name="outOfArena" type="Node" parent="GameManager/StateMachine/States/match/round"]
 script = ExtResource("9_toyb6")
@@ -307,7 +356,11 @@ delay_seconds = 2.0
 [node name="end" type="Node" parent="GameManager/StateMachine/States"]
 script = ExtResource("9_toyb6")
 
-[node name="UIRounds" type="CanvasLayer" parent="."]
+[node name="UIRounds" type="CanvasLayer" parent="." node_paths=PackedStringArray("uiRound1", "uiRound2", "uiRound3")]
+script = ExtResource("12_40cwf")
+uiRound1 = NodePath("MarginContainer/HBoxContainer/Round 1")
+uiRound2 = NodePath("MarginContainer/HBoxContainer/Round 2")
+uiRound3 = NodePath("MarginContainer/HBoxContainer/Round 3")
 
 [node name="MarginContainer" type="MarginContainer" parent="UIRounds"]
 anchors_preset = 15
@@ -323,7 +376,7 @@ layout_mode = 2
 size_flags_vertical = 0
 
 [node name="Round 1" type="Control" parent="UIRounds/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(80, 0)
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 
 [node name="empty" type="TextureRect" parent="UIRounds/MarginContainer/HBoxContainer/Round 1"]
@@ -340,6 +393,7 @@ texture = ExtResource("12_f02h5")
 expand_mode = 5
 
 [node name="player" type="TextureRect" parent="UIRounds/MarginContainer/HBoxContainer/Round 1"]
+modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 1
 anchors_preset = 4
@@ -353,6 +407,7 @@ texture = ExtResource("13_7io1t")
 expand_mode = 5
 
 [node name="enemy" type="TextureRect" parent="UIRounds/MarginContainer/HBoxContainer/Round 1"]
+modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 1
 anchors_preset = 4
@@ -366,7 +421,7 @@ texture = ExtResource("14_45apn")
 expand_mode = 5
 
 [node name="Round 2" type="Control" parent="UIRounds/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(80, 100)
+custom_minimum_size = Vector2(50, 100)
 layout_mode = 2
 
 [node name="empty" type="TextureRect" parent="UIRounds/MarginContainer/HBoxContainer/Round 2"]
@@ -383,6 +438,7 @@ texture = ExtResource("12_f02h5")
 expand_mode = 5
 
 [node name="player" type="TextureRect" parent="UIRounds/MarginContainer/HBoxContainer/Round 2"]
+modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 1
 anchors_preset = 4
@@ -396,6 +452,7 @@ texture = ExtResource("13_7io1t")
 expand_mode = 5
 
 [node name="enemy" type="TextureRect" parent="UIRounds/MarginContainer/HBoxContainer/Round 2"]
+modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 1
 anchors_preset = 4
@@ -427,6 +484,7 @@ texture = ExtResource("12_f02h5")
 expand_mode = 5
 
 [node name="player" type="TextureRect" parent="UIRounds/MarginContainer/HBoxContainer/Round 3"]
+modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 1
 anchors_preset = 4
@@ -440,6 +498,7 @@ texture = ExtResource("13_7io1t")
 expand_mode = 5
 
 [node name="enemy" type="TextureRect" parent="UIRounds/MarginContainer/HBoxContainer/Round 3"]
+modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 1
 anchors_preset = 4
@@ -703,6 +762,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.65
 text = "Savour the victory !"
+script = SubResource("GDScript_c4yqt")
 
 [node name="Spacer" type="Control" parent="UIText/EndGameWon/MarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -743,6 +803,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.65
 text = "Abandon"
+script = SubResource("GDScript_ahv4r")
 
 [node name="Spacer" type="Control" parent="UIText/EndGameLost/MarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -754,6 +815,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.65
 text = "Try Again"
+script = SubResource("GDScript_a70u4")
 
 [node name="Control" type="Control" parent="UIText/EndGameLost/MarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -763,18 +825,16 @@ size_flags_horizontal = 3
 
 [node name="youpi" type="AudioStreamPlayer" parent="Audio_lvl"]
 stream = ExtResource("23_siste")
-bus = &"RING"
 script = ExtResource("21_k10s6")
 audio_clips = Array[AudioStream]([ExtResource("22_fh4vi"), ExtResource("23_siste"), ExtResource("24_nbmtq"), ExtResource("25_q0q33")])
 
 [node name="RING_strt" type="AudioStreamPlayer" parent="Audio_lvl"]
 stream = ExtResource("26_wb46u")
-bus = &"RING"
 script = ExtResource("21_k10s6")
 audio_clips = Array[AudioStream]([ExtResource("26_wb46u")])
 
 [node name="RING_end" type="AudioStreamPlayer" parent="Audio_lvl"]
-bus = &"RING"
+volume_db = 8.0
 script = ExtResource("21_k10s6")
 audio_clips = Array[AudioStream]([ExtResource("27_uyd3w")])
 
@@ -786,27 +846,30 @@ bus = &"Music"
 [connection signal="wrestlingStarted" from="Player" to="Arena/CrowdHandler" method="superHappy"]
 [connection signal="wrestlingStarted" from="Player" to="Audio_lvl/youpi" method="play_sound"]
 [connection signal="endOfGame" from="GameManager" to="GameManager/StateMachine" method="send_event" binds= ["finish"]]
-[connection signal="endOfRound" from="GameManager" to="Audio_lvl/RING_end" method="play_sound"]
 [connection signal="endOfRound" from="GameManager" to="GameManager/StateMachine" method="send_event" binds= ["endOfRound"]]
-[connection signal="enemyWonGame" from="GameManager" to="UIText" method="showUI" binds= ["defeat", false]]
 [connection signal="enemyWonGame" from="GameManager" to="UIText" method="showUIAfterDelay" binds= ["gameLost", 1.0]]
-[connection signal="playerWonGame" from="GameManager" to="Audio_lvl/youpi" method="play_sound"]
-[connection signal="playerWonGame" from="GameManager" to="UIText" method="showUI" binds= ["victory", false]]
+[connection signal="enemyWonGame" from="GameManager" to="UIText" method="showUI" binds= ["defeat", false]]
+[connection signal="enemyWonRound" from="GameManager" to="UIRounds" method="setRound" binds= [false]]
 [connection signal="playerWonGame" from="GameManager" to="UIText" method="showUIAfterDelay" binds= ["gameWon", 1.0]]
+[connection signal="playerWonGame" from="GameManager" to="UIText" method="showUI" binds= ["victory", false]]
 [connection signal="playerWonMatch" from="GameManager" to="Arena/CrowdHandler" method="superHappy"]
-[connection signal="playerWonMatch" from="GameManager" to="UIText" method="showUI" binds= ["victory", false]]
+[connection signal="playerWonMatch" from="GameManager" to="Audio_lvl/youpi" method="play_sound"]
 [connection signal="playerWonMatch" from="GameManager" to="UIText" method="showUIAfterDelay" binds= ["nextMatch", 0.5]]
+[connection signal="playerWonMatch" from="GameManager" to="UIText" method="showUI" binds= ["victory", false]]
+[connection signal="playerWonRound" from="GameManager" to="UIRounds" method="setRound" binds= [true]]
 [connection signal="resetPlayerPositions" from="GameManager" to="GameManager/StateMachine" method="send_event" binds= ["resetRound"]]
-[connection signal="startRound" from="GameManager" to="Audio_lvl/RING_strt" method="play_sound"]
 [connection signal="startRound" from="GameManager" to="GameManager/StateMachine" method="send_event" binds= ["startRound"]]
 [connection signal="state_entered" from="GameManager/StateMachine/States/match/reset" to="GameManager" method="resetMatch"]
+[connection signal="state_entered" from="GameManager/StateMachine/States/match/reset" to="UIRounds" method="resetRound"]
 [connection signal="state_entered" from="GameManager/StateMachine/States/match/reset" to="UIText" method="hideAllUi"]
 [connection signal="state_entered" from="GameManager/StateMachine/States/match/enemyEnter" to="GameManager" method="spawnEnemy"]
 [connection signal="state_entered" from="GameManager/StateMachine/States/match/round/ready" to="GameManager" method="lookAtEachOther"]
 [connection signal="state_entered" from="GameManager/StateMachine/States/match/round/ready" to="UIText" method="showUI" binds= ["ready", false]]
 [connection signal="state_exited" from="GameManager/StateMachine/States/match/round/ready" to="UIText" method="hideUI" binds= ["ready"]]
 [connection signal="state_entered" from="GameManager/StateMachine/States/match/round/fight" to="GameManager" method="fightStarted"]
+[connection signal="state_entered" from="GameManager/StateMachine/States/match/round/fight" to="Audio_lvl/RING_strt" method="play_sound"]
 [connection signal="state_entered" from="GameManager/StateMachine/States/match/round/fight" to="UIText" method="showUI" binds= ["fight", true]]
 [connection signal="state_entered" from="GameManager/StateMachine/States/match/round/outOfArena" to="GameManager" method="endCurrentRound"]
+[connection signal="state_exited" from="GameManager/StateMachine/States/match/round/outOfArena" to="Audio_lvl/RING_end" method="play_sound"]
 [connection signal="state_entered" from="GameManager/StateMachine/States/match/round/roundReset" to="GameManager" method="resetRound"]
 [connection signal="pressed" from="UIText/NextMatch/MarginContainer/HBoxContainer/Button" to="GameManager/StateMachine" method="send_event" binds= ["startMatch"]]
