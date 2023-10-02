@@ -25,7 +25,6 @@ func _ready():
 		
 	body_exited.connect(func (body : Node2D):
 		print(body.name + " exited the arena"))
-	reset()
 
 # reset arena & crowd
 func reset():

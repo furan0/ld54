@@ -1,5 +1,6 @@
 [gd_scene load_steps=26 format=3 uid="uid://d1h1msw0tmfw4"]
 
+[ext_resource type="Script" path="res://scripts/Player/Player.gd" id="1_21uft"]
 [ext_resource type="Script" path="res://scripts/logic/LookAt.gd" id="2_r5dgl"]
 [ext_resource type="Script" path="res://scripts/logic/InputHandler.gd" id="3_320l3"]
 [ext_resource type="Texture2D" uid="uid://urvvrabmfdrk" path="res://assets/proto/arrow.png" id="3_go2qw"]
@@ -83,6 +84,7 @@ max_contacts_reported = 3
 contact_monitor = true
 lock_rotation = true
 linear_damp = 15.0
+script = ExtResource("1_21uft")
 
 [node name="LookAt" type="Node2D" parent="."]
 unique_name_in_owner = true
@@ -349,6 +351,8 @@ looker = NodePath("../LookAt")
 [node name="rig_signal_connector" type="Node" parent="."]
 script = ExtResource("18_ka1ft")
 
+
+[connection signal="dead" from="." to="StateMachine" method="send_event" binds= ["dead"]]
 [connection signal="chargeEnd" from="InputHandler" to="StateMachine" method="send_event" binds= ["doCharge"]]
 [connection signal="chargeStart" from="InputHandler" to="StateMachine" method="send_event" binds= ["startCharge"]]
 [connection signal="guardEnd" from="InputHandler" to="StateMachine" method="send_event" binds= ["stopGuard"]]
@@ -392,9 +396,8 @@ script = ExtResource("18_ka1ft")
 [connection signal="state_entered" from="StateMachine/CompoundState/free/charge/charge" to="ChargeHandler" method="startRunning"]
 [connection signal="state_entered" from="StateMachine/CompoundState/free/charge/charge" to="LookAt" method="canLookAtThings" binds= [false]]
 [connection signal="state_entered" from="StateMachine/CompoundState/free/charge/charge" to="WrestleHandler" method="setCanWrestle" binds= [true]]
-[connection signal="state_exited" from="StateMachine/CompoundState/free/charge/charge" to="2D_character_rig" method="signal_to_anim" binds= ["post_charge"]]
 [connection signal="state_entered" from="StateMachine/CompoundState/stun" to="WrestleHandler" method="setCanWrestle" binds= [false]]
+[connection signal="state_entered" from="StateMachine/CompoundState/wrestle" to="." method="signalWrestling"]
 [connection signal="state_entered" from="StateMachine/CompoundState/wrestle" to="Smashbutton" method="show"]
-[connection signal="state_entered" from="StateMachine/CompoundState/wrestle" to="2D_character_rig" method="signal_to_anim" binds= ["wsl"]]
 [connection signal="state_exited" from="StateMachine/CompoundState/wrestle" to="Smashbutton" method="hide"]
 [connection signal="state_exited" from="StateMachine/CompoundState/wrestle" to="WrestleHandler" method="setCanWrestle" binds= [false]]

@@ -122,14 +122,14 @@ func _physics_process(delta):
 	if isRunning:
 		# check if we collided with someone
 		if _checkCollisionAndHit():
-			_endCharge()
+			terminateCharge()
 			return
 			
 		# check if we still need to run
 		ellapsedRunningTime += delta
 		if ellapsedRunningTime >= chargingTime:
 			# You ran for long enough ! Stop that crap...
-			_endCharge()
+			terminateCharge()
 			
 		# Move rigidbody in the right direction
 		var direction := Vector2.RIGHT.rotated(rotationRef.rotation)
@@ -175,7 +175,7 @@ func doHit(node : Node2D):
 
 
 ## Called to end the charge
-func _endCharge():
+func terminateCharge():
 	if hitGuard:
 		endChargeGuarded.emit()
 		hitGuard = false
