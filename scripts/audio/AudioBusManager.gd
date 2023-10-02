@@ -34,6 +34,11 @@ func setBusVolume(bus : E_BusName, volume_db : float):
 func setBusVolumeLinear(bus : E_BusName, volume : float):
 	var volume_db := linear_to_db(volume)
 	setBusVolume(bus, volume_db)
+	
+func setBusVolumeLinearString(bus : String, volume : float):
+	var volume_db := linear_to_db(volume)
+	var busID = AudioServer.get_bus_index(bus)
+	AudioServer.set_bus_volume_db(busID, volume_db)
 
 
 ## Used to mute any bus

@@ -39,6 +39,11 @@ func requestPanelSwitch(panelName : String, hidePreviousPanel : bool = true, isC
 	print ("UI panel switch requested : " + panelName)
 	switchToPanel.emit(panelName, hidePreviousPanel, isChildPanel)
 
+func setNextSceneSwitch(name : String):
+	Global.mainMenuNextSceneSwitch = name
+
+func goToStoredScene():
+	goToScene(Global.mainMenuNextSceneSwitch)
 
 ## reset the UI focus to the initial focus if set
 func resetFocus():

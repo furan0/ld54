@@ -23,12 +23,12 @@
 [ext_resource type="Texture2D" uid="uid://cmayfd4bbjfko" path="res://assets/art/UI/counter_win.png" id="13_7io1t"]
 [ext_resource type="Texture2D" uid="uid://j3ri8ks4lj3t" path="res://assets/art/UI/counter_lose.png" id="14_45apn"]
 [ext_resource type="Texture2D" uid="uid://dwsott110gfiv" path="res://assets/art/UI/text_UI/start_text.png" id="14_buoga"]
-[ext_resource type="Texture2D" uid="uid://r7r5anv5ms6x" path="res://assets/art/UI/text_UI/victory_text.png" id="14_c1soi"]
 [ext_resource type="Texture2D" uid="uid://dgpt5f6ohg3vu" path="res://assets/art/UI/text_UI/defeat_text.png" id="15_6mqve"]
 [ext_resource type="Theme" uid="uid://mxwvwg8snm7m" path="res://assets/defaultUiTheme.tres" id="17_2wcp0"]
 [ext_resource type="Script" path="res://scripts/audio/audio_effect.gd" id="21_k10s6"]
 [ext_resource type="AudioStream" uid="uid://dsag7eeqha7y0" path="res://assets/audio/ambiance/musique_amb_session.mp3" id="22_8g3oj"]
 [ext_resource type="AudioStream" uid="uid://bt0cn6gyh5cr4" path="res://assets/audio/ambiance/wai_r1_session.wav" id="22_fh4vi"]
+[ext_resource type="Texture2D" uid="uid://bocn7ib45jdd0" path="res://assets/art/UI/text_UI/match_victory_text.png" id="23_sfkqk"]
 [ext_resource type="AudioStream" uid="uid://cnsmqheehqwfn" path="res://assets/audio/ambiance/wai_r2_session.wav" id="23_siste"]
 [ext_resource type="AudioStream" uid="uid://5w8eb583v8p7" path="res://assets/audio/ambiance/sacretatane_session.wav" id="24_nbmtq"]
 [ext_resource type="AudioStream" uid="uid://c7nv28vohtlrc" path="res://assets/audio/ambiance/whaou_r2_session.wav" id="25_q0q33"]
@@ -570,7 +570,6 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 6.3
 
 [node name="Victory" type="Control" parent="UIText"]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -599,7 +598,7 @@ size_flags_stretch_ratio = 0.05
 [node name="TextureRect" type="TextureRect" parent="UIText/Victory/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-texture = ExtResource("14_c1soi")
+texture = ExtResource("23_sfkqk")
 expand_mode = 3
 stretch_mode = 5
 
@@ -892,17 +891,17 @@ bus = &"Music"
 [connection signal="wrestlingStarted" from="Player" to="Camera" method="doShake" binds= [0.45]]
 [connection signal="endOfGame" from="GameManager" to="GameManager/StateMachine" method="send_event" binds= ["finish"]]
 [connection signal="endOfRound" from="GameManager" to="GameManager/StateMachine" method="send_event" binds= ["endOfRound"]]
-[connection signal="enemyWonGame" from="GameManager" to="UIText" method="showUI" binds= ["defeat", false]]
 [connection signal="enemyWonGame" from="GameManager" to="UIText" method="showUIAfterDelay" binds= ["gameLost", 1.0]]
+[connection signal="enemyWonGame" from="GameManager" to="UIText" method="showUI" binds= ["defeat", false]]
 [connection signal="enemyWonRound" from="GameManager" to="UIRounds" method="setRound" binds= [false]]
 [connection signal="playerWonGame" from="GameManager" to="Arena/CrowdHandler" method="superHappy"]
 [connection signal="playerWonGame" from="GameManager" to="Audio_lvl/youpi" method="play_sound"]
-[connection signal="playerWonGame" from="GameManager" to="UIText" method="showUI" binds= ["victory", false]]
 [connection signal="playerWonGame" from="GameManager" to="UIText" method="showUIAfterDelay" binds= ["gameWon", 1.0]]
+[connection signal="playerWonGame" from="GameManager" to="UIText" method="showUI" binds= ["victory", false]]
 [connection signal="playerWonMatch" from="GameManager" to="Arena/CrowdHandler" method="superHappy"]
 [connection signal="playerWonMatch" from="GameManager" to="Audio_lvl/youpi" method="play_sound"]
-[connection signal="playerWonMatch" from="GameManager" to="UIText" method="showUI" binds= ["victory", false]]
 [connection signal="playerWonMatch" from="GameManager" to="UIText" method="showUIAfterDelay" binds= ["nextMatch", 0.5]]
+[connection signal="playerWonMatch" from="GameManager" to="UIText" method="showUI" binds= ["victory", false]]
 [connection signal="playerWonRound" from="GameManager" to="UIRounds" method="setRound" binds= [true]]
 [connection signal="resetPlayerPositions" from="GameManager" to="GameManager/StateMachine" method="send_event" binds= ["resetRound"]]
 [connection signal="startRound" from="GameManager" to="GameManager/StateMachine" method="send_event" binds= ["startRound"]]

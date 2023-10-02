@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://scripts/Player/Player.gd" id="1_21uft"]
 [ext_resource type="Script" path="res://scripts/logic/LookAt.gd" id="2_r5dgl"]
+[ext_resource type="Texture2D" uid="uid://blhnxlydday1g" path="res://assets/art/UI/arrow_player/arrow_player.png" id="3_8kp0b"]
 [ext_resource type="Script" path="res://scripts/logic/InputHandler.gd" id="3_320l3"]
-[ext_resource type="Texture2D" uid="uid://urvvrabmfdrk" path="res://assets/proto/arrow.png" id="3_go2qw"]
 [ext_resource type="Texture2D" uid="uid://dcj3theun2e2h" path="res://assets/art/UI/keyboard.png" id="3_uac4i"]
 [ext_resource type="Texture2D" uid="uid://31pj1fjbhhid" path="res://assets/art/UI/keyboard_pressed.png" id="4_81pqu"]
 [ext_resource type="Script" path="res://scripts/Player/MovementHandler.gd" id="4_a12nu"]
@@ -120,12 +120,10 @@ shape = SubResource("RectangleShape2D_l2xwr")
 debug_color = Color(0.760784, 0, 0, 0.254902)
 
 [node name="Arrow" type="Sprite2D" parent="LookAt"]
-modulate = Color(0, 0, 0, 0.560784)
 z_index = -5
 position = Vector2(47.93, 0)
-rotation = 1.57079
-scale = Vector2(0.065, 0.065)
-texture = ExtResource("3_go2qw")
+scale = Vector2(0.375, 0.375)
+texture = ExtResource("3_8kp0b")
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 scale = Vector2(0.645, 0.645)
@@ -434,6 +432,7 @@ script = ExtResource("23_obpe4")
 audio_clips = Array[AudioStream]([ExtResource("36_df0je"), ExtResource("37_qhw3j")])
 
 [node name="neutral" type="AudioStreamPlayer" parent="AudioPlayers"]
+bus = &"Sfx"
 script = ExtResource("23_obpe4")
 audio_clips = Array[AudioStream]([ExtResource("38_3jbgw"), ExtResource("39_linyl")])
 
