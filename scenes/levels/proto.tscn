@@ -936,6 +936,7 @@ libraries = {
 "": SubResource("AnimationLibrary_foy8h")
 }
 script = ExtResource("28_qgxf2")
+anim_toplay = "FINAL_ANIM"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="UIText/EndGameWon"]
 
