@@ -4,7 +4,10 @@ extends CanvasLayer
 	"ready":$Ready,
 	"fight":$Fight,
 	"victory":$Victory,
-	"defeat":$Defeat}
+	"defeat":$Defeat,
+	"nextMatch":$NextMatch,
+	"gameLost":$EndGameLost,
+	"gameWon":$EndGameWon}
 
 @onready var player : AnimationPlayer = $AnimationPlayer
 	
@@ -15,7 +18,7 @@ func _ready():
 		ui.hide()
 	player.animation_finished.connect(_onAnimationCompleted)
 
-func showUI(uiName : String, hideWhenFinished : bool):
+func showUI(uiName : String, hideWhenFinished : bool = false):
 	if uis.has(uiName):
 		uis[uiName].show()
 		print("Show " + uiName)
@@ -32,3 +35,12 @@ func hideUI(uiName : String):
 
 func _onAnimationCompleted(_name):
 	animationCompleted.emit()
+
+
+func showUIAfterDelay(uiName : String, delay : float):
+	await get_tree().create_timer(delay).timeout
+	showUI(uiName)
+
+func hideAllUi():
+	for ui in uis.keys():
+		hideUI(ui)

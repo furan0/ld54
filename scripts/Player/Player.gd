@@ -40,6 +40,7 @@ func kill():
 	dead.emit()
 	lockControl()
 	print(name + " is dead.")
+	disableCollider(true)
 
 func signalWrestling():
 	wrestlingStarted.emit()
@@ -47,6 +48,7 @@ func signalWrestling():
 
 func unkill():
 	resurect.emit()
+	disableCollider(false)
 
 func goTo(targetPos : Vector2):
 	$MovementHandler.moveTo(targetPos)
@@ -63,3 +65,6 @@ func unlockControl():
 
 func setupIaTarget(target : Node2D):
 	%IA.target_node = target
+
+func disableCollider(isDisabled : bool):
+	$Collider.set_deferred("disabled", isDisabled)

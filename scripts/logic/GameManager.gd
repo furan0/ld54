@@ -46,8 +46,6 @@ func _ready():
 		arena.playerLeavedArena.connect(playerExitedArena)
 	if player == null:
 		push_warning("Player must be set")
-	else:
-		setupPlayer(player)
 	if targetPlayer == null:
 		push_warning("targetPlayer must be set")
 	if targetEnemy == null:
@@ -61,6 +59,7 @@ func _ready():
 func resetMatch():
 	if arena != null:
 		arena.reset()
+	
 	if player != null && targetPlayer != null:
 		player.goTo(targetPlayer.global_position)
 	
@@ -78,10 +77,12 @@ func resetRound():
 		print("Enemy move completed")
 	if player != null:
 		player.unkill()
+		player.disableCollider(true)
 		if targetPlayer != null:
 			player.goTo(targetPlayer.global_position)
 	if enemy != null:
 		enemy.unkill()
+		enemy.disableCollider(true)
 		if targetEnemy != null:
 			enemy.goTo(targetEnemy.global_position)
 			enemy.moveCompleted.connect(moveSetter)
@@ -92,6 +93,10 @@ func resetRound():
 	if enemy != null && !enemyMoveCompleted:
 		await enemy.moveCompleted
 	enemy.moveCompleted.disconnect(moveSetter)
+	
+	player.disableCollider(false)
+	enemy.disableCollider(false)
+	
 	# Make them look at each others 
 	await get_tree().create_timer(0.2).timeout
 	lookAtEachOther()
@@ -201,6 +206,13 @@ func endCurrentRound():
 		else:
 			playerWonMatch.emit()
 			currentMatchNumber += 1
+			
+			## Kill enemy & resurect plyer if required
+			if player != null:
+				player.unkill()
+			if enemy != null:
+				enemy.kill()
+				
 			## End of match. Check if end of game
 			if currentMatchNumber >= enemyList.size():
 				# Player victory !

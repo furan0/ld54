@@ -11,11 +11,11 @@
 [ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="8_gu0po"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="9_toyb6"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="10_wf50o"]
-[ext_resource type="Texture2D" uid="uid://b5ik8a75rr78q" path="res://assets/art/UI/text_UI/ready_text.png" id="12_dt75w"]
+[ext_resource type="Texture2D" uid="uid://bbwb5a70qp278" path="res://assets/art/UI/text_UI/ready_text.png" id="12_dt75w"]
 [ext_resource type="Script" path="res://scripts/UI/TextUIHandler.gd" id="12_yqcsr"]
-[ext_resource type="Texture2D" uid="uid://b0b26t0ynw7uk" path="res://assets/art/UI/text_UI/start_text.png" id="14_buoga"]
-[ext_resource type="Texture2D" uid="uid://cthql0lcqecph" path="res://assets/art/UI/text_UI/victory_text.png" id="14_c1soi"]
-[ext_resource type="Texture2D" uid="uid://cipxwaqhp6okm" path="res://assets/art/UI/text_UI/defeat_text.png" id="15_6mqve"]
+[ext_resource type="Texture2D" uid="uid://dwsott110gfiv" path="res://assets/art/UI/text_UI/start_text.png" id="14_buoga"]
+[ext_resource type="Texture2D" uid="uid://r7r5anv5ms6x" path="res://assets/art/UI/text_UI/victory_text.png" id="14_c1soi"]
+[ext_resource type="Texture2D" uid="uid://dgpt5f6ohg3vu" path="res://assets/art/UI/text_UI/defeat_text.png" id="15_6mqve"]
 [ext_resource type="Theme" uid="uid://mxwvwg8snm7m" path="res://assets/defaultUiTheme.tres" id="17_2wcp0"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oukdq"]
@@ -81,18 +81,19 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0)
 }
 
-[sub_resource type="Animation" id="Animation_6715u"]
-resource_name = "ready_pop_in"
+[sub_resource type="Animation" id="Animation_j50d8"]
+resource_name = "defeat"
+length = 0.6
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Ready/MarginContainer/VBoxContainer/Spacer2:size_flags_stretch_ratio")
+tracks/0/path = NodePath("Defeat/MarginContainer/VBoxContainer/HBoxContainer/TextureRect:size_flags_stretch_ratio")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0, 2),
-"points": PackedFloat32Array(6.3, -0.25, 0, 0.25, 0, 1.09, -0.25, 0, 0.1, -0.0204393, 1.64403, -0.2, -0.022095, 0, 0),
-"times": PackedFloat32Array(0, 0.4, 0.7)
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 2.21, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.6)
 }
 
 [sub_resource type="Animation" id="Animation_dtwij"]
@@ -109,6 +110,20 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.3, 1)
 }
 
+[sub_resource type="Animation" id="Animation_6715u"]
+resource_name = "ready_pop_in"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ready/MarginContainer/VBoxContainer/Spacer2:size_flags_stretch_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 2),
+"points": PackedFloat32Array(6.3, -0.25, 0, 0.25, 0, 1.09, -0.25, 0, 0.1, -0.0204393, 1.64403, -0.2, -0.022095, 0, 0),
+"times": PackedFloat32Array(0, 0.4, 0.7)
+}
+
 [sub_resource type="Animation" id="Animation_ln1k2"]
 resource_name = "victory"
 tracks/0/type = "bezier"
@@ -121,21 +136,6 @@ tracks/0/keys = {
 "handle_modes": PackedInt32Array(0, 2, 0),
 "points": PackedFloat32Array(6.3, -0.25, 0, 0.162589, -0.084702, 1.09, -0.137411, 0.0909766, 0.199999, -0.132415, 1.09, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 0.4, 1)
-}
-
-[sub_resource type="Animation" id="Animation_j50d8"]
-resource_name = "defeat"
-length = 0.6
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Defeat/MarginContainer/VBoxContainer/HBoxContainer/TextureRect:size_flags_stretch_ratio")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 2.21, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.6)
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_i7n73"]
@@ -344,7 +344,6 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 6.3
 
 [node name="Victory" type="Control" parent="UIText"]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -514,7 +513,47 @@ text = "Start next Duel !"
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="EndGameWon" type="Control" parent="UIText"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("17_2wcp0")
+
+[node name="MarginContainer" type="MarginContainer" parent="UIText/EndGameWon"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -81.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 75
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UIText/EndGameWon/MarginContainer"]
+layout_mode = 2
+
+[node name="Spacer2" type="Control" parent="UIText/EndGameWon/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="UIText/EndGameWon/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.65
+text = "Savour the victory !"
+
+[node name="Spacer" type="Control" parent="UIText/EndGameWon/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
 [node name="EndGameLost" type="Control" parent="UIText"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -565,11 +604,17 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [connection signal="endOfGame" from="GameManager" to="GameManager/StateMachine" method="send_event" binds= ["finish"]]
-[connection signal="endOfMatch" from="GameManager" to="GameManager/StateMachine" method="send_event" binds= ["startMatch"]]
 [connection signal="endOfRound" from="GameManager" to="GameManager/StateMachine" method="send_event" binds= ["endOfRound"]]
+[connection signal="enemyWonGame" from="GameManager" to="UIText" method="showUI" binds= ["defeat", false]]
+[connection signal="enemyWonGame" from="GameManager" to="UIText" method="showUIAfterDelay" binds= ["gameLost", 1.0]]
+[connection signal="playerWonGame" from="GameManager" to="UIText" method="showUI" binds= ["victory", false]]
+[connection signal="playerWonGame" from="GameManager" to="UIText" method="showUIAfterDelay" binds= ["gameWon", 1.0]]
+[connection signal="playerWonMatch" from="GameManager" to="UIText" method="showUI" binds= ["victory", false]]
+[connection signal="playerWonMatch" from="GameManager" to="UIText" method="showUIAfterDelay" binds= ["nextMatch", 0.5]]
 [connection signal="resetPlayerPositions" from="GameManager" to="GameManager/StateMachine" method="send_event" binds= ["resetRound"]]
 [connection signal="startRound" from="GameManager" to="GameManager/StateMachine" method="send_event" binds= ["startRound"]]
 [connection signal="state_entered" from="GameManager/StateMachine/States/match/reset" to="GameManager" method="resetMatch"]
+[connection signal="state_entered" from="GameManager/StateMachine/States/match/reset" to="UIText" method="hideAllUi"]
 [connection signal="state_entered" from="GameManager/StateMachine/States/match/enemyEnter" to="GameManager" method="spawnEnemy"]
 [connection signal="state_entered" from="GameManager/StateMachine/States/match/round/ready" to="GameManager" method="lookAtEachOther"]
 [connection signal="state_entered" from="GameManager/StateMachine/States/match/round/ready" to="UIText" method="showUI" binds= ["ready", false]]
@@ -578,3 +623,4 @@ size_flags_horizontal = 3
 [connection signal="state_entered" from="GameManager/StateMachine/States/match/round/fight" to="UIText" method="showUI" binds= ["fight", true]]
 [connection signal="state_entered" from="GameManager/StateMachine/States/match/round/outOfArena" to="GameManager" method="endCurrentRound"]
 [connection signal="state_entered" from="GameManager/StateMachine/States/match/round/roundReset" to="GameManager" method="resetRound"]
+[connection signal="pressed" from="UIText/NextMatch/MarginContainer/HBoxContainer/Button" to="GameManager/StateMachine" method="send_event" binds= ["startMatch"]]

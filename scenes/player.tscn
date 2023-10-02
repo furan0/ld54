@@ -127,7 +127,7 @@ rotation = 1.57079
 scale = Vector2(0.065, 0.065)
 texture = ExtResource("3_go2qw")
 
-[node name="Colision" type="CollisionShape2D" parent="."]
+[node name="Collider" type="CollisionShape2D" parent="."]
 scale = Vector2(0.645, 0.645)
 shape = SubResource("CircleShape2D_2fvwc")
 
@@ -437,10 +437,8 @@ bus = &"Sfx"
 script = ExtResource("23_obpe4")
 audio_clips = Array[AudioStream]([ExtResource("40_w2wwy")])
 
-[connection signal="dead" from="." to="Colision" method="set_disabled" binds= [true]]
 [connection signal="dead" from="." to="MovementHandler" method="setMaxDampening" binds= [true]]
 [connection signal="dead" from="." to="StateMachine" method="send_event" binds= ["dead"]]
-[connection signal="resurect" from="." to="Colision" method="set_disabled" binds= [false]]
 [connection signal="resurect" from="." to="MovementHandler" method="setMaxDampening" binds= [false]]
 [connection signal="resurect" from="." to="StateMachine" method="send_event" binds= ["reset"]]
 [connection signal="chargeEnd" from="InputHandler" to="StateMachine" method="send_event" binds= ["doCharge"]]
