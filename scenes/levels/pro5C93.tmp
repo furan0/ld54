@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cl5me5crmsilp"]
+[gd_scene load_steps=23 format=3 uid="uid://cl5me5crmsilp"]
 
 [ext_resource type="Texture2D" uid="uid://byiv7gx4e8g5q" path="res://assets/art/background/backgroundV2.png" id="1_2cc7n"]
 [ext_resource type="PackedScene" uid="uid://d1h1msw0tmfw4" path="res://scenes/player.tscn" id="3_vg4tc"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="8_gu0po"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="9_toyb6"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="10_wf50o"]
+[ext_resource type="Script" path="res://scripts/UI/TextUI.gd" id="12_2dcsl"]
 [ext_resource type="Texture2D" uid="uid://b5ik8a75rr78q" path="res://assets/art/UI/text_UI/ready_text.png" id="12_dt75w"]
 [ext_resource type="Script" path="res://scripts/UI/TextUIHandler.gd" id="12_yqcsr"]
 [ext_resource type="Texture2D" uid="uid://b0b26t0ynw7uk" path="res://assets/art/UI/text_UI/start_text.png" id="14_buoga"]
@@ -31,20 +32,6 @@ height = 527.63
 a = Vector2(0, -28)
 b = Vector2(0, 38)
 
-[sub_resource type="Animation" id="Animation_m7mop"]
-length = 0.001
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Ready/MarginContainer/VBoxContainer/Spacer2:size_flags_stretch_ratio")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(6.3, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-
 [sub_resource type="Animation" id="Animation_6715u"]
 resource_name = "ready_pop_in"
 tracks/0/type = "bezier"
@@ -59,10 +46,24 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.4, 0.7)
 }
 
+[sub_resource type="Animation" id="Animation_m7mop"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ready/MarginContainer/VBoxContainer/Spacer2:size_flags_stretch_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(6.3, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_i7n73"]
 _data = {
 "RESET": SubResource("Animation_m7mop"),
-"ready": SubResource("Animation_6715u")
+"ready_pop_in": SubResource("Animation_6715u")
 }
 
 [node name="proto" type="Node2D"]
@@ -214,53 +215,10 @@ delay_seconds = 2.0
 [node name="end" type="Node" parent="GameManager/StateMachine/States"]
 script = ExtResource("9_toyb6")
 
-[node name="UIText" type="CanvasLayer" parent="."]
+[node name="UI Text" type="CanvasLayer" parent="."]
 script = ExtResource("12_yqcsr")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="UIText"]
-libraries = {
-"": SubResource("AnimationLibrary_i7n73")
-}
-
-[node name="Ready" type="Control" parent="UIText"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="MarginContainer" type="MarginContainer" parent="UIText/Ready"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UIText/Ready/MarginContainer"]
-layout_mode = 2
-
-[node name="Spacer" type="Control" parent="UIText/Ready/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 0.05
-
-[node name="TextureRect" type="TextureRect" parent="UIText/Ready/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-texture = ExtResource("12_dt75w")
-expand_mode = 3
-stretch_mode = 5
-
-[node name="Spacer2" type="Control" parent="UIText/Ready/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 6.3
-
-[node name="Fight" type="Control" parent="UIText"]
+[node name="Ready" type="Control" parent="UI Text"]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -270,8 +228,16 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+script = ExtResource("12_2dcsl")
+animationName = "ready_pop_in"
 
-[node name="MarginContainer" type="MarginContainer" parent="UIText/Fight"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI Text/Ready"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_i7n73")
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="UI Text/Ready"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -279,22 +245,68 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UIText/Fight/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI Text/Ready/MarginContainer"]
 layout_mode = 2
 
-[node name="Spacer" type="Control" parent="UIText/Fight/MarginContainer/VBoxContainer"]
+[node name="Spacer" type="Control" parent="UI Text/Ready/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.05
 
-[node name="TextureRect" type="TextureRect" parent="UIText/Fight/MarginContainer/VBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="UI Text/Ready/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("12_dt75w")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Spacer2" type="Control" parent="UI Text/Ready/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 6.3
+
+[node name="Fight" type="Control" parent="UI Text"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("12_2dcsl")
+animationName = "ready_pop_in"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI Text/Fight"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_i7n73")
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="UI Text/Fight"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI Text/Fight/MarginContainer"]
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="UI Text/Fight/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.05
+
+[node name="TextureRect" type="TextureRect" parent="UI Text/Fight/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 texture = ExtResource("14_buoga")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="Spacer2" type="Control" parent="UIText/Fight/MarginContainer/VBoxContainer"]
+[node name="Spacer2" type="Control" parent="UI Text/Fight/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 6.3
@@ -304,12 +316,13 @@ size_flags_stretch_ratio = 6.3
 [connection signal="endOfRound" from="GameManager" to="GameManager/StateMachine" method="send_event" binds= ["endOfRound"]]
 [connection signal="resetPlayerPositions" from="GameManager" to="GameManager/StateMachine" method="send_event" binds= ["resetRound"]]
 [connection signal="startRound" from="GameManager" to="GameManager/StateMachine" method="send_event" binds= ["startRound"]]
+[connection signal="state_entered" from="GameManager/StateMachine/States/init" to="UI Text/Ready" method="hide"]
 [connection signal="state_entered" from="GameManager/StateMachine/States/match/reset" to="GameManager" method="resetMatch"]
 [connection signal="state_entered" from="GameManager/StateMachine/States/match/enemyEnter" to="GameManager" method="spawnEnemy"]
 [connection signal="state_entered" from="GameManager/StateMachine/States/match/round/ready" to="GameManager" method="lookAtEachOther"]
-[connection signal="state_entered" from="GameManager/StateMachine/States/match/round/ready" to="UIText" method="showUI" binds= ["ready", false]]
-[connection signal="state_exited" from="GameManager/StateMachine/States/match/round/ready" to="UIText" method="hideUI" binds= ["ready"]]
+[connection signal="state_entered" from="GameManager/StateMachine/States/match/round/ready" to="UI Text" method="showUI" binds= ["ready"]]
+[connection signal="state_exited" from="GameManager/StateMachine/States/match/round/ready" to="UI Text" method="hideUI" binds= ["ready"]]
 [connection signal="state_entered" from="GameManager/StateMachine/States/match/round/fight" to="GameManager" method="fightStarted"]
-[connection signal="state_entered" from="GameManager/StateMachine/States/match/round/fight" to="UIText" method="showUI" binds= ["fight", true]]
+[connection signal="state_entered" from="GameManager/StateMachine/States/match/round/fight" to="UI Text" method="showUI" binds= ["fight", true]]
 [connection signal="state_entered" from="GameManager/StateMachine/States/match/round/outOfArena" to="GameManager" method="endCurrentRound"]
 [connection signal="state_entered" from="GameManager/StateMachine/States/match/round/roundReset" to="GameManager" method="resetRound"]
