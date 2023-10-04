@@ -70,7 +70,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_iq16k")
 script = ExtResource("1_cv4s6")
-initialFocus = NodePath("MarginContainer/HBoxContainer/VBoxContainer/Back")
+initialFocus = NodePath("MarginContainer/HBoxContainer/VBoxContainer/OK")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -96,13 +96,13 @@ size_flags_stretch_ratio = 0.13
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Back" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="OK" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 21
 text = "Oki Doki !"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="MarginContainer/HBoxContainer/VBoxContainer/Back"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MarginContainer/HBoxContainer/VBoxContainer/OK"]
 libraries = {
 "": SubResource("AnimationLibrary_cxde5")
 }
@@ -112,23 +112,29 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 40
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer"]
+[node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/HBoxContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="GridContainer" type="GridContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer2"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer2/PanelContainer"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer2/PanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_constants/h_separation = 5
+theme_override_constants/h_separation = 0
 theme_override_constants/v_separation = 5
 columns = 2
 
-[node name="MovePanel" type="PanelContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/GridContainer"]
+[node name="MovePanel" type="PanelContainer" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer2/PanelContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Move" type="HBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/GridContainer/MovePanel" node_paths=PackedStringArray("dummy", "displayButton")]
+[node name="Move" type="HBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer2/PanelContainer/VBoxContainer/GridContainer/MovePanel" node_paths=PackedStringArray("dummy", "displayButton")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -137,35 +143,37 @@ script = ExtResource("2_h75vd")
 dummy = NodePath("CenterContainer/SubViewportContainer/SubViewport/Pantin")
 displayButton = NodePath("Control/Button")
 
-[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/GridContainer/MovePanel/Move"]
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer2/PanelContainer/VBoxContainer/GridContainer/MovePanel/Move"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/GridContainer/MovePanel/Move/CenterContainer"]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer2/PanelContainer/VBoxContainer/GridContainer/MovePanel/Move/CenterContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="SubViewport" type="SubViewport" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/GridContainer/MovePanel/Move/CenterContainer/SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer2/PanelContainer/VBoxContainer/GridContainer/MovePanel/Move/CenterContainer/SubViewportContainer"]
 disable_3d = true
 transparent_bg = true
 handle_input_locally = false
 size = Vector2i(100, 100)
 render_target_update_mode = 4
 
-[node name="Pantin" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/GridContainer/MovePanel/Move/CenterContainer/SubViewportContainer/SubViewport" instance=ExtResource("2_qgfcr")]
+[node name="Pantin" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer2/PanelContainer/VBoxContainer/GridContainer/MovePanel/Move/CenterContainer/SubViewportContainer/SubViewport" instance=ExtResource("2_qgfcr")]
 position = Vector2(45, 65)
 script = SubResource("GDScript_vj5se")
 
-[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/GridContainer/MovePanel/Move"]
+[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer2/PanelContainer/VBoxContainer/GridContainer/MovePanel/Move"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.55
 
-[node name="Button" type="TextureButton" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/GridContainer/MovePanel/Move/Control"]
+[node name="Button" type="TextureButton" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer2/PanelContainer/VBoxContainer/GridContainer/MovePanel/Move/Control"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -20.0
+offset_right = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 0
@@ -174,7 +182,7 @@ texture_normal = ExtResource("4_w6b8g")
 texture_pressed = ExtResource("5_3ly6e")
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/GridContainer/MovePanel/Move/Control"]
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer2/PanelContainer/VBoxContainer/GridContainer/MovePanel/Move/Control"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -194,26 +202,28 @@ theme_override_font_sizes/font_size = 16
 text = "W/A/S/D"
 horizontal_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/GridContainer/MovePanel/Move"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer2/PanelContainer/VBoxContainer/GridContainer/MovePanel/Move"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 size_flags_stretch_ratio = 1.8
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/GridContainer/MovePanel/Move/VBoxContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer2/PanelContainer/VBoxContainer/GridContainer/MovePanel/Move/VBoxContainer"]
 clip_contents = false
 layout_mode = 2
 size_flags_vertical = 4
 bbcode_enabled = true
-text = "To [b]move[/b] your character, use [i]WASD[/i], [i]arrow keys[/i] or [i]left stick[/i]."
+text = "[b]move[/b] :
+
+- [i]WASD[/i], [i]arrow keys[/i] or [i]left stick[/i]."
 fit_content = true
 
-[node name="GuardPanel" type="PanelContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/GridContainer"]
+[node name="GuardPanel" type="PanelContainer" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer2/PanelContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Guard" type="HBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/GridContainer/GuardPanel" node_paths=PackedStringArray("dummy", "displayButton")]
+[node name="Guard" type="HBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer2/PanelContainer/VBoxContainer/GridContainer/GuardPanel" node_paths=PackedStringArray("dummy", "displayButton")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -223,31 +233,31 @@ dummy = NodePath("CenterContainer/SubViewportContainer/SubViewport/Pantin")
 displayButton = NodePath("Control/Button")
 delayInBetween = 1.0
 
-[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/GridContainer/GuardPanel/Guard"]
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer2/PanelContainer/VBoxContainer/GridContainer/GuardPanel/Guard"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/GridContainer/GuardPanel/Guard/CenterContainer"]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer2/PanelContainer/VBoxContainer/GridContainer/GuardPanel/Guard/CenterContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="SubViewport" type="SubViewport" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/GridContainer/GuardPanel/Guard/CenterContainer/SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer2/PanelContainer/VBoxContainer/GridContainer/GuardPanel/Guard/CenterContainer/SubViewportContainer"]
 disable_3d = true
 transparent_bg = true
 handle_input_locally = false
 size = Vector2i(100, 100)
 render_target_update_mode = 4
 
-[node name="Pantin" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/GridContainer/GuardPanel/Guard/CenterContainer/SubViewportContainer/SubViewport" instance=ExtResource("2_qgfcr")]
+[node name="Pantin" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer2/PanelContainer/VBoxContainer/GridContainer/GuardPanel/Guard/CenterContainer/SubViewportContainer/SubViewport" instance=ExtResource("2_qgfcr")]
 position = Vector2(45, 65)
 script = SubResource("GDScript_vj5se")
 
-[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/GridContainer/GuardPanel/Guard"]
+[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer2/PanelContainer/VBoxContainer/GridContainer/GuardPanel/Guard"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.55
 
-[node name="Button" type="TextureButton" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/GridContainer/GuardPanel/Guard/Control"]
+[node name="Button" type="TextureButton" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer2/PanelContainer/VBoxContainer/GridContainer/GuardPanel/Guard/Control"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -260,7 +270,7 @@ texture_normal = ExtResource("4_w6b8g")
 texture_pressed = ExtResource("5_3ly6e")
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/GridContainer/GuardPanel/Guard/Control"]
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer2/PanelContainer/VBoxContainer/GridContainer/GuardPanel/Guard/Control"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -280,27 +290,30 @@ theme_override_font_sizes/font_size = 16
 text = "L"
 horizontal_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/GridContainer/GuardPanel/Guard"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer2/PanelContainer/VBoxContainer/GridContainer/GuardPanel/Guard"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 size_flags_stretch_ratio = 1.8
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/GridContainer/GuardPanel/Guard/VBoxContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer2/PanelContainer/VBoxContainer/GridContainer/GuardPanel/Guard/VBoxContainer"]
 clip_contents = false
 layout_mode = 2
 size_flags_vertical = 4
 bbcode_enabled = true
-text = "To [b]guard[/b] against your foe, [b][i]hold[/i][/b] [i]L[/i] or [i]B button[/i] on gamepad.
-The guard can onlya be broken by a tackle."
+text = "[b]guard[/b] :
+
+- [b][i]hold[/i][/b] [i]L[/i] or [i]B button[/i] on gamepad.
+- protect from charges
+- Can only be broken by a tackle."
 fit_content = true
 
-[node name="TacklePanel" type="PanelContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/GridContainer"]
+[node name="TacklePanel" type="PanelContainer" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer2/PanelContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Tackle" type="HBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/GridContainer/TacklePanel" node_paths=PackedStringArray("dummy", "displayButton")]
+[node name="Tackle" type="HBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer2/PanelContainer/VBoxContainer/GridContainer/TacklePanel" node_paths=PackedStringArray("dummy", "displayButton")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -310,31 +323,31 @@ dummy = NodePath("CenterContainer/SubViewportContainer/SubViewport/Pantin")
 displayButton = NodePath("Control/Button")
 delayInBetween = 1.0
 
-[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/GridContainer/TacklePanel/Tackle"]
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer2/PanelContainer/VBoxContainer/GridContainer/TacklePanel/Tackle"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/GridContainer/TacklePanel/Tackle/CenterContainer"]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer2/PanelContainer/VBoxContainer/GridContainer/TacklePanel/Tackle/CenterContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="SubViewport" type="SubViewport" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/GridContainer/TacklePanel/Tackle/CenterContainer/SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer2/PanelContainer/VBoxContainer/GridContainer/TacklePanel/Tackle/CenterContainer/SubViewportContainer"]
 disable_3d = true
 transparent_bg = true
 handle_input_locally = false
 size = Vector2i(100, 100)
 render_target_update_mode = 4
 
-[node name="Pantin" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/GridContainer/TacklePanel/Tackle/CenterContainer/SubViewportContainer/SubViewport" instance=ExtResource("2_qgfcr")]
+[node name="Pantin" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer2/PanelContainer/VBoxContainer/GridContainer/TacklePanel/Tackle/CenterContainer/SubViewportContainer/SubViewport" instance=ExtResource("2_qgfcr")]
 position = Vector2(45, 65)
 script = SubResource("GDScript_vj5se")
 
-[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/GridContainer/TacklePanel/Tackle"]
+[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer2/PanelContainer/VBoxContainer/GridContainer/TacklePanel/Tackle"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.55
 
-[node name="Button" type="TextureButton" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/GridContainer/TacklePanel/Tackle/Control"]
+[node name="Button" type="TextureButton" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer2/PanelContainer/VBoxContainer/GridContainer/TacklePanel/Tackle/Control"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -347,7 +360,7 @@ texture_normal = ExtResource("4_w6b8g")
 texture_pressed = ExtResource("5_3ly6e")
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/GridContainer/TacklePanel/Tackle/Control"]
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer2/PanelContainer/VBoxContainer/GridContainer/TacklePanel/Tackle/Control"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -367,27 +380,29 @@ theme_override_font_sizes/font_size = 16
 text = "K"
 horizontal_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/GridContainer/TacklePanel/Tackle"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer2/PanelContainer/VBoxContainer/GridContainer/TacklePanel/Tackle"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 size_flags_stretch_ratio = 1.8
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/GridContainer/TacklePanel/Tackle/VBoxContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer2/PanelContainer/VBoxContainer/GridContainer/TacklePanel/Tackle/VBoxContainer"]
 clip_contents = false
 layout_mode = 2
 size_flags_vertical = 4
 bbcode_enabled = true
-text = "To [b]tackle[/b] your foe, [b][i]press[/i][/b] [i]K[/i] or [i]A button[/i] on gamepad.
-The tackle can break even the toughest guard."
+text = "[b]tackle[/b] :
+
+- [b][i]press[/i][/b] [i]K[/i] or [i]A button[/i] on gamepad.
+- Can break even the toughest guard."
 fit_content = true
 
-[node name="WrestlePanel" type="PanelContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/GridContainer"]
+[node name="WrestlePanel" type="PanelContainer" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer2/PanelContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Wrestle" type="HBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/GridContainer/WrestlePanel" node_paths=PackedStringArray("dummy", "displayButton")]
+[node name="Wrestle" type="HBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer2/PanelContainer/VBoxContainer/GridContainer/WrestlePanel" node_paths=PackedStringArray("dummy", "displayButton")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -397,31 +412,31 @@ dummy = NodePath("CenterContainer/SubViewportContainer/SubViewport/Pantin")
 displayButton = NodePath("Control/Button")
 delayInBetween = 0.1
 
-[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/GridContainer/WrestlePanel/Wrestle"]
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer2/PanelContainer/VBoxContainer/GridContainer/WrestlePanel/Wrestle"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/GridContainer/WrestlePanel/Wrestle/CenterContainer"]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer2/PanelContainer/VBoxContainer/GridContainer/WrestlePanel/Wrestle/CenterContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="SubViewport" type="SubViewport" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/GridContainer/WrestlePanel/Wrestle/CenterContainer/SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer2/PanelContainer/VBoxContainer/GridContainer/WrestlePanel/Wrestle/CenterContainer/SubViewportContainer"]
 disable_3d = true
 transparent_bg = true
 handle_input_locally = false
 size = Vector2i(100, 100)
 render_target_update_mode = 4
 
-[node name="Pantin" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/GridContainer/WrestlePanel/Wrestle/CenterContainer/SubViewportContainer/SubViewport" instance=ExtResource("2_qgfcr")]
+[node name="Pantin" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer2/PanelContainer/VBoxContainer/GridContainer/WrestlePanel/Wrestle/CenterContainer/SubViewportContainer/SubViewport" instance=ExtResource("2_qgfcr")]
 position = Vector2(66.215, 58.94)
 script = SubResource("GDScript_vj5se")
 
-[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/GridContainer/WrestlePanel/Wrestle"]
+[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer2/PanelContainer/VBoxContainer/GridContainer/WrestlePanel/Wrestle"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.55
 
-[node name="Button" type="TextureButton" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/GridContainer/WrestlePanel/Wrestle/Control"]
+[node name="Button" type="TextureButton" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer2/PanelContainer/VBoxContainer/GridContainer/WrestlePanel/Wrestle/Control"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -434,7 +449,7 @@ texture_normal = ExtResource("4_w6b8g")
 texture_pressed = ExtResource("5_3ly6e")
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/GridContainer/WrestlePanel/Wrestle/Control"]
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer2/PanelContainer/VBoxContainer/GridContainer/WrestlePanel/Wrestle/Control"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -454,26 +469,29 @@ theme_override_font_sizes/font_size = 16
 text = "K/L"
 horizontal_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/GridContainer/WrestlePanel/Wrestle"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer2/PanelContainer/VBoxContainer/GridContainer/WrestlePanel/Wrestle"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 size_flags_stretch_ratio = 1.8
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/GridContainer/WrestlePanel/Wrestle/VBoxContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer2/PanelContainer/VBoxContainer/GridContainer/WrestlePanel/Wrestle/VBoxContainer"]
 clip_contents = false
 layout_mode = 2
 size_flags_vertical = 4
 bbcode_enabled = true
-text = "If two charging foes collides, you can [b]wrestle[/b] to find out who is the thoughest, [b][i]smash[/i][/b] that [i]K or L[/i] or [i]B button[/i] on gamepad !"
+text = "[b]wrestle[/b] :
+
+- Happens when 2 charges collides
+- [b][i]smash[/i][/b] [i]Tackle[/i] or [i]Guard[/i]"
 fit_content = true
 
-[node name="ChargePanel" type="PanelContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/GridContainer"]
+[node name="ChargePanel" type="PanelContainer" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer2/PanelContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Charge" type="HBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/GridContainer/ChargePanel" node_paths=PackedStringArray("dummy", "displayButton")]
+[node name="Charge" type="HBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer2/PanelContainer/VBoxContainer/GridContainer/ChargePanel" node_paths=PackedStringArray("dummy", "displayButton")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -483,31 +501,31 @@ dummy = NodePath("CenterContainer/SubViewportContainer/SubViewport/Pantin")
 displayButton = NodePath("Control/Button")
 delayInBetween = 3.0
 
-[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/GridContainer/ChargePanel/Charge"]
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer2/PanelContainer/VBoxContainer/GridContainer/ChargePanel/Charge"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/GridContainer/ChargePanel/Charge/CenterContainer"]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer2/PanelContainer/VBoxContainer/GridContainer/ChargePanel/Charge/CenterContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="SubViewport" type="SubViewport" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/GridContainer/ChargePanel/Charge/CenterContainer/SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer2/PanelContainer/VBoxContainer/GridContainer/ChargePanel/Charge/CenterContainer/SubViewportContainer"]
 disable_3d = true
 transparent_bg = true
 handle_input_locally = false
 size = Vector2i(100, 100)
 render_target_update_mode = 4
 
-[node name="Pantin" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/GridContainer/ChargePanel/Charge/CenterContainer/SubViewportContainer/SubViewport" instance=ExtResource("2_qgfcr")]
+[node name="Pantin" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer2/PanelContainer/VBoxContainer/GridContainer/ChargePanel/Charge/CenterContainer/SubViewportContainer/SubViewport" instance=ExtResource("2_qgfcr")]
 position = Vector2(45, 65)
 script = SubResource("GDScript_vj5se")
 
-[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/GridContainer/ChargePanel/Charge"]
+[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer2/PanelContainer/VBoxContainer/GridContainer/ChargePanel/Charge"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.55
 
-[node name="Button" type="TextureButton" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/GridContainer/ChargePanel/Charge/Control"]
+[node name="Button" type="TextureButton" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer2/PanelContainer/VBoxContainer/GridContainer/ChargePanel/Charge/Control"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -520,7 +538,7 @@ texture_normal = ExtResource("4_w6b8g")
 texture_pressed = ExtResource("5_3ly6e")
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/GridContainer/ChargePanel/Charge/Control"]
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer2/PanelContainer/VBoxContainer/GridContainer/ChargePanel/Charge/Control"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -540,27 +558,29 @@ theme_override_font_sizes/font_size = 16
 text = "K"
 horizontal_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/GridContainer/ChargePanel/Charge"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer2/PanelContainer/VBoxContainer/GridContainer/ChargePanel/Charge"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 size_flags_stretch_ratio = 1.8
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/GridContainer/ChargePanel/Charge/VBoxContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer2/PanelContainer/VBoxContainer/GridContainer/ChargePanel/Charge/VBoxContainer"]
 clip_contents = false
 layout_mode = 2
 size_flags_vertical = 4
 bbcode_enabled = true
-text = "To [b]charge[/b] toward your foe, [b][i]hold[/i][/b] [i]K[/i] or [i]A button[/i] on gamepad.
-The longer your hold, the further you and your enemy will go."
+text = "[b]charge[/b] :
+
+- [b][i]hold[/i][/b] [i]K[/i] or [i]A button[/i] on gamepad.
+- Holding longer = going further & hiting harder"
 fit_content = true
 
-[node name="DeadPanel" type="PanelContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/GridContainer"]
+[node name="DeadPanel" type="PanelContainer" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer2/PanelContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Dead" type="HBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/GridContainer/DeadPanel" node_paths=PackedStringArray("dummy", "displayButton")]
+[node name="Dead" type="HBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer2/PanelContainer/VBoxContainer/GridContainer/DeadPanel" node_paths=PackedStringArray("dummy", "displayButton")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -569,33 +589,33 @@ script = ExtResource("11_rknlc")
 dummy = NodePath("CenterContainer/SubViewportContainer/SubViewport/Pantin")
 displayButton = NodePath("Control/Button")
 
-[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/GridContainer/DeadPanel/Dead"]
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer2/PanelContainer/VBoxContainer/GridContainer/DeadPanel/Dead"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.7
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/GridContainer/DeadPanel/Dead/CenterContainer"]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer2/PanelContainer/VBoxContainer/GridContainer/DeadPanel/Dead/CenterContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="SubViewport" type="SubViewport" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/GridContainer/DeadPanel/Dead/CenterContainer/SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer2/PanelContainer/VBoxContainer/GridContainer/DeadPanel/Dead/CenterContainer/SubViewportContainer"]
 disable_3d = true
 transparent_bg = true
 handle_input_locally = false
 size = Vector2i(100, 100)
 render_target_update_mode = 4
 
-[node name="Pantin" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/GridContainer/DeadPanel/Dead/CenterContainer/SubViewportContainer/SubViewport" instance=ExtResource("2_qgfcr")]
+[node name="Pantin" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer2/PanelContainer/VBoxContainer/GridContainer/DeadPanel/Dead/CenterContainer/SubViewportContainer/SubViewport" instance=ExtResource("2_qgfcr")]
 position = Vector2(45, 65)
 script = SubResource("GDScript_vj5se")
 
-[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/GridContainer/DeadPanel/Dead"]
+[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer2/PanelContainer/VBoxContainer/GridContainer/DeadPanel/Dead"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.55
 
-[node name="Button" type="TextureButton" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/GridContainer/DeadPanel/Dead/Control"]
+[node name="Button" type="TextureButton" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer2/PanelContainer/VBoxContainer/GridContainer/DeadPanel/Dead/Control"]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -609,7 +629,7 @@ texture_normal = ExtResource("4_w6b8g")
 texture_pressed = ExtResource("5_3ly6e")
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/GridContainer/DeadPanel/Dead/Control"]
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer2/PanelContainer/VBoxContainer/GridContainer/DeadPanel/Dead/Control"]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -630,43 +650,54 @@ theme_override_font_sizes/font_size = 20
 text = "W/A/S/D"
 horizontal_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/GridContainer/DeadPanel/Dead"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer2/PanelContainer/VBoxContainer/GridContainer/DeadPanel/Dead"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
-size_flags_stretch_ratio = 1.8
+size_flags_stretch_ratio = 1.92
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/GridContainer/DeadPanel/Dead/VBoxContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer2/PanelContainer/VBoxContainer/GridContainer/DeadPanel/Dead/VBoxContainer"]
 clip_contents = false
 layout_mode = 2
 size_flags_vertical = 6
 size_flags_stretch_ratio = 1.55
+theme_override_font_sizes/normal_font_size = 15
+theme_override_font_sizes/bold_font_size = 18
+theme_override_font_sizes/italics_font_size = 15
 bbcode_enabled = true
-text = "Get pushed [i]out of the ring[/i] and you'll lose the round... A game is made of [i]3 rounds[/i] of 10s.
-[i]Win 2[/i] of them and the [b]victory is yours[/b] !"
+text = "[b][color=#d92425] TO WIN :[/color][/b]
+
+ - Push your ennemy [i][color=#d92425]out of the ring[/color][/i]
+ - [i]Best[/i] of [i]THREE[/i] win the match
+
+ WIn [i]all[/i] matches to become a [color=#eec40c][b]BRAVE[/b][/color]"
 fit_content = true
 
-[node name="Multiplayer panel" type="PanelContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+[node name="Multiplayer panel" type="PanelContainer" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer2/PanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Multiplayer panel"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer2/PanelContainer/VBoxContainer/Multiplayer panel"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Multiplayer panel/MarginContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer2/PanelContainer/VBoxContainer/Multiplayer panel/MarginContainer"]
 clip_contents = false
 layout_mode = 2
 size_flags_vertical = 6
 size_flags_stretch_ratio = 1.55
 theme_override_constants/line_separation = 5
+theme_override_font_sizes/normal_font_size = 13
+theme_override_font_sizes/bold_font_size = 15
+theme_override_font_sizes/italics_font_size = 13
 bbcode_enabled = true
-text = "For [b]multiplayer[/b], the control are remapped as follows: 
-- [b]PLAYER1[/b] : [i]W/Q/S/D[/i] to move, [i]G[/i] to tackle & charge, [i]H[/i] to guard & wrestle
-- [b]PLAYER2[/b] : [i]Arrows[/i] or [i]left stick[/i] to move, [i]K[/i] or gamepad [i]A[/i] to tackle & charge, [i]L[/i] or gamepad [i]B[/i] to guard & wrestle"
+text = "[b]Multiplayer[/b]  controls are : 
+
+- [b]PLAYER1[/b] :  [i]W/Q/S/D[/i] to move,                            -    [i]G[/i] to tackle & charge,                           -     [i]H[/i] to guard & wrestle
+- [b]PLAYER2[/b] : [i]Arrows[/i] or [i]left stick[/i] to move    -    [i]K[/i] or gamepad [i]A[/i] to tackle & charge,    -     [i]L[/i] or gamepad [i]B[/i] to guard & wrestle"
 fit_content = true
 
-[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Back" to="." method="goBack"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/OK" to="." method="goToStoredScene"]

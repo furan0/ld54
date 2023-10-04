@@ -18,6 +18,9 @@ var currentScene : Node = null
 var isANewSceneLoading : bool = false
 ## scene path currently loading
 var sceneCurrentlyLoading : String = ""
+
+var mainMenuNextSceneSwitch : String
+
 ## Signal emited during scene switch
 signal sceneSwitchStarted
 signal sceneSwitchCompleted

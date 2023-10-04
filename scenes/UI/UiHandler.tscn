@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://duxcaaa2ewb7q"]
+[gd_scene load_steps=4 format=3 uid="uid://duxcaaa2ewb7q"]
 
 [ext_resource type="Script" path="res://scripts/UI/UiHandler.gd" id="1_c1gba"]
 [ext_resource type="Script" path="res://scripts/audio/SimpleAudioPlayer.gd" id="2_58hdu"]
-[ext_resource type="AudioStream" uid="uid://cmr4qexrw4gv3" path="res://assets/audio/select.wav" id="3_dbeel"]
-[ext_resource type="AudioStream" uid="uid://hxr71661i51x" path="res://assets/audio/back.wav" id="4_87e75"]
+[ext_resource type="AudioStream" uid="uid://cstca1aafqsvd" path="res://assets/audio/ambiance/ring_fin_session.wav" id="3_ky8k1"]
 
 [node name="UiHandler" type="CanvasLayer"]
 script = ExtResource("1_c1gba")
@@ -11,12 +10,13 @@ script = ExtResource("1_c1gba")
 [node name="SimpleAudioPlayer" type="Node" parent="."]
 script = ExtResource("2_58hdu")
 sounds = {
-"back": ExtResource("4_87e75"),
-"select": ExtResource("3_dbeel")
+"back": ExtResource("3_ky8k1"),
+"select": ExtResource("3_ky8k1")
 }
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SimpleAudioPlayer"]
 max_polyphony = 5
+bus = &"Sfx"
 
 [connection signal="backRequestedWithEmptyHierarchy" from="." to="SimpleAudioPlayer" method="playSound" binds= ["back"]]
 [connection signal="uiGoback" from="." to="SimpleAudioPlayer" method="playSound" binds= ["back"]]

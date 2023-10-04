@@ -1,10 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://bxgb8qx4485pi"]
+[gd_scene load_steps=18 format=3 uid="uid://bxgb8qx4485pi"]
 
 [ext_resource type="PackedScene" uid="uid://duxcaaa2ewb7q" path="res://scenes/UI/UiHandler.tscn" id="1_5li7n"]
 [ext_resource type="PackedScene" uid="uid://djfdxmwa6507n" path="res://scenes/UI/MainMenuUi.tscn" id="2_emmkq"]
-[ext_resource type="PackedScene" uid="uid://c1lmfdelwaxbs" path="res://scenes/UI/OptionUI.tscn" id="3_2aexv"]
-[ext_resource type="PackedScene" uid="uid://bbqd8tlv4v8nq" path="res://scenes/UI/Option2UI.tscn" id="4_uh8ej"]
 [ext_resource type="PackedScene" uid="uid://p7o51iq35snm" path="res://scenes/UI/CreditUI.tscn" id="5_rqt24"]
+[ext_resource type="PackedScene" uid="uid://blfxjvhcdhhjr" path="res://scenes/UI/OptionUI2.tscn" id="5_s5scx"]
 [ext_resource type="Texture2D" uid="uid://cbhq6inb3f5nb" path="res://comm/concept1.png" id="6_jqt22"]
 [ext_resource type="PackedScene" uid="uid://cm17707fu5t37" path="res://scenes/UI/ControlUI.tscn" id="6_l452m"]
 [ext_resource type="Texture2D" uid="uid://opx64atbwl5l" path="res://assets/art/title_screen/title_screen_BG.jpg" id="8_a8ja7"]
@@ -21,6 +20,7 @@ script/source = "extends Node
 func _ready():
 	var handler : UiHandler = $UiHandler as UiHandler
 	handler.backRequestedWithEmptyHierarchy.connect(Global.goto_scene.bind(\"res://scenes/levels/proto.tscn\"))
+\"res://scenes/UI/OptionUI.tscn\"
 "
 
 [sub_resource type="Animation" id="Animation_snwka"]
@@ -250,8 +250,7 @@ panels = {
 "control": ExtResource("6_l452m"),
 "credit": ExtResource("5_rqt24"),
 "mainMenu": ExtResource("2_emmkq"),
-"option": ExtResource("3_2aexv"),
-"option2": ExtResource("4_uh8ej")
+"option": ExtResource("5_s5scx")
 }
 rootPanel = "mainMenu"
 

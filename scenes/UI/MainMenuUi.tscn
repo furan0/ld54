@@ -20,7 +20,6 @@ script = ExtResource("1_5i0kg")
 initialFocus = NodePath("MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/Play")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-z_index = 7
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -29,7 +28,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_constants/margin_left = 50
+theme_override_constants/margin_left = 30
 theme_override_constants/margin_top = 80
 theme_override_constants/margin_right = 120
 theme_override_constants/margin_bottom = 80
@@ -67,18 +66,23 @@ theme_override_constants/separation = 5
 
 [node name="Play" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 27
+theme_override_font_sizes/font_size = 26
 text = "Play !"
 
-[node name="Option" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
-visible = false
+[node name="Play2" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 27
+theme_override_font_sizes/font_size = 26
+text = "Two player
+Duel"
+
+[node name="Option" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
 text = "Option"
 
 [node name="Credit" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 27
+theme_override_font_sizes/font_size = 26
 text = "Credit"
 
 [node name="version" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
@@ -88,7 +92,7 @@ text = "Version 0.0.1"
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 4.32
+size_flags_stretch_ratio = 3.87
 theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 50
@@ -99,6 +103,9 @@ layout_mode = 2
 size_flags_horizontal = 3
 stretch_mode = 5
 
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/Play" to="." method="setNextSceneSwitch" binds= ["res://scenes/levels/proto.tscn"]]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/Play" to="." method="requestPanelSwitch" binds= ["control", true, false]]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/Play2" to="." method="setNextSceneSwitch" binds= ["res://scenes/levels/multi.tscn"]]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/Play2" to="." method="requestPanelSwitch" binds= ["control", true, false]]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/Option" to="." method="requestPanelSwitch" binds= ["option"]]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/Credit" to="." method="requestPanelSwitch" binds= ["credit"]]

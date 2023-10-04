@@ -1,15 +1,16 @@
-[gd_resource type="Theme" load_steps=4 format=3 uid="uid://mxwvwg8snm7m"]
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://mxwvwg8snm7m"]
 
 [ext_resource type="StyleBox" uid="uid://buyqtt2u146cs" path="res://assets/flatBoxTexture.tres" id="1_bn2r4"]
 [ext_resource type="FontFile" uid="uid://fn53c8yvt8d4" path="res://assets/fonts/Comicy.otf" id="1_ftnx0"]
 [ext_resource type="FontFile" uid="uid://bbw0wvbc7ucxs" path="res://assets/fonts/Spicy Soup.otf" id="1_ml30x"]
+[ext_resource type="StyleBox" uid="uid://b4nphew8nlnq2" path="res://assets/flatBoxTexture_activated.tres" id="2_u418o"]
 
 [resource]
 default_font = ExtResource("1_ftnx0")
 default_font_size = 12
 Button/colors/font_pressed_color = Color(0.613281, 0.230469, 0.230469, 1)
 Button/styles/disabled = ExtResource("1_bn2r4")
-Button/styles/focus = ExtResource("1_bn2r4")
+Button/styles/focus = ExtResource("2_u418o")
 Button/styles/hover = ExtResource("1_bn2r4")
 Button/styles/normal = ExtResource("1_bn2r4")
 Button/styles/pressed = ExtResource("1_bn2r4")
