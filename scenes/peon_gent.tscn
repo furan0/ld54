@@ -16,7 +16,7 @@ inputProvider = 3
 [node name="IA" parent="." index="10"]
 start_on_load = true
 i_am_robot = true
-level = 0.2
+level = 0.4
 
 [node name="2D_character_rig" parent="." index="12"]
 visible = false

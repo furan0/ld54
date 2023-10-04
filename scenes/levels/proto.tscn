@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://cl5me5crmsilp"]
+[gd_scene load_steps=51 format=3 uid="uid://cl5me5crmsilp"]
 
 [ext_resource type="Texture2D" uid="uid://opx64atbwl5l" path="res://assets/art/title_screen/title_screen_BG.jpg" id="1_dkxa3"]
 [ext_resource type="Script" path="res://scripts/ShakyShaky.gd" id="1_pgyyd"]
@@ -155,6 +155,17 @@ _data = {
 "ready": SubResource("Animation_6715u"),
 "victory": SubResource("Animation_ln1k2")
 }
+
+[sub_resource type="GDScript" id="GDScript_12te7"]
+script/source = "extends Button
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	visibility_changed.connect(func ():
+		if visible:
+			grab_focus())
+"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_h8edu"]
 shader = ExtResource("27_2do7a")
@@ -700,7 +711,6 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 1.29
 
 [node name="NextMatch" type="Control" parent="UIText"]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -734,12 +744,14 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.65
 text = "Start next Duel !"
+script = SubResource("GDScript_12te7")
 
 [node name="Spacer" type="Control" parent="UIText/NextMatch/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="EndGameWon" type="Control" parent="UIText"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -891,17 +903,17 @@ bus = &"Music"
 [connection signal="wrestlingStarted" from="Player" to="Camera" method="doShake" binds= [0.45]]
 [connection signal="endOfGame" from="GameManager" to="GameManager/StateMachine" method="send_event" binds= ["finish"]]
 [connection signal="endOfRound" from="GameManager" to="GameManager/StateMachine" method="send_event" binds= ["endOfRound"]]
-[connection signal="enemyWonGame" from="GameManager" to="UIText" method="showUI" binds= ["defeat", false]]
 [connection signal="enemyWonGame" from="GameManager" to="UIText" method="showUIAfterDelay" binds= ["gameLost", 1.0]]
+[connection signal="enemyWonGame" from="GameManager" to="UIText" method="showUI" binds= ["defeat", false]]
 [connection signal="enemyWonRound" from="GameManager" to="UIRounds" method="setRound" binds= [false]]
 [connection signal="playerWonGame" from="GameManager" to="Arena/CrowdHandler" method="superHappy"]
 [connection signal="playerWonGame" from="GameManager" to="Audio_lvl/youpi" method="play_sound"]
-[connection signal="playerWonGame" from="GameManager" to="UIText" method="showUI" binds= ["victory", false]]
 [connection signal="playerWonGame" from="GameManager" to="UIText" method="showUIAfterDelay" binds= ["gameWon", 1.0]]
+[connection signal="playerWonGame" from="GameManager" to="UIText" method="showUI" binds= ["victory", false]]
 [connection signal="playerWonMatch" from="GameManager" to="Arena/CrowdHandler" method="superHappy"]
 [connection signal="playerWonMatch" from="GameManager" to="Audio_lvl/youpi" method="play_sound"]
-[connection signal="playerWonMatch" from="GameManager" to="UIText" method="showUI" binds= ["victory", false]]
 [connection signal="playerWonMatch" from="GameManager" to="UIText" method="showUIAfterDelay" binds= ["nextMatch", 0.5]]
+[connection signal="playerWonMatch" from="GameManager" to="UIText" method="showUI" binds= ["victory", false]]
 [connection signal="playerWonRound" from="GameManager" to="UIRounds" method="setRound" binds= [true]]
 [connection signal="resetPlayerPositions" from="GameManager" to="GameManager/StateMachine" method="send_event" binds= ["resetRound"]]
 [connection signal="startRound" from="GameManager" to="GameManager/StateMachine" method="send_event" binds= ["startRound"]]

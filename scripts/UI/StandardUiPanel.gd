@@ -39,8 +39,8 @@ func requestPanelSwitch(panelName : String, hidePreviousPanel : bool = true, isC
 	print ("UI panel switch requested : " + panelName)
 	switchToPanel.emit(panelName, hidePreviousPanel, isChildPanel)
 
-func setNextSceneSwitch(name : String):
-	Global.mainMenuNextSceneSwitch = name
+func setNextSceneSwitch(SceneName : String):
+	Global.mainMenuNextSceneSwitch = SceneName
 
 func goToStoredScene():
 	goToScene(Global.mainMenuNextSceneSwitch)
